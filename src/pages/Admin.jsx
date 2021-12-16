@@ -1,9 +1,11 @@
+import Section from '../components/styled-components/Section';
+
 function Admin() {
     return (
         <div className='admin-page'>
-            <div className='my-statistics'>
+            <Section>
                 <p>Statistiques</p>
-            </div>
+            </Section>
             <div className='my-houses'>
                 <p>Mes maisons des bois</p>
             </div>
