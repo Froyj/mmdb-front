@@ -1,27 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import About from './pages/About';
+import AddNewHouse from './pages/AddNewHouse';
+import Admin from './pages/Admin';
+import Home from './pages/Home';
+import House from './pages/House';
+import Search from './pages/Search';
+import Services from './pages/Services';
+import UserProfile from './pages/UserProfile';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          {`
-            Node environment =>  ${process.env.NODE_ENV}
-            
-            API base URL => ${process.env.REACT_APP_API_URL}
-          `}
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Navigation />
+
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/NosMaisonsForestieres' element={<Search />} />
+        <Route path='/Maison' element={<House />} />
+        <Route path='/QuiSommesNous' element={<About />} />
+        <Route path='/Services' element={<Services />} />
+        <Route path='/Administrateur' element={<Admin />} />
+        <Route path='/Profil' element={<UserProfile />} />
+        <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+      </Routes>
+
     </div>
   );
 }
