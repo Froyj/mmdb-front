@@ -176,8 +176,9 @@ const ContainerForm = styled.div`
   background-color: #F3F9F2;
   width: 90%;
   display: flex;
-  margin: auto;
-  border: 2px solid #ba9b5c;
+  margin: auto ;
+  padding: 15px;
+  border: 5px solid #ba9b5c;
   border-radius: 10px;
   
   h1{
