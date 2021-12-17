@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
@@ -8,55 +9,94 @@ function SignUpForm() {
   };
 
   return (
-    <>
-      <h1>Créer un compte</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <ContainerForm>
+      <Title>Créer un compte</Title>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <select {...register("sex")}>
           <option value="madame">Madame</option>
           <option value="mister">Monsieur</option>
-        </select><br />
-        <label htmlFor="firstname">
-          Prénom :<br />
-          <input type="text" {...register("firstname")} />
-        </label>
+        </select>
         <br />
-        <label htmlFor="lastname">
-          Nom :<br />
-          <input type="text" {...register("lastname")} />
-        </label>
+        <input type="text" placeholder="Nom" {...register("lastname")} />
         <br />
-        <label htmlFor="dateOfBirth">
-          Date de naissance :<br />
-          <input type="date" {...register("dateOfBirth")} />
-        </label>
+        <input type="text" placeholder="Prénom" {...register("firstname")} />
         <br />
-        <label htmlFor="email">
-          Email :<br />
-          <input type="email" {...register("email")} />
-        </label>
+        <input
+          type="date"
+          placeholder="Date de naissance"
+          {...register("dateOfBirth")}
+        />
         <br />
-        <label htmlFor="address">
-          Vos coordonnées :<br />
-          <input type="textarea" placeholder="Adresse" {...register("adress")} /><br />
-          <input type="text" placeholder="Code postal"{...register("adress")} /><br />
-          <input type="text" placeholder="Ville"{...register("adress")} /><br />
-          <input type="tel" placeholder="Téléphone"{...register("adress")} /><br />
-        </label>
+        <input type="email" placeholder="Email" {...register("email")} />
         <br />
-        <label htmlFor="password">
-          Mot de passe :<br />
-          <input type="password" {...register("password")} />
-        </label>
+        <input type="textarea" placeholder="Adresse" {...register("adress")} />
         <br />
-        <label htmlFor="confirmPassword">
-          Confirmer le mot de passe :<br />
-          <input type="password" {...register("confirmPassword")} />
-        </label>
+        <input type="text" placeholder="Code postal" {...register("adress")} />
+        <br />
+        <input type="text" placeholder="Ville" {...register("adress")} />
+        <br />
+        <input type="tel" placeholder="Téléphone" {...register("adress")} />
+        <br />
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          {...register("password")}
+        />
+        <br />
+        <input
+          type="password"
+          placeholder="Confirmer le mot de passe"
+          {...register("confirmPassword")}
+        />
         <br />
         <button type="submit">Envoyer</button>
-      </form>
-    </>
+      </Form>
+    </ContainerForm>
   );
 }
+
+const ContainerForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1c2c46;
+  width: 60%;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+`;
+
+const Title = styled.h1`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 16px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 80%;
+  padding: 16px;
+
+  select {
+    width: 30%;
+  }
+
+  input {
+    background-color: white;
+    border-radius: 8px;
+    height: 32px;
+  }
+
+  button {
+    height: 32px;
+    border-radius: 8px;
+    background-color: #ba9b5c;
+  }
+`;
 
 export default SignUpForm;

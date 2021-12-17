@@ -12,119 +12,77 @@ function AddHomeForm() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="newHouse">
           Nom de la maison :<br />
-          <input type="text" {...register("newHouse")}/>
+          <input type="text" {...register("newHouse")} />
         </label>
         <br />
         <label htmlFor="city">
           Ville :<br />
-          <input
-            type="text"
-            {...register("city")}
-          />
+          <input type="text" {...register("city")} />
         </label>
         <br />
         <label htmlFor="region">
           Région :<br />
-          <input
-            type="text"
-            {...register("region")}
-          />
+          <input type="text" {...register("region")} />
         </label>
         <br />
         <label htmlFor="travellersNumber">
           Nombre de voyageurs :<br />
-          <input
-            type="number"
-            {...register("travellersNumber")}
-          />
+          <input type="number" {...register("travellersNumber")} />
         </label>
         <br />
         <label htmlFor="roomsNumber">
           Nombre de chambres :<br />
-          <input
-            type="number"
-            {...register("roomsNumber")}
-          />
+          <input type="number" {...register("roomsNumber")} />
         </label>
         <br />
         <label htmlFor="bedsNumber">
           Nombre de lits :<br />
-          <input
-            type="number"
-            {...register("bedsNumber")}
-          />
+          <input type="number" {...register("bedsNumber")} />
         </label>
         <br />
         <label htmlFor="pictures">
           Ajouter des photos :<br />
-          <input
-            type="file"
-            {...register("pictures")}
-          />
+          <input type="file" {...register("pictures")} />
         </label>
         <br />
         <label htmlFor="shortDescription">
           Description courte :<br />
-          <input
-            type="textarea"
-            {...register("shortDescription")}
-          />
+          <input type="textarea" {...register("shortDescription")} />
         </label>
         <br />
         <label htmlFor="longDescription">
           Description longue :<br />
-          <input
-            type="textarea"
-            {...register("longDescription")}
-          />
+          <input type="textarea" {...register("longDescription")} />
         </label>
         <br />
         <label htmlFor="activitiesAround">
           Activités :<br />
-          <input
-            type="textarea"
-            {...register("activitiesAround")}
-          />
+          <input type="textarea" {...register("activitiesAround")} />
         </label>
         <br />
         <label htmlFor="address">
           Adresse :<br />
-          <input
-            type="textarea"
-            {...register("address")}
-          />
+          <input type="textarea" {...register("address")} />
         </label>
         <br />
         <label htmlFor="rulesAndRegulations">
           Règlement intérieur :<br />
-          <input
-            type="textarea"
-            {...register("rulesAndRegulations")}
-          />
+          <input type="textarea" {...register("rulesAndRegulations")} />
         </label>
         <br />
         <label htmlFor="cancellationPolicies">
           Conditions d'annulation :<br />
-          <input
-            type="textarea"
-            {...register("cancellationPolicies")}
-          />
+          <input type="textarea" {...register("cancellationPolicies")} />
         </label>
         <br />
         <label htmlFor="pricePerNight">
           Prix/nuit :<br />
-          <input
-            type="text"
-            {...register("pricePerNight")}
-          />
+          <input type="text" {...register("pricePerNight")} />
         </label>
         <br />
         <label htmlFor="availability">
           Disponibilités à la location :<br />
-          <input
-            type="date"
-            {...register("availability")}
-          />
+          <input type="date" {...register("availability")} />
         </label>
         <br />
         <label htmlFor="equipments">

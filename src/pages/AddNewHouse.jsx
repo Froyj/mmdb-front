@@ -1,6 +1,12 @@
+import AddHomeForm from "../components/AddHomeForm";
+
+
 function AddNewHouse() {
     return (
-       ' Nouvelle Maison'
+        <div>
+       <h1>Nouvelle Maison</h1>
+       <AddHomeForm />
+       </div>
     );
 }
 
