@@ -24,12 +24,13 @@ function Navigation() {
     );
 }
 
-const Navbar = styled.div`
+const Navbar = styled.nav`
     display: flex;
     background: #5d7b4c;
     height: 7rem;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 2rem;
 `;
 
 const Logo = styled.a`
@@ -64,7 +65,7 @@ const Menu = styled.div`
         color: white;
         padding: 1rem 2rem;
         font-family: 'Trebuchet MS';
-        font-size: 1.1em;
+        font-size: 1.2em;
 
         &:hover {
             color: #eeeb8f
