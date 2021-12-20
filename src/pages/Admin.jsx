@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Section from '../components/styled-components/Section';
 import AdminHouseList from '../components/AdminHouseList';
 import FilledButton from '../components/styled-components/FilledButton';
+import AdminReservationList from '../components/AdminReservationList';
 
 function Admin() {
     return (
@@ -22,6 +23,7 @@ function Admin() {
             <Section>
                 <h1>Mes réservations</h1>
             </Section>
+            <AdminReservationList />
         </>
     );
 }

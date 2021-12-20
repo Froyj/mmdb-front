@@ -8,6 +8,8 @@ const FilledButton = styled.button`
     padding: ${(props) => props.padding || '.6rem 2.5rem'};
     margin: ${(props) => props.margin || '.5rem'};
     color: ${(props) => props.textColor || 'white'};
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
 `
 
 export default FilledButton;
