@@ -1,8 +1,11 @@
 import AddHomeForm from '../components/AddHomeForm';
+import Global from '../components/styled-components/Global';
 
 function AddNewHouse() {
     return (
-       <AddHomeForm />
+        <Global>
+            <AddHomeForm />
+        </Global>
     );
 }
 
