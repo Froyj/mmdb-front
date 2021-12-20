@@ -96,6 +96,7 @@ const Form = styled.form`
     height: 32px;
     border-radius: 8px;
     background-color: #ba9b5c;
+    color: white;
   }
 `;
 

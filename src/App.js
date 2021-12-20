@@ -11,6 +11,7 @@ import House from './pages/House';
 import Search from './pages/Search';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
+import ConnectionModal from './components/ConnectionModal';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path='/NouvelleMaison' element={<AddNewHouse />} />
         </Routes>
       </ Global>
-
+<ConnectionModal />
       <Footer />
     </>
   );
