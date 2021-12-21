@@ -1,16 +1,12 @@
-// // import { NavLink, useParams } from "react-router-dom";
-// import BlankButton from "../components/styled-components/BlankButton";
+import Global from "../components/styled-components/Global";
+import SearchHouseList from "../components/SearchHouseList";
 
-// function Search() {
-//     // const { id } = useParams();
+function Search() {
+    return (
+        <Global>
+            <SearchHouseList />
+        </Global>
+    );
+}
 
-//     return (
-//         <div>
-//             Maison id = 1
-//             <NavLink to='/Maison/:id'><BlankButton> Annonce </BlankButton></NavLink>
-
-//         </div>
-//     );
-// }
-
-// export default Search;
+export default Search;

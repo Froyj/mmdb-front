@@ -1,6 +1,10 @@
+import Global from "../components/styled-components/Global";
+
 function Services() {
     return (
-        'Nos services'
+        <Global>
+            'Nos services'
+        </Global>
     );
 }
 

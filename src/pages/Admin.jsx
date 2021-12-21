@@ -5,10 +5,11 @@ import Section from '../components/styled-components/Section';
 import AdminHouseList from '../components/AdminHouseList';
 import FilledButton from '../components/styled-components/FilledButton';
 import AdminReservationList from '../components/AdminReservationList';
+import Global from '../components/styled-components/Global';
 
 function Admin() {
     return (
-        <>
+        <Global>
             <Section>
                 <h1>Statistiques</h1>
             </Section>
@@ -24,7 +25,7 @@ function Admin() {
                 <h1>Mes réservations</h1>
             </Section>
             <AdminReservationList />
-        </>
+        </Global>
     );
 }
 
