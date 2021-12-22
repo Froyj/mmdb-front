@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Section from '../components/styled-components/Section';
-import AdminHouseList from '../components/AdminHouseList';
 import FilledButton from '../components/styled-components/FilledButton';
-import AdminReservationList from '../components/AdminReservationList';
 import Global from '../components/styled-components/Global';
 
-function Admin() {
+import AdminHouseList from '../components/AdminHouseList';
+import AdminReservationList from '../components/AdminReservationList';
+
+function Admin({ houses }) {
+        Admin.propTypes = {
+        houses: PropTypes.string.isRequired,
+    }
+
     return (
         <Global>
             <Section>
@@ -16,7 +22,7 @@ function Admin() {
             <Section>
                 <h1>Mes maisons des bois</h1>
             </Section>
-            <AdminHouseList />
+            <AdminHouseList houses={houses} />
             <ButtonsDiv>
                 <NavLink exact to='/NouvelleMaison' ><FilledButton> Ajouter une nouvelle maison </FilledButton></NavLink>
                 <FilledButton> Supprimer une maison </FilledButton>

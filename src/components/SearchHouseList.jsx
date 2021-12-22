@@ -1,17 +1,21 @@
+import PropTypes from "prop-types";
 import SearchHouseCard from "./SearchHouseCard";
-import house from "../data/fictiveData";
 
-function SearchHouseList() {
+function SearchHouseList({ houses }) {
+    SearchHouseList.propTypes = {
+        houses: PropTypes.string.isRequired,
+    }
+
     return (
         <>
-            {house.map(el => 
+            {houses.map(house => 
                 <SearchHouseCard 
-                    index={el.id} 
-                    name={el.name} 
-                    text={el.shortDescription} 
-                    image={el.images.principal} 
-                    city={el.city}
-                    capacity={el.capacity} 
+                    id={house.id} 
+                    name={house.name} 
+                    text={house.describe_short} 
+                    // image={house.images.principal} 
+                    city={house.city}
+                    capacity={house.capacity} 
                 />
             )}
         </>
