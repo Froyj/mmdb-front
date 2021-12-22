@@ -14,12 +14,14 @@ function AdminReservationCard({ user, arrival, departure, house }) {
       }
 
     return (
-        <Line>
-            <th> <BlankContainer borderColor={colors.green} width='20rem'> { user } </ BlankContainer></th>
-            <th> { arrival } au { departure } </th>
-            <th> { house } </th>
-            <th> <FilledButton> Détails </FilledButton> </th>
-        </Line>
+        <tbody>
+            <Line>
+                <th> <BlankContainer borderColor={colors.green} width='20rem'> { user } </ BlankContainer></th>
+                <th> { arrival } au { departure } </th>
+                <th> { house } </th>
+                <th> <FilledButton> Détails </FilledButton> </th>
+            </Line>
+        </tbody>
     )
 };
 

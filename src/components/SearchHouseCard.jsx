@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 import colors from "./styled-components/colors";
 
-function SearchHouseCard({ index, name, text, image, city, capacity }) {
+function SearchHouseCard({ id, name, text, city, capacity }) {
     SearchHouseCard.propTypes = {
-        index: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        // image: PropTypes.string.isRequired,
         city: PropTypes.string.isRequired,
         capacity: PropTypes.string.isRequired,
       }
 
     return (
-        <StyledLink to={`/Maison/${index}`}>
+        <StyledLink to={`/Maison/${id}`}>
             <HouseCard> 
-                <img src={image} alt={name} />
+                {/* <img src={image} alt={name} /> */}
                 <InfoDiv>
                         <TitleSpan>{name}</TitleSpan>
                         <br />{city}

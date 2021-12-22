@@ -6,7 +6,8 @@ import bookings from '../data/fictiveBooking';
 function AdminReservationList() {
     return (
         <ReservationTable>
-            {bookings.map(booking => <AdminReservationCard 
+            {bookings.map(booking => <AdminReservationCard
+                key={booking.id} 
                 user={booking.user_id}
                 arrival={booking.arrival_date}
                 departure={booking.departure_date}

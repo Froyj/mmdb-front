@@ -4,15 +4,14 @@ import colors from './styled-components/colors';
 import BlankTitle from './styled-components/BlankTitle';
 import BlankButton from './styled-components/BlankButton';
 
-function AdminHouseCard({ name, image}) {
+function AdminHouseCard({ name }) {
     AdminHouseCard.propTypes = {
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired
       }
 
     return (
         <Card>
-            <img src={image} alt={name} />
+            {/* <img src={image} alt={name} /> */}
             <BlankTitle color={colors.blue}>{name}</BlankTitle>
             <Buttons>
                 <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
