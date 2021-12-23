@@ -17,7 +17,6 @@ function App() {
   return (
     <>
       <Navigation />
-
       <Global>
         <Routes>
           <Route exact path='/' element={<Home />} />
@@ -28,9 +27,9 @@ function App() {
           <Route path='/Administrateur' element={<Admin />} />
           <Route path='/Profil' element={<UserProfile />} />
           <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+          <Route path ='/SeConnecter' element={<ConnectionModal />} />
         </Routes>
       </ Global>
-<ConnectionModal />
       <Footer />
     </>
   );

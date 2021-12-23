@@ -28,6 +28,11 @@ const Navigation = () => {
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
         <Link to="/SeConnecter">
+        <Image>
+            <img src="../ressources/user-white.png" alt="utilisateur" width="35px" height="35px"/>
+        </Image>
+        </Link>
+        <Link to="/SeConnecter">
           <MenuLink>Se connecter</MenuLink>
         </Link>
       </Menu>
@@ -102,4 +107,8 @@ const Logo = styled.a`
   }
 `;
 
+const Image = styled.a`
+    display: flex;
+    flex-direction: row;
+`;
 export default Navigation;
