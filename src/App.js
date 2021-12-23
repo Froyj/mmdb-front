@@ -12,6 +12,7 @@ import Search from './pages/Search';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
 import ConnectionModal from './components/ConnectionModal';
+import SignUpForm from './components/SignUpForm';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/Profil' element={<UserProfile />} />
           <Route path='/NouvelleMaison' element={<AddNewHouse />} />
           <Route path ='/SeConnecter' element={<ConnectionModal />} />
+          <Route path='CreationCompte' element={<SignUpForm />} />
         </Routes>
       </ Global>
       <Footer />
