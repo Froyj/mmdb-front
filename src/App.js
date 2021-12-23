@@ -29,7 +29,7 @@ function App() {
           <Route path='/Profil' element={<UserProfile />} />
           <Route path='/NouvelleMaison' element={<AddNewHouse />} />
           <Route path ='/SeConnecter' element={<ConnectionModal />} />
-          <Route path='CreationCompte' element={<SignUpForm />} />
+          <Route path='/CreationCompte' element={<SignUpForm />} />
         </Routes>
       </ Global>
       <Footer />
