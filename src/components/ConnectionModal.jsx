@@ -5,7 +5,7 @@ import ContainerForm from './styled-components/ContainerForm';
 import TitleForm from './styled-components/TitleForm';
 import Submitbutton from './styled-components/SubmitButton';
 
-const TestconnectionModal = () => {
+const ConnectionModal = () => {
     const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     // eslint-disable-next-line no-console
@@ -81,4 +81,4 @@ const LineContainer = styled.div`
 `;
 
 
-export default TestconnectionModal;
+export default ConnectionModal;
