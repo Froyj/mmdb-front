@@ -1,64 +1,43 @@
-import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import ContainerForm from './styled-components/ContainerForm';
+import TitleForm from './styled-components/TitleForm';
+import Submitbutton from './styled-components/SubmitButton';
 
-const ConnectionModal = () => {
-  const { register, handleSubmit } = useForm();
+const TestconnectionModal = () => {
+    const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     // eslint-disable-next-line no-console
-    console.log(data);
-  };
-  return (
-    <div>
-      <ContainerForm>
-        <Title>Connexion</Title>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <ConnectionInfos>
-            <input type="email" placeholder="Email" {...register("email")} />
-            <br />
-            <input
+    console.log(data); }
+    
+    return (
+        <ContainerForm>
+            <TitleForm>Connexion</TitleForm>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <ConnectionInfos>
+                    <input type="email" placeholder="Email" {...register("email")} />
+                    <br />
+                    <input
               type="password"
               placeholder="Mot de passe"
               {...register("password")}
             />
-            <p>Mot de passe oublié ?</p>
-            <DontHaveAnAccountYet>
-              <p>Pas encore de compte ?</p>
-            </DontHaveAnAccountYet>
-          </ConnectionInfos>
-          <Choice>
-            <LogIn>
-              <button type="submit">Me connecter</button>
-            </LogIn>
-            <SignUp>
-              <button type="submit">Créer un compte</button>
-            </SignUp>
-          </Choice>
-        </Form>
-      </ContainerForm>
-      );
-    </div>
-  );
+            <LineContainer>
+            <TextHover>
+            Mot de passe oublié ?
+            </TextHover>
+            <TextHover>
+            Créer un compte ?
+            </TextHover>
+            </LineContainer>
+                </ConnectionInfos>
+                <br />
+                <Submitbutton type="submit" fontSize="1em" margin='auto'>Se connecter</Submitbutton>
+            </Form>
+        </ContainerForm>
+    );
 };
-
-const ContainerForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1c2c46;
-  width: 50%;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`;
-
-const Title = styled.h1`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  padding: 16px;
-`;
 
 const Form = styled.form`
   display: flex;
@@ -82,39 +61,24 @@ const ConnectionInfos = styled.div`
   align-content: space-between;
 `;
 
-const Choice = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+const TextHover = styled.p`
+    color:#1c2c46;
 
-const DontHaveAnAccountYet = styled.p`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const LogIn = styled.div`
-  button {
-    height: 32px;
-    border-radius: 8px;
-    background-color: #ba9b5c;
-    color: white;
-    width: 12rem;
+    &:hover {
+      color:#eeeb8f;
+      cursor: pointer;
   }
 `;
 
-const SignUp = styled.div`
-  display: flex;
-  flex-direction: column;
+const LineContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 
-  button {
-    height: 32px;
-    border-radius: 8px;
-    background-color: #ba9b5c;
-    color: white;
-    width: 12rem;
-  }
+    @media (max-width: 768px) {
+    flex-direction: column;
+    line-height: 2em;
+    }
 `;
 
-export default ConnectionModal;
+
+export default TestconnectionModal;

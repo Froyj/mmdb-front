@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import TitleForm from "./styled-components/TitleForm";
+import ContainerForm from "./styled-components/ContainerForm";
+import Submitbutton from "./styled-components/SubmitButton";
 
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
@@ -11,7 +14,7 @@ function SignUpForm() {
 
   return (
     <ContainerForm>
-      <Title>Créer un compte</Title>
+      <TitleForm>Créer un compte</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <select {...register("sex", {required: true})}>
           <option value="madame">Madame</option>
@@ -66,27 +69,6 @@ function SignUpForm() {
   );
 }
 
-const ContainerForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f3f9f2;
-  width: 60%;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  border : 2px solid #1c2c46;
-`;
-
-const Title = styled.h1`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #1c2c46;
-  padding: 16px;
-`;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -108,15 +90,5 @@ const Form = styled.form`
     color: #1c2c46;
   }
   `;
-
-const Submitbutton = styled.button`
-    height: 32px;
-    border-radius: 8px;
-    background-color: #ba9b5c;
-    color: white;
-    width: 20%;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-`;
 
 export default SignUpForm;
