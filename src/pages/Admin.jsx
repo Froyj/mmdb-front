@@ -1,4 +1,3 @@
-// import {useState} from 'react'
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -8,13 +7,6 @@ import FilledButton from "../components/styled-components/FilledButton";
 import AdminReservationList from "../components/AdminReservationList";
 
 function Admin() {
-//   const [state, setState] = useState([]);
-//   const handleClick = async () => {
-//     await fetch('/houses')
-//     .then((response) => response.json())
-//     .then((data) => setState(data));
-    
-//   };
   return (
     <>
       <Section>
@@ -30,8 +22,6 @@ function Admin() {
         </NavLink>
         <FilledButton> Supprimer une maison </FilledButton>
       </ButtonsDiv>
-      {/* <button type="button" onClick={handleClick}>salut</button>
-      <div>{state.map((e) => <li>{e.name}</li>)}</div> */}
       <Section>
         <h1>Mes réservations</h1>
       </Section>
