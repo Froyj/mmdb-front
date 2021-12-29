@@ -1,76 +1,114 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
-function Navigation() {
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    return (
-        <Navbar>
-            <Logo>
-                <NavLink  to='/'>
-                    <img src='resources/Logo-fondBlanc.png' alt='logo-transparent' height='100%' width='auto' />
-                </NavLink>
-            </Logo>
-            <Menu>
-                <NavLink  to='/NosMaisonsForestieres' >Nos maisons forestières</NavLink>
-                <NavLink  to='/Services' >Nos services</NavLink>
-                <NavLink  to='/QuiSommesNous' >Qui sommes-nous ?</NavLink>
-                <Image>
-                    <img src="resources/user-white.png" alt="user-pic" height='80%' width='auto' />
-                    <p>Connexion</p>
-                </Image>
-            </Menu>
-        </Navbar>
-    );
-}
+  return (
+    <Nav>
+      <Link to="/">
+        <Logo>
+          <img src="../ressources/Logo-fondBlanc.png" alt="Logo Ma maison des bois" />
+        </Logo>
+      </Link>
+      <Burger onClick={() => setIsOpen(!isOpen)}>
+        <span />
+        <span />
+        <span />
+      </Burger>
+      <Menu isOpen={isOpen}>
+        <Link to="/NosMaisonsForestieres">
+          <MenuLink>Nos maisons forestières</MenuLink>
+        </Link>
+        <Link to="/Services">
+          <MenuLink>Nos services</MenuLink>
+        </Link>
+        <Link to="/QuiSommesNous">
+          <MenuLink>Qui sommes nous ?</MenuLink>
+        </Link>
+        <Link to="/SeConnecter">
+        <Image>
+            <img src="../ressources/user-white.png" alt="utilisateur" width="35px" height="35px"/>
+        </Image>
+        </Link>
+        <Link to="/SeConnecter">
+          <MenuLink>Se connecter</MenuLink>
+        </Link>
+      </Menu>
+    </Nav>
+  );
+};
 
-const Navbar = styled.nav`
+const Nav = styled.nav`
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #5d7b4c;
+  @media (max-width: 768px) {
     display: flex;
-    background: #5d7b4c;
-    height: 7rem;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+  }
 `;
 
-const Logo = styled.div`
+const Burger = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  span {
+    height: 2px;
+    width: 25px;
+    background: white;
+    margin-bottom: 4px;
+    border-radius: 5px;
+  }
+  
+  @media (max-width: 1271px) {
     display: flex;
-    align-items: center;
-    height: 100%;
-    width: auto;
+  }
+`;
 
-    a {
-        display: flex;
-        height: 100%;
-    }
+const MenuLink = styled.div`
+  padding: 1rem 2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline #5d7b4c;
+  color: white;
+  transition: all 0.3 ease-in;
+  font-size: 1.5rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  &:hover {
+    color: #eeeb8f;
+  }
+`;
+
+const Menu = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  
+  @media (max-width: 1271px) {
+    overflow: hidden;
+    flex-direction: column;
+    width: 100%;
+    max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
+    transition: 0.3s ease-in;
+  }
+`;
+
+const Logo = styled.a`
+  width: 25%;
+  img {
+    width: 200px;
+    padding: 10px;
+  }
 `;
 
 const Image = styled.a`
     display: flex;
-    height: 70%;
-    align-items: center;
-    flex-direction: column;
-`
-const Menu = styled.div`
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-
-    a {
-        display: flex;
-        list-style: none;
-        text-decoration: none;
-        color: white;
-        padding: 1rem 2rem;
-        font-family: 'Trebuchet MS';
-        font-size: 1.2em;
-
-        &:hover {
-            color: #eeeb8f
-        }
-    }
-`
-
+    flex-direction: row;
+`;
 export default Navigation;

@@ -12,12 +12,12 @@ import Search from './pages/Search';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
 import ConnectionModal from './components/ConnectionModal';
+import SignUpForm from './components/SignUpForm';
 
 function App() {
   return (
     <>
       <Navigation />
-
       <Global>
         <Routes>
           <Route exact path='/' element={<Home />} />
@@ -28,9 +28,10 @@ function App() {
           <Route path='/Administrateur' element={<Admin />} />
           <Route path='/Profil' element={<UserProfile />} />
           <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+          <Route path ='/SeConnecter' element={<ConnectionModal />} />
+          <Route path='/CreationCompte' element={<SignUpForm />} />
         </Routes>
       </ Global>
-<ConnectionModal />
       <Footer />
     </>
   );

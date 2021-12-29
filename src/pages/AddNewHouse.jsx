@@ -1,7 +1,10 @@
 import AddHomeForm from "../components/AddHomeForm";
 
+
 function AddNewHouse() {
-  return <AddHomeForm />;
+    return (
+       <AddHomeForm />
+    );
 }
 
 export default AddNewHouse;
