@@ -1,9 +1,9 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import ContainerForm from './styled-components/ContainerForm';
 import TitleForm from './styled-components/TitleForm';
 import Submitbutton from './styled-components/SubmitButton';
+
 
 const ConnectionModal = () => {
     const { register, handleSubmit } = useForm();
@@ -16,11 +16,11 @@ const ConnectionModal = () => {
             <TitleForm>Connexion</TitleForm>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <ConnectionInfos>
-                    <input type="email" placeholder="Email" {...register("email")} />
+                    <input type="email" placeholder=" Email" {...register("email")} />
                     <br />
                     <input
               type="password"
-              placeholder="Mot de passe"
+              placeholder=" Mot de passe"
               {...register("password")}
             />
             <LineContainer>
