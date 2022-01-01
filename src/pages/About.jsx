@@ -7,12 +7,14 @@ import ImageContainer from "../components/styled-components/ImageContainer";
 const About = () => (
   <MainContainer>
     <SecondContainer>
-      <img
+      <ImageContainer>
+      <Image
         src="../ressources/photo-antoine.jpeg"
         alt="Antoine Sellier"
         width="300px"
         height="300px"
       />
+      </ImageContainer>
       <TextContainer>
         <span>Antoine Sellier</span>
         Bonjour, moi c’est Antoine Sellier et je suis le créateur de{" "}
@@ -171,11 +173,20 @@ const MainContainer = styled.div`
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   color: #1c2c46;
+
+  @media (max-width: 768px) {
+    display: block;
+}
 `;
 
 const EngagementContainer = styled.div`
   display: flex;
   margin: 20px 20px;
+
+  @media (max-width: 768px) {
+  display: block;
+  line-height: 1.3em;
+}
 `;
 
 const TextContainerEngagement = styled.div`
@@ -183,6 +194,12 @@ const TextContainerEngagement = styled.div`
   text-align: justify;
   font-size: 1.3em;
   width: 75%;
+
+  @media (max-width: 768px) {
+  line-height: 1.3em;
+  width: 95%;
+}
+
 `;
 
 const ListContainer = styled.ul`

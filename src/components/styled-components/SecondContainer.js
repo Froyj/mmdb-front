@@ -16,6 +16,11 @@ const SecondContainer = styled.div`
     font-weight: bold;
     line-height: 3em;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 90%;
+}
 `;
 
 export default SecondContainer;

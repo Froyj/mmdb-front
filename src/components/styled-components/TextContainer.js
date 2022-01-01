@@ -6,7 +6,12 @@ margin: ${(props) => props.margin || 'auto'};
 padding-top: ${(props) => props.paddingTop || '0px'};
 padding-bottom: ${(props) => props.paddingBottom ||"0px"};
 font-size: ${(props) => props.fontSize || '1.3em'};
-line-height: ${(props) => props.lineHeight || "2em"}
+line-height: ${(props) => props.lineHeight || "2em"};
+
+@media (max-width: 768px) {
+ width: 95%;
+ line-height: 1.3em;
+}
 `;
 
 export default TextContainer;
