@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import ContainerAddHouse from "./styled-components/ContainerAddHouse";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
@@ -10,7 +11,7 @@ function AddHomeForm() {
   };
 
   return (
-    <ContainerForm>
+    <ContainerAddHouse>
       <div>
         <h1>Ajouter une nouvelle maison à la location</h1>
 
@@ -163,33 +164,9 @@ function AddHomeForm() {
           <input type="submit" />
         </Submit>
       </div>
-    </ContainerForm>
+    </ContainerAddHouse>
   );
 }
-
-const ContainerForm = styled.div`
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: underline #1c2c46;
-  color: #1c2c46;
-  background-color: #f3f9f2;
-  width: 90%;
-  display: flex;
-  margin: auto;
-  padding: 15px;
-  border: 5px solid #ba9b5c;
-  border-radius: 10px;
-
-  h1 {
-    text-align: center;
-  }
-
-  textarea {
-    font-size: 15px;
-  }
-`;
 
 const Form = styled.div`
   display: flex;

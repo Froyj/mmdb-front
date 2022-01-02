@@ -15,7 +15,7 @@ const About = () => (
         height="300px"
       />
       </ImageContainer>
-      <TextContainer>
+      <TextContainer borderBottom="none" borderTop ="none">
         <span>Antoine Sellier</span>
         Bonjour, moi c’est Antoine Sellier et je suis le créateur de{" "}
         <strong>Ma Maison des Bois</strong>. Après avoir passé mon enfance au
