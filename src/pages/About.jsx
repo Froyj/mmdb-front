@@ -102,6 +102,7 @@ const About = () => (
         alt="Image planete et plante"
         width="100px"
         height="100px"
+        paddingLeft="60px"
       />
       <TextContainerEngagement>
         Offrir aux propriétaires un accompagnement de qualité et respectueux de
@@ -109,13 +110,13 @@ const About = () => (
         forestières.
       </TextContainerEngagement>
     </EngagementContainer>
-
     <EngagementContainer>
       <Image
-        src="../ressources/engagement2.png"
-        alt="Image oiseau et feuille"
-        width="100px"
+        src="../ressources/engagement4.png"
+        alt=" image feuille et cerf"
+        width="120px"
         height="100px"
+        paddingLeft="60px"
       />
       <TextContainerEngagement>
         Assurer aux hôtes, confort et services de grande qualité. Faire
@@ -130,6 +131,7 @@ const About = () => (
         alt="Image argent dans la main"
         width="100px"
         height="100px"
+        paddingLeft="60px"
       />
       <TextContainerEngagement>
         Participer à la préservation des milieux naturels et à la création de
@@ -199,7 +201,6 @@ const TextContainerEngagement = styled.div`
   line-height: 1.3em;
   width: 95%;
 }
-
 `;
 
 const ListContainer = styled.ul`
