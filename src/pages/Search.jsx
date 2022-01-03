@@ -5,7 +5,7 @@ import SearchHouseList from "../components/SearchHouseList";
 
 function Search({ houses }) {
     Search.propTypes = {
-        houses: PropTypes.string.isRequired,
+        houses: PropTypes.arrayOf(PropTypes.object).isRequired,
     }
 
     return (
