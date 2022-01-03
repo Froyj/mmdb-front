@@ -143,29 +143,6 @@ function AddHomeForm() {
             </label>
             <br />
           </Oneform>
-
-          {/* <Oneform>
-            <label htmlFor="equipments">
-              Renseigner les équipements :
-              <select {...register("equipements")}>
-                <option value="bathroom">Salle de bain</option>
-                <option value="kitchenAndDiningRoom">
-                  Cuisine et salle à manger
-                </option>
-                <option value="bedRoom">Chambre</option>
-                <option value="entertainments">Divertissements</option>
-                <option value="family">Famille</option>
-                <option value="heatingAndAirConditioning">
-                  Chauffage et climatisation
-                </option>
-                <option value="securityAtHome">Sécurité à la maison</option>
-                <option value="internetAndDesk">Internet et bureau</option>
-                <option value="outside">Extérieur</option>
-                <option value="parkingAndFacilities">Extérieur</option>
-              </select>
-            </label>
-            <br />
-          </Oneform> */}
           <Submit>
             <input type="submit" />
           </Submit>
