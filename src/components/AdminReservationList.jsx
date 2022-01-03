@@ -1,9 +1,12 @@
 import styled from "styled-components";
-
+import PropTypes from "prop-types";
 import AdminReservationCard from "./AdminReservationCard";
-import bookings from '../data/fictiveBooking';
 
-function AdminReservationList() {
+function AdminReservationList({ bookings }) {
+    AdminReservationList.propTypes = {
+        bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
+    };
+
     return (
         <ReservationTable>
             {bookings.map(booking => <AdminReservationCard

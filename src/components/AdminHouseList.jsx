@@ -5,12 +5,12 @@ import AdminHouseCard from './adminHouseCard';
 
 function AdminHouseList({ houses }) {
     AdminHouseList.propTypes = {
-        houses: PropTypes.string.isRequired,
+        houses: PropTypes.arrayOf(PropTypes.object).isRequired,
     }
 
     return (
         <HouseList>
-        {houses.map(house => <AdminHouseCard key={house.id} name={house.name}/> )}
+        {houses.map(house => <AdminHouseCard key={house.id} name={house.name} image={house.image.principal} /> )}
         </HouseList>
     )
 }
