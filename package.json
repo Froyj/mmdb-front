@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5500",
   "eslintConfig": {
     "extends": [
       "react-app",
