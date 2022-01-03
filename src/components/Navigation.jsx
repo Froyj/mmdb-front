@@ -100,7 +100,7 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   width: 25%;
   img {
     width: 200px;
@@ -108,7 +108,7 @@ const Logo = styled.a`
   }
 `;
 
-const Image = styled.a`
+const Image = styled.div`
     display: flex;
     flex-direction: row;
 `;
