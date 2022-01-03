@@ -1,13 +1,28 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import ContainerAddHouse from "./styled-components/ContainerAddHouse";
+import axios from "axios";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    axios
+      .post("http://localhost:5000/home_to_rent", {
+        ...data,
+        capacity: parseInt(data.capacity, 10),
+        zipcode: parseInt(data.zipcode, 10),
+        price_by_night: parseInt(data.price_by_night, 10),
+        is_smoker: parseInt(data.is_smoker, 10),
+        opening_disponibility: `${data.opening_disponibility}T00:00:00.000Z`,
+        closing_disponibility: `${data.closing_disponibility}T00:00:00.000Z`,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -17,9 +32,9 @@ function AddHomeForm() {
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Oneform>
-            <label htmlFor="newHouse">
+            <label htmlFor="name">
               Nom de la maison :<br />
-              <textarea type="text" {...register("newHouse")} />
+              <textarea type="text" {...register("name")} />
             </label>
             <br />
           </Oneform>
@@ -33,136 +48,106 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
-            <label htmlFor="region">
+            <label htmlFor="country">
               Région :<br />
-              <textarea type="text" {...register("region")} />
+              <textarea type="text" {...register("country")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="travellersNumber">
+            <label htmlFor="capacity">
               Nombre de voyageurs :<br />
-              <textarea type="number" {...register("travellersNumber")} />
+              <textarea type="number" {...register("capacity")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="roomsNumber">
-              Nombre de chambres :<br />
-              <textarea type="number" {...register("roomsNumber")} />
+            <label htmlFor="zipcode">
+              code postal :<br />
+              <textarea type="number" {...register("zipcode")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="bedsNumber">
-              Nombre de lits :<br />
-              <textarea type="number" {...register("bedsNumber")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="shortDescription">
+            <label htmlFor="describe_short">
               Description courte :<br />
-              <textarea type="textarea" {...register("shortDescription")} />
+              <textarea type="textarea" {...register("describe_short")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="longDescription">
+            <label htmlFor="describe_long">
               Description longue :<br />
-              <textarea type="textarea" {...register("longDescription")} />
+              <textarea type="textarea" {...register("describe_long")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="activitiesAround">
-              Activités :<br />
-              <textarea type="textarea" {...register("activitiesAround")} />
+            <label htmlFor="is_smoker">
+              smoker :<br />
+              <textarea type="textarea" {...register("is_smoker")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="address">
+            <label htmlFor="adress">
               Adresse :<br />
-              <textarea type="textarea" {...register("address")} />
+              <textarea type="textarea" {...register("adress")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="rulesAndRegulations">
-              Règlement intérieur :<br />
-              <textarea type="textarea" />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="cancellationPolicies">
+            <label htmlFor="renting_conditions">
               Conditions d'annulation :<br />
-              <textarea type="textarea" {...register("cancellationPolicies")} />
+              <textarea type="textarea" {...register("renting_conditions")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="pricePerNight">
+            <label htmlFor="departure_hour">
+              departure_hour :<br />
+              <textarea type="textarea" {...register("departure_hour")} />
+            </label>
+            <br />
+            <label htmlFor="arrival_hour">
+              arrival_hour :<br />
+              <textarea type="textarea" {...register("arrival_hour")} />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="price_by_night">
               Prix/nuit :<br />
-              <textarea type="text" {...register("pricePerNight")} />
+              <textarea type="text" {...register("price_by_night")} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="pictures">
-              Ajouter des photos :<br />
-              <input type="file" {...register("pictures")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="availability">
+            <label htmlFor="opening_disponibility">
               Disponibilités à la location :<br />
-              <input type="date" {...register("availability")} />
-              <input type="date" {...register("availability")} />
+              <input type="date" {...register("opening_disponibility")} />
+            </label>
+            <br />
+            <label htmlFor="closing_disponibility">
+              dispo loc :<br />
+              <input type="date" {...register("closing_disponibility")} />
             </label>
             <br />
           </Oneform>
-
-          <Oneform>
-            <label htmlFor="equipments">
-              Renseigner les équipements :
-              <select {...register("equipements")}>
-                <option value="bathroom">Salle de bain</option>
-                <option value="kitchenAndDiningRoom">
-                  Cuisine et salle à manger
-                </option>
-                <option value="bedRoom">Chambre</option>
-                <option value="entertainments">Divertissements</option>
-                <option value="family">Famille</option>
-                <option value="heatingAndAirConditioning">
-                  Chauffage et climatisation
-                </option>
-                <option value="securityAtHome">Sécurité à la maison</option>
-                <option value="internetAndDesk">Internet et bureau</option>
-                <option value="outside">Extérieur</option>
-                <option value="parkingAndFacilities">Extérieur</option>
-              </select>
-            </label>
-            <br />
-          </Oneform>
+          <Submit>
+            <input type="submit" />
+          </Submit>
         </Form>
-        <Submit>
-          <input type="submit" />
-        </Submit>
       </div>
     </ContainerAddHouse>
   );
