@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from './colors';
 
-const BlankButton = styled.div`
+const BlankContainer = styled.div`
     border: solid ${(props) => props.borderSize || '4px'} ${(props) => props.borderColor || colors.blue};
     border-radius: ${(props) => props.borderRadius || '6px'};
     background-color: white;
@@ -11,4 +11,4 @@ const BlankButton = styled.div`
     height: ${(props) => props.height};
 `
 
-export default BlankButton;
+export default BlankContainer;

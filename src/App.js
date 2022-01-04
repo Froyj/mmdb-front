@@ -15,6 +15,8 @@ import House from './pages/House';
 import Search from './pages/Search';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
+import ConnectionModal from './components/ConnectionModal';
+import SignUpForm from './components/SignUpForm';
 
 function App() {
 
@@ -42,6 +44,8 @@ function App() {
             <Route path='/Administrateur' element={<Admin houses={houses} bookings={bookings} />} />
             <Route path='/Profil' element={<UserProfile />} />
             <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+            <Route path ='/SeConnecter' element={<ConnectionModal />} />
+            <Route path='/CreationCompte' element={<SignUpForm />} />
           </Routes>
         </ Global>
   
@@ -52,6 +56,7 @@ function App() {
   
 
 }
+
 
 export default App;
 

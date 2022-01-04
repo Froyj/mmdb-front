@@ -7,7 +7,7 @@ const Global = styled.div`
     width: 90%;
     margin: auto;
     font-family: 'Trebuchet MS';
-    color: ${colors.blue}
-`
+    color: ${colors.blue};
+`;
 
 export default Global;
