@@ -62,7 +62,7 @@ function House({ houses }) {
 const ImagesDiv = styled.div`
   display: flex;
   flex-direction: row;
-  /* outline: 9px solid #1c6ea4; */
+  outline: 9px solid #1c6ea4;
   /* height: auto; */
   /* width: 100%; */
   justify-content: space-evenly;
@@ -70,7 +70,7 @@ const ImagesDiv = styled.div`
 
 const PrincipalImg = styled.div`
   /* display: flex; */
-  /* border: 5px black solid; */
+  border: 5px black solid;
   width: 100%;
   height: auto;
 
@@ -83,7 +83,7 @@ const PrincipalImg = styled.div`
 
 const SecondaryImg = styled.div`
   display: flex;
-  /* border: 5px blue solid; */
+  border: 5px blue solid;
   flex-wrap: wrap;
   justify-content: space-evenly;
   /* width: 50%; */
@@ -93,7 +93,7 @@ const SecondaryImg = styled.div`
   .gridImg {
     display: flex;
     flex-direction: row;
-    /* border: 4px pink solid; */
+    border: 4px pink solid;
     width: 45%;
     /* justify-content: space-evenly; */
     
@@ -108,17 +108,17 @@ const SecondaryImg = styled.div`
 `;
 
 const Information = styled.div`
-  /* border: 4px solid red; */
+  border: 4px solid red;
   display: flex;
 `;
 
 const Description = styled.div`
-  /* border: 4px solid grey; */
+  border: 4px solid grey;
   width: 50%;
 `;
 
 const Booking = styled.div`
-  /* border: 4px solid grey; */
+  border: 4px solid grey;
 `;
 
 export default House;
