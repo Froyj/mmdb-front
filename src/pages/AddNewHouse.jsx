@@ -1,10 +1,10 @@
-import AddHomeForm from "../components/AddHomeForm";
+// import AddHomeForm from "../components/AddHomeForm";
 
 
-function AddNewHouse() {
-    return (
-       <AddHomeForm />
-    );
-}
+// function AddNewHouse() {
+//     return (
+//        <AddHomeForm />
+//     );
+// }
 
-export default AddNewHouse;
+// export default AddNewHouse;

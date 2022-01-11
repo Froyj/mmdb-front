@@ -4,7 +4,7 @@ import Global from './components/styled-components/Global';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
-import AddNewHouse from './pages/AddNewHouse';
+// import AddNewHouse from './pages/AddNewHouse';
 import Admin from './pages/Admin';
 import Home from './pages/Home';
 import House from './pages/House';
@@ -27,7 +27,7 @@ function App() {
           <Route path='/Services' element={<Services />} />
           <Route path='/Administrateur' element={<Admin />} />
           <Route path='/Profil' element={<UserProfile />} />
-          <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+          {/* <Route path='/NouvelleMaison' element={<AddNewHouse />} /> */}
           <Route path ='/SeConnecter' element={<ConnectionModal />} />
           <Route path='/CreationCompte' element={<SignUpForm />} />
         </Routes>
