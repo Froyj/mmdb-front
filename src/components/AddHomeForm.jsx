@@ -4,6 +4,7 @@ import axios from "axios";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
+  
 
   const onSubmit = (data) => {
     axios
@@ -19,9 +20,11 @@ function AddHomeForm() {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        console.log(data);
       });
+
+     
   };
 
   return (

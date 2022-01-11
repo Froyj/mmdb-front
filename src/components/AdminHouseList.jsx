@@ -7,7 +7,7 @@ function AdminHouseList() {
 
     return (
         <HouseList>
-        {house.map(el => <AdminHouseCard name={el.name} image={ el.images.principal } /> )}
+        {house.map(el => <AdminHouseCard id={el.id} name={el.name} image={ el.images.principal } /> )}
         </HouseList>
     )
 }
