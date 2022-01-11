@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import axios from "axios";
 import { PropTypes } from "prop-types";
+import deleteHouses from "../data/deleteHouses";
 import colors from "./styled-components/colors";
 import BlankTitle from "./styled-components/BlankTitle";
 import BlankButton from "./styled-components/BlankButton";
@@ -12,36 +12,28 @@ function AdminHouseCard({ id, name, image }) {
     id: PropTypes.string.isRequired,
   };
 
-  const deleteHouses = () => {
-    axios
-      .delete("http://localhost:5000/home_to_rent", {
-        data: {
-          id,
-        },
-      })
-      .then(() => {
-        console.log("house deleted");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const deleteHouse = () => {
+    if ( window.confirm( "Êtes-vous sur de vouloir supprimer la maison ?" ) ) {
+        deleteHouses(id);
     }
 
-    return (
-      <Card>
-        <img src={image} alt={name} />
-        <BlankTitle color={colors.blue}>{name}</BlankTitle>
-        <Buttons>
-          <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
-          <BlankButton borderColor={colors.green}>Modifier</BlankButton>
-          <BlankButton borderColor={colors.green} onClick={deleteHouses}>
-            Supprimer
-          </BlankButton>
-        </Buttons>
-      </Card>
-    );
+    
   };
 
+  return (
+    <Card>
+      <img src={image} alt={name} />
+      <BlankTitle color={colors.blue}>{name}</BlankTitle>
+      <Buttons>
+        <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
+        <BlankButton borderColor={colors.green}>Modifier</BlankButton>
+        <BlankButton borderColor={colors.green} onClick={deleteHouse}>
+          Supprimer
+        </BlankButton>
+      </Buttons>
+    </Card>
+  );
+}
 
 const Card = styled.div`
   display: flex;
