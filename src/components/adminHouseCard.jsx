@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PropTypes } from "prop-types";
+import { NavLink } from "react-router-dom";
 import deleteHouses from "../data/deleteHouses";
 import colors from "./styled-components/colors";
 import BlankTitle from "./styled-components/BlankTitle";
@@ -9,14 +10,13 @@ function AdminHouseCard({ id, name, image }) {
   AdminHouseCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   };
 
   const deleteHouse = () => {
     if (window.confirm("Êtes-vous sur de vouloir supprimer la maison ?")) {
       deleteHouses(id);
     }
-    
   };
 
   return (
@@ -25,7 +25,9 @@ function AdminHouseCard({ id, name, image }) {
       <BlankTitle color={colors.blue}>{name}</BlankTitle>
       <Buttons>
         <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
-        <BlankButton borderColor={colors.green}>Modifier</BlankButton>
+        <NavLink to={{ pathname: `/UpdateHouse/${id}` }}>
+          <BlankButton borderColor={colors.green}>Modifier</BlankButton>
+        </NavLink>
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
           Supprimer
         </BlankButton>

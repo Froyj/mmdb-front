@@ -1,84 +1,41 @@
 import { useForm } from "react-hook-form";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
-// import axios from "axios";
+import updateHouses from "../data/updateHouses";
 
 function UpdateHomeForm() {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = () => {
-//     axios
-//       .put(`http://localhost:5000/home_to_rent/${id}`, { ...data })
-//       .then((res) => console.log(res))
+  const { id } = useParams();
 
-//       .catch((err) => console.log(err));
+  const updateHouse = (data) => {
+   updateHouses(data,id);
   };
 
   return (
     <ContainerForm>
       <div>
-        <h1>Modifier une nouvelle maison à la location</h1>
+        <h1>Modifier une maison à la location</h1>
 
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(updateHouse)}>
           <Oneform>
             <label htmlFor="name">
               Nom de la maison :<br />
-              <textarea type="text" {...register("name")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="city">
-              Ville :<br />
-              <textarea type="text" {...register("city")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="country">
-              Région :<br />
-              <textarea type="text" {...register("country")} />
+              <textarea type="text" {...register("name", { required: true })} />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
             <label htmlFor="capacity">
-              Nombre de voyageurs :<br />
-              <textarea type="number" {...register("capacity")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="zipcode">
-              code postal :<br />
-              <textarea type="number" {...register("zipcode")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="describe_short">
-              Description courte :<br />
-              <textarea type="textarea" {...register("describe_short")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="describe_long">
-              Description longue :<br />
-              <textarea type="textarea" {...register("describe_long")} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="is_smoker">
-              smoker :<br />
-              <textarea type="textarea" {...register("is_smoker")} />
+              Capacité d'accueil :<br />
+              <textarea
+                type="text"
+                {...register("capacity", {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />
             </label>
             <br />
           </Oneform>
@@ -86,28 +43,65 @@ function UpdateHomeForm() {
           <Oneform>
             <label htmlFor="adress">
               Adresse :<br />
-              <textarea type="textarea" {...register("adress")} />
+              <textarea
+                type="textarea"
+                {...register("adress", { required: true })}
+              />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="renting_conditions">
-              Conditions d'annulation :<br />
-              <textarea type="textarea" {...register("renting_conditions")} />
+            <label htmlFor="zipcode">
+              code postal :<br />
+              <textarea
+                type="text"
+                {...register("zipcode", {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="departure_hour">
-              departure_hour :<br />
-              <textarea type="textarea" {...register("departure_hour")} />
+            <label htmlFor="city">
+              Ville :<br />
+              <textarea type="text" {...register("city", { required: true })} />
             </label>
             <br />
-            <label htmlFor="arrival_hour">
-              arrival_hour :<br />
-              <textarea type="textarea" {...register("arrival_hour")} />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="country">
+              Région :<br />
+              <textarea
+                type="text"
+                {...register("country", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="coordinate_long">
+              Longitude :<br />
+              <textarea
+                type="textarea"
+                {...register("coordinate_long", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="coordinate_lat">
+              Latitude :<br />
+              <textarea
+                type="textarea"
+                {...register("coordinate_lat", { required: true })}
+              />
             </label>
             <br />
           </Oneform>
@@ -115,7 +109,35 @@ function UpdateHomeForm() {
           <Oneform>
             <label htmlFor="price_by_night">
               Prix/nuit :<br />
-              <textarea type="text" {...register("price_by_night")} />
+              <textarea
+                type="text"
+                {...register("price_by_night", {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="describe_short">
+              Description courte :<br />
+              <textarea
+                type="textarea"
+                {...register("describe_short", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="describe_long">
+              Description longue :<br />
+              <textarea
+                type="textarea"
+                {...register("describe_long", { required: true })}
+              />
             </label>
             <br />
           </Oneform>
@@ -123,18 +145,110 @@ function UpdateHomeForm() {
           <Oneform>
             <label htmlFor="opening_disponibility">
               Disponibilités à la location :<br />
-              <input type="date" {...register("opening_disponibility")} />
-            </label>
-            <br />
-            <label htmlFor="closing_disponibility">
-              dispo loc :<br />
-              <input type="date" {...register("closing_disponibility")} />
+              <input
+                type="date"
+                {...register("opening_disponibility", { required: true })}
+              />
             </label>
             <br />
           </Oneform>
+
+          <Oneform>
+            <label htmlFor="closing_disponibility">
+              Fin de disponibilité :<br />
+              <input
+                type="date"
+                {...register("closing_disponibility", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="arrival_hour">
+              Horaire d'arrivée :<br />
+              <textarea
+                type="textarea"
+                {...register("arrival_hour", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="departure_hour">
+              Horaire de départ :<br />
+              <textarea
+                type="textarea"
+                {...register("departure_hour", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="square_meter">
+              Surface d'habitation :<br />
+              <textarea
+                type="text"
+                {...register("square_meter", {
+                  valueAsNumber: true,
+                  required: true,
+                })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="renting_conditions.condition">
+              Conditions d'annulation :<br />
+              <textarea
+                type="textarea"
+                {...register("renting_conditions.condition", {
+                  required: true,
+                })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="image.principal">
+              Image principale :<br />
+              <input
+                type="file"
+                {...register("image.principal", { required: true })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="image.secondaire">
+              Image secondaire :<br />
+              <input type="file" {...register("image.secondaire")} />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="is_smoker">
+              Fumeur :<br />
+              <select {...register("is_smoker", { valueAsNumber: true })}>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+              </select>
+            </label>
+            <br />
+          </Oneform>
+
           <Submit>
             <input type="submit" />
           </Submit>
+          <NavLink exact to="/Administrateur">
+            <Submit>Retour en arrière</Submit>
+          </NavLink>
         </Form>
       </div>
     </ContainerForm>
