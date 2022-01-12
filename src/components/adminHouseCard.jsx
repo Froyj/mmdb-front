@@ -13,10 +13,9 @@ function AdminHouseCard({ id, name, image }) {
   };
 
   const deleteHouse = () => {
-    if ( window.confirm( "Êtes-vous sur de vouloir supprimer la maison ?" ) ) {
-        deleteHouses(id);
+    if (window.confirm("Êtes-vous sur de vouloir supprimer la maison ?")) {
+      deleteHouses(id);
     }
-
     
   };
 
