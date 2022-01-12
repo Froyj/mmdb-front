@@ -13,9 +13,10 @@ function SearchHouseList({ houses }) {
                     id={house.id} 
                     name={house.name} 
                     text={house.describe_short} 
-                    // image={house.images.principal} 
+                    image={house.image.principal} 
                     city={house.city}
                     capacity={house.capacity} 
+                    key={house.id}
                 />
             )}
         </>
