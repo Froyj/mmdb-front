@@ -1,6 +1,10 @@
+import Global from "../components/styled-components/Global";
+
 function UserProfile() {
     return (
-        'Profil Utilisateur'
+        <Global>
+            Profil Utilisateur
+        </Global>
     );
 }
 

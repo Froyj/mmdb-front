@@ -8,6 +8,6 @@ const Global = styled.div`
     margin: auto;
     font-family: 'Trebuchet MS';
     color: ${colors.blue};
-`
+`;
 
 export default Global;
