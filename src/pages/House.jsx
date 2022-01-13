@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { PropTypes } from "prop-types";
+import Global from "../components/styled-components/Global";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
-import Global from "../components/styled-components/Global";
 
 function House({ houses }) {
   House.propTypes = {
@@ -34,11 +34,11 @@ function House({ houses }) {
   ));
 
   const bathroom = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "salle de bain")
+    .filter((el) => el.room_name === "bathroom")
     .map((el) => <li> {el.equipment.name} </li>);
 
   const garden = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "exterieur")
+    .filter((el) => el.room_name === "outdoor")
     .map((el) => <li> {el.equipment.name} </li>);
 
   const inHouse = houses[id - 1].home_equipment
@@ -46,28 +46,44 @@ function House({ houses }) {
     .map((el) => <li> {el.equipment.name} </li>);
 
   const kitchen = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "cuisine")
+    .filter((el) => el.room_name === "kitchen")
     .map((el) => <li> {el.equipment.name} </li>);
 
   const security = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "sécurité")
+    .filter((el) => el.room_name === "security")
     .map((el) => <li> {el.equipment.name} </li>);
 
   const bedroom = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "chambre 1")
+    .filter((el) => el.room_name === "bedroom")
     .map((el) => <li> {el.equipment.name} </li>);
 
   const heating = houses[id - 1].home_equipment
-    .filter((el) => el.room_name === "chauffage")
+    .filter((el) => el.room_name === "heating")
     .map((el) => <li> {el.equipment.name} </li>);
 
-  // console.log(homeEquipment.equipment.name);
+  const toilet = houses[id - 1].home_equipment
+    .filter((el) => el.room_name === "WC")
+    .map((el) => <li> {el.equipment.name} </li>);
 
-  /* 
-    Si room_name en <li> deja existant afficher les equipements en <li>
-    sinon créer room_name <li>
-    
-*/
+  const entertainment = houses[id - 1].home_equipment
+    .filter((el) => el.room_name === "entertainment")
+    .map((el) => <li> {el.equipment.name} </li>);
+
+  const network = houses[id - 1].home_equipment
+    .filter((el) => el.room_name === "internet")
+    .map((el) => <li> {el.equipment.name} </li>);
+
+  const activity = houses[id - 1].home_equipment
+    .filter((el) => el.room_name === "activity")
+    .map((el) => <li> {el.equipment.name} </li>);
+
+  const dropDownTitle = document.querySelector(".dropDown-title");
+  const dropDownList = document.querySelector(".dropDown-list");
+
+  dropDownTitle.addEventListener("click", () => {
+    // On click we toggle the class visible on the dropdown
+    dropDownList.classList.toggle("visible");
+  });
 
   return (
     <Container>
@@ -88,27 +104,43 @@ function House({ houses }) {
         <Description>
           <h2>Description</h2>
           {houses[id - 1].describe_long}
+          <EquipmentContainer>
+            <input type="button" className="dropDown-title" name="Équipement de la maison" />
+            <div >
+              <div className="dropDown-list">
+                <ul>
+                  {kitchen.length > 0 ? <h3>Cuisine</h3> : null}
+                  {kitchen}
+                  {inHouse.length > 0 ? <h3>Interieur de la maison</h3> : null}
+                  {inHouse}
+                  {bedroom.length > 0 ? <h3>Chambre</h3> : null}
+                  {bedroom}
+                  {bathroom.length > 0 ? <h3>Salle de bain</h3> : null}
+                  {bathroom}
+                  {toilet.length > 0 ? <h3>Hygiène</h3> : null}
+                  {toilet}
+                  {heating.length > 0 ? <h3>Chauffage</h3> : null}
+                  {heating}
+                </ul>
+              </div>
+              <div className="equipmentList">
+                <ul>
+                  {garden.length > 0 ? <h3>Exterieur</h3> : null}
+                  {garden}
+                  {entertainment.length > 0 ? <h3>Divertissement</h3> : null}
+                  {entertainment}
+                  {activity.length > 0 ? <h3>Activités</h3> : null}
+                  {activity}
+                  {network.length > 0 ? <h3>Internet et réseaux</h3> : null}
+                  {network}
+                  {security.length > 0 ? <h3>Sécurité</h3> : null}
+                  {security}
+                </ul>
+              </div>
+            </div>
+          </EquipmentContainer>
           <h2>Condition d'annulation</h2>
           <ul>{condition}</ul>
-          <div className="equipment">
-            <h2>Équipement disponible</h2>
-            <ul>
-              {kitchen.length > 0 ? <h3>Cuisine</h3> : null}
-              {kitchen}
-              {inHouse.length > 0 ? <h3>Interieur de la maison</h3> : null}
-              {inHouse}
-              {bedroom.length > 0 ? <h3>Chambre</h3> : null}
-              {bedroom}
-              {bathroom.length > 0  ? <h3>Salle de bain</h3> : null}
-              {bathroom}
-              {garden.length > 0 ? <h3>Exterieur</h3> : null}
-              {garden}
-              {security.length > 0 ? <h3>Sécurité</h3> : null}
-              {security}
-              {heating.length > 0 ? <h3>Chauffage</h3> : null}
-              {heating}
-            </ul>
-          </div>
         </Description>
         <Booking>calendrier de reservation</Booking>
       </Information>
@@ -124,7 +156,7 @@ const Container = styled(Global)`
 
 const ImagesDiv = styled.div`
   display: grid;
-  margin: 25px 0px;
+  margin: 1.5em 0px;
   border-radius: 25px;
   overflow: hidden;
   grid-template-columns: repeat(4, 1fr);
@@ -133,7 +165,7 @@ const ImagesDiv = styled.div`
   grid-row-gap: 5px;
   height: auto;
   width: 100%;
-  
+
   img {
     height: 100%;
     width: 100%;
@@ -161,29 +193,48 @@ const PrincipalImg = styled.div`
   width: 100%;
   height: auto;
   grid-area: 1 / 1 / 3 / 3;
-
 `;
 
 const Information = styled.div`
   border: 4px solid red;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const Description = styled.div`
   border: 4px solid grey;
   width: 50%;
-  
-  .equipment {
-    border: 4px solid blue;
-    
+
+  h2 {
+    margin: 0.5em;
   }
-  
-  li {
+
+  h3 {
+    margin: 0.3em 0;
+  }
+`;
+
+const EquipmentContainer = styled.div`
+  cursor: pointer;
+
+  .dropdown-list {
+    display: none;
+    list-style: none;
+    background-color: rgba(179, 154, 154, 0.123);
+    width: 70px;
+    text-align: center;
+  }
+  .dropdown-list li {
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
-    border: 4px solid green;
+    margin-left: 0.5em;
+    /* border: 4px solid green; */
   }
+  .visible {
+    display: block;
+  }
+
 `;
 
 const Booking = styled.div`
