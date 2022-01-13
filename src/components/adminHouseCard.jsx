@@ -4,7 +4,7 @@ import colors from './styled-components/colors';
 import BlankTitle from './styled-components/BlankTitle';
 import BlankButton from './styled-components/BlankButton';
 
-function AdminHouseCard({ name, image}) {
+function AdminHouseCard({ name, image }) {
     AdminHouseCard.propTypes = {
         name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired
