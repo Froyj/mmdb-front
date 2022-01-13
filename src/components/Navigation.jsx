@@ -47,6 +47,7 @@ const Nav = styled.nav`
   align-items: center;
   flex-wrap: wrap;
   background: #5d7b4c;
+  
   @media (max-width: 768px) {
     display: flex;
   }
