@@ -1,28 +1,27 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 import ContainerAddHouse from "./styled-components/ContainerAddHouse";
 import FilledButton from "./styled-components/FilledButton";
+import postHouses from "../data/postHouses";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
 
-  const postHouse = (data) => {
-    console.log(data)
-    axios
-      .post("http://localhost:5000/home_to_rent", {
-        ...data,
-        opening_disponibility: `${data.opening_disponibility}T00:00:00.000Z`,
-        closing_disponibility: `${data.closing_disponibility}T00:00:00.000Z`,
-      })
-      .then(() => {
-        alert("Maison ajoutée !");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const imgData = new FormData();
+
+  const postData = (data) => {
+    const principalImg = data.image.primary[0];
+    const secondaryImg = data.image.secondary;
+
+    imgData.append("image.primary", principalImg);
+    for (let i = 0; i < secondaryImg.length; i += 1) {
+      console.log(secondaryImg[i]);
+      imgData.append("image.secondary", secondaryImg[i]);
+    }
+
+    postHouses(imgData, data);
   };
 
   return (
@@ -30,11 +29,15 @@ function AddHomeForm() {
       <div>
         <h1>Ajouter une nouvelle maison à la location</h1>
 
-        <Form onSubmit={handleSubmit(postHouse)}>
+        <Form onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
           <Oneform>
             <label htmlFor="name">
               Nom de la maison :<br />
-              <textarea type="text" {...register("name", { required: true })} />
+              <textarea
+                type="text"
+                id="name"
+                {...register("name", { required: true })}
+              />
             </label>
             <br />
           </Oneform>
@@ -227,20 +230,26 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
-            <label htmlFor="image.principal">
+            <label htmlFor="image.primary">
               Image principale :<br />
               <input
                 type="file"
-                {...register("image.principal", { required: true })}
+                name="image.primary"
+                {...register("image.primary", { required: true })}
               />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="image.secondaire">
+            <label htmlFor="image.secondary">
               Image secondaire :<br />
-              <input type="file" {...register("image.secondaire")} />
+              <input
+                type="file"
+                name="image.secondary"
+                multiple
+                {...register("image.secondary")}
+              />
             </label>
             <br />
           </Oneform>
@@ -248,7 +257,7 @@ function AddHomeForm() {
           <Oneform>
             <label htmlFor="is_smoker">
               Fumeur :<br />
-              <select {...register("is_smoker",{valueAsNumber: true})}>
+              <select {...register("is_smoker", { valueAsNumber: true })}>
                 <option value="1">Oui</option>
                 <option value="0">Non</option>
               </select>
