@@ -1,5 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import TitleForm from "./styled-components/TitleForm";
+import ContainerForm from "./styled-components/ContainerForm";
+import Submitbutton from "./styled-components/SubmitButton";
 
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
@@ -10,70 +14,60 @@ function SignUpForm() {
 
   return (
     <ContainerForm>
-      <Title>Créer un compte</Title>
+      <TitleForm>Créer un compte</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <select {...register("sex")}>
+        <select {...register("sex", {required: true})}>
           <option value="madame">Madame</option>
           <option value="mister">Monsieur</option>
         </select>
         <br />
-        <input type="text" placeholder="Nom" {...register("lastname")} />
+        <em>Nom* :</em>
+        <input type="text" placeholder="Nom" {...register("lastname", {required: true})} />
         <br />
-        <input type="text" placeholder="Prénom" {...register("firstname")} />
+        <em>Prénom* :</em>
+        <input type="text" placeholder="Prénom" {...register("firstname", {required: true})} />
         <br />
+        <em>Date de naissance* :</em>
         <input
           type="date"
           placeholder="Date de naissance"
-          {...register("dateOfBirth")}
+          {...register("dateOfBirth", {required: true})}
         />
         <br />
-        <input type="email" placeholder="Email" {...register("email")} />
+        <em>Email* :</em>
+        <input type="email" placeholder="Email" {...register("email", {required: true})} />
         <br />
-        <input type="textarea" placeholder="Adresse" {...register("adress")} />
+        <em>Adresse* :</em>
+        <input type="textarea" placeholder="Adresse" {...register("adress", {required: true})} />
         <br />
-        <input type="text" placeholder="Code postal" {...register("adress")} />
+        <em>Code postal* :</em>
+        <input type="text" placeholder="Code postal" {...register("zipcode", {required: true})} />
         <br />
-        <input type="text" placeholder="Ville" {...register("adress")} />
+        <em>Ville* :</em>
+        <input type="text" placeholder="Ville" {...register("city", {required: true})} />
         <br />
-        <input type="tel" placeholder="Téléphone" {...register("adress")} />
+        <em>Téléphone* :</em>
+        <input type="tel" placeholder="Téléphone" {...register("phone", {required: true})} />
         <br />
+        <em>Mot de passe* :</em>
         <input
           type="password"
           placeholder="Mot de passe"
-          {...register("password")}
+          {...register("password", {required: true})}
         />
         <br />
+        <em>Confirmation mot de passe* :</em>
         <input
           type="password"
           placeholder="Confirmer le mot de passe"
-          {...register("confirmPassword")}
+          {...register("confirmPassword", {required: true})}
         />
         <br />
-        <button type="submit">Envoyer</button>
       </Form>
+      <Submitbutton type="submit">Envoyer</Submitbutton>
     </ContainerForm>
   );
 }
-
-const ContainerForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1c2c46;
-  width: 60%;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`;
-
-const Title = styled.h1`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  padding: 16px;
-`;
 
 const Form = styled.form`
   display: flex;
@@ -91,12 +85,10 @@ const Form = styled.form`
     border-radius: 8px;
     height: 32px;
   }
-
-  button {
-    height: 32px;
-    border-radius: 8px;
-    background-color: #ba9b5c;
+  
+  em{
+    color: #1c2c46;
   }
-`;
+  `;
 
 export default SignUpForm;
