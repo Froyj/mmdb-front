@@ -9,12 +9,11 @@ const Submitbutton = styled.button`
     width: ${(props) => props.width || '20%'};
     font-size: ${(props) => props.fontSize || '1.3em'};
     margin-bottom: ${(props) => props.marginBotton || '10px'};
-    margin: ${(props) => props.margin};
+    margin: ${(props) => props.margin || "auto"};
 
     @media (max-width: 768px) {
     width: 100px;
     }
 `;
-
 
 export default Submitbutton;

@@ -47,6 +47,7 @@ const Nav = styled.nav`
   align-items: center;
   flex-wrap: wrap;
   background: #5d7b4c;
+  
   @media (max-width: 768px) {
     display: flex;
   }
@@ -73,7 +74,7 @@ const MenuLink = styled.div`
   padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
-  text-decoration: underline #5d7b4c;
+  text-decoration: none;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
@@ -99,7 +100,7 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled.a`
   width: 25%;
   img {
     width: 200px;
@@ -107,7 +108,7 @@ const Logo = styled.div`
   }
 `;
 
-const Image = styled.div`
+const Image = styled.a`
     display: flex;
     flex-direction: row;
 `;
