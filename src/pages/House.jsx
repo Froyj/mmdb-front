@@ -78,13 +78,18 @@ function House({ houses }) {
     .filter((el) => el.room_name === "activity")
     .map((el) => <li> {el.equipment.name} </li>);
 
-  const dropDownTitle = document.querySelector(".dropDown-title");
-  const dropDownList = document.querySelector(".equipment-list");
+  // const dropDownTitle = document.querySelector(".dropDown-title");
 
-  dropDownTitle.addEventListener('click', () => {
-    // On click we toggle the class visible on the dropdown
+  const handleClick = ({ className }) => {
+    const dropDownList = document.querySelector({ className });
     dropDownList.classList.toggle("visible");
-  });
+  };
+  // if (dropDownTitle) {
+  //   dropDownTitle.addEventListener("click", () => {
+  //     // On click we toggle the class visible on the dropdown
+  //     dropDownList.classList.toggle("visible");
+  //   });
+  // }
 
   return (
     <Container>
@@ -106,11 +111,26 @@ function House({ houses }) {
         <Description>
           <h2>Description</h2>
           <p>{houses[id - 1].describe_long}</p>
-          <EquipmentContainer>
-            <div className="dropDown-title">
+          <InformationContainer>
+            <button
+              type="button"
+              onClick={() =>
+                handleClick(document.querySelector(".equipment-list"))
+              }
+              className="dropDown-equipment"
+            >
               <h3> Équipement </h3>
-            </div>
-            <EquipmentList className="equipment-list" >
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                handleClick(document.querySelector(".condition-list"))
+              }
+              className="dropDown-condition"
+            >
+              <h3>Condition d'annulation</h3>
+            </button>
+            <InformationList className="equipment-list">
               <div className="dropDown-list">
                 <ul>
                   {kitchen.length > 0 ? <h3>Cuisine</h3> : null}
@@ -141,10 +161,13 @@ function House({ houses }) {
                   {security}
                 </ul>
               </div>
-            </EquipmentList>
-          </EquipmentContainer>
-          <h2>Condition d'annulation</h2>
-          <ul>{condition}</ul>
+            </InformationList>
+            <InformationList className="condition-list">
+              <div className="dropDown-list">
+                <ul>{condition}</ul>
+              </div>
+            </InformationList>
+          </InformationContainer>
         </Description>
         <Booking>calendrier de reservation</Booking>
       </Information>
@@ -197,24 +220,24 @@ const PrincipalImg = styled.div`
   width: 100%;
   height: auto;
   grid-area: 1 / 1 / 3 / 3;
-  `;
+`;
 
 const Information = styled.div`
   /* border: 4px solid red; */
   display: flex;
   justify-content: space-between;
-  `;
+`;
 
 const Description = styled.div`
   /* border: 4px solid grey; */
   width: 50%;
-  
+
   h2 {
     margin: 0.5em;
   }
-  
+
   h3 {
-    margin: 0.3em 0;
+    margin: 0.7em 0;
   }
 
   li {
@@ -224,26 +247,33 @@ const Description = styled.div`
   }
 `;
 
-const EquipmentContainer = styled.div`
-  .dropDown-title {
+const InformationContainer = styled.div`
+  /* .dropDown-title {
     cursor: pointer;
+  } */
+
+  .visible {
+    display: block;
+    justify-content: space-around;
+    /* display: flex; */
   }
 `;
 
-const EquipmentList = styled.div`
-  /* display: none; */
-  background-color: rgba(179, 154, 154, 0.123);
-  /* border: 2px black solid; */
-  /* width: 70px; */
-  /* text-align: center; */
-  /* border: 4px solid green; */
-  justify-content: space-around;
-  display: flex;
-  flex-direction: row;
-  
-  
-  .visible {
-    display: block;
+const InformationList = styled.div`
+  .equipment-list || .consition-list {
+    display: none;
+    background-color: rgba(179, 154, 154, 0.123);
+    /* border: 2px black solid; */
+    /* width: 70px; */
+    /* text-align: center; */
+    /* border: 4px solid green; */
+  }
+
+  .dropDown-list {
+    display: inline-flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
