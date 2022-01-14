@@ -134,6 +134,14 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
+            <label htmlFor="image">
+              Prix/nuit :<br />
+              <textarea type="text" {...register("image")} />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
             <label htmlFor="opening_disponibility">
               Disponibilités à la location :<br />
               <input type="date" {...register("opening_disponibility")} />
