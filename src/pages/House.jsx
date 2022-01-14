@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import Global from "../components/styled-components/Global";
+// import Carrousell from "../components/Carousell";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 
@@ -78,9 +79,9 @@ function House({ houses }) {
     .map((el) => <li> {el.equipment.name} </li>);
 
   const dropDownTitle = document.querySelector(".dropDown-title");
-  const dropDownList = document.querySelector(".dropDown-list");
+  const dropDownList = document.querySelector(".equipment-list");
 
-  dropDownTitle.addEventListener("click", () => {
+  dropDownTitle.addEventListener('click', () => {
     // On click we toggle the class visible on the dropdown
     dropDownList.classList.toggle("visible");
   });
@@ -99,14 +100,17 @@ function House({ houses }) {
           <img src={houses[id - 1].image.principal} alt={houses[id - 1].name} />
         </PrincipalImg>
         {secondaryImage}
+        {/* <Carrousell houses={houses} /> */}
       </ImagesDiv>
       <Information>
         <Description>
           <h2>Description</h2>
-          {houses[id - 1].describe_long}
+          <p>{houses[id - 1].describe_long}</p>
           <EquipmentContainer>
-            <input type="button" className="dropDown-title" name="Équipement de la maison" />
-            <div >
+            <div className="dropDown-title">
+              <h3> Équipement </h3>
+            </div>
+            <EquipmentList className="equipment-list" >
               <div className="dropDown-list">
                 <ul>
                   {kitchen.length > 0 ? <h3>Cuisine</h3> : null}
@@ -123,7 +127,7 @@ function House({ houses }) {
                   {heating}
                 </ul>
               </div>
-              <div className="equipmentList">
+              <div className="dropDown-list">
                 <ul>
                   {garden.length > 0 ? <h3>Exterieur</h3> : null}
                   {garden}
@@ -137,7 +141,7 @@ function House({ houses }) {
                   {security}
                 </ul>
               </div>
-            </div>
+            </EquipmentList>
           </EquipmentContainer>
           <h2>Condition d'annulation</h2>
           <ul>{condition}</ul>
@@ -193,48 +197,54 @@ const PrincipalImg = styled.div`
   width: 100%;
   height: auto;
   grid-area: 1 / 1 / 3 / 3;
-`;
+  `;
 
 const Information = styled.div`
-  border: 4px solid red;
+  /* border: 4px solid red; */
   display: flex;
   justify-content: space-between;
-`;
+  `;
 
 const Description = styled.div`
-  border: 4px solid grey;
+  /* border: 4px solid grey; */
   width: 50%;
-
+  
   h2 {
     margin: 0.5em;
   }
-
+  
   h3 {
     margin: 0.3em 0;
+  }
+
+  li {
+    list-style: none;
+    /* margin-bottom: 10px; */
+    margin-left: 0.5em;
   }
 `;
 
 const EquipmentContainer = styled.div`
-  cursor: pointer;
+  .dropDown-title {
+    cursor: pointer;
+  }
+`;
 
-  .dropdown-list {
-    display: none;
-    list-style: none;
-    background-color: rgba(179, 154, 154, 0.123);
-    width: 70px;
-    text-align: center;
-  }
-  .dropdown-list li {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    margin-left: 0.5em;
-    /* border: 4px solid green; */
-  }
+const EquipmentList = styled.div`
+  /* display: none; */
+  background-color: rgba(179, 154, 154, 0.123);
+  /* border: 2px black solid; */
+  /* width: 70px; */
+  /* text-align: center; */
+  /* border: 4px solid green; */
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  
+  
   .visible {
     display: block;
   }
-
 `;
 
 const Booking = styled.div`
