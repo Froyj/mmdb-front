@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import Global from "../components/styled-components/Global";
+import FilledButton from "../components/styled-components/FilledButton";
 // import Carrousell from "../components/Carousell";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
@@ -31,65 +32,73 @@ function House({ houses }) {
     ));
 
   const condition = houses[id - 1].renting_conditions.condition.map((el) => (
-    <li>{el}</li>
+    <li key={el}>{el}</li>
+  ));
+
+  const homeActivity = houses[id - 1].home_activity.map((a) => (
+    <li key={a.activity.name}> {a.activity.name} </li>
   ));
 
   const bathroom = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "bathroom")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const garden = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "outdoor")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const inHouse = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "maison")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const kitchen = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "kitchen")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const security = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "security")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const bedroom = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "bedroom")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const heating = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "heating")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const toilet = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "WC")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const entertainment = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "entertainment")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const network = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "internet")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   const activity = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "activity")
-    .map((el) => <li> {el.equipment.name} </li>);
+    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
 
   // const dropDownTitle = document.querySelector(".dropDown-title");
 
-  const handleClick = ({ className }) => {
-    const dropDownList = document.querySelector({ className });
+  const handleClickEqu = () => {
+    const dropDownList = document.querySelector(".equipment-list");
     dropDownList.classList.toggle("visible");
   };
-  // if (dropDownTitle) {
-  //   dropDownTitle.addEventListener("click", () => {
-  //     // On click we toggle the class visible on the dropdown
-  //     dropDownList.classList.toggle("visible");
-  //   });
-  // }
+
+  const handleClickCond = () => {
+    const dropDownList = document.querySelector(".condition-list");
+    dropDownList.classList.toggle("visible");
+  };
+
+  const handleClickAct = () => {
+    const dropDownList = document.querySelector(".activity-list");
+    dropDownList.classList.toggle("visible");
+  };
 
   return (
     <Container>
@@ -111,26 +120,27 @@ function House({ houses }) {
         <Description>
           <h2>Description</h2>
           <p>{houses[id - 1].describe_long}</p>
-          <InformationContainer>
-            <button
-              type="button"
-              onClick={() =>
-                handleClick(document.querySelector(".equipment-list"))
-              }
-              className="dropDown-equipment"
-            >
-              <h3> Équipement </h3>
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                handleClick(document.querySelector(".condition-list"))
-              }
-              className="dropDown-condition"
-            >
-              <h3>Condition d'annulation</h3>
-            </button>
-            <InformationList className="equipment-list">
+          <EquipmentContainer>
+            <div className="showButton" >
+              <Showlist
+                type="button"
+                onClick={() => handleClickEqu()}
+                className="dropDown-title"
+              >
+                <h3> Équipements </h3>
+              </Showlist>
+              <Showlist
+                type="button"
+                onClick={() => handleClickAct()}
+                className="dropDown-title"
+              >
+                <h3> Activités </h3>
+              </Showlist>
+              <Showlist type="button" onClick={() => handleClickCond()}>
+                <h3> Conditions d'annulation </h3>
+              </Showlist>
+            </div>
+            <EquipmentList className="equipment-list">
               <div className="dropDown-list">
                 <ul>
                   {kitchen.length > 0 ? <h3>Cuisine</h3> : null}
@@ -161,13 +171,14 @@ function House({ houses }) {
                   {security}
                 </ul>
               </div>
-            </InformationList>
-            <InformationList className="condition-list">
-              <div className="dropDown-list">
-                <ul>{condition}</ul>
-              </div>
-            </InformationList>
-          </InformationContainer>
+            </EquipmentList>
+            <EquipmentList className="activity-list">
+              <ul> {homeActivity} </ul>
+            </EquipmentList>
+            <EquipmentList className="condition-list">
+              <ul> {condition} </ul>
+            </EquipmentList>
+          </EquipmentContainer>
         </Description>
         <Booking>calendrier de reservation</Booking>
       </Information>
@@ -247,35 +258,40 @@ const Description = styled.div`
   }
 `;
 
-const InformationContainer = styled.div`
-  /* .dropDown-title {
+const EquipmentContainer = styled.div`
+  .dropDown-title {
     cursor: pointer;
-  } */
+  }
 
   .visible {
     display: block;
     justify-content: space-around;
     /* display: flex; */
   }
+
+  .showButton{
+    display: flex;
+
+  }
 `;
 
-const InformationList = styled.div`
-  .equipment-list || .consition-list {
-    display: none;
-    background-color: rgba(179, 154, 154, 0.123);
-    /* border: 2px black solid; */
-    /* width: 70px; */
-    /* text-align: center; */
-    /* border: 4px solid green; */
-  }
+const EquipmentList = styled.div`
+  display: none;
+  background-color: rgba(179, 154, 154, 0.123);
+  /* border: 2px black solid; */
+  /* width: 70px; */
+  /* text-align: center; */
+  /* border: 4px solid green; */
 
   .dropDown-list {
-    display: inline-flex;
-    /* flex-direction: row; */
-    justify-content: space-between;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between;
+    align-items: center; */
   }
 `;
+
+const Showlist = styled(FilledButton)``;
 
 const Booking = styled.div`
   border: 4px solid grey;
