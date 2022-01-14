@@ -1,13 +1,16 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import house from '../data/fictiveData';
 import AdminHouseCard from './adminHouseCard';
 
-function AdminHouseList() {
+function AdminHouseList({ houses }) {
+    AdminHouseList.propTypes = {
+        houses: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }
 
     return (
         <HouseList>
-        {house.map(el => <AdminHouseCard name={el.name} image={ el.images.principal } /> )}
+        {houses.map(house => <AdminHouseCard key={house.id} name={house.name} image={house.image.principal} /> )}
         </HouseList>
     )
 }

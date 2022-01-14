@@ -14,6 +14,7 @@ const house = [
         },
         capacity: 5,
         address: 'Route de Faussivre, 11200 Salvezines',
+        city: 'Salvezines',
         availableFrom: '01/05/2022',
         availableTo: '01/09/2022',
         region: 'Occitanie',
@@ -33,7 +34,7 @@ const house = [
     },
     {
         id: 2,
-        name: 'La Maison forestière de Georges',
+        name: 'La Maison forestière de Camille',
         images : {
             principal: 'https://a0.muscache.com/im/pictures/c622d03c-c66b-4d65-ac1f-2e10f2adc379.jpg?im_w=720',
             others: [
@@ -46,6 +47,7 @@ const house = [
         },
         capacity: 5,
         address: 'Route de Faussivre, 11200 Salvezines',
+        city: 'Salvezines',
         availableFrom: '01/05/2022',
         availableTo: '01/09/2022',
         region: 'Occitanie',
