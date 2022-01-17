@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import SearchHouseCard from "./SearchHouseCard";
 
 function SearchHouseList({ houses }) {
@@ -7,7 +8,7 @@ function SearchHouseList({ houses }) {
     }
 
     return (
-        <>
+        <SearchContainer>
             {houses.map(house => 
                 <SearchHouseCard
                     key={house.id}
@@ -16,11 +17,18 @@ function SearchHouseList({ houses }) {
                     text={house.describe_short} 
                     image={house.image.principal} 
                     city={house.city}
-                    capacity={house.capacity} 
+                    capacity={house.capacity}
+                    price={house.price_by_night}
                 />
             )}
-        </>
+        </SearchContainer>
     );
 }
 
 export default SearchHouseList;
+
+const SearchContainer = styled.div `
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+`

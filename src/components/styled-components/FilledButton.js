@@ -10,6 +10,7 @@ const FilledButton = styled.button`
     color: ${(props) => props.textColor || 'white'};
     width: ${(props) => props.width};
     height: ${(props) => props.height};
+    font-size: ${(props => props.fontSize)};
 `
 
 export default FilledButton;

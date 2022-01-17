@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import getHouses from './data/houses';
 import getBookings from './data/bookings';
 
-import Global from './components/styled-components/Global';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
@@ -34,7 +33,6 @@ function App() {
       <>
         <Navigation />
   
-        <Global>
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route path='/NosMaisonsForestieres' element={<Search houses={houses} />} />
@@ -47,7 +45,6 @@ function App() {
             <Route path ='/SeConnecter' element={<ConnectionModal />} />
             <Route path='/CreationCompte' element={<SignUpForm />} />
           </Routes>
-        </ Global>
   
         <Footer />
       </>
