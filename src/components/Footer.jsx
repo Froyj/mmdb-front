@@ -3,6 +3,7 @@ import instaLogo from "../img/tl(2).webp";
 import faceBookLogo from "../img/tl(37).webp";
 import love from "../img/tl(5).webp";
 
+;
 function Footer() {
   return (
     <Navbar>
