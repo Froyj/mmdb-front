@@ -3,17 +3,39 @@ import instaLogo from "../img/tl(2).webp";
 import faceBookLogo from "../img/tl(37).webp";
 import love from "../img/tl(5).webp";
 
-;
 function Footer() {
   return (
     <Navbar>
       <div className="content">
-        <a href="https://www.facebook.com/Ma-Maison-des-Bois-100623835729596" target="_blank" rel="noreferrer" > <img src={faceBookLogo} alt="facebook" /></a>
-        <a href="https://www.instagram.com/ma_maison_des_bois/" target="_blank" rel="noreferrer" > <img src={instaLogo} alt="instagram" /></a>
+        <div className="logoList" >
+          <a
+            href="https://www.facebook.com/Ma-Maison-des-Bois-100623835729596"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            <img src={faceBookLogo} alt="facebook" />
+          </a>
+          <a
+            href="https://www.instagram.com/ma_maison_des_bois/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            <img src={instaLogo} alt="instagram" />
+          </a>
+        </div>
         <p> Contact </p>
-        <a href="public/ressources/Copy of Charte.pdf" download="mentions_legales" > Mentions légales </a>
+        <a
+          href="public/ressources/Copy of Charte.pdf"
+          download="mentions_legales"
+        >
+          {" "}
+          Mentions légales{" "}
+        </a>
         <p>
-          Développé avec <img src={love} alt="love" className="love" /> par des wilders de la{" "}
+          Développé avec <img src={love} alt="love" className="love" /> par des
+          wilders de la{" "}
           <a href="https://www.wildcodeschool.com/fr-FR/campus/toulouse">
             Wild Code School
           </a>{" "}
@@ -34,6 +56,17 @@ const Navbar = styled.nav`
   flex-direction: column;
   margin-top: 3rem;
 
+  .logoList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;    /* justify-content: flex-start; */
+    
+    img {
+      padding: 0 2em;
+
+    }
+  }
+
   .content {
     display: flex;
     justify-content: center;
@@ -41,12 +74,12 @@ const Navbar = styled.nav`
     align-items: center;
     /* align-items: center; */
 
-    img{
+    img {
       width: 40px;
       filter: invert(1);
     }
-    
-    .love{
+
+    .love {
       width: 1.2em;
       filter: invert(0);
     }
@@ -56,13 +89,13 @@ const Navbar = styled.nav`
       justify-content: space-evenly;
     }
 
-    a:visited, a, a[download] {
+    a:visited,
+    a,
+    a[download] {
       text-decoration: none;
       decoration: none;
       color: white;
     }
-
-  
   }
 `;
 
