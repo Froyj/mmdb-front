@@ -21,26 +21,26 @@ function App() {
   const [houses, setHouses] = useState([]);
 
   useEffect(() => {
-      getHouses(setHouses);
+    getHouses(setHouses);
   }, []);
 
   return (
     <>
       <Navigation />
-      <Global>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/NosMaisonsForestieres' element={<Search houses={houses} />} />
-          <Route path='/Maison/:id' element={<House houses={houses} />} />
-          <Route path='/QuiSommesNous' element={<About />} />
-          <Route path='/Services' element={<Services />} />
-          <Route path='/Administrateur' element={<Admin houses={houses} />} />
-          <Route path='/Profil' element={<UserProfile />} />
-          <Route path='/NouvelleMaison' element={<AddNewHouse />} />
-          <Route path ='/SeConnecter' element={<ConnectionModal />} />
-          <Route path='/CreationCompte' element={<SignUpForm />} />
-        </Routes>
-      </ Global>
+        <Global>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/NosMaisonsForestieres' element={<Search houses={houses} />} />
+            <Route path='/Maison/:id' element={<House houses={houses} />} />
+            <Route path='/QuiSommesNous' element={<About />} />
+            <Route path='/Services' element={<Services />} />
+            <Route path='/Administrateur' element={<Admin houses={houses} />} />
+            <Route path='/Profil' element={<UserProfile />} />
+            <Route path='/NouvelleMaison' element={<AddNewHouse />} />
+            <Route path='/SeConnecter' element={<ConnectionModal />} />
+            <Route path='/CreationCompte' element={<SignUpForm />} />
+          </Routes>
+        </ Global>
       <Footer />
     </>
   );

@@ -1,24 +1,25 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { PropTypes } from "prop-types";
-import Global from "../components/styled-components/Global";
-import FilledButton from "../components/styled-components/FilledButton";
-// import Carrousell from "../components/Carousell";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
+import Global from "../components/styled-components/Global";
+import FilledButton from "../components/styled-components/FilledButton";
+import "../index.css";
+// import Carrousell from "../components/Carousell";
 
-function House({ houses }) {
+function House({houses}) {
   House.propTypes = {
     houses: PropTypes.string.isRequired,
   };
 
   const { id } = useParams();
-  // const [homeData, setHomeData] = useState([]);
+  // const [house, setHouse] = useState([]);
 
   // useEffect(() => {
   //   axios.get(`/home_to_rent/${id}`)
   //   .then((res) => res.data)
-  //   .then((data) => setHomeData(data))
+  //   .then((data) => setHouse(data))
   //   // eslint-disable-next-line no-console
   //   .catch((err) => console.log(err))
   // }, [])
@@ -121,25 +122,25 @@ function House({ houses }) {
           <h2>Description</h2>
           <p>{houses[id - 1].describe_long}</p>
           <EquipmentContainer>
-            <div className="showButton" >
-              <Showlist
+            <Showlist className="showButton">
+              <InfoButton
                 type="button"
                 onClick={() => handleClickEqu()}
                 className="dropDown-title"
               >
                 <h3> Équipements </h3>
-              </Showlist>
-              <Showlist
+              </InfoButton>
+              <InfoButton
                 type="button"
                 onClick={() => handleClickAct()}
                 className="dropDown-title"
               >
                 <h3> Activités </h3>
-              </Showlist>
-              <Showlist type="button" onClick={() => handleClickCond()}>
+              </InfoButton>
+              <InfoButton type="button" onClick={() => handleClickCond()}>
                 <h3> Conditions d'annulation </h3>
-              </Showlist>
-            </div>
+              </InfoButton>
+            </Showlist>
             <EquipmentList className="equipment-list">
               <div className="dropDown-list">
                 <ul>
@@ -193,41 +194,58 @@ const Container = styled(Global)`
 `;
 
 const ImagesDiv = styled.div`
+
+/* display: flex;
+flex-direction: column; */
+border-radius: 25px;
+overflow: hidden;
+/* border: 5px solid black; */
+
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.grid2, .grid3, .grid4, .grid5 {
+  display: none;
+} 
+
+@media screen and (min-width: 600px) {
   display: grid;
   margin: 1.5em 0px;
-  border-radius: 25px;
-  overflow: hidden;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 5px;
   grid-row-gap: 5px;
   height: auto;
   width: 100%;
-
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
+  
+  
   .grid2 {
+    display: block;
     grid-area: 1 / 3 / 2 / 4;
   }
-
+  
   .grid3 {
+    display: block;
     grid-area: 1 / 4 / 2 / 5;
   }
-
+  
   .grid4 {
+    display: block;
     grid-area: 2 / 3 / 3 / 4;
   }
-
+  
   .grid5 {
+    display: block;
     grid-area: 2 / 4 / 3 / 5;
   }
-`;
-
-const PrincipalImg = styled.div`
+}
+  `;
+  
+  const PrincipalImg = styled.div`
   width: 100%;
   height: auto;
   grid-area: 1 / 1 / 3 / 3;
@@ -236,12 +254,18 @@ const PrincipalImg = styled.div`
 const Information = styled.div`
   /* border: 4px solid red; */
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+  }
+
 `;
 
 const Description = styled.div`
   /* border: 4px solid grey; */
-  width: 50%;
+  width: 100%;
 
   h2 {
     margin: 0.5em;
@@ -256,6 +280,10 @@ const Description = styled.div`
     /* margin-bottom: 10px; */
     margin-left: 0.5em;
   }
+
+  @media screen and (min-width: 800px) {
+    width: 50%;
+  }
 `;
 
 const EquipmentContainer = styled.div`
@@ -268,9 +296,6 @@ const EquipmentContainer = styled.div`
     justify-content: space-around;
     /* display: flex; */
   }
-
-  .showButton{
-    display: flex;
 
   }
 `;
@@ -291,12 +316,40 @@ const EquipmentList = styled.div`
   }
 `;
 
-const Showlist = styled(FilledButton)``;
+const Showlist = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
+  @media screen and (min-width: 600px) {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    /* background-color: gray; */
+  }
+`;
+
+const InfoButton = styled(FilledButton)`
+  /* width: 33%; */
+  /* margin: 0; */
+  padding: .6em;
+
+  @media screen and (min-width: 600px) {
+
+  }
+
+`;
 
 const Booking = styled.div`
   border: 4px solid grey;
-  width: 30%;
+  width: 100%;
   text-align: center;
+  
+  @media screen and (min-width: 600px) {
+    border: solid 10px red;
+    width: 30%
+  }
+
 `;
 
 export default House;
