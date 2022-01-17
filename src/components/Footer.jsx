@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import instaLogo from "../img/tl(2).webp";
+import faceBookLogo from "../img/tl(37).webp";
 
+;
 function Footer() {
   return (
     <Navbar>
       <div className="content">
-        <a href="https://www.facebook.com/Ma-Maison-des-Bois-100623835729596"> <img src="public/resources/Le-logo-Facebook.png" alt="facebook" /></a>
-        <a href="https://www.instagram.com/ma_maison_des_bois/">Instagram</a>
+        <a href="https://www.facebook.com/Ma-Maison-des-Bois-100623835729596" target="_blank" rel="noreferrer" > <img src={faceBookLogo} alt="facebook" /></a>
+        <a href="https://www.instagram.com/ma_maison_des_bois/" target="_blank" rel="noreferrer" > <img src={instaLogo} alt="instagram" /></a>
         <p> Contact </p>
         <a href="public/ressources/Copy of Charte.pdf" download="mentions_legales" > Mentions légales </a>
         <p>
@@ -37,6 +40,11 @@ const Navbar = styled.nav`
     align-items: center;
     /* align-items: center; */
 
+    img{
+      width: 40px;
+      filter: invert(1);
+    }
+
     @media screen and (min-width: 768px) {
       flex-direction: row;
       justify-content: space-evenly;
@@ -45,7 +53,7 @@ const Navbar = styled.nav`
     a:visited, a, a[download] {
       text-decoration: none;
       decoration: none;
-      color: #ba9b5c;
+      color: white;
     }
 
   
