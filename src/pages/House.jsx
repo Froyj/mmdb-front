@@ -6,6 +6,7 @@ import { PropTypes } from "prop-types";
 import Global from "../components/styled-components/Global";
 import FilledButton from "../components/styled-components/FilledButton";
 import "../index.css";
+import BookingForm from "../components/BookingForm";
 // import Carrousell from "../components/Carousell";
 
 function House({houses}) {
@@ -62,7 +63,7 @@ function House({houses}) {
 
   const bedroom = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "bedroom")
-    .map((el) => <li key={el.equipment.name}> {el.equipment.name} </li>);
+    .map((el) => el.equipment.id ? null : <li key={el.equipment.id}> {el.equipment.name} </li>);
 
   const heating = houses[id - 1].home_equipment
     .filter((el) => el.room_name === "heating")
@@ -181,6 +182,7 @@ function House({houses}) {
             </EquipmentList>
           </EquipmentContainer>
         </Description>
+        <BookingForm houses={houses} id={id} />
         <Booking>calendrier de reservation</Booking>
       </Information>
     </Container>

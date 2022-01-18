@@ -9,6 +9,6 @@ const Global = styled.div`
     font-family: 'Trebuchet MS';
     text-align: justify;
     color: ${colors.blue};
-`
+`;
 
 export default Global;
