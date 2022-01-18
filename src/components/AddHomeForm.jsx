@@ -3,10 +3,9 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-import ContainerAddHouse from "./styled-components/ContainerAddHouse";
 import FilledButton from "./styled-components/FilledButton";
 import postHouses from "../data/postHouses";
-
+import colors from "./styled-components/colors";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
@@ -27,13 +26,9 @@ function AddHomeForm() {
   };
 
   return (
-    <ContainerAddHouse>
-      <div>
-        <h1>Ajouter une nouvelle maison à la location</h1>
-
-        <Form onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
-          <Oneform>
-            <label htmlFor="name">
+        <FormContainer onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
+          <Entry type="text" placeholder="Nom de la maison" {...register("name", { required: true })} />
+            {/* <label htmlFor="name">
               Nom de la maison :<br />
               <textarea
                 type="text"
@@ -42,9 +37,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input> */}
 
-          <Oneform>
+          <Input>
             <label htmlFor="capacity">
               Capacité d'accueil :<br />
               <textarea
@@ -56,9 +51,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="adress">
               Adresse :<br />
               <textarea
@@ -67,9 +62,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="zipcode">
               code postal :<br />
               <textarea
@@ -81,17 +76,17 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="city">
               Ville :<br />
               <textarea type="text" {...register("city", { required: true })} />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="country">
               Région :<br />
               <textarea
@@ -100,9 +95,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="coordinate_long">
               Longitude :<br />
               <textarea
@@ -111,9 +106,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="coordinate_lat">
               Latitude :<br />
               <textarea
@@ -122,9 +117,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="price_by_night">
               Prix/nuit :<br />
               <textarea
@@ -136,9 +131,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="describe_short">
               Description courte :<br />
               <textarea
@@ -147,9 +142,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="describe_long">
               Description longue :<br />
               <textarea
@@ -158,9 +153,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="opening_disponibility">
               Disponibilités à la location :<br />
               <input
@@ -169,9 +164,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="closing_disponibility">
               Fin de disponibilité :<br />
               <input
@@ -180,9 +175,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="arrival_hour">
               Horaire d'arrivée :<br />
               <textarea
@@ -191,9 +186,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="departure_hour">
               Horaire de départ :<br />
               <textarea
@@ -202,9 +197,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="square_meter">
               Surface d'habitation :<br />
               <textarea
@@ -216,9 +211,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="renting_conditions.condition">
               Conditions d'annulation :<br />
               <textarea
@@ -229,9 +224,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="image.primary">
               Image principale :<br />
               <input
@@ -241,9 +236,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="image.secondary">
               Image secondaire :<br />
               <input
@@ -254,9 +249,9 @@ function AddHomeForm() {
               />
             </label>
             <br />
-          </Oneform>
+          </Input>
 
-          <Oneform>
+          <Input>
             <label htmlFor="is_smoker">
               Fumeur :<br />
               <select {...register("is_smoker", { valueAsNumber: true })}>
@@ -265,49 +260,34 @@ function AddHomeForm() {
               </select>
             </label>
             <br />
-          </Oneform>
-
-          <Submit>
-            <input type="submit" />
-          </Submit>
+          </Input>
+          
+          <Submit type='submit' value="Valider"/>
           <NavLink exact to="/Administrateur">
             <FilledButton>Retour en arrière</FilledButton>
           </NavLink>
-        </Form>
-      </div>
-    </ContainerAddHouse>
+        </FormContainer>
   );
 }
 
-const Form = styled.form`
+const FormContainer = styled.form`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  line-height: 50px;
-  margin: 0 5px;
-
-  textarea {
-    width: 250px;
-    height: 200px;
-  }
-`;
-
-const Oneform = styled.div`
+  flex-direction: column;
+  margin-top: 1rem;
+`
+const Entry = styled.input`
+  display: flex;
+`
+const Input = styled.div`
   margin-top: 5%;
-`;
-
-const Submit = styled.div`
-  margin: 20px;
-  text-align: center;
-
-  input {
-    background-color: #ba9b5c;
-    border-radius: 10px;
-    color: #f3f9f2;
-    height: 50px;
-    width: 200px;
-    font-size: 1.3em;
-  }
-`;
+`
+const Submit = styled.input`
+    border: none;
+    border-radius: 6px;
+    background-color: ${colors.blue};
+    padding: .6rem 2.5rem;
+    margin: .5rem;
+    color: white;
+`
 
 export default AddHomeForm;
