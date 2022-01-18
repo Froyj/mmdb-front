@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from '../api/axios-config';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "../api/axios-config";
 
 import {
   Container,
@@ -9,10 +9,13 @@ import {
   EquipmentContainer,
   Showlist,
   InfoButton,
-  EquipmentList
-} from '../components/common';
-import '../index.css';
+  EquipmentList,
+  ImagesDiv,
+  PrincipalImg,
+} from "../components/common";
+import "../index.css";
 
+// eslint-disable-next-line react/prop-types
 function Equipments({ homeEquipments = null }) {
   if (!homeEquipments) {
     return null;
@@ -27,7 +30,7 @@ function Equipments({ homeEquipments = null }) {
           <h3>{room}</h3>
           <ul>
             {homeEquipments.equipment[room].map((equipment) => (
-              <li>{equipment.name}</li>
+              <li key={equipment.id} >{equipment.name}</li>
             ))}
           </ul>
         </>
@@ -48,13 +51,13 @@ function House() {
       .catch((err) => console.log(err));
   }, []);
 
-  // const secondaryImage = house.image.secondary
-  //   .slice(0, 4)
-  //   .map((el, index) => (
-  //     <div className={`grid${index + 2}`}>
-  //       <img src={el} alt="maison" key={el} />
-  //     </div>
-  //   ));
+  const secondaryImage = house?.image.secondary
+    .slice(0, 4)
+    .map((el, index) => (
+      <div className={`grid${index + 2}`}>
+        <img src={el} alt="maison" key={el} />
+      </div>
+    ));
 
   const condition = house?.renting_conditions.condition.map((el) => (
     <li key={el}>{el}</li>
@@ -66,10 +69,10 @@ function House() {
 
   const handleClick = (selectorQuery) => {
     const dropDownList = document.querySelector(selectorQuery);
-    dropDownList.classList.toggle('visible');
+    dropDownList.classList.toggle("visible");
   };
 
-  if(!house) {
+  if (!house) {
     return null;
   }
 
@@ -78,51 +81,51 @@ function House() {
       <div>
         <h1> {house.name} </h1>
         <p>
-          {house.adress}, {house.country}{' '}
+          {house.adress}, {house.country}{" "}
         </p>
       </div>
-      {/* <ImagesDiv>
+      <ImagesDiv>
         <PrincipalImg>
-          <img src={house.image.principal} alt={house.name} />
-          </PrincipalImg>
-          {secondaryImage}
-        </ImagesDiv> */}
+          <img src={house?.image.principal} alt={house.name} />
+        </PrincipalImg>
+        {secondaryImage}
+      </ImagesDiv>
       <Information>
         <Description>
           <h2>Description</h2>
           <p>{house.describe_long}</p>
           <EquipmentContainer>
-            <Showlist className='showButton'>
+            <Showlist className="showButton">
               <InfoButton
-                type='button'
-                onClick={() => handleClick('.equipment-list')}
-                className='dropDown-title'
+                type="button"
+                onClick={() => handleClick(".equipment-list")}
+                className="dropDown-title"
               >
                 <h3> Équipements </h3>
               </InfoButton>
               <InfoButton
-                type='button'
-                onClick={() => handleClick('.activity-list')}
-                className='dropDown-title'
+                type="button"
+                onClick={() => handleClick(".activity-list")}
+                className="dropDown-title"
               >
                 <h3> Activités </h3>
               </InfoButton>
               <InfoButton
-                type='button'
-                onClick={() => handleClick('.condition-list')}
+                type="button"
+                onClick={() => handleClick(".condition-list")}
               >
                 <h3> Conditions d'annulation </h3>
               </InfoButton>
             </Showlist>
-            <EquipmentList className='equipment-list'>
-              <div className='dropDown-list'>
+            <EquipmentList className="equipment-list">
+              <div className="dropDown-list">
                 <Equipments homeEquipments={house.home_equipment} />
               </div>
             </EquipmentList>
-            <EquipmentList className='activity-list'>
+            <EquipmentList className="activity-list">
               <ul> {homeActivity} </ul>
             </EquipmentList>
-            <EquipmentList className='condition-list'>
+            <EquipmentList className="condition-list">
               <ul> {condition} </ul>
             </EquipmentList>
           </EquipmentContainer>
