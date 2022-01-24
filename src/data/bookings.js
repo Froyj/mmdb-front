@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from '../helper/axios-config';
 
 const getBookings = (setVar) => {
 
     axios
-    .get('http://localhost:5000/bookings')
+    .get('/bookings')
     .then((response) => response.data)
     .then((data) => setVar(data))
     .catch((err) => console.log(err))
