@@ -1,48 +1,27 @@
 import { useForm } from "react-hook-form";
-
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
-import ContainerAddHouse from "./styled-components/ContainerAddHouse";
-import FilledButton from "./styled-components/FilledButton";
-import postHouses from "../data/postHouses";
+import updateHouses from "../data/updateHouses";
 
-
-function AddHomeForm() {
+function UpdateHomeForm() {
   const { register, handleSubmit } = useForm();
-  
 
+  const { id } = useParams();
 
-  const imgData = new FormData();
-
-  const postData = (data) => {
-    const principalImg = data.image.primary[0];
-    const secondaryImg = data.image.secondary;
-
-    imgData.append("image.primary", principalImg);
-    for (let i = 0; i < secondaryImg.length; i += 1) {
-      console.log(secondaryImg[i]);
-      imgData.append("image.secondary", secondaryImg[i]);
-    }
-
-    postHouses(imgData, data);
-
+  const updateHouse = (data) => {
+   updateHouses(data,id);
   };
 
   return (
-    <ContainerAddHouse>
+    <ContainerForm>
       <div>
-        <h1>Ajouter une nouvelle maison à la location</h1>
+        <h1>Modifier une maison à la location</h1>
 
-        <Form onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
+        <Form onSubmit={handleSubmit(updateHouse)}>
           <Oneform>
             <label htmlFor="name">
               Nom de la maison :<br />
-              <textarea
-                type="text"
-                id="name"
-                {...register("name", { required: true })}
-              />
+              <textarea type="text" {...register("name", { required: true })} />
             </label>
             <br />
           </Oneform>
@@ -235,26 +214,20 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
-            <label htmlFor="image.primary">
+            <label htmlFor="image.principal">
               Image principale :<br />
               <input
                 type="file"
-                name="image.primary"
-                {...register("image.primary", { required: true })}
+                {...register("image.principal", { required: true })}
               />
             </label>
             <br />
           </Oneform>
 
           <Oneform>
-            <label htmlFor="image.secondary">
+            <label htmlFor="image.secondaire">
               Image secondaire :<br />
-              <input
-                type="file"
-                name="image.secondary"
-                multiple
-                {...register("image.secondary")}
-              />
+              <input type="file" {...register("image.secondaire")} />
             </label>
             <br />
           </Oneform>
@@ -274,13 +247,37 @@ function AddHomeForm() {
             <input type="submit" />
           </Submit>
           <NavLink exact to="/Administrateur">
-            <FilledButton>Retour en arrière</FilledButton>
+            <Submit>Retour en arrière</Submit>
           </NavLink>
         </Form>
       </div>
-    </ContainerAddHouse>
+    </ContainerForm>
   );
 }
+
+const ContainerForm = styled.div`
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline #1c2c46;
+  color: #1c2c46;
+  background-color: #f3f9f2;
+  width: 90%;
+  display: flex;
+  margin: auto;
+  padding: 15px;
+  border: 5px solid #ba9b5c;
+  border-radius: 10px;
+
+  h1 {
+    text-align: center;
+  }
+
+  textarea {
+    font-size: 15px;
+  }
+`;
 
 const Form = styled.form`
   display: flex;
@@ -313,4 +310,4 @@ const Submit = styled.div`
   }
 `;
 
-export default AddHomeForm;
+export default UpdateHomeForm;
