@@ -9,7 +9,6 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
 import AddNewHouse from './pages/AddNewHouse';
-import UpdateHouse from './pages/UpdateHouse';
 import Admin from './pages/Admin';
 import Home from './pages/Home';
 import House from './pages/House';
