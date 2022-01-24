@@ -4,11 +4,11 @@ import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SubmitButton from "./styled-components/SubmitButton";
+import FoodOption from "./FoodOption";
 
-function BookingForm({ houses, id }) {
+function BookingForm({ house }) {
   BookingForm.propTypes = {
-    houses: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    house: PropTypes.string.isRequired,
   };
 
   const { register, handleSubmit } = useForm();
@@ -19,27 +19,33 @@ function BookingForm({ houses, id }) {
 
   const [mealOptions, setMealOptions] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5500/options")
+  //     .then((response) => response.data)
+  //     .then((meals) => {
+  //       const menu = meals.reduce((accu, current) => {
+  //         const copyAccu = {...accu}
+  //         if (!copyAccu[current.name]){
+  //           copyAccu[current.name] = current.dish;
+  //         } 
+  //         // console.log(`copyAccu ${  copyAccu}`);
+  //         return copyAccu
+  //       }, {})
+  //       return menu;
+  //     })
+  //     .then((data) => setMealOptions(data))
+  //     // eslint-disable-next-line no-console
+  //     .catch((err) => console.log(err));
+  // }, []);
+  
   useEffect(() => {
     axios
-      .get(`http://localhost:5500/options`)
-      .then((response) => response.data)
-      .then((meals) => {
-        const menu = meals.reduce((accu, current) => {
-          const copyAccu = {...accu}
-          if (!copyAccu[current.name]){
-            copyAccu[current.name] = current.dish;
-          } 
-          // console.log(`copyAccu ${  copyAccu}`);
-          return copyAccu
-        }, {})
-        return menu;
-      })
-      .then((data) => setMealOptions(data))
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
-  }, []);
-
-
+      .get("http://localhost:5500/options")
+      .then((response) => {
+        setMealOptions(response.data);
+      });
+    }, []);
 
   return (
     <div>
@@ -68,28 +74,16 @@ function BookingForm({ houses, id }) {
                 type="number"
                 {...register("travellersNumber")}
                 min="1"
-                max={houses[id - 1].capacity}
+                max={house.capacity}
               /> 
             </label>
             <br />
           </SelectTravellersNumber>
         </QuickBooking>
         <OptionChoice>
-          <label htmlFor="optionFridge">
-            <h1>Repas</h1>
-            <h2>{mealOptions.breakfast}</h2>
-            <ul>
-              {mealOptions.breakfast.dish.map((el) => (
-                <li>
-                  {el.name}
-                  {el.price}
-                </li>
-              ))}
-            </ul>
-            <br />
-            <input type="checkbox" {...register("optionfridge")} />
-          </label>
-          <br />
+        <TitleOption>Repas</TitleOption>
+        {mealOptions
+        .map((repas) => <FoodOption key={repas.id} repas={repas} />)}
         </OptionChoice>
         <PriceDetails>
           Nombre de nuits X prix =<br />
@@ -107,18 +101,25 @@ function BookingForm({ houses, id }) {
 const Form = styled.div`
   background-color: #1c2c46;
   color: white;
-  width: 100%;
+  width: 450px;
   border-radius: 15px;
+
   h1 {
     text-align: center;
+    padding: 20px 20px;
   }
 `;
 
-const QuickBooking = styled.div``;
+const QuickBooking = styled.div`
+  text-align: center;
+
+`;
 
 const SelectBookingDates = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 40px;
+  
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -127,9 +128,12 @@ const SelectBookingDates = styled.div`
 
 const SelectTravellersNumber = styled.div`
   padding: 10px 0 10px 0;
+  text-align: center;
 `;
 
 const OptionChoice = styled.div``;
+
+const TitleOption = styled.h1``;
 
 const PriceDetails = styled.div``;
 

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../api/axios-config";
+import BookingForm from "../components/BookingForm";
+
 
 import {
   Container,
@@ -130,8 +132,7 @@ function House() {
             </EquipmentList>
           </EquipmentContainer>
         </Description>
-        {/* <BookingForm houses={houses} id={id} />
-        <Booking>calendrier de reservation</Booking> */}
+         <BookingForm house={house} id={id}/>
       </Information>
     </Container>
   );
