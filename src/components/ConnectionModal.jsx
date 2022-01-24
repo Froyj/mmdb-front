@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ContainerForm from './styled-components/ContainerForm';
 import TitleForm from './styled-components/TitleForm';
@@ -24,12 +25,11 @@ const ConnectionModal = () => {
               {...register("password")}
             />
             <LineContainer>
-            <TextHover>
-            Mot de passe oublié ?
-            </TextHover>
+              <Link to="/CreationCompte">
             <TextHover>
             Créer un compte ?
             </TextHover>
+              </Link>
             </LineContainer>
                 </ConnectionInfos>
                 <br />
@@ -43,8 +43,8 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   color: white;
-  width: 85%;
-  padding: 16px;
+  width: 60%;
+  padding: 10px;
 
   input {
     background-color: white;
@@ -63,6 +63,7 @@ const ConnectionInfos = styled.div`
 
 const TextHover = styled.p`
     color:#1c2c46;
+    text-decoration: underline #F3F9F3;
 
     &:hover {
       color:#eeeb8f;

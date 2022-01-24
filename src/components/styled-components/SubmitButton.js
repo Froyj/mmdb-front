@@ -11,8 +11,13 @@ const Submitbutton = styled.button`
     margin-bottom: ${(props) => props.marginBotton || '10px'};
     margin: ${(props) => props.margin || "auto"};
 
+    @media (min-width: 768px) {
+        width: 100px;
+        height: 40px;
+    }
+
     @media (max-width: 768px) {
-    width: 100px;
+        width: 100px;
     }
 `;
 
