@@ -2,7 +2,7 @@ import axios from "axios";
 
 const updateHouses = (data, id) => {
   axios
-    .put(`http://localhost:5000/home_to_rent/${id}`, {
+    .put(`/home_to_rent/${id}`, {
       ...data,
       opening_disponibility: `${data.opening_disponibility}T00:00:00.000Z`,
       closing_disponibility: `${data.closing_disponibility}T00:00:00.000Z`,
