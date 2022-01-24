@@ -40,6 +40,7 @@ const Navigation = () => {
   );
 };
 
+
 const Nav = styled.nav`
   padding: 0 2rem;
   display: flex;
@@ -47,9 +48,15 @@ const Nav = styled.nav`
   align-items: center;
   flex-wrap: wrap;
   background: #5d7b4c;
+
+  @media (max-width: 1132px){
+    display: flex;
+    flex-direction: column;
+  }
   
   @media (max-width: 768px) {
     display: flex;
+    flex-direction: row;
   }
 `;
 
@@ -65,16 +72,16 @@ const Burger = styled.div`
     border-radius: 5px;
   }
   
-  @media (max-width: 1271px) {
+  @media (max-width: 768px) {
     display: flex;
   }
 `;
 
 const MenuLink = styled.div`
-  padding: 1rem 2rem;
+  padding: 0.7rem 0.7rem;
   cursor: pointer;
   text-align: center;
-  text-decoration: none;
+  text-decoration: underline #5d7b4c;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
@@ -91,7 +98,7 @@ const Menu = styled.div`
   align-items: center;
   position: relative;
   
-  @media (max-width: 1271px) {
+  @media (max-width: 768px) {
     overflow: hidden;
     flex-direction: column;
     width: 100%;
@@ -106,6 +113,7 @@ const Logo = styled.a`
     width: 200px;
     padding: 10px;
   }
+
 `;
 
 const Image = styled.a`
