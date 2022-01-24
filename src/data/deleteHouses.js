@@ -2,7 +2,7 @@ import axios from "axios";
 
 const deleteHouses = (id) => {
   axios
-    .delete("http://localhost:5000/home_to_rent", { data: { id } })
+    .delete("/home_to_rent", { data: { id } })
     .then(() => {
       alert("Maison supprimée !");
     })
