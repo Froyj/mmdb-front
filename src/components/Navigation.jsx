@@ -27,6 +27,7 @@ const Navigation = () => {
         <Link to="/QuiSommesNous">
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
+        <ConnexionContainer>
         <Link to="/SeConnecter">
         <Image>
             <img src="../ressources/user-white.png" alt="utilisateur" width="35px" height="35px"/>
@@ -35,6 +36,7 @@ const Navigation = () => {
         <Link to="/SeConnecter">
           <MenuLink>Se connecter</MenuLink>
         </Link>
+        </ConnexionContainer>
       </Menu>
     </Nav>
   );
@@ -78,7 +80,7 @@ const Burger = styled.div`
 `;
 
 const MenuLink = styled.div`
-  padding: 0.7rem 0.7rem;
+  padding: 1rem 1rem;
   cursor: pointer;
   text-align: center;
   text-decoration: underline #5d7b4c;
@@ -116,8 +118,13 @@ const Logo = styled.a`
 
 `;
 
+const ConnexionContainer = styled.div`
+  display: flex;
+`;
+
 const Image = styled.a`
     display: flex;
     flex-direction: row;
+    margin-top: 15px;
 `;
 export default Navigation;
