@@ -38,20 +38,20 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route
-              path="/NosMaisonsForestieres"
+              path="/nos-maisons-forestieres"
               element={<Search houses={houses} />}
             />
-            <Route path="/Maison/:id" element={<House houses={houses} />} />
-            <Route path="/QuiSommesNous" element={<About />} />
-            <Route path="/Services" element={<Services />} />
+            <Route path="/maison/:id" element={<House houses={houses} />} />
+            <Route path="/qui-sommes-nous" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route
-              path="/Administrateur"
+              path="/administrateur"
               element={<Admin houses={houses} bookings={bookings} />}
             />
-            <Route path="/Profil" element={<UserProfile />} />
-            <Route path="/NouvelleMaison" element={<AddNewHouse />} />
-            <Route path="/SeConnecter" element={<ConnectionModal />} />
-            <Route path="/CreationCompte" element={<SignUpForm />} />
+            <Route path="/profil" element={<UserProfile />} />
+            <Route path="/nouvelle-maison" element={<AddNewHouse />} />
+            <Route path="/se-connecter" element={<ConnectionModal />} />
+            <Route path="/creation-compte" element={<SignUpForm />} />
             <Route path="/update-house/:id" element={<UpdateHomeForm />} />
           </Routes>
         </Global>

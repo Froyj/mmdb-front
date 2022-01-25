@@ -273,7 +273,7 @@ function AddHomeForm() {
           <Submit>
             <input type="submit" />
           </Submit>
-          <NavLink exact to="/Administrateur">
+          <NavLink exact to="/administrateur">
             <FilledButton>Retour en arrière</FilledButton>
           </NavLink>
         </Form>
