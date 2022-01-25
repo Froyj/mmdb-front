@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import styled from "styled-components";
 import TitleForm from "./styled-components/TitleForm";
 import ContainerForm from "./styled-components/ContainerForm";
@@ -7,10 +9,23 @@ import Submitbutton from "./styled-components/SubmitButton";
 import createUsers from "../data/createUsers";
 
 function SignUpForm() {
-  const { register, handleSubmit } = useForm();
+  const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("Password is required")
+      .min(4, "Password length should be at least 4 characters"),
+    passwordConfirm: Yup.string()
+      .required("Confirm Password is required")
+      .oneOf([Yup.ref("hashed_password")], "Passwords must and should match"),
+  });
+
+  const validationOpt = { resolver: yupResolver(formSchema) };
+
+  const { register, handleSubmit, formState } = useForm(validationOpt);
+
+  const { errors } = formState;
 
   const onSubmit = (data) => {
-    // eslint-disable-next-line no-console
+    JSON.stringify(data, null, 4);
     createUsers(data);
   };
 
@@ -105,19 +120,23 @@ function SignUpForm() {
           <input
             type="password"
             placeholder="Mot de passe"
-            {...register("hashed_password", { required: true })}
+            {...register("hashed_password")}
           />
         </label>
+        <div className="invalid-feedback">{errors.password?.message}</div>
         <br />
-        {/* <label>
+        <label>
           Confirmation mot de passe* : <br />
           <input
             type="password"
             placeholder="Confirmer le mot de passe"
-            {...register("confirmPassword", { required: true })}
+            {...register("confirmPassword")}
           />
         </label>
-        <br /> */}
+        <div className="invalid-feedback">
+          {errors.passwordConfirm?.message}
+        </div>
+        <br />
         <Submitbutton type="submit">Envoyer</Submitbutton>
       </Form>
     </ContainerForm>
