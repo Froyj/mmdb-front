@@ -31,6 +31,7 @@ function Home() {
         controls
         autoplay
         preload="auto"
+        muted
         src="../ressources/video-home.mp4"
         type="video/mp4"
       />
