@@ -19,26 +19,6 @@ function BookingForm({ house }) {
 
   const [mealOptions, setMealOptions] = useState([]);
   const [ show, setShow ] = useState("true");
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5500/options")
-  //     .then((response) => response.data)
-  //     .then((meals) => {
-  //       const menu = meals.reduce((accu, current) => {
-  //         const copyAccu = {...accu}
-  //         if (!copyAccu[current.name]){
-  //           copyAccu[current.name] = current.dish;
-  //         } 
-  //         // console.log(`copyAccu ${  copyAccu}`);
-  //         return copyAccu
-  //       }, {})
-  //       return menu;
-  //     })
-  //     .then((data) => setMealOptions(data))
-  //     // eslint-disable-next-line no-console
-  //     .catch((err) => console.log(err));
-  // }, []);
   
   useEffect(() => {
     axios
@@ -51,7 +31,9 @@ function BookingForm({ house }) {
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        
         <h1>Réservez votre maison</h1>
+        
         <QuickBooking>
           <SelectBookingDates>
             <label htmlFor="arrival">
@@ -81,13 +63,14 @@ function BookingForm({ house }) {
             <br />
           </SelectTravellersNumber>
         </QuickBooking>
+        
         <OptionChoice>
-          <Options>Les options</Options>
-        <TitleOption onClick={() =>setShow(!show)}>Menu</TitleOption>
+        <Options>Choix des options</Options>
+        <TitleOption onClick={() =>setShow(!show)}><li>La carte</li></TitleOption>
         {show ? null : mealOptions
         .map((repas) => <FoodOption key={repas.id} repas={repas} />)}
-        
         </OptionChoice>
+        
         <PriceDetails>
           Nombre de nuits X prix =<br />
           Frais de ménage : 60 euros
@@ -95,7 +78,9 @@ function BookingForm({ house }) {
           Taxe de séjour : Nombre de personnes X 2 euros =<br />
           Total :<br />
         </PriceDetails>
+
         <SubmitButton>Réserver</SubmitButton>
+
       </Form>
     </div>
   );
@@ -103,9 +88,13 @@ function BookingForm({ house }) {
 
 const Form = styled.div`
   border: 2px solid #1c2c46;
-  color: white;
-  width: 450px;
   border-radius: 15px;
+  width: auto;
+  height: auto;
+  background-color: #F3F9F3;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
 
   h1 {
     text-align: center;
@@ -114,30 +103,38 @@ const Form = styled.div`
 `;
 
 const QuickBooking = styled.div`
-  text-align: center;
-
+  border: 2px solid #1c2c46;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
 `;
 
 const SelectBookingDates = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-left: 40px;
-  
+display: flex;
+flex-direction: row;
   @media (max-width: 768px) {
-    flex-direction: column;
   }
 `;
 
 const SelectTravellersNumber = styled.div`
-  padding: 10px 0 10px 0;
-  text-align: center;
 `;
 
-const OptionChoice = styled.div``;
+const OptionChoice = styled.div`
+border: 2px solid #1c2c46;
+border-radius: 5px;
+width: 90%;
+margin: auto;
+margin-bottom: 10px;
+`;
+
+const Options = styled.div`
+`;
 
 const TitleOption = styled.h2`
-  text-align: center;
-  width: 50px;
+margin-top: 1rem;
+  width: auto;
   cursor: pointer;
   
   &:hover {
@@ -145,10 +142,13 @@ const TitleOption = styled.h2`
   }
 `;
 
-
-const Options = styled.div`
+const PriceDetails = styled.div`
+border: 2px solid #1c2c46;
+border-radius: 5px;
+line-height: 2rem;
+width: 90%;
+margin: auto;
+margin-bottom: 10px;
 `;
-
-const PriceDetails = styled.div``;
 
 export default BookingForm;
