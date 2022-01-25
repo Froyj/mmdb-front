@@ -20,6 +20,7 @@ import SignUpForm from './components/SignUpForm';
 
 function App() {
 
+
   const [houses, setHouses] = useState([]);
   const [bookings, setBookings] = useState([]);
 
@@ -54,6 +55,7 @@ function App() {
     );
   }
   
+
 
 }
 
