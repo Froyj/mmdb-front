@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect, useReducer } from 'react';
 
-import Global from './components/styled-components/Global';
+import getHouses from './data/houses';
+import getBookings from './data/bookings';
+
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
@@ -13,29 +16,62 @@ import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
 import ConnectionModal from './components/ConnectionModal';
 import SignUpForm from './components/SignUpForm';
+import PrivateRoute from './components/auth/PrivateRoute';
+import { ADMIN } from './constants/roles';
+import {
+  initialState,
+  userContextReducer,
+} from './reducers/userContextReducer';
+import { UserContextProvider } from './contexts/user';
 
 function App() {
-  return (
-    <>
-      <Navigation />
-      <Global>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/NosMaisonsForestieres' element={<Search />} />
-          <Route path='/Maison/:id' element={<House />} />
-          <Route path='/QuiSommesNous' element={<About />} />
-          <Route path='/Services' element={<Services />} />
-          <Route path='/Administrateur' element={<Admin />} />
-          <Route path='/Profil' element={<UserProfile />} />
-          <Route path='/NouvelleMaison' element={<AddNewHouse />} />
-          <Route path ='/SeConnecter' element={<ConnectionModal />} />
-          <Route path='/CreationCompte' element={<SignUpForm />} />
-        </Routes>
-      </ Global>
-      <Footer />
-    </>
-  );
+  const [houses, setHouses] = useState([]);
+  const [bookings, setBookings] = useState([]);
+  const [userContext, dispatch] = useReducer(userContextReducer, initialState);
+
+  useEffect(() => {
+    getHouses(setHouses);
+    getBookings(setBookings);
+    console.log(houses);
+  }, []);
+
+  if (houses) {
+    return (
+      <>
+        <UserContextProvider value={{...userContext, dispatch}}>
+          <Navigation />
+
+            <Routes>
+              {/* Connected User */}
+              <Route path='/Profil' element={<UserProfile />} />
+              {/* Auth Routes */}
+              <Route path='/SeConnecter' element={<ConnectionModal />} />
+              <Route path='/CreationCompte' element={<SignUpForm />} />
+              {/* Public Route */}
+              <Route exact path='/' element={<Home />} />
+              <Route path='/Services' element={<Services />} />
+              <Route path='/QuiSommesNous' element={<About />} />
+              <Route
+                path='/NosMaisonsForestieres'
+                element={<Search houses={houses} />}
+              />
+              <Route path='/Maison/:id' element={<House houses={houses} />} />
+
+              {/* Admin Routes */}
+              <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>
+                <Route
+                  path='dashboard'
+                  element={<Admin houses={houses} bookings={bookings} />}
+                />
+                <Route path='maison/ajouter' element={<AddNewHouse />} />
+              </Route>
+            </Routes>
+
+          <Footer />
+        </UserContextProvider>
+      </>
+    );
+  }
 }
 
 export default App;
-
