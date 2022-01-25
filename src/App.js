@@ -4,7 +4,6 @@ import { useState, useEffect, useReducer } from 'react';
 import getHouses from './data/houses';
 import getBookings from './data/bookings';
 
-import Global from './components/styled-components/Global';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
