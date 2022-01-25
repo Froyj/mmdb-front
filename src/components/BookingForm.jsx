@@ -18,6 +18,7 @@ function BookingForm({ house }) {
   };
 
   const [mealOptions, setMealOptions] = useState([]);
+  const [ show, setShow ] = useState("true");
 
   // useEffect(() => {
   //   axios
@@ -81,9 +82,11 @@ function BookingForm({ house }) {
           </SelectTravellersNumber>
         </QuickBooking>
         <OptionChoice>
-        <TitleOption>Repas</TitleOption>
-        {mealOptions
+          <Options>Les options</Options>
+        <TitleOption onClick={() =>setShow(!show)}>Menu</TitleOption>
+        {show ? null : mealOptions
         .map((repas) => <FoodOption key={repas.id} repas={repas} />)}
+        
         </OptionChoice>
         <PriceDetails>
           Nombre de nuits X prix =<br />
@@ -99,7 +102,7 @@ function BookingForm({ house }) {
 }
 
 const Form = styled.div`
-  background-color: #1c2c46;
+  border: 2px solid #1c2c46;
   color: white;
   width: 450px;
   border-radius: 15px;
@@ -120,7 +123,6 @@ const SelectBookingDates = styled.div`
   justify-content: space-between;
   margin-left: 40px;
   
-
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -133,7 +135,19 @@ const SelectTravellersNumber = styled.div`
 
 const OptionChoice = styled.div``;
 
-const TitleOption = styled.h1``;
+const TitleOption = styled.h2`
+  text-align: center;
+  width: 50px;
+  cursor: pointer;
+  
+  &:hover {
+    color: #eeeb8f;
+  }
+`;
+
+
+const Options = styled.div`
+`;
 
 const PriceDetails = styled.div``;
 
