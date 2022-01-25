@@ -21,7 +21,7 @@ function Activities ({activities}) {
 const ActivitiesContainer = styled.div`
     border-radius: 5px;
     padding: 5px;
-    width: 250px;
+    width: 300px;
     background: linear-gradient(315deg, rgba(186,155,92,1) 0%, rgba(28,44,70,1) 100%);
     color: white;
     cursor: pointer;
@@ -29,6 +29,15 @@ const ActivitiesContainer = styled.div`
     &:hover{
         background: linear-gradient(315deg, rgba(186,155,92,1) 100%, rgba(28,44,70,1) 0%);
     }
+
+    @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 15px;
+}
 `;
 
 const ActivitiesName = styled.p`
