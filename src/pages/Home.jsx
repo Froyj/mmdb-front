@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "../helper/axios-config";
 import HouseImage from "../components/HouseImage";
 import TitleForm from "../components/styled-components/TitleForm";
 import Activities from "../components/Activities";
@@ -11,7 +11,7 @@ function Home() {
 
     useEffect(() => {
         axios
-        .get("http://localhost:5000/home_to_rent")
+        .get("/home_to_rent")
         .then((res) => {
             setHouseData(res.data);
         });
@@ -19,7 +19,7 @@ function Home() {
 
     useEffect(() =>{
         axios
-        .get("http://localhost:5000/activities")
+        .get("/activities")
         .then((res) => {
             setServicesData(res.data);
         })
