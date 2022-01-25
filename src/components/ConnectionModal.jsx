@@ -1,15 +1,34 @@
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import ContainerForm from "./styled-components/ContainerForm";
-import TitleForm from "./styled-components/TitleForm";
-import Submitbutton from "./styled-components/SubmitButton";
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import ContainerForm from './styled-components/ContainerForm';
+import TitleForm from './styled-components/TitleForm';
+import Submitbutton from './styled-components/SubmitButton';
+import { UserContext } from '../contexts/user';
+import axios from '../helper/axios-config';
+import { ADMIN } from '../constants/roles';
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
+  const { dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    axios
+      .post('/login', data)
+      .then((res) => res.data)
+      .then((user) => {
+        dispatch({
+          type: 'CONNECTION',
+          payload: { userId: user.id, roleId: user.role_id },
+        });
+        if (user.role_id === ADMIN) {
+          navigate('/admin/dashboard', { replace: true });
+        } else {
+          navigate('/', { replace: true });
+        }
+      });
   };
 
   return (
