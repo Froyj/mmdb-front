@@ -19,6 +19,6 @@ const Navbar = styled.nav`
     align-items: center;
     flex-direction: column;
     margin-top: 3rem;
-`
+`;
 
 export default Footer;
