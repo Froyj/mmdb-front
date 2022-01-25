@@ -41,13 +41,11 @@ function BookingForm({ house }) {
               <br />
               <input type="date" {...register("arrival")} />
             </label>
-            <br />
             <label htmlFor="departure">
               Départ
               <br />
               <input type="date" {...register("departure")} />
             </label>
-            <br />
           </SelectBookingDates>
           <SelectTravellersNumber>
             <label htmlFor="travellersNumber">
@@ -72,14 +70,14 @@ function BookingForm({ house }) {
         </OptionChoice>
         
         <PriceDetails>
-          Nombre de nuits X prix =<br />
-          Frais de ménage : 60 euros
-          <br />
-          Taxe de séjour : Nombre de personnes X 2 euros =<br />
-          Total :<br />
+        <SumUpTitle>Résumé de votre réservation</SumUpTitle>
+          <SumUp><p>Prix X Nombre de nuits</p><br />
+          <p>Frais de ménage 60 euros</p><br />
+          <p>Taxe de séjour nombre de personnes X 2 euros</p><br />
+          <p>Total</p><br /></SumUp>
         </PriceDetails>
 
-        <SubmitButton>Réserver</SubmitButton>
+        <SubmitButton marginTop="10px" marginBottom="10px">Réserver</SubmitButton>
 
       </Form>
     </div>
@@ -88,13 +86,15 @@ function BookingForm({ house }) {
 
 const Form = styled.div`
   border: 2px solid #1c2c46;
+  background-color: white;
   border-radius: 15px;
   width: auto;
   height: auto;
-  background-color: #F3F9F3;
   display: flex;
   flex-direction: column;
   align-content: space-around;
+  width: auto;
+  color: #1c2c46;
 
   h1 {
     text-align: center;
@@ -103,52 +103,73 @@ const Form = styled.div`
 `;
 
 const QuickBooking = styled.div`
-  border: 2px solid #1c2c46;
-  width: 90%;
+  border: 2px solid #ba9b5c;
+  width: 95%;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   margin: auto;
+  margin-top: 10px;
 `;
 
 const SelectBookingDates = styled.div`
 display: flex;
 flex-direction: row;
   @media (max-width: 768px) {
+    flex-wrap: wrap;
   }
 `;
 
 const SelectTravellersNumber = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+border-radius: 5px;
+@media (max-width: 768px) {
+  flex-wrap: wrap;
+  }
 `;
 
 const OptionChoice = styled.div`
-border: 2px solid #1c2c46;
+border: 2px solid #ba9b5c;
 border-radius: 5px;
-width: 90%;
+width: 95%;
 margin: auto;
-margin-bottom: 10px;
-`;
+margin-top: 10px;
+li {
+  line-height: 40px;
+}
+ `;
 
-const Options = styled.div`
+const Options = styled.h3`
+text-align: center;
 `;
 
 const TitleOption = styled.h2`
 margin-top: 1rem;
   width: auto;
+  list-style: none;
   cursor: pointer;
   
   &:hover {
-    color: #eeeb8f;
+    color: #ba9b5c;
   }
 `;
 
+const SumUpTitle = styled.h3`
+text-align: center;
+`;
+
+const SumUp = styled.p`
+margin-top: 10px;
+`;
+
 const PriceDetails = styled.div`
-border: 2px solid #1c2c46;
+border: 2px solid #ba9b5c;
 border-radius: 5px;
-line-height: 2rem;
-width: 90%;
+width: 95%;
 margin: auto;
-margin-bottom: 10px;
+margin-top: 10px;
 `;
 
 export default BookingForm;

@@ -1,6 +1,9 @@
-import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { useState } from "react";
+import styled from "styled-components";
+import Counter from "./Counter";
+
+
 
 const FoodOption = ({ repas }) => {
   FoodOption.propTypes = {
@@ -14,15 +17,15 @@ const FoodOption = ({ repas }) => {
       <MealName onClick={() => setShow(!show)}>
         <ul>{repas.name}</ul>
       </MealName>
+
       <SelectBox>
-        {" "}
-        {show
-          ? null
-          : repas.dish.map((name) => (
-              <li>
-                <input type="number" min="0"/> {`${name.name} : ${name.price}`}
-              </li>
-            ))}
+        <MealChoice>
+          {show
+            ? null
+            : repas.dish.map((name) => (
+                  <li><Counter /> {`${name.name} : ${name.price}`}</li>
+              ))}
+        </MealChoice>
       </SelectBox>
     </FoodContainer>
   );
@@ -41,11 +44,25 @@ const FoodContainer = styled.div`
 
 const MealName = styled.h3`
   margin-left: 5%;
+  cursor: pointer;
+  line-height: 30px;
+  text-transform: capitalize;
+  &:hover {
+    color: #ba9b5c;
+}
 `;
+
+const MealChoice = styled.h3`
+`;
+
 
 const SelectBox = styled.h3`
   margin-left: 5%;
-  margin-top: 2,5%;
+  margin-top: 2, 5%;
+
+  li {
+    font-size: 12px;
+  }
 
   input {
     width: 2rem;
