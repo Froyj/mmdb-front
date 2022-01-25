@@ -4,67 +4,122 @@ import styled from "styled-components";
 import TitleForm from "./styled-components/TitleForm";
 import ContainerForm from "./styled-components/ContainerForm";
 import Submitbutton from "./styled-components/SubmitButton";
+import createUsers from "../data/createUsers";
 
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     // eslint-disable-next-line no-console
-    console.log(data);
+    createUsers(data);
   };
 
   return (
     <ContainerForm>
       <TitleForm>Créer un compte</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <select {...register("sex", {required: true})}>
-          <option value="madame">Madame</option>
-          <option value="mister">Monsieur</option>
-        </select>
+        <label htmlFor="genre">
+          <select {...register("genre", { required: true })}>
+            <option value="Mme">Madame</option>
+            <option value="Mr">Monsieur</option>
+          </select>
+        </label>
         <br />
-        <em>Nom* :</em>
-        <input type="text" placeholder="Nom" {...register("lastname", {required: true})} />
+        <label htmlFor="lastname">
+          Nom* : <br />
+          <input
+            type="text"
+            placeholder="Nom"
+            {...register("lastname", { required: true })}
+          />
+        </label>
         <br />
-        <em>Prénom* :</em>
-        <input type="text" placeholder="Prénom" {...register("firstname", {required: true})} />
+        <label htmlFor="firstname">
+          Prénom* : <br />
+          <input
+            type="text"
+            placeholder="Prénom"
+            {...register("firstname", { required: true })}
+          />
+        </label>
         <br />
-        <em>Date de naissance* :</em>
-        <input
-          type="date"
-          placeholder="Date de naissance"
-          {...register("dateOfBirth", {required: true})}
-        />
+        <label htmlFor="birth_date">
+          Date de naissance* : <br />
+          <input
+            type="date"
+            placeholder="Date de naissance"
+            {...register("birth_date", { required: true })}
+          />
+        </label>
         <br />
-        <em>Email* :</em>
-        <input type="email" placeholder="Email" {...register("email", {required: true})} />
+        <label htmlFor="email">
+          Email* : <br />
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
+          />
+        </label>
         <br />
-        <em>Adresse* :</em>
-        <input type="textarea" placeholder="Adresse" {...register("adress", {required: true})} />
+        <label htmlFor="adress">
+          Adresse* : <br />
+          <input
+            type="textarea"
+            placeholder="Adresse"
+            {...register("adress", { required: true })}
+          />
+        </label>
         <br />
-        <em>Code postal* :</em>
-        <input type="text" placeholder="Code postal" {...register("zipcode", {required: true})} />
+        <label htmlFor="zipcode">
+          Code postal* : <br />
+          <input
+            type="text"
+            placeholder="Code postal"
+            {...register("zipcode", {
+              valueAsNumber: true,
+              required: true,
+            })}
+          />
+        </label>
         <br />
-        <em>Ville* :</em>
-        <input type="text" placeholder="Ville" {...register("city", {required: true})} />
+        <label htmlFor="city">
+          Ville* : <br />
+          <input
+            type="text"
+            placeholder="Ville"
+            {...register("city", { required: true })}
+          />
+        </label>
         <br />
-        <em>Téléphone* :</em>
-        <input type="tel" placeholder="Téléphone" {...register("phone", {required: true})} />
+        <label htmlFor="phone">
+          Téléphone* : <br />
+          <input
+            type="tel"
+            placeholder="Téléphone"
+            {...register("phone", { required: true })}
+          />
+        </label>
         <br />
-        <em>Mot de passe* :</em>
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          {...register("password", {required: true})}
-        />
+        <label htmlFor="hashed_password">
+          Mot de passe* : <br />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            {...register("hashed_password", { required: true })}
+          />
+        </label>
         <br />
-        <em>Confirmation mot de passe* :</em>
-        <input
-          type="password"
-          placeholder="Confirmer le mot de passe"
-          {...register("confirmPassword", {required: true})}
-        />
-        <br />
+        {/* <label>
+          Confirmation mot de passe* : <br />
+          <input
+            type="password"
+            placeholder="Confirmer le mot de passe"
+            {...register("confirmPassword", { required: true })}
+          />
+        </label>
+        <br /> */}
+        <Submitbutton type="submit">Envoyer</Submitbutton>
       </Form>
-      <Submitbutton type="submit">Envoyer</Submitbutton>
     </ContainerForm>
   );
 }
@@ -84,11 +139,17 @@ const Form = styled.form`
     background-color: white;
     border-radius: 8px;
     height: 32px;
+    width: 80%;
   }
-  
-  em{
+
+  label {
     color: #1c2c46;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
   }
-  `;
+`;
 
 export default SignUpForm;
