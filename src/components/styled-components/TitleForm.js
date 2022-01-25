@@ -6,7 +6,7 @@ const TitleForm = styled.h1`
   align-items: ${(props) => props.alignItems || "center"};
   color:  ${(props) => props.alignItems || "#1c2c46"};
   padding:  ${(props) => props.padding || "16px"};
-  text-decoration: ${(props) => props.textDecoration || "none"}
+  text-decoration: ${(props) => props.textDecoration || "none"};
 `;
 
 export default TitleForm;
