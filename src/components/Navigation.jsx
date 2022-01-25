@@ -51,7 +51,7 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   background: #5d7b4c;
 
-  @media (max-width: 1132px){
+  @media (max-width: 1170px){
     display: flex;
     flex-direction: column;
   }
