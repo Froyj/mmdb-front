@@ -1,13 +1,14 @@
-import axios from "axios";
+import axios from "../helper/axios-config";
 
 const createUsers = (data) => {
   axios
-    .post("http://localhost:5000/register", {
+    .post("/register", {
       ...data,
       birth_date: `${data.birth_date}T00:00:00.000Z`,
+      hashed_password: data.password
     })
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      alert("le compte à bien été crée");
     })
     .catch(() => {
       alert("cet email est déjà utilisé !");
