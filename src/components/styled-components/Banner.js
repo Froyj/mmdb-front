@@ -14,6 +14,6 @@ const Banner = styled.h1`
     margin-top: 1rem;
     align-items: center;
     justify-content: center;
-`
+`;
 
 export default Banner;

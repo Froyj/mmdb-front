@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
-import ImageContainer from './styled-components/ImageContainer';
-import Image from './styled-components/Image';
+import colors from './styled-components/colors';
 
 function ServicesPanel ({service}) {
     ServicesPanel.propTypes = {
@@ -9,24 +8,42 @@ function ServicesPanel ({service}) {
         }
 
     return (
-        <ServicesContainer>
-            <ImageContainer>
-                <Image src={service.img_url} width="200px" height="200px"/>
-            </ImageContainer>
-            <ServicesName>{service.name}</ServicesName>
+        <>
+            <ServiceCard>
+                <Image src={service.img_url}/>
+             <TitleSpan>{service.name}</TitleSpan>
             <ServicesDescription>{service.description}</ServicesDescription>
-
-        </ServicesContainer>
+            </ServiceCard>
+        </>
     );
     };
 
-    const ServicesContainer = styled.div`
-    `;
+    const ServiceCard = styled.div`
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        background-color: ${colors.lightGreen};
+        margin: 1rem;
+        height: 30rem;
+        box-shadow: 10px 10px 15px;
+        width: 50%;
+`;
 
-    const ServicesName = styled.h2`
-    `;
+const Image = styled.img`
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 60%;
+`;
 
-    const ServicesDescription = styled.p`
-    `;
+const TitleSpan = styled.span`
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: ${colors.green};
+    text-align: center;
+`;
 
-    export default ServicesPanel;
+const ServicesDescription = styled.p`
+    text-align: center;
+`;
+
+export default ServicesPanel;

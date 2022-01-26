@@ -18,7 +18,7 @@ function Services() {
 
     return (
         <>
-        <Banner image="url('./ressources/banner-nos-services.jpg)">
+        <Banner image="url('./ressources/banner-nos-services.jpg')">
              Nos Services 
         </Banner>
         <Global>
@@ -26,12 +26,15 @@ function Services() {
                 {servicesData
                 .map((service) => <ServicesPanel key={service.id} service={service} /> )}
             </ServicesContainer>
-            </Global>
+        </Global>
         </>
     );
 }
 
 const ServicesContainer = styled.div`
+    width: auto;
+    margin: auto;
+    display: flex; 
 `;
 
 
