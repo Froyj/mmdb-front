@@ -20,7 +20,7 @@ function Services() {
 
     return (
         <>
-        <Banner image="url('./ressources/banner-nos-services.jpg')">
+        <Banner  backgroundPosition="center" marginTop = "none" marginBottom="0.5em" image="url('./ressources/banner-nos-services.jpg')">
              Nos Services 
         </Banner>
         <Global>
@@ -29,7 +29,7 @@ function Services() {
                 .map((service) => <ServicesPanel key={service.id} service={service} /> )}
             </ServicesContainer>
         </Global>
-        <Banner image="url('./ressources/banner-activites-exterieures.jpg')">Activités extérieurs</Banner>
+        <Banner backgroundPosition="bottom" marginTop = "2em" marginBottom="0.5em" image="url('./ressources/banner-activites-exterieures.jpg')">Activités extérieurs</Banner>
         <Global>
         <ActivitiesContainer>
         <Card>
@@ -61,6 +61,7 @@ const ActivitiesContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 6em;
 `;
 
 const Image = styled.img`

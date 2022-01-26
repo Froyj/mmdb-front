@@ -5,13 +5,15 @@ const Banner = styled.h1`
     display: flex;
     background-image: ${(props) => props.image};
     background-size: cover;
+    background-position: ${(props) => props.backgroundPosition};
     color: ${colors.lightGreen};
     font-size: 5rem;
     font-family: 'Trebuchet MS';
     font-weight: 100;
     width: 100%;
     height: 20rem;
-    margin-top: 1rem;
+    margin-top: ${(props) => props.marginTop || "1rem" };
+    margin-bottom: ${(props) => props.marginBottom || "0.5em" };
     align-items: center;
     justify-content: center;
 `;
