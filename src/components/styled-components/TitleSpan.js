@@ -7,6 +7,7 @@ const TitleSpan = styled.span`
     color: ${colors.green};
     text-align: center;
     margin-top: 20px;
+
 `;
 
 export default TitleSpan;
