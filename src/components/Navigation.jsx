@@ -31,6 +31,7 @@ const Navigation = () => {
         <Link to='/QuiSommesNous'>
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
+      <ConnexionContainer>
         <Link to='/SeConnecter'>
           <Image>
             <img
@@ -48,10 +49,12 @@ const Navigation = () => {
             <MenuLink>Se connecter</MenuLink>
           </Link>
         )}
+        </ConnexionContainer>
       </Menu>
     </Nav>
   );
 };
+
 
 const Nav = styled.nav`
   padding: 0 2rem;
@@ -61,8 +64,14 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   background: #5d7b4c;
 
+  @media (max-width: 1170px){
+    display: flex;
+    flex-direction: column;
+  }
+  
   @media (max-width: 768px) {
     display: flex;
+    flex-direction: row;
   }
 `;
 
@@ -77,17 +86,17 @@ const Burger = styled.div`
     margin-bottom: 4px;
     border-radius: 5px;
   }
-
-  @media (max-width: 1271px) {
+  
+  @media (max-width: 768px) {
     display: flex;
   }
 `;
 
 const MenuLink = styled.div`
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   cursor: pointer;
   text-align: center;
-  text-decoration: none;
+  text-decoration: underline #5d7b4c;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
@@ -104,8 +113,8 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-
-  @media (max-width: 1271px) {
+  
+  @media (max-width: 768px) {
     overflow: hidden;
     flex-direction: column;
     width: 100%;
@@ -120,10 +129,16 @@ const Logo = styled.a`
     width: 200px;
     padding: 10px;
   }
+
+`;
+
+const ConnexionContainer = styled.div`
+  display: flex;
 `;
 
 const Image = styled.a`
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
 `;
 export default Navigation;

@@ -1,7 +1,11 @@
+import Global from "../components/styled-components/Global";
+
 function Home() {
     return (
-        'Accueil'
-    );
+        <Global>
+            'Accueil'
+        </Global>
+        );
 }
 
 export default Home;

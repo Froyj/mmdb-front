@@ -1,10 +1,13 @@
 import styled from "styled-components";
+
+import Global from "../components/styled-components/Global";
 import TextContainer from "../components/styled-components/TextContainer";
 import SecondContainer from "../components/styled-components/SecondContainer";
 import Image from "../components/styled-components/Image";
 import ImageContainer from "../components/styled-components/ImageContainer";
 
 const About = () => (
+  <Global>
   <MainContainer>
     <SecondContainer>
       <ImageContainer>
@@ -164,6 +167,7 @@ const About = () => (
       />
     </ImageContainer>
   </MainContainer>
+  </Global>
 );
 
 const TitleAbout = styled.h1`
