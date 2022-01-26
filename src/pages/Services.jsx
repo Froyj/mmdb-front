@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from 'styled-components';
 import axios from "../helper/axios-config";
-import TitleForm from '../components/styled-components/TitleForm';
+import Banner from "../components/styled-components/Banner";
 import Global from "../components/styled-components/Global";
 import ServicesPanel from "../components/ServicesPanel";
 
@@ -17,20 +17,19 @@ function Services() {
     }, []);
 
     return (
-    <Global>
-        <MainContainer>
-            <TitleForm> Nos Services </TitleForm>
+        <>
+        <Banner image="url('./ressources/banner-nos-services.jpg)">
+             Nos Services 
+        </Banner>
+        <Global>
             <ServicesContainer>
                 {servicesData
                 .map((service) => <ServicesPanel key={service.id} service={service} /> )}
             </ServicesContainer>
-        </MainContainer>
-     </Global>
+            </Global>
+        </>
     );
 }
-
-const MainContainer = styled.div`
-`;
 
 const ServicesContainer = styled.div`
 `;
