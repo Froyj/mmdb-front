@@ -24,9 +24,13 @@ function ServicesPanel ({service}) {
         border-radius: 15px;
         background-color: ${colors.lightGreen};
         margin: 1.7rem;
-        height: 30rem;
+        height: 25rem;
         box-shadow: 10px 10px 15px;
         width: 30%;
+
+        @media (max-width: 768px){
+            width: 90%;
+        }
 `;
 
 const Image = styled.img`
@@ -40,10 +44,12 @@ const TitleSpan = styled.span`
     font-weight: bold;
     color: ${colors.green};
     text-align: center;
+    margin-top: 20px;
 `;
 
 const ServicesDescription = styled.p`
     text-align: center;
+    margin-top: 20px;
 `;
 
 export default ServicesPanel;
