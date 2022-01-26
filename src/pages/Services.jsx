@@ -60,6 +60,7 @@ function Services() {
 const ActivitiesContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 `;
 
 const ActivitieCard = styled.div`
@@ -96,6 +97,7 @@ const ServicesContainer = styled.div`
     margin: auto;
     display: flex; 
     flex-wrap: wrap;
+    justify-content: center;
 
     @media (max-width: 768px){
         display: flex;
