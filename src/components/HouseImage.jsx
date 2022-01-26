@@ -1,40 +1,44 @@
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import ImageContainer from './styled-components/ImageContainer';
-import Image from './styled-components/Image';
+import colors from './styled-components/colors';
 
-function HouseImage ({ image }) {
+function HouseImage ({ id, image }) {
     HouseImage.propTypes = {
+        id: PropTypes.number.isRequired,
         image: PropTypes.string.isRequired,
     }
 
     return (
-        <Link to='/Maison/:id'>
-        <HouseImageContainer>
-        <ImageContainer>
-            <Image src={image.image.principal} width="250px" height="250px" borderRadius="5px"/>
-        </ImageContainer>
-        <HouseName>{image.name}</HouseName>
-        <HouseInfo>{image.city}</HouseInfo>
-        <HouseInfo>{image.country}</HouseInfo>
-        </HouseImageContainer> 
-        </Link>
+        <StyledLink to={`/Maison/${id}`}>
+        <HouseCard>
+            <Image src={image.image.principal} />
+            <TitleSpan>{image.name}</TitleSpan>
+         <TitleSpan>{image.city}</TitleSpan>
+        <TitleSpan>{image.country}</TitleSpan>
+        </HouseCard> 
+        </StyledLink>
     );
-}
+};
 
-const HouseImageContainer = styled.div`
-    border-radius: 5px;
-    padding: 5px;
-    background: linear-gradient(315deg, rgba(186,155,92,1) 0%, rgba(28,44,70,1) 100%);
-    color: white;
-    cursor: pointer;
-    text-align:center;
-    width: 300px;
+const StyledLink = styled(NavLink)`
+    text-decoration: none;
+    color: ${colors.blue};
+    width: 32%;
 
-    &:hover{
-        background: linear-gradient(315deg, rgba(186,155,92,1) 100%, rgba(28,44,70,1) 0%);
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
     }
+`
+
+const HouseCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: ${colors.lightGreen};
+    margin: 1rem;
+    height: 30rem;
+    box-shadow: 10px 10px 15px;
 
     @media (max-width: 768px){
         display: flex;
@@ -43,19 +47,21 @@ const HouseImageContainer = styled.div`
         width: 100%;
         margin : auto;
         margin-bottom: 15px;
-
-    &:hover{
-        background: linear-gradient(315deg, rgba(186,155,92,1) 100%, rgba(28,44,70,1) 0%);
-    }
     }
 `;
 
-const HouseName = styled.h2`
-    font-size: 1.3em;
+const Image = styled.img`
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 60%;
 `;
 
-const HouseInfo = styled.h3`
-    
-`
+const TitleSpan = styled.span`
+    margin-top: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: ${colors.green};
+    text-align: center;
+`;
 
 export default HouseImage;

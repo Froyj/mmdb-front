@@ -4,7 +4,6 @@ import { useState, useEffect, useReducer } from 'react';
 import getHouses from './data/houses';
 import getBookings from './data/bookings';
 
-import Global from './components/styled-components/Global';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import About from './pages/About';
@@ -42,7 +41,6 @@ function App() {
         <UserContextProvider value={{...userContext, dispatch}}>
           <Navigation />
 
-          <Global>
             <Routes>
               {/* Connected User */}
               <Route path='/Profil' element={<UserProfile />} />
@@ -68,7 +66,6 @@ function App() {
                 <Route path='maison/ajouter' element={<AddNewHouse />} />
               </Route>
             </Routes>
-          </Global>
 
           <Footer />
         </UserContextProvider>

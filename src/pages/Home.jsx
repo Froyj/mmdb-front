@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "../helper/axios-config";
 import HouseImage from "../components/HouseImage";
-import TitleForm from "../components/styled-components/TitleForm";
 import Activities from "../components/Activities";
+import Banner from "../components/styled-components/Banner";
 
 function Home() {
     const [houseData, setHouseData] = useState([]);
@@ -35,12 +35,16 @@ function Home() {
         src="../ressources/video-home.mp4"
         type="video/mp4"
       />
-      <TitleForm  marginTop="30px" textDecoration="underline">Nos Maisons</TitleForm>
+        <Banner image="url('./resources/Banner-Nos-maisons-forestières.jpg')">
+        Nos maisons
+        </Banner>
       <HouseContainer>
             {houseData
             .map((image) => <HouseImage key={image.id} image={image}/>)}
         </HouseContainer>
-        <TitleForm marginTop="30px" textDecoration="underline">Nos Services</TitleForm>
+        <Banner image="url('./resources/Banner-Nos-maisons-forestières.jpg')">
+          Nos services
+          </Banner>
        <ServicesContainer>
             {servicesData
             .filter((el) => el.id === 1 || el.id === 2 || el.id === 5)
