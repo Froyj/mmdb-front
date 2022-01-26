@@ -23,10 +23,10 @@ function ServicesPanel ({service}) {
         flex-direction: column;
         border-radius: 15px;
         background-color: ${colors.lightGreen};
-        margin: 1rem;
+        margin: 1.7rem;
         height: 30rem;
         box-shadow: 10px 10px 15px;
-        width: 50%;
+        width: 30%;
 `;
 
 const Image = styled.img`

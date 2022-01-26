@@ -35,6 +35,7 @@ const ServicesContainer = styled.div`
     width: auto;
     margin: auto;
     display: flex; 
+    flex-wrap: wrap;
 `;
 
 
