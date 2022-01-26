@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -25,7 +25,7 @@ function Admin({ houses, bookings }) {
             </Section>
             <AdminHouseList houses={houses} />
             <ButtonsDiv>
-                <NavLink to='maison/ajouter' ><FilledButton> Ajouter une nouvelle maison </FilledButton></NavLink>
+                <Link to='maison/ajouter' ><FilledButton> Ajouter une nouvelle maison </FilledButton></Link>
                 <FilledButton> Supprimer une maison </FilledButton>
             </ButtonsDiv>
             <Section>

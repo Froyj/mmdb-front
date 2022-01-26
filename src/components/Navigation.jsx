@@ -123,7 +123,7 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   width: 25%;
   img {
     width: 200px;
@@ -136,7 +136,7 @@ const ConnexionContainer = styled.div`
   display: flex;
 `;
 
-const Image = styled.a`
+const Image = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 15px;
