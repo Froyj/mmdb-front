@@ -24,7 +24,6 @@ function SearchHouseList({ houses }) {
         </SearchContainer>
     );
 }
-
 export default SearchHouseList;
 
 const SearchContainer = styled.div `

@@ -59,7 +59,7 @@ function App() {
     getBookings(setBookings);
   }, []);
 
-  // if (houses) {
+   if (houses) {
   return (
     <>
       <UserContextProvider value={{ ...userContext, dispatch }}>
@@ -101,5 +101,5 @@ function App() {
     </>
   );
 }
-
+}
 export default App;
