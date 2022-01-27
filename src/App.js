@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useReducer } from "react";
 
-import House from './pages/House';
+import House from "./pages/House";
 import getHouses from "./data/houses";
 import getBookings from "./data/bookings";
 
@@ -60,22 +60,19 @@ function App() {
           />
           <Route path="/maison/:id" element={<House houses={houses} />} />
 
-
           {/* Admin Routes */}
-          <Route path="/admin" element={<PrivateRoute role={ADMIN} />} />
-          <Route
-            path="dashboard"
-            element={<Admin houses={houses} bookings={bookings} />}
-          />
+          <Route path="/admin" element={<PrivateRoute role={ADMIN} />}>
+            <Route
+              path="dashboard"
+              element={<Admin houses={houses} bookings={bookings} />}
+            />
 
-          <Route
-            path="dashboard/maison/ajouter"
-            element={<AddNewHouse />}
-          />
-          <Route
-            path="dashboard/mise-a-jour-maison/:id"
-            element={<UpdateHouse />}
-          />
+            <Route path="dashboard/maison/ajouter" element={<AddNewHouse />} />
+            <Route
+              path="dashboard/mise-a-jour-maison/:id"
+              element={<UpdateHouse />}
+            />
+          </Route>
         </Routes>
         <Footer />
       </UserContextProvider>
