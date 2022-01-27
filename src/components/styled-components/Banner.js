@@ -4,8 +4,9 @@ import colors from "./colors";
 const Banner = styled.h1`
     display: flex;
     background-image: ${(props) => props.image};
-    background-size: cover;
-    background-position: ${(props) => props.backgroundPosition};
+    background-size: ${(props) => props.size || '100%' };
+    background-position: ${(props => props.position)}; 
+    background-color: ${colors.green};
     color: ${colors.lightGreen};
     font-size: 5rem;
     font-family: 'Trebuchet MS';
