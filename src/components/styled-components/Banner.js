@@ -17,6 +17,10 @@ const Banner = styled.h1`
     margin-bottom: ${(props) => props.marginBottom || "0.5em"};
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px){
+        background-size: cover;
+    }
 `;
 
 export default Banner;
