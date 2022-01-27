@@ -37,7 +37,7 @@ function Home() {
         type="video/mp4"
       />
       </VideoContainer>
-        <Banner image="url('./resources/Banner-Nos-maisons-forestières.jpg')">
+        <Banner image="url('./ressources/Banner-Nos-maisons-forestières.jpg')">
         Nos maisons
         </Banner>
       <HouseContainer>

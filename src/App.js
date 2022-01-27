@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useReducer } from "react";
 
+import House from './pages/House';
 import getHouses from "./data/houses";
 import getBookings from "./data/bookings";
 
@@ -13,7 +14,6 @@ import UpdateHouse from "./pages/UpdateHouse";
 
 import Admin from "./pages/Admin";
 import Home from "./pages/Home";
-import House from "./pages/House";
 import Search from "./pages/Search";
 import Services from "./pages/Services";
 import UserProfile from "./pages/UserProfile";
@@ -37,51 +37,50 @@ function App() {
     getBookings(setBookings);
   }, []);
 
-  if (houses) {
-    return (
-      <>
-        <UserContextProvider value={{ ...userContext, dispatch }}>
-          <Navigation />
+  // if (houses) {
+  return (
+    <>
+      <UserContextProvider value={{ ...userContext, dispatch }}>
+        <Navigation />
 
-          <Routes>
-            {/* Connected User */}
+        <Routes>
+          {/* Connected User */}
 
-            <Route path="/profil" element={<UserProfile />} />
-            {/* Auth Routes */}
-            <Route path="/se-connecter" element={<ConnectionModal />} />
-            <Route path="/creation-compte" element={<SignUpForm />} />
-            {/* Public Route */}
-            <Route exact path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/qui-sommes-nous" element={<About />} />
-            <Route
-              path="/nos-maisons-forestieres"
-              element={<Search houses={houses} />}
-            />
-            <Route path="/maison/:id" element={<House houses={houses} />} />
+          <Route path="/profil" element={<UserProfile />} />
+          {/* Auth Routes */}
+          <Route path="/se-connecter" element={<ConnectionModal />} />
+          <Route path="/creation-compte" element={<SignUpForm />} />
+          {/* Public Route */}
+          <Route exact path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/qui-sommes-nous" element={<About />} />
+          <Route
+            path="/nos-maisons-forestieres"
+            element={<Search houses={houses} />}
+          />
+          <Route path="/maison/:id" element={<House houses={houses} />} />
 
 
-            {/* Admin Routes */}
-            <Route path="/admin" element={<PrivateRoute role={ADMIN} />} />
-              <Route
-                path="dashboard"
-                element={<Admin houses={houses} bookings={bookings} />}
-              />
+          {/* Admin Routes */}
+          <Route path="/admin" element={<PrivateRoute role={ADMIN} />} />
+          <Route
+            path="dashboard"
+            element={<Admin houses={houses} bookings={bookings} />}
+          />
 
-              <Route
-                path="dashboard/maison/ajouter"
-                element={<AddNewHouse />}
-              />
-              <Route
-                path="dashboard/mise-a-jour-maison/:id"
-                element={<UpdateHouse />}
-              />
-          </Routes>
-          <Footer />
-        </UserContextProvider>
-      </>
-    );
-  }
+          <Route
+            path="dashboard/maison/ajouter"
+            element={<AddNewHouse />}
+          />
+          <Route
+            path="dashboard/mise-a-jour-maison/:id"
+            element={<UpdateHouse />}
+          />
+        </Routes>
+        <Footer />
+      </UserContextProvider>
+    </>
+  );
 }
 
 export default App;
