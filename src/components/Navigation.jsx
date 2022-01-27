@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/user';
@@ -7,9 +7,14 @@ import axios from '../helper/axios-config';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const revokeAccess = () => {
-    axios.get('/auth/revoke-access').catch(console.log);
+  const disconnectUser = () => {
+    axios
+      .get('/auth/revoke-access')
+      .then(() => dispatch({ type: 'DISCONNECTION' }))
+      .then(() => navigate("/"))
+      .catch(console.log);
   };
 
   return (
@@ -38,7 +43,7 @@ const Navigation = () => {
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
         <ConnexionContainer>
-          <Link to='/SeConnecter'>
+          <Link to='/se-connecter'>
             <Image>
               <img
                 src='../ressources/user-white.png'
@@ -50,15 +55,12 @@ const Navigation = () => {
           </Link>
           {isConnected ? (
             <MenuLink
-              onClick={() => {
-                revokeAccess();
-                dispatch({ type: 'DISCONNECTION' });
-              }}
+              onClick={() => disconnectUser()}
             >
               Deconnexion
             </MenuLink>
           ) : (
-            <Link to='/SeConnecter'>
+            <Link to='/se-connecter'>
               <MenuLink>Se connecter</MenuLink>
             </Link>
           )}
@@ -149,8 +151,8 @@ const ConnexionContainer = styled.div`
 `;
 
 const Image = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
 `;
 export default Navigation;
