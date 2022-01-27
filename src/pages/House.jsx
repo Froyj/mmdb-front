@@ -58,12 +58,12 @@ function House() {
     </div>
   ));
 
-  const condition = house?.renting_conditions.condition.map((el) => (
-    <li key={el}>{el}</li>
-  ));
+  // const condition = house?.renting_conditions.condition.map((el) => (
+  //   <li key={el}>{el}</li>
+  // ));
 
   const homeActivity = house?.home_activity.map((a) => (
-    <li key={a.activity.name}> {a.activity.name} </li>
+    <li key={a.id}> {a.activity.name} </li>
   ));
 
   const handleClick = (selectorQuery) => {
@@ -125,7 +125,10 @@ function House() {
               <ul> {homeActivity} </ul>
             </EquipmentList>
             <EquipmentList className="condition-list">
-              <ul> {condition} </ul>
+              <ul>
+                <li>{house?.renting_conditions.total}</li>
+                <li>{house?.renting_conditions.partial}</li>
+              </ul>
             </EquipmentList>
           </EquipmentContainer>
         </Description>
