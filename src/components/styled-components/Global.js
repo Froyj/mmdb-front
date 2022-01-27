@@ -7,6 +7,7 @@ const Global = styled.div`
     width: 90%;
     margin: auto;
     font-family: 'Trebuchet MS';
+    text-align: justify;
     color: ${colors.blue};
 `;
 

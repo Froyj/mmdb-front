@@ -28,13 +28,13 @@ const Navigation = () => {
         <span />
       </Burger>
       <Menu isOpen={isOpen}>
-        <Link to='/NosMaisonsForestieres'>
+        <Link to='/nos-maisons-forestieres'>
           <MenuLink>Nos maisons forestières</MenuLink>
         </Link>
-        <Link to='/Services'>
+        <Link to='/services'>
           <MenuLink>Nos services</MenuLink>
         </Link>
-        <Link to='/QuiSommesNous'>
+        <Link to='/qui-sommes-nous'>
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
         <ConnexionContainer>
@@ -136,7 +136,7 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   width: 25%;
   img {
     width: 200px;
@@ -148,9 +148,9 @@ const ConnexionContainer = styled.div`
   display: flex;
 `;
 
-const Image = styled.a`
-  display: flex;
-  flex-direction: row;
-  margin-top: 15px;
+const Image = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
 `;
 export default Navigation;
