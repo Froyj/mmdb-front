@@ -33,7 +33,8 @@ const ConnectionModal = () => {
 
   return (
     <BackgroundImage>
-    <ContainerForm width="600px" height="400px" marginTop ="100px" marginBottom="8%">
+    
+    <ContainerForm width="500px" height="300px" marginTop ="100px" marginBottom="8%">
       <TitleForm>Connexion</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ConnectionInfos>
@@ -52,12 +53,15 @@ const ConnectionModal = () => {
               </Link>
           </LineContainer>
         </ConnectionInfos>
-        <br />
-        <Submitbutton type='submit' fontSize='1em' margin='auto' >
+        <Submitbutton type='submit' fontSize='1em'>
           Se connecter
         </Submitbutton>
+        <br />
+       
       </Form>
-    </ContainerForm>
+    
+  </ContainerForm>
+  
     </BackgroundImage>
   );
 };
@@ -65,14 +69,14 @@ const BackgroundImage = styled.div`
   background-image: url('../ressources/background-image-login-2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 1.4%;
+  background-position: center;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   color: white;
-  width: 60%;
+  width: 70%;
   padding: 10px;
 
   input {
@@ -81,7 +85,7 @@ const Form = styled.form`
     height: 32px;
     width: 100%;
     align-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 `;
 
@@ -94,7 +98,7 @@ const ConnectionInfos = styled.div`
 
 const TextHover = styled.p`
     color:#1c2c46;
-    text-decoration: underline #F3F9F3;
+    font-weight: bold;
 
   &:hover {
     color: #eeeb8f;
@@ -107,12 +111,14 @@ const LineContainer = styled.div`
   justify-content: space-between;
   margin: auto;
   margin-top: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     line-height: 2em;
   }
 `;
+
+
 
 export default ConnectionModal;

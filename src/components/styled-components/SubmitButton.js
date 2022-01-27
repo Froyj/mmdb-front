@@ -13,7 +13,7 @@ const Submitbutton = styled.button`
     cursor: pointer;
 
     @media (min-width: 768px) {
-        width: 100px;
+        width: 200px;
         height: 40px;
     }
 
