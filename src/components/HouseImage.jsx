@@ -39,6 +39,7 @@ const HouseCard = styled.div`
     margin: 1rem;
     height: 30rem;
     box-shadow: 10px 10px 15px;
+    width: 100%;
 
     @media (max-width: 768px){
         display: flex;
