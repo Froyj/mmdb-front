@@ -27,7 +27,7 @@ function AdminHouseCard({ id, name, image }) {
       <BlankTitle color={colors.blue}>{name}</BlankTitle>
       <Buttons>
         <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
-        <NavLink to={{ pathname: `/UpdateHouse/${id}` }}>
+        <NavLink to={{ pathname: `/update-house/${id}` }}>
           <BlankButton borderColor={colors.green}>Modifier</BlankButton>
         </NavLink>
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
