@@ -60,9 +60,8 @@ function App() {
             />
             <Route path="/maison/:id" element={<House houses={houses} />} />
 
-
             {/* Admin Routes */}
-            <Route path="/admin" element={<PrivateRoute role={ADMIN} />} />
+            <Route path="/admin" element={<PrivateRoute role={ADMIN} />}>
               <Route
                 path="dashboard"
                 element={<Admin houses={houses} bookings={bookings} />}
@@ -76,6 +75,7 @@ function App() {
                 path="dashboard/mise-a-jour-maison/:id"
                 element={<UpdateHouse />}
               />
+            </Route>
           </Routes>
           <Footer />
         </UserContextProvider>
