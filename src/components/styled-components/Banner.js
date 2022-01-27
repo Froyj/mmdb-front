@@ -13,9 +13,10 @@ const Banner = styled.h1`
     font-weight: 100;
     width: 100%;
     height: 20rem;
-    margin-top: 1rem;
+    margin-top: ${(props) => props.marginTop || "1rem" };
+    margin-bottom: ${(props) => props.marginBottom || "0.5em" };
     align-items: center;
     justify-content: center;
-`
+`;
 
 export default Banner;

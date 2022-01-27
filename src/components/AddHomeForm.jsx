@@ -13,6 +13,7 @@ function AddHomeForm() {
   const imgData = new FormData();
 
   const postData = (data) => {
+    console.log(data)
     const principalImg = data.image.primary[0];
     const secondaryImg = data.image.secondary;
 
@@ -297,7 +298,6 @@ const HouseDescriptionDiv = styled.div`
     margin-left: 1rem;
     margin-bottom: .6rem;
   }
-
 `
 const DateDiv = styled.div`
   display: flex;
