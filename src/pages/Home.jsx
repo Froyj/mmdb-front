@@ -27,7 +27,8 @@ function Home() {
 
   return (
     <MainContainer>
-      <Video
+      <VideoContainer>
+       <Video
         controls
         autoplay
         preload="auto"
@@ -35,6 +36,7 @@ function Home() {
         src="../ressources/video-home.mp4"
         type="video/mp4"
       />
+      </VideoContainer>
         <Banner image="url('./resources/Banner-Nos-maisons-forestières.jpg')">
         Nos maisons
         </Banner>
@@ -57,11 +59,17 @@ function Home() {
 const MainContainer = styled.div`
 `;
 
+const VideoContainer = styled.div`
+    width:100%;
+    height: 39vw;
+    margin-bottom: 30px;
+ `;
+
 const Video = styled.video`
-  width: 100%;
-  height: 100%;
-  margin-bottom: 30px;
-`;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ `;
 
 const HouseContainer = styled.div`
     display: flex;
@@ -72,6 +80,8 @@ const HouseContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 100%;
+    align-items: center;
 }
 `;
 
@@ -84,6 +94,7 @@ const ServicesContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 `;
 

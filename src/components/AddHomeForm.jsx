@@ -7,15 +7,13 @@ import ContainerAddHouse from "./styled-components/ContainerAddHouse";
 import FilledButton from "./styled-components/FilledButton";
 import postHouses from "../data/postHouses";
 
-
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
-  
-
 
   const imgData = new FormData();
 
   const postData = (data) => {
+    console.log(data)
     const principalImg = data.image.primary[0];
     const secondaryImg = data.image.secondary;
 
@@ -26,7 +24,6 @@ function AddHomeForm() {
     }
 
     postHouses(imgData, data);
-
   };
 
   return (
@@ -62,11 +59,11 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
-            <label htmlFor="adress">
+            <label htmlFor="address">
               Adresse :<br />
               <textarea
                 type="textarea"
-                {...register("adress", { required: true })}
+                {...register("address", { required: true })}
               />
             </label>
             <br />
@@ -78,7 +75,6 @@ function AddHomeForm() {
               <textarea
                 type="text"
                 {...register("zipcode", {
-                  valueAsNumber: true,
                   required: true,
                 })}
               />
@@ -222,11 +218,24 @@ function AddHomeForm() {
           </Oneform>
 
           <Oneform>
-            <label htmlFor="renting_conditions.condition">
+            <label htmlFor="renting_conditions.partial">
               Conditions d'annulation :<br />
               <textarea
                 type="textarea"
-                {...register("renting_conditions.condition", {
+                {...register("renting_conditions.partial", {
+                  required: true,
+                })}
+              />
+            </label>
+            <br />
+          </Oneform>
+
+          <Oneform>
+            <label htmlFor="renting_conditions.total">
+              Conditions d'annulation :<br />
+              <textarea
+                type="textarea"
+                {...register("renting_conditions.total", {
                   required: true,
                 })}
               />
@@ -273,7 +282,7 @@ function AddHomeForm() {
           <Submit>
             <input type="submit" />
           </Submit>
-          <NavLink exact to="/Administrateur">
+          <NavLink to="/admin/dashboard">
             <FilledButton>Retour en arrière</FilledButton>
           </NavLink>
         </Form>

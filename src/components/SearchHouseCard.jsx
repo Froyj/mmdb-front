@@ -15,7 +15,7 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
       }
 
     return (
-        <StyledLink to={`/Maison/${id}`}>
+        <StyledLink to={`/maison/${id}`}>
             <HouseCard> 
                 <Image src={image} alt={name} />
                 <TextDiv>
@@ -100,5 +100,5 @@ const Résumé = styled.p`
 const TitleSpan = styled.span`
     font-size: 1.5rem;
     font-weight: bold;
-    color: ${colors.green}
-`
+    color: ${colors.green};
+`;
