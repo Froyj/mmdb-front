@@ -50,7 +50,6 @@ const Navigation = () => {
           </Link>
           {isConnected ? (
             <MenuLink
-              as='button'
               onClick={() => {
                 revokeAccess();
                 dispatch({ type: 'DISCONNECTION' });
@@ -105,11 +104,12 @@ const Burger = styled.div`
   }
 `;
 
-const MenuLink = styled.div`
-  padding: 1rem 1rem;
+const MenuLink = styled.a`
+  margin: 1rem 1rem;
   cursor: pointer;
   text-align: center;
   text-decoration: underline #5d7b4c;
+  background-color: #5d7b4c;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
