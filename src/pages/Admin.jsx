@@ -25,7 +25,7 @@ function Admin({ houses, bookings }) {
             </Section>
             <AdminHouseList houses={houses} />
             <ButtonsDiv>
-                <NavLink exact to='/NouvelleMaison' ><FilledButton> Ajouter une nouvelle maison </FilledButton></NavLink>
+                <NavLink to='/NouvelleMaison' ><FilledButton> Ajouter une nouvelle maison </FilledButton></NavLink>
                 <FilledButton> Supprimer une maison </FilledButton>
             </ButtonsDiv>
             <Section>
