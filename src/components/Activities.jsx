@@ -34,7 +34,7 @@ const ActivitiesCard = styled.div`
     border-radius: 15px;
     background-color: ${colors.lightGreen};
     margin: 1rem;
-    height: 30rem;
+    height: 20rem;
     box-shadow: 10px 10px 15px;
 
     @media (max-width: 768px) {
@@ -42,6 +42,7 @@ const ActivitiesCard = styled.div`
     flex-direction: column;
     text-align: center;
     width: 100%;
+    height: 20rem;
     margin: auto;
     margin-bottom: 15px;
 }

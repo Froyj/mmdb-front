@@ -91,15 +91,16 @@ const HouseContainer = styled.div`
 `;
 
 const ServicesContainer = styled.div`
+    width : 100%;
     display: flex;
     justify-content: space-around;
-    padding: 50px 50px;
 
   @media (max-width: 768px) {
-    display: flex;
+    display: block;
     flex-direction: column;
-    text-align: center;
     align-items: center;
+    margin:auto;
+    width:90%;
 }
 `;
 
