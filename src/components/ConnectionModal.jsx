@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import ContainerForm from './styled-components/ContainerForm';
-import TitleForm from './styled-components/TitleForm';
-import Submitbutton from './styled-components/SubmitButton';
-import { UserContext } from '../contexts/user';
-import axios from '../helper/axios-config';
-import { ADMIN } from '../constants/roles';
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
+import ContainerForm from "./styled-components/ContainerForm";
+import TitleForm from "./styled-components/TitleForm";
+import Submitbutton from "./styled-components/SubmitButton";
+import { UserContext } from "../contexts/user";
+import axios from "../helper/axios-config";
+import { ADMIN } from "../constants/roles";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
@@ -16,60 +16,59 @@ const ConnectionModal = () => {
 
   const onSubmit = (data) => {
     axios
-      .post('/login', data)
+      .post("/login", data)
       .then((res) => res.data)
       .then((user) => {
         dispatch({
-          type: 'CONNECTION',
+          type: "CONNECTION",
           payload: { userId: user.id, roleId: user.role_id },
         });
         if (user.role_id === ADMIN) {
-          navigate('/admin/dashboard', { replace: true });
+          navigate("/admin/dashboard", { replace: true });
         } else {
-          navigate('/', { replace: true });
+          navigate("/", { replace: true });
         }
       });
   };
 
   return (
     <BackgroundImage>
-    
-    <ContainerForm width="500px" height="300px" marginTop ="100px" marginBottom="8%">
-      <TitleForm>Connexion</TitleForm>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <ConnectionInfos>
-          <input type='email' placeholder=' Email' {...register('email')} />
-          <br />
-          <input
-            type='password'
-            placeholder=' Mot de passe'
-            {...register('password')}
-          />
-          <LineContainer>
-          <Link to="/CreationCompte">
-            <TextHover>
-            Créer un compte ?
-            </TextHover>
+      <ContainerForm
+        width="500px"
+        height="300px"
+      >
+        <TitleForm>Connexion</TitleForm>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <ConnectionInfos>
+            <input type="email" placeholder=" Email" {...register("email")} />
+            <br />
+            <input
+              type="password"
+              placeholder=" Mot de passe"
+              {...register("password")}
+            />
+            <LineContainer>
+              <Link to="/creation-compte">
+                <TextHover>Créer un compte ?</TextHover>
               </Link>
-          </LineContainer>
-        </ConnectionInfos>
-        <Submitbutton type='submit' fontSize='1em'>
-          Se connecter
-        </Submitbutton>
-        <br />
-       
-      </Form>
-    
-  </ContainerForm>
-  
+            </LineContainer>
+          </ConnectionInfos>
+          <br />
+          <Submitbutton type="submit" fontSize="1em" margin="auto">
+            Se connecter
+          </Submitbutton>
+          <br />
+        </Form>
+      </ContainerForm>
     </BackgroundImage>
   );
 };
 const BackgroundImage = styled.div`
-  background-image: url('../ressources/background-image-login-2.jpg');
+  background-image: url("../ressources/background-image-login-2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  min-height: 100vh;
 `;
 
 const Form = styled.form`
@@ -97,8 +96,8 @@ const ConnectionInfos = styled.div`
 `;
 
 const TextHover = styled.p`
-    color:#1c2c46;
-    font-weight: bold;
+  color: #1c2c46;
+  font-weight: bold;
 
   &:hover {
     color: #eeeb8f;
@@ -118,7 +117,5 @@ const LineContainer = styled.div`
     line-height: 2em;
   }
 `;
-
-
 
 export default ConnectionModal;

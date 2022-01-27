@@ -1,8 +1,14 @@
-import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
-import { UserContext } from '../../contexts/user';
+import { useContext } from "react";
+import { PropTypes } from "prop-types";
+import { Outlet } from "react-router-dom";
+import { UserContext } from "../../contexts/user";
 
-const PrivateRoute = ({role}) => {
+const PrivateRoute = ({ role }) => {
+  PrivateRoute.propTypes = {
+    role: PropTypes.number.isRequired,
+
+  };
+
   const user = useContext(UserContext);
   if (user.roleId === role) {
     return <Outlet />;

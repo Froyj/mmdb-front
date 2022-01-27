@@ -1,18 +1,18 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { useState, useContext } from 'react';
-import { UserContext } from '../contexts/user';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/user";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch } = useContext(UserContext);
   return (
     <Nav>
-      <Link to='/'>
+      <Link to="/">
         <Logo>
           <img
-            src='../ressources/Logo-fondBlanc.png'
-            alt='Logo Ma maison des bois'
+            src="../ressources/Logo-transparent.png"
+            alt="Logo Ma maison des bois"
           />
         </Logo>
       </Link>
@@ -22,39 +22,45 @@ const Navigation = () => {
         <span />
       </Burger>
       <Menu isOpen={isOpen}>
-        <Link to='/NosMaisonsForestieres'>
+        <Link to="/nos-maisons-forestieres">
           <MenuLink>Nos maisons forestières</MenuLink>
         </Link>
-        <Link to='/Services'>
+        <Link to="/services">
           <MenuLink>Nos services</MenuLink>
         </Link>
-        <Link to='/QuiSommesNous'>
-          <MenuLink>Qui sommes nous ?</MenuLink>
+        <Link to="/qui-sommes-nous">
+          <MenuLink>Qui sommes-nous ?</MenuLink>
         </Link>
-      <ConnexionContainer>
-        <Link to='/SeConnecter'>
-          <Image>
-            <img
-              src='../ressources/user-white.png'
-              alt='utilisateur'
-              width='35px'
-              height='35px'
-            />
-          </Image>
+
+        <Link to="/se-connecter">
+          {isConnected ? (
+            
+            <MenuLink
+              as="button"
+              onClick={() => dispatch({ type: "DISCONNECTION" })}
+            >
+              Deconnexion
+            </MenuLink>
+          ) : (
+            <MenuLink>
+              <Link to="/se-connecter">
+                <Image>
+                  <img
+                    src="../ressources/user-white.png"
+                    alt="utilisateur"
+                    width="22px"
+                    height="22px"
+                  />
+                </Image>
+              </Link>
+              Se connecter
+            </MenuLink>
+          )}
         </Link>
-        {isConnected ? (
-          <MenuLink as="button" onClick={() => dispatch({type: "DISCONNECTION"})}>Deconnexion</MenuLink>
-        ) : (
-          <Link to='/SeConnecter'>
-            <MenuLink>Se connecter</MenuLink>
-          </Link>
-        )}
-        </ConnexionContainer>
       </Menu>
     </Nav>
   );
 };
-
 
 const Nav = styled.nav`
   padding: 0 2rem;
@@ -62,13 +68,13 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background: #5d7b4c;
+  background: #ba9b5c;
 
-  @media (max-width: 1170px){
+  @media (max-width: 1170px) {
     display: flex;
     flex-direction: column;
   }
-  
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -86,22 +92,25 @@ const Burger = styled.div`
     margin-bottom: 4px;
     border-radius: 5px;
   }
-  
+
   @media (max-width: 768px) {
     display: flex;
   }
 `;
 
 const MenuLink = styled.div`
+  display: flex;
+  align-items: center;
   padding: 1rem 1rem;
   cursor: pointer;
   text-align: center;
-  text-decoration: underline #5d7b4c;
+  text-decoration: underline #ba9b5c;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+    text-transform: capitalize;
 
   &:hover {
     color: #eeeb8f;
@@ -113,32 +122,27 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  
+
   @media (max-width: 768px) {
     overflow: hidden;
     flex-direction: column;
     width: 100%;
-    max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
+    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
     transition: 0.3s ease-in;
   }
 `;
 
-const Logo = styled.a`
-  width: 25%;
+const Logo = styled.div`
   img {
-    width: 200px;
-    padding: 10px;
+    width: 140px;
+    height: 90px;
+    padding: 5px;
   }
-
 `;
 
-const ConnexionContainer = styled.div`
-  display: flex;
+const Image = styled.div`
+  margin-right: 5px;
+  margin-top: 5px;
 `;
 
-const Image = styled.a`
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
-`;
 export default Navigation;

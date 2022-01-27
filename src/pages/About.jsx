@@ -1,18 +1,21 @@
 import styled from "styled-components";
+
+import Global from "../components/styled-components/Global";
 import TextContainer from "../components/styled-components/TextContainer";
 import SecondContainer from "../components/styled-components/SecondContainer";
 import Image from "../components/styled-components/Image";
 import ImageContainer from "../components/styled-components/ImageContainer";
 
 const About = () => (
+  <Global>
   <MainContainer>
     <SecondContainer>
       <ImageContainer>
-      <Image
+      <Image marginTop="30%"
         src="../ressources/photo-antoine.jpeg"
         alt="Antoine Sellier"
-        width="300px"
-        height="300px"
+        width="200px"
+        height="200px"
       />
       </ImageContainer>
       <TextContainer borderBottom="none" borderTop ="none">
@@ -20,9 +23,9 @@ const About = () => (
         Bonjour, moi c’est Antoine Sellier et je suis le créateur de{" "}
         <strong>Ma Maison des Bois</strong>. Après avoir passé mon enfance au
         milieu des bois, j’ai décidé en 2017 de m’engager dans la gestion de
-        forêts qui appartiennent à ma famille depuis 5 générations. A cette
+        forêts qui appartiennent à ma famille depuis 5 générations. À cette
         occasion, je me suis rendu compte qu’il fallait diversifier nos sources
-        de revenus pour pérenniser nos forêts et ainsi mais aussi partager avec
+        de revenus pour pérenniser nos forêts et ainsi partager avec
         vous mes petits coins de paradis.
       </TextContainer>
     </SecondContainer>
@@ -30,36 +33,36 @@ const About = () => (
       <Image
         src="../ressources/Logo-transparent.png"
         alt="Logo Ma maison des bois"
-        width="400px"
-        height="300px"
+        width="350px"
+        height="245px"
       />
     </ImageContainer>
     <ImageContainer>
       <Image
         src="../ressources/travaux1.jpeg"
         alt="Photo travaux"
-        width="400px"
-        height="300px"
+        width="350px"
+        height="250px"
         borderRadius="10%"
       />
       <Image
         src="../ressources/travaux3.jpeg"
         alt="Photo travaux"
-        width="300px"
-        height="300px"
+        width="350px"
+        height="250px"
         borderRadius="10%"
       />
       <Image
         src="../ressources/travaux2.jpeg"
         alt="Photo travaux"
-        width="400px"
-        height="300px"
+        width="350px"
+        height="250px"
         borderRadius="10%"
       />
     </ImageContainer>
     <TextContainer paddingTop="35px" paddingBottom="35px">
-      Le projet est né en 2020 au sein de l’incubateur de Toulouse Buisness
-      School : TBSeeds suite à la mise en lumière de 2 problématiques/constats :
+      Le projet est né en 2020 au sein de l’incubateur de Toulouse Business
+      School : TBSeeds suite à la mise en lumière de deux problématiques/constats :
       <ListContainer>
         <br />
         <li>
@@ -164,6 +167,7 @@ const About = () => (
       />
     </ImageContainer>
   </MainContainer>
+  </Global>
 );
 
 const TitleAbout = styled.h1`
@@ -175,6 +179,9 @@ const MainContainer = styled.div`
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   color: #1c2c46;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media (max-width: 768px) {
     display: block;
@@ -194,7 +201,7 @@ const EngagementContainer = styled.div`
 const TextContainerEngagement = styled.div`
   margin: auto;
   text-align: justify;
-  font-size: 1.3em;
+  font-size: 16px;
   width: 75%;
 
   @media (max-width: 768px) {
@@ -207,5 +214,6 @@ const ListContainer = styled.ul`
   list-style: inside;
   text-align: justify;
 `;
+
 
 export default About;
