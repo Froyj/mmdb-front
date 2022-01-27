@@ -10,7 +10,9 @@ function AdminHouseList({ houses }) {
 
     return (
         <HouseList>
-        {houses.map(house => <AdminHouseCard key={house.id} name={house.name} image={house.image.principal} /> )}
+
+        {houses.map(house => <AdminHouseCard id={house.id} name={house.name} image={house.image.principal} /> )}
+
         </HouseList>
     )
 }

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "../api/axios-config";
 import BookingForm from "../components/BookingForm";
 
-
 import {
   Container,
   Information,
@@ -32,7 +31,7 @@ function Equipments({ homeEquipments = null }) {
           <h3>{room}</h3>
           <ul>
             {homeEquipments.equipment[room].map((equipment) => (
-              <li key={equipment.id} >{equipment.name}</li>
+              <li key={equipment.id}>{equipment.name}</li>
             ))}
           </ul>
         </>
@@ -53,13 +52,11 @@ function House() {
       .catch((err) => console.log(err));
   }, []);
 
-  const secondaryImage = house?.image.secondary
-    .slice(0, 4)
-    .map((el, index) => (
-      <div className={`grid${index + 2}`}>
-        <img src={el} alt="maison" key={el} />
-      </div>
-    ));
+  const secondaryImage = house?.image.secondary.slice(0, 4).map((el, index) => (
+    <div className={`grid${index + 2}`}>
+      <img src={el} alt="maison" key={el} />
+    </div>
+  ));
 
   const condition = house?.renting_conditions.condition.map((el) => (
     <li key={el}>{el}</li>
@@ -132,7 +129,7 @@ function House() {
             </EquipmentList>
           </EquipmentContainer>
         </Description>
-         <BookingForm house={house} id={id}/>
+        <BookingForm house={house} id={id} />
       </Information>
     </Container>
   );
