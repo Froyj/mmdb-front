@@ -1,11 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/user';
+import axios from '../helper/axios-config';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const disconnectUser = () => {
+    axios
+      .get('/auth/revoke-access')
+      .then(() => dispatch({ type: 'DISCONNECTION' }))
+      .then(() => navigate("/"))
+      .catch(console.log);
+  };
+
   return (
     <Nav>
       <Link to='/'>
@@ -31,30 +42,33 @@ const Navigation = () => {
         <Link to='/qui-sommes-nous'>
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
-      <ConnexionContainer>
-        <Link to='/se-connecter'>
-          <Image>
-            <img
-              src='../ressources/user-white.png'
-              alt='utilisateur'
-              width='35px'
-              height='35px'
-            />
-          </Image>
-        </Link>
-        {isConnected ? (
-          <MenuLink as="button" onClick={() => dispatch({type: "DISCONNECTION"})}>Deconnexion</MenuLink>
-        ) : (
+        <ConnexionContainer>
           <Link to='/se-connecter'>
-            <MenuLink>Se connecter</MenuLink>
+            <Image>
+              <img
+                src='../ressources/user-white.png'
+                alt='utilisateur'
+                width='35px'
+                height='35px'
+              />
+            </Image>
           </Link>
-        )}
+          {isConnected ? (
+            <MenuLink
+              onClick={() => disconnectUser()}
+            >
+              Deconnexion
+            </MenuLink>
+          ) : (
+            <Link to='/se-connecter'>
+              <MenuLink>Se connecter</MenuLink>
+            </Link>
+          )}
         </ConnexionContainer>
       </Menu>
     </Nav>
   );
 };
-
 
 const Nav = styled.nav`
   padding: 0 2rem;
@@ -64,11 +78,11 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   background: #5d7b4c;
 
-  @media (max-width: 1170px){
+  @media (max-width: 1170px) {
     display: flex;
     flex-direction: column;
   }
-  
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -86,17 +100,18 @@ const Burger = styled.div`
     margin-bottom: 4px;
     border-radius: 5px;
   }
-  
+
   @media (max-width: 768px) {
     display: flex;
   }
 `;
 
-const MenuLink = styled.div`
-  padding: 1rem 1rem;
+const MenuLink = styled.a`
+  margin: 1rem 1rem;
   cursor: pointer;
   text-align: center;
   text-decoration: underline #5d7b4c;
+  background-color: #5d7b4c;
   color: white;
   transition: all 0.3 ease-in;
   font-size: 1.5rem;
@@ -113,7 +128,7 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  
+
   @media (max-width: 768px) {
     overflow: hidden;
     flex-direction: column;
@@ -129,7 +144,6 @@ const Logo = styled.div`
     width: 200px;
     padding: 10px;
   }
-
 `;
 
 const ConnexionContainer = styled.div`
@@ -137,8 +151,8 @@ const ConnexionContainer = styled.div`
 `;
 
 const Image = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
 `;
 export default Navigation;
