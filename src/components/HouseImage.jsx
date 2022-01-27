@@ -10,7 +10,7 @@ function HouseImage ({ id, image }) {
     }
 
     return (
-        <StyledLink to={`/Maison/${id}`}>
+        <StyledLink to={`/maison/${id}`}>
         <HouseCard>
             <Image src={image.image.principal} />
             <TitleSpan>{image.name}</TitleSpan>

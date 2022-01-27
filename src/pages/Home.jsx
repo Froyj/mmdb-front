@@ -42,7 +42,7 @@ function Home() {
         </Banner>
       <HouseContainer>
             {houseData
-            .map((image) => <HouseImage key={image.id} image={image}/>)}
+            .map((image) => <HouseImage key={image.id} id={image.id} image={image}/>)}
         </HouseContainer>
         <Banner image="url('./ressources/banner-nos-services.jpg')">
           Nos services
