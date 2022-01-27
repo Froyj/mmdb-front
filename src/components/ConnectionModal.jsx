@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ContainerForm from './styled-components/ContainerForm';
 import TitleForm from './styled-components/TitleForm';
@@ -36,20 +36,21 @@ const ConnectionModal = () => {
       <TitleForm>Connexion</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ConnectionInfos>
-          <input type='email' placeholder=' Email' {...register('email')} />
+          <input type="email" placeholder=" Email" {...register("email")} />
           <br />
           <input
-            type='password'
-            placeholder=' Mot de passe'
-            {...register('password')}
+            type="password"
+            placeholder=" Mot de passe"
+            {...register("password")}
           />
           <LineContainer>
-            <TextHover>Mot de passe oublié ?</TextHover>
-            <TextHover>Créer un compte ?</TextHover>
+            <Link to="/creation-compte">
+              <TextHover>Créer un compte ?</TextHover>
+            </Link>
           </LineContainer>
         </ConnectionInfos>
         <br />
-        <Submitbutton type='submit' fontSize='1em' margin='auto'>
+        <Submitbutton type="submit" fontSize="1em" margin="auto">
           Se connecter
         </Submitbutton>
       </Form>

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../helper/axios-config";
 
 const postHouses = async (imgData, data) => {
   await axios
