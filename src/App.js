@@ -37,7 +37,7 @@ function App() {
     getBookings(setBookings);
   }, []);
 
-  // if (houses) {
+   if (houses) {
   return (
     <>
       <UserContextProvider value={{ ...userContext, dispatch }}>
@@ -51,7 +51,7 @@ function App() {
           <Route path="/se-connecter" element={<ConnectionModal />} />
           <Route path="/creation-compte" element={<SignUpForm />} />
           {/* Public Route */}
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home  /> } />
           <Route path="/services" element={<Services />} />
           <Route path="/qui-sommes-nous" element={<About />} />
           <Route
@@ -79,5 +79,5 @@ function App() {
     </>
   );
 }
-
+}
 export default App;

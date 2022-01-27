@@ -58,7 +58,7 @@ const MainContainer = styled.div`
 
 const VideoContainer = styled.div`
     width:100%;
-    height: 39vw;
+    height: 40vw;
     margin-bottom: 30px;
  `;
 
@@ -69,6 +69,7 @@ const Video = styled.video`
 
    @media (max-width: 768px) {
      height: auto;
+     
    }
  `;
 

@@ -20,6 +20,7 @@ const Banner = styled.h1`
 
     @media (max-width: 768px){
         background-size: cover;
+        height:15rem;
     }
 `;
 
