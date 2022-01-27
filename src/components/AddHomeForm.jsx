@@ -3,10 +3,9 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-import ContainerAddHouse from "./styled-components/ContainerAddHouse";
 import FilledButton from "./styled-components/FilledButton";
 import postHouses from "../data/postHouses";
-
+import colors from "./styled-components/colors";
 
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
@@ -14,6 +13,7 @@ function AddHomeForm() {
   const imgData = new FormData();
 
   const postData = (data) => {
+    console.log(data)
     const principalImg = data.image.primary[0];
     const secondaryImg = data.image.secondary;
 
@@ -27,287 +27,404 @@ function AddHomeForm() {
   };
 
   return (
-    <ContainerAddHouse>
-      <div>
-        <h1>Ajouter une nouvelle maison à la location</h1>
+    <FormContainer onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
+      <FormDiv>
+        <HouseInfoDiv>
+          
+          <SimpleField 
+            type="text" 
+            name="name" 
+            placeholder="Nom de la maison" 
+            {...register("name", { required: true })}
+          />
+          <SimpleField 
+            type="text" 
+            name="address" 
+            placeholder="Adresse" 
+            {...register("address", { required: true })}
+          />      
+          <SimpleField 
+            type="text"
+            name="zipcode"
+            placeholder="Code postal"
+            {...register("zipcode", { required: true })}
+          />
+          <SimpleField 
+            type="text"
+            name="city"
+            placeholder="Ville"
+            {...register("city", { required: true })}
+          />
+          <SimpleField 
+            type="text"
+            name="country"
+            placeholder="Région"
+            {...register("country", { required: true })}
+          />
+          <SimpleField 
+            type="number" 
+            name="coordinate_long" 
+            placeholder="Longitude (optionnel)" 
+            {...register("coordinate_long", { valueAsNumber: true })}
+          />
+          <SimpleField 
+            type="number" 
+            name="coordinate_lat" 
+            placeholder="Latitude (optionnel)" 
+            {...register("coordinate_lat", { valueAsNumber: true })}
+          />
+          <SimpleField 
+            type="number" 
+            name="square_meter" 
+            placeholder="Mètres carrés (optionnel)" 
+            {...register("square_meter", { valueAsNumber: true })}
+          />
+          <LargeField 
+            name="describe_short"
+            placeholder="Description courte"
+            {...register("describe_short", { required: true })}
+          />
+          <LargeField 
+            name="describe_long"
+            placeholder="Description détaillée"
+            {...register("describe_long", { required: true })}
+          />
 
-        <Form onSubmit={handleSubmit(postData)} enctype="multipart/form-data">
-          <Oneform>
-            <label htmlFor="name">
-              Nom de la maison :<br />
-              <textarea
-                type="text"
-                id="name"
-                {...register("name", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="capacity">
-              Capacité d'accueil :<br />
-              <textarea
-                type="text"
-                {...register("capacity", {
-                  valueAsNumber: true,
-                  required: true,
-                })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="adress">
-              Adresse :<br />
-              <textarea
-                type="textarea"
-                {...register("adress", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="zipcode">
-              code postal :<br />
-              <textarea
-                type="text"
-                {...register("zipcode", {
-                  valueAsNumber: true,
-                  required: true,
-                })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="city">
-              Ville :<br />
-              <textarea type="text" {...register("city", { required: true })} />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="country">
-              Région :<br />
-              <textarea
-                type="text"
-                {...register("country", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="coordinate_long">
-              Longitude :<br />
-              <textarea
-                type="textarea"
-                {...register("coordinate_long", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="coordinate_lat">
-              Latitude :<br />
-              <textarea
-                type="textarea"
-                {...register("coordinate_lat", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="price_by_night">
-              Prix/nuit :<br />
-              <textarea
-                type="text"
-                {...register("price_by_night", {
-                  valueAsNumber: true,
-                  required: true,
-                })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="describe_short">
-              Description courte :<br />
-              <textarea
-                type="textarea"
-                {...register("describe_short", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="describe_long">
-              Description longue :<br />
-              <textarea
-                type="textarea"
-                {...register("describe_long", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="opening_disponibility">
-              Disponibilités à la location :<br />
-              <input
-                type="date"
-                {...register("opening_disponibility", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="closing_disponibility">
-              Fin de disponibilité :<br />
-              <input
-                type="date"
-                {...register("closing_disponibility", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="arrival_hour">
-              Horaire d'arrivée :<br />
-              <textarea
-                type="textarea"
-                {...register("arrival_hour", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="departure_hour">
-              Horaire de départ :<br />
-              <textarea
-                type="textarea"
-                {...register("departure_hour", { required: true })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="square_meter">
-              Surface d'habitation :<br />
-              <textarea
-                type="text"
-                {...register("square_meter", {
-                  valueAsNumber: true,
-                  required: true,
-                })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="renting_conditions.condition">
-              Conditions d'annulation :<br />
-              <textarea
-                type="textarea"
-                {...register("renting_conditions.condition", {
-                  required: true,
-                })}
-              />
-            </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
-            <label htmlFor="image.primary">
-              Image principale :<br />
+          <ImagesDiv>
+            <label htmlFor="image.principal">
+              Image principale
               <input
                 type="file"
-                name="image.primary"
-                {...register("image.primary", { required: true })}
+                id="image.principal"
+                name="image.principal"
+                {...register("image.principal", { required: true })}
               />
             </label>
-            <br />
-          </Oneform>
-
-          <Oneform>
             <label htmlFor="image.secondary">
-              Image secondaire :<br />
+              Image(s) secondaire(s)
               <input
                 type="file"
+                id="image.secondary"
                 name="image.secondary"
                 multiple
-                {...register("image.secondary")}
+                {...register("image.secondary", { required: true})}
               />
             </label>
-            <br />
-          </Oneform>
+            </ImagesDiv>
 
-          <Oneform>
-            <label htmlFor="is_smoker">
-              Fumeur :<br />
-              <select {...register("is_smoker", { valueAsNumber: true })}>
-                <option value="1">Oui</option>
-                <option value="0">Non</option>
-              </select>
+        </HouseInfoDiv>
+        
+        <HouseDescriptionDiv>
+          <SimpleField
+            type="number"
+            name="capacity"
+            placeholder="Capacité d'accueil"
+            {...register("square_meter", { 
+              required : true, 
+              valueAsNumber: true })}
+          />
+          <SimpleField 
+            type="number" 
+            name="price_by_night" 
+            placeholder="Prix par nuit" 
+            {...register("price_by_night", { 
+              required : true,
+              valueAsNumber: true })}
+          />
+          <DateDiv>
+             <p> Début de disponibilité à la location </p>
+            <SimpleField 
+              type="date"
+              name="opening_disponibility"
+              id="opening_disponibility"
+              placeholder="Début de disponibilité à la location"
+              {...register("opening_disponibility", { required: true, valueAsDate: true })}
+            />
+            </DateDiv>
+            <DateDiv>
+          <p>Fin de disponibilité à la location</p>
+          <SimpleField 
+            type="date"
+            name="closing_disponibility"
+            id="closing_disponibility"
+            placeholder="Fin de disponibilité à la location"
+            {...register("closing_disponibility", { required: true, valueAsDate: true })}
+          />
+          </DateDiv>
+          <MiddleField 
+            name="renting_conditions.partial"
+            placeholder="Conditions de remboursement partiel"
+            {...register("renting_conditions.partial", { required: true })}
+          />
+          <p className="indication" >Exemple : "Annulation jusqu'à une semaine avant le début de la réservation : remboursement de 70% du montant de la réservation" </p>
+          <MiddleField 
+            name="renting_conditions.total"
+            placeholder="Conditions de remboursement total"
+            {...register("renting_conditions.total", { required: true })}
+          />
+          <p className="indication" >Exemple : "Annulation au moins 3 semaines avant le début de la réservation : remboursement de 100% du montant de la réservation" </p>
+          <SimpleField 
+            type="number" 
+            name="caution" 
+            placeholder="Caution (optionnel)" 
+            {...register("caution", { valueAsNumber: true })}
+          />
+
+          <CheckboxDiv>
+            <p>Evènements autorisés</p>
+            <label htmlFor="event.public">
+            <input type="hidden" name="event.public" value="false" />
+            <input
+              type="checkbox"
+              id="event.public"
+              name="event.public"
+              value="true"
+              {...register("event.public")}
+            />
+              Public
             </label>
-            <br />
-          </Oneform>
 
-          <Submit>
-            <input type="submit" />
-          </Submit>
-          <NavLink exact to="/Administrateur">
-            <FilledButton>Retour en arrière</FilledButton>
-          </NavLink>
-        </Form>
-      </div>
-    </ContainerAddHouse>
+            <label htmlFor="event.private">
+            <input type="hidden" name="event.private" value="false" />
+            <input
+              type="checkbox"
+              id="event.private"
+              name="event.private"
+              value="true"
+              {...register("event.private")}
+            />
+              Privé
+            </label>
+
+            <label htmlFor="event.professionnal">
+            <input type="hidden" name="event.professionnal" value="false" />
+            <input
+              type="checkbox"
+              id="event.professionnal"
+              name="event.professionnal"
+              value="true"
+              {...register("event.professionnal")}
+            />
+              Professionnel
+            </label>
+          </CheckboxDiv>
+
+          <HourDiv>
+            <DateDiv>
+              <p>Heure d'arrivée</p>
+              <SimpleField 
+              type="time" 
+              name="arrival_hour" 
+              {...register("arrival_hour", { required: true })}
+              />
+            </DateDiv>
+            <DateDiv>
+              <p>Heure de départ</p>
+              <SimpleField 
+              type="time" 
+              name="departure_hour" 
+              {...register("departure_hour", { required: true })}
+              />
+            </DateDiv>
+          </HourDiv>
+
+          <CheckboxDiv>
+            <p>Fumeurs autorisés</p>
+            <label htmlFor="is_smoker-true"> 
+            <input 
+              type="radio" 
+              id="is_smoker-true" 
+              name="is_smoker"
+              value="1"
+              {...register("is_smoker", { valueAsNumber: true })}
+            />
+              Oui 
+            </label>
+            <label htmlFor="is_smoker-false"> 
+            <input 
+              type="radio" 
+              id="is_smoker-false" 
+              name="is_smoker" 
+              value="0"
+              {...register("is_smoker", { valueAsNumber: true })}
+            />
+              Non 
+            </label>
+          </CheckboxDiv>
+
+        </HouseDescriptionDiv>
+      </FormDiv>
+
+      <SubmitDiv>
+        <Submit type='submit' value="Valider"/>
+        <NavLink exact to="/Administrateur">
+          <FilledButton>Retour en arrière</FilledButton>
+        </NavLink>
+      </SubmitDiv>
+
+    </FormContainer>
   );
 }
 
-const Form = styled.form`
+const FormContainer = styled.form`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  line-height: 50px;
-  margin: 0 5px;
+  margin-top: 1rem;
+  flex-direction: column;
+`
+const FormDiv = styled.div`
+  display: flex;
+`
+const HouseInfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+`
+const HouseDescriptionDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
 
-  textarea {
-    width: 250px;
-    height: 200px;
+  p {
+    color: ${colors.blue};
+    margin-left: 1rem;
   }
-`;
 
-const Oneform = styled.div`
-  margin-top: 5%;
-`;
+  .indication {
+    font-size: .8rem;
+    font-style: italic;
+    color: grey;
+    margin-left: 1rem;
+    margin-bottom: .6rem;
+  }
+`
+const DateDiv = styled.div`
+  display: flex;
+  width: auto;
+  margin: 0 .6rem;
+  align-items: center;
+  justify-content: flex-start;
+  width: 55%;
 
-const Submit = styled.div`
-  margin: 20px;
-  text-align: center;
+  p {
+    width: 70%;
+    text-align: left;
+  }
 
   input {
-    background-color: #ba9b5c;
-    border-radius: 10px;
-    color: #f3f9f2;
-    height: 50px;
-    width: 200px;
-    font-size: 1.3em;
+    width: 30%;
   }
-`;
+`
+const CheckboxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  border: solid 3px ${colors.yellow};
+  border-radius: 30px;
+  width: 89.5%;
+
+  p {
+    margin: 0;
+    margin-bottom: .5rem
+  }
+
+  label {
+    margin-left: 1rem
+  }
+
+  input {
+    margin-right: 1rem;
+  }
+`
+const HourDiv = styled.div`
+  display: flex; 
+  margin: .6rem 0;
+  width: 80%;
+`
+const ImagesDiv = styled.div `
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: .6rem;
+  padding: 0rem 1rem;
+  border: solid 3px ${colors.yellow};
+  border-radius: 30px;
+  width: 90%;
+  height: 5rem;
+
+  label {
+    width: 80%;
+    justify-content: flex-end;
+
+    input {
+      margin: 0 2rem
+    }
+  }
+`
+const SubmitDiv = styled.div`
+  display: flex;
+  width: 95%;
+  justify-content: flex-end;
+  margin-top: 2rem;
+`
+const SimpleField = styled.input`
+  display: flex;
+  width: 90%;
+  height: 3rem;
+  margin: .6rem;
+  padding: 0rem 1rem;
+  border: solid 3px ${colors.yellow};
+  border-radius: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: ${colors.blue};
+  font-weight: 100;
+  font-size: 1rem;
+
+  ::placeholder {
+    font-size: .8rem;
+  }
+`
+const MiddleField = styled.textarea`
+  display: flex;
+  width: 90%;
+  height: 3rem;
+  margin: .6rem;
+  padding: .5rem 1rem;
+  border: solid 3px ${colors.yellow};
+  border-radius: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: ${colors.blue};
+  font-weight: 100;
+
+  ::placeholder {
+    font-size: .8rem;
+  }
+`
+const LargeField = styled.textarea`
+  display: flex;
+  width: 90%;
+  height: 6rem;
+  margin: .6rem;
+  padding: .5rem 1rem;
+  border: solid 3px ${colors.yellow};
+  border-radius: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: ${colors.blue};
+  font-weight: 100;
+
+  ::placeholder {
+    font-size: .8rem;
+  }
+`
+
+const Submit = styled.input`
+    border: none;
+    border-radius: 6px;
+    background-color: ${colors.blue};
+    padding: .6rem 2.5rem;
+    margin: .5rem;
+    color: white;
+`
 
 export default AddHomeForm;
