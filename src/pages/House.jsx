@@ -1,35 +1,138 @@
-import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { PropTypes } from "prop-types";
-import Global from "../components/styled-components/Global";
+import { useEffect, useState } from "react";
+import axios from "../api/axios-config";
+import BookingForm from "../components/BookingForm";
 
-function House({ houses }) {
-  House.propTypes = {
-    houses: PropTypes.string.isRequired,
-  };
+import {
+  Container,
+  Information,
+  Description,
+  EquipmentContainer,
+  Showlist,
+  InfoButton,
+  EquipmentList,
+  ImagesDiv,
+  PrincipalImg,
+} from "../components/common";
+import "../index.css";
 
-  const { id } = useParams();
+// eslint-disable-next-line react/prop-types
+function Equipments({ homeEquipments = null }) {
+  if (!homeEquipments) {
+    return null;
+  }
 
-  const selectedHouse = houses.filter((array) => array.id === parseInt(id, 10));
+  const roomsList = Object.keys(homeEquipments.equipment);
 
   return (
-    <Global>
-      <h1> {selectedHouse[0].name} </h1>
-      <p>
-        {" "}
-        {selectedHouse[0].adress} {selectedHouse[0].country}{" "}
-      </p>
-      <ImagesDiv>
-        <img
-          src={selectedHouse[0].image.principal}
-          alt={selectedHouse[0].name}
-        />
-      </ImagesDiv>
-    </Global>
+    <>
+      {roomsList.map((room) => (
+        <>
+          <h3>{room}</h3>
+          <ul>
+            {homeEquipments.equipment[room].map((equipment) => (
+              <li key={equipment.id}>{equipment.name}</li>
+            ))}
+          </ul>
+        </>
+      ))}
+    </>
   );
 }
 
-const ImagesDiv = styled.div`
-  display: flex;
-`;
+function House() {
+  const { id } = useParams();
+  const [house, setHouse] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`/home_to_rent/${id}`)
+      .then((res) => res.data)
+      .then((data) => setHouse(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const secondaryImage = house?.image.secondary.slice(0, 4).map((el, index) => (
+    <div className={`grid${index + 2}`}>
+      <img src={el} alt="maison" key={el} />
+    </div>
+  ));
+
+  const condition = house?.renting_conditions.condition.map((el) => (
+    <li key={el}>{el}</li>
+  ));
+
+  const homeActivity = house?.home_activity.map((a) => (
+    <li key={a.activity.name}> {a.activity.name} </li>
+  ));
+
+  const handleClick = (selectorQuery) => {
+    const dropDownList = document.querySelector(selectorQuery);
+    dropDownList.classList.toggle("visible");
+  };
+
+  if (!house) {
+    return null;
+  }
+
+  return (
+    <Container>
+      <div>
+        <h1> {house.name} </h1>
+        <p>
+          {house.adress}, {house.country}{" "}
+        </p>
+      </div>
+      <ImagesDiv>
+        <PrincipalImg>
+          <img src={house?.image.principal} alt={house.name} />
+        </PrincipalImg>
+        {secondaryImage}
+      </ImagesDiv>
+      <Information>
+        <Description>
+          <h2>Description</h2>
+          <p>{house.describe_long}</p>
+          <EquipmentContainer>
+            <Showlist className="showButton">
+              <InfoButton
+                type="button"
+                onClick={() => handleClick(".equipment-list")}
+                className="dropDown-title"
+              >
+                <h3> Équipements </h3>
+              </InfoButton>
+              <InfoButton
+                type="button"
+                onClick={() => handleClick(".activity-list")}
+                className="dropDown-title"
+              >
+                <h3> Activités </h3>
+              </InfoButton>
+              <InfoButton
+                type="button"
+                onClick={() => handleClick(".condition-list")}
+              >
+                <h3> Conditions d'annulation </h3>
+              </InfoButton>
+            </Showlist>
+            <EquipmentList className="equipment-list">
+              <div className="dropDown-list">
+                <Equipments homeEquipments={house.home_equipment} />
+              </div>
+            </EquipmentList>
+            <EquipmentList className="activity-list">
+              <ul> {homeActivity} </ul>
+            </EquipmentList>
+            <EquipmentList className="condition-list">
+              <ul> {condition} </ul>
+            </EquipmentList>
+          </EquipmentContainer>
+        </Description>
+        <BookingForm house={house} id={id} />
+      </Information>
+    </Container>
+  );
+}
+
 export default House;
