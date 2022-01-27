@@ -29,11 +29,8 @@ function Home() {
     <MainContainer>
       <VideoContainer>
        <Video
-        controls
-        autoplay
-        preload="auto"
-        muted
-        src="../ressources/video-home.mp4"
+        controls autoplay muted
+        src="../ressources/video-home.mp4#t=2"
         type="video/mp4"
       />
       </VideoContainer>
