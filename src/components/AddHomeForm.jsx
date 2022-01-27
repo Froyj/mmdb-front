@@ -10,15 +10,12 @@ import colors from "./styled-components/colors";
 function AddHomeForm() {
   const { register, handleSubmit } = useForm();
 
-
-
   const imgData = new FormData();
 
   const postData = (data) => {
-
     const openingDate = document.getElementById("opening_disponibility").value;
     const closingDate = document.getElementById("closing_disponibility").value;
-    console.log(data);
+
     const principalImg = data.image.primary[0];
     const secondaryImg = data.image.secondary;
 
@@ -276,7 +273,7 @@ function AddHomeForm() {
 
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
-        <NavLink exact to="/Administrateur">
+        <NavLink  to="/admin/dashboard">
           <FilledButton>Retour en arrière</FilledButton>
         </NavLink>
       </SubmitDiv>
@@ -323,7 +320,7 @@ const DateDiv = styled.div`
   margin: 0 0.6rem;
   align-items: center;
   justify-content: flex-start;
-  width: 55%;
+  width: 80%;
 
   p {
     width: 70%;
@@ -358,7 +355,15 @@ const CheckboxDiv = styled.div`
 const HourDiv = styled.div`
   display: flex;
   margin: 0.6rem 0;
-  width: 80%;
+  width: 100%;
+
+  p {
+    width: 55%;
+  }
+
+  input {
+    width: 45%;
+  }
 `;
 const ImagesDiv = styled.div`
   display: flex;

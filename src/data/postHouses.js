@@ -11,9 +11,9 @@ const postHouses = async (imgData, data, openingDate, closingDate) => {
           closing_disponibility: `${closingDate}T00:00:00.000Z`,
           is_smoker: parseInt(data.is_smoker, 10),
           image: {
-            principal: `/housesImg/${images.data[0].primary}`,
+            principal: `${process.env.REACT_APP_API_URL}/housesImg/${images.data[0].primary}`,
             secondary: images.data[1].secondary.map(
-              (imgName) => `/housesImg/${imgName}`
+              (imgName) => `${process.env.REACT_APP_API_URL}/housesImg/${imgName}`
             ),
           },
         })
