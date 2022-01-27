@@ -9,7 +9,7 @@ function Activities ({activities}) {
     }   
 
     return (
-        <StyledLink to="/Services">
+        <StyledLink to="/services">
         <ActivitiesCard>
                 <Image src={activities.img_url}/>
             <TitleSpan>{activities.name}</TitleSpan>
