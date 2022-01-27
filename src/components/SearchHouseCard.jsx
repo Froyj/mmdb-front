@@ -100,5 +100,5 @@ const Résumé = styled.p`
 const TitleSpan = styled.span`
     font-size: 1.5rem;
     font-weight: bold;
-    color: ${colors.green}
-`
+    color: ${colors.green};
+`;
