@@ -6,14 +6,12 @@ import colors from "./styled-components/colors";
 import BlankTitle from "./styled-components/BlankTitle";
 import BlankButton from "./styled-components/BlankButton";
 
-
 function AdminHouseCard({ id, name, image }) {
   AdminHouseCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   };
-
 
   const deleteHouse = () => {
     if (window.confirm("Êtes-vous sur de vouloir supprimer la maison ?")) {
@@ -26,8 +24,10 @@ function AdminHouseCard({ id, name, image }) {
       <img src={image} alt={name} />
       <BlankTitle color={colors.blue}>{name}</BlankTitle>
       <Buttons>
-        <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
-        <NavLink to={{ pathname: `/update-house/${id}` }}>
+        <NavLink to={`/maison/${id}`}>
+          <BlankButton borderColor={colors.green}>Visualiser</BlankButton>
+        </NavLink>
+        <NavLink to={`mise-a-jour-maison/${id}`}>
           <BlankButton borderColor={colors.green}>Modifier</BlankButton>
         </NavLink>
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
