@@ -246,7 +246,7 @@ function UpdateHomeForm() {
           <Submit>
             <input type="submit" />
           </Submit>
-          <NavLink exact to="/Administrateur">
+          <NavLink to="/admin/dashboard">
             <Submit>Retour en arrière</Submit>
           </NavLink>
         </Form>
