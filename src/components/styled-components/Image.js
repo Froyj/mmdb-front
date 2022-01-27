@@ -5,7 +5,6 @@ const Image = styled.img`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "100px"};
   padding-left: ${(props) => props.paddingLeft || "0px"};
-
   @media (max-width: 768px) {
     width: 90%;
     height:300px;
