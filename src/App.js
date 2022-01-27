@@ -8,6 +8,9 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import AddNewHouse from "./pages/AddNewHouse";
+
+import UpdateHouse from "./pages/UpdateHouse";
+
 import Admin from "./pages/Admin";
 import Home from "./pages/Home";
 import House from "./pages/House";
@@ -32,7 +35,6 @@ function App() {
   useEffect(() => {
     getHouses(setHouses);
     getBookings(setBookings);
-    console.log(houses);
   }, []);
 
   if (houses) {
@@ -43,19 +45,21 @@ function App() {
 
           <Routes>
             {/* Connected User */}
-            <Route path="/Profil" element={<UserProfile />} />
+
+            <Route path="/profil" element={<UserProfile />} />
             {/* Auth Routes */}
-            <Route path="/SeConnecter" element={<ConnectionModal />} />
-            <Route path="/CreationCompte" element={<SignUpForm />} />
+            <Route path="/se-connecter" element={<ConnectionModal />} />
+            <Route path="/creation-compte" element={<SignUpForm />} />
             {/* Public Route */}
             <Route exact path="/" element={<Home />} />
-            <Route path="/Services" element={<Services />} />
-            <Route path="/QuiSommesNous" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/qui-sommes-nous" element={<About />} />
             <Route
-              path="/NosMaisonsForestieres"
+              path="/nos-maisons-forestieres"
               element={<Search houses={houses} />}
             />
-            <Route path="/Maison/:id" element={<House houses={houses} />} />
+            <Route path="/maison/:id" element={<House houses={houses} />} />
+
 
             {/* Admin Routes */}
             <Route path="/admin" element={<PrivateRoute role={ADMIN} />}>
@@ -63,7 +67,16 @@ function App() {
                 path="dashboard"
                 element={<Admin houses={houses} bookings={bookings} />}
               />
-              <Route path="maison/ajouter" element={<AddNewHouse />} />
+
+              <Route
+                path="dashboard/maison/ajouter"
+                element={<AddNewHouse />}
+              />
+              <Route
+                path="dashboard/mise-a-jour-maison/:id"
+                element={<UpdateHouse />}
+              />
+
             </Route>
           </Routes>
 

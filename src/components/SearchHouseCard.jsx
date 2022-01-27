@@ -15,7 +15,7 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
       }
 
     return (
-        <StyledLink to={`/Maison/${id}`}>
+        <StyledLink to={`/maison/${id}`}>
             <HouseCard> 
                 <Image src={image} alt={name} />
                 <TextDiv>

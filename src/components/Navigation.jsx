@@ -22,17 +22,17 @@ const Navigation = () => {
         <span />
       </Burger>
       <Menu isOpen={isOpen}>
-        <Link to='/NosMaisonsForestieres'>
+        <Link to='/nos-maisons-forestieres'>
           <MenuLink>Nos maisons forestières</MenuLink>
         </Link>
-        <Link to='/Services'>
+        <Link to='/services'>
           <MenuLink>Nos services</MenuLink>
         </Link>
-        <Link to='/QuiSommesNous'>
+        <Link to='/qui-sommes-nous'>
           <MenuLink>Qui sommes nous ?</MenuLink>
         </Link>
       <ConnexionContainer>
-        <Link to='/SeConnecter'>
+        <Link to='/se-connecter'>
           <Image>
             <img
               src='../ressources/user-white.png'
@@ -45,7 +45,7 @@ const Navigation = () => {
         {isConnected ? (
           <MenuLink as="button" onClick={() => dispatch({type: "DISCONNECTION"})}>Deconnexion</MenuLink>
         ) : (
-          <Link to='/SeConnecter'>
+          <Link to='/se-connecter'>
             <MenuLink>Se connecter</MenuLink>
           </Link>
         )}
@@ -123,7 +123,7 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   width: 25%;
   img {
     width: 200px;
@@ -136,7 +136,7 @@ const ConnexionContainer = styled.div`
   display: flex;
 `;
 
-const Image = styled.a`
+const Image = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 15px;
