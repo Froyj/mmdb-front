@@ -8,7 +8,9 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import AddNewHouse from "./pages/AddNewHouse";
+
 import UpdateHouse from "./pages/UpdateHouse";
+
 import Admin from "./pages/Admin";
 import Home from "./pages/Home";
 import House from "./pages/House";
@@ -43,6 +45,7 @@ function App() {
 
           <Routes>
             {/* Connected User */}
+
             <Route path="/profil" element={<UserProfile />} />
             {/* Auth Routes */}
             <Route path="/se-connecter" element={<ConnectionModal />} />
@@ -57,12 +60,14 @@ function App() {
             />
             <Route path="/maison/:id" element={<House houses={houses} />} />
 
+
             {/* Admin Routes */}
             <Route path="/admin" element={<PrivateRoute role={ADMIN} />}>
               <Route
                 path="dashboard"
                 element={<Admin houses={houses} bookings={bookings} />}
               />
+
               <Route
                 path="dashboard/maison/ajouter"
                 element={<AddNewHouse />}
@@ -71,6 +76,7 @@ function App() {
                 path="dashboard/mise-a-jour-maison/:id"
                 element={<UpdateHouse />}
               />
+
             </Route>
           </Routes>
 
