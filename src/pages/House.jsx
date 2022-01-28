@@ -43,6 +43,19 @@ function Equipments({ homeEquipments = null }) {
 function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [getActivity, setGetActivity] = useState("chips");
+
+  useEffect(() => {
+    axios
+      .get("/activity")
+      .then((response) => response.data)
+      .then((data) => setGetActivity(data))
+      // eslint-disable-next-line no-console
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(`getActivity : ${getActivity}`);
 
   useEffect(() => {
     axios
@@ -58,13 +71,9 @@ function House() {
     </div>
   ));
 
-  // const condition = house?.renting_conditions.condition.map((el) => (
-  //   <li key={el}>{el}</li>
+  // const homeActivity = getActivity.map((a) => (
+  //   <li key={a.id}> {a.activity.name} </li>
   // ));
-
-  const homeActivity = house?.home_activity.map((a) => (
-    <li key={a.id}> {a.activity.name} </li>
-  ));
 
   const handleClick = (selectorQuery) => {
     const dropDownList = document.querySelector(selectorQuery);
@@ -122,7 +131,7 @@ function House() {
               </div>
             </EquipmentList>
             <EquipmentList className="activity-list">
-              <ul> {homeActivity} </ul>
+              {/* <ul> {homeActivity} </ul> */}
             </EquipmentList>
             <EquipmentList className="condition-list">
               <ul>
