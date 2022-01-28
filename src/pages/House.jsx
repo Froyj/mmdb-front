@@ -58,9 +58,9 @@ function House() {
     </div>
   ));
 
-  const condition = house?.renting_conditions.condition.map((el) => (
-    <li key={el}>{el}</li>
-  ));
+  // const condition = house?.renting_conditions.condition.map((el) => (
+  //   <li key={el}>{el}</li>
+  // ));
 
   const homeActivity = house?.home_activity.map((a) => (
     <li key={a.activity.name}> {a.activity.name} </li>
@@ -85,7 +85,7 @@ function House() {
       </div>
       <ImagesDiv>
         <PrincipalImg>
-          <img src={house?.image.principal} alt={house.name} />
+          <img src={house? process.env.REACT_APP_API_URL + house.image.principal : null} alt={house.name} />
         </PrincipalImg>
         {secondaryImage}
       </ImagesDiv>
@@ -125,7 +125,7 @@ function House() {
               <ul> {homeActivity} </ul>
             </EquipmentList>
             <EquipmentList className="condition-list">
-              <ul> {condition} </ul>
+              {/* <ul> {condition} </ul> */}
             </EquipmentList>
           </EquipmentContainer>
         </Description>
