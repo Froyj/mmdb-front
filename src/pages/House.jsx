@@ -44,18 +44,18 @@ function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
   // eslint-disable-next-line no-unused-vars
-  const [getActivity, setGetActivity] = useState("chips");
+  // const [getActivity, setGetActivity] = useState("chips");
 
-  useEffect(() => {
-    axios
-      .get("/activity")
-      .then((response) => response.data)
-      .then((data) => setGetActivity(data))
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/activity")
+  //     .then((response) => response.data)
+  //     .then((data) => setGetActivity(data))
+  //     // eslint-disable-next-line no-console
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  console.log(`getActivity : ${getActivity}`);
+  // console.log(`getActivity : ${getActivity}`);
 
   useEffect(() => {
     axios
