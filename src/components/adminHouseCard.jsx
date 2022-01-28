@@ -21,7 +21,7 @@ function AdminHouseCard({ id, name, image }) {
 
   return (
     <Card>
-      <img src={image} alt={name} />
+      <img src={process.env.REACT_APP_API_URL + image} alt={name} />
       <BlankTitle color={colors.blue}>{name}</BlankTitle>
       <Buttons>
         <NavLink to={`/maison/${id}`}>

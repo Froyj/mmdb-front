@@ -7,19 +7,19 @@ import FilledButton from "../components/styled-components/FilledButton";
 import Global from "../components/styled-components/Global";
 
 import AdminHouseList from "../components/AdminHouseList";
-import AdminReservationList from "../components/AdminReservationList";
+// import AdminReservationList from "../components/AdminReservationList";
 
-function Admin({ houses, bookings }) {
+function Admin({ houses }) {
   Admin.propTypes = {
     houses: PropTypes.arrayOf(PropTypes.object).isRequired,
-    bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
+    // bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   return (
     <Global>
-      <Section>
+      {/* <Section>
         <h1>Statistiques</h1>
-      </Section>
+      </Section> */}
       <Section>
         <h1>Mes maisons des bois</h1>
       </Section>
@@ -29,10 +29,10 @@ function Admin({ houses, bookings }) {
           <FilledButton> Ajouter une nouvelle maison </FilledButton>
         </Link>
       </ButtonsDiv>
-      <Section>
+      {/* <Section>
         <h1>Mes réservations</h1>
-      </Section>
-      <AdminReservationList bookings={bookings} />
+      </Section> */}
+      {/* <AdminReservationList bookings={bookings} /> */}
     </Global>
   );
 }
