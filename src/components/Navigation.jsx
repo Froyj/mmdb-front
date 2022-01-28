@@ -1,11 +1,22 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { useState, useContext } from "react";
-import { UserContext } from "../contexts/user";
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/user';
+import axios from '../helper/axios-config';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const disconnectUser = () => {
+    axios
+      .get('/auth/revoke-access')
+      .then(() => dispatch({ type: 'DISCONNECTION' }))
+      .then(() => navigate("/"))
+      .catch(console.log);
+  };
+
   return (
     <Nav>
       <Link to="/">
@@ -31,32 +42,29 @@ const Navigation = () => {
         <Link to="/qui-sommes-nous">
           <MenuLink>Qui sommes-nous ?</MenuLink>
         </Link>
-
-        <Link to="/se-connecter">
+        <ConnexionContainer>
+          <Link to='/se-connecter'>
+            <Image>
+              <img
+                src='../ressources/user-white.png'
+                alt='utilisateur'
+                width='35px'
+                height='35px'
+              />
+            </Image>
+          </Link>
           {isConnected ? (
-            
             <MenuLink
-              as="button"
-              onClick={() => dispatch({ type: "DISCONNECTION" })}
+              onClick={() => disconnectUser()}
             >
               Deconnexion
             </MenuLink>
           ) : (
-            <MenuLink>
-              <Link to="/se-connecter">
-                <Image>
-                  <img
-                    src="../ressources/user-white.png"
-                    alt="utilisateur"
-                    width="22px"
-                    height="22px"
-                  />
-                </Image>
-              </Link>
-              Se connecter
-            </MenuLink>
+            <Link to='/se-connecter'>
+              <MenuLink>Se connecter</MenuLink>
+            </Link>
           )}
-        </Link>
+        </ConnexionContainer>
       </Menu>
     </Nav>
   );
@@ -140,9 +148,14 @@ const Logo = styled.div`
   }
 `;
 
+const ConnexionContainer = styled.div`
+  display: flex;
+`;
+
 const Image = styled.div`
-  margin-right: 5px;
-  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
 `;
 
 export default Navigation;

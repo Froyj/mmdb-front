@@ -24,11 +24,16 @@ function SearchHouseList({ houses }) {
         </SearchContainer>
     );
 }
-
 export default SearchHouseList;
 
 const SearchContainer = styled.div `
     display: flex;
-    gap: 15%;
-    justify-content: space-space-around;
-`;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+    }
+`

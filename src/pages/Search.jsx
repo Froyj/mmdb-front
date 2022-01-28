@@ -70,4 +70,8 @@ const FilterContainer = styled.div`
   margin: 1rem 0rem;
   font-size: 2rem;
   align-items: center;
+
+  @media (max-width: 768px){
+    display: block;
+  }
 `;
