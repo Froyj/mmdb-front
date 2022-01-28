@@ -54,7 +54,7 @@ function House() {
 
   const secondaryImage = house?.image.secondary.slice(0, 4).map((el, index) => (
     <div className={`grid${index + 2}`}>
-      <img src={el} alt="maison" key={el} />
+      <img src={process.env.REACT_APP_API_URL + el} alt="maison" key={el} />
     </div>
   ));
 
