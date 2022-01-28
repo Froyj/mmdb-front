@@ -107,7 +107,7 @@ const MenuLink = styled.div`
   text-decoration: underline #ba9b5c;
   color: white;
   transition: all 0.3 ease-in;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
     text-transform: capitalize;

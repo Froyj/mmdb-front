@@ -48,7 +48,7 @@ const About = () => (
       <Image
         src="../ressources/travaux3.jpeg"
         alt="Photo travaux"
-        width="350px"
+        width="300px"
         height="250px"
         borderRadius="10%"
       />

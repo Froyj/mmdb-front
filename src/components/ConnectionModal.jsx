@@ -33,43 +33,55 @@ const ConnectionModal = () => {
 
   return (
     <BackgroundImage>
-      <ContainerForm
-        width="500px"
-        height="300px"
-      >
-        <TitleForm>Connexion</TitleForm>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <ConnectionInfos>
-            <input type="email" placeholder=" Email" {...register("email")} />
-            <br />
-            <input
-              type="password"
-              placeholder=" Mot de passe"
-              {...register("password")}
-            />
-            <LineContainer>
-              <Link to="/creation-compte">
-                <TextHover>Créer un compte ?</TextHover>
-              </Link>
-            </LineContainer>
-          </ConnectionInfos>
+      <MainContainer>
+    <ContainerForm
+      width="500px"
+      height="300px"
+      marginTop="8%"
+      marginBottom="8%"
+    >
+      <TitleForm>Connexion</TitleForm>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <ConnectionInfos>
+          <input type="email" placeholder=" Email" {...register("email")} />
           <br />
-          <Submitbutton type="submit" fontSize="1em" margin="auto">
-            Se connecter
-          </Submitbutton>
-          <br />
-        </Form>
-      </ContainerForm>
+          <input
+            type="password"
+            placeholder=" Mot de passe"
+            {...register("password")} />
+          <LineContainer>
+            <Link to="/creation-compte">
+              <TextHover>Créer un compte ?</TextHover>
+            </Link>
+          </LineContainer>
+        </ConnectionInfos>
+        <br />
+        <Submitbutton type="submit" fontSize="1em" margin="auto">
+          Se connecter
+        </Submitbutton>
+        <br />
+      </Form>
+    </ContainerForm>
+    </MainContainer>
     </BackgroundImage>
   );
 };
+
 const BackgroundImage = styled.div`
   background-image: url("../ressources/background-image-login-2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+
 `;
+
+const MainContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+`;
+
 
 const Form = styled.form`
   display: flex;
