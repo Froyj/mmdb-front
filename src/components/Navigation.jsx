@@ -43,25 +43,23 @@ const Navigation = () => {
           <MenuLink>Qui sommes-nous ?</MenuLink>
         </Link>
         <ConnexionContainer>
-          <Link to='/se-connecter'>
-            <Image>
-              <img
-                src='../ressources/user-white.png'
-                alt='utilisateur'
-                width='35px'
-                height='35px'
-              />
-            </Image>
-          </Link>
-          {isConnected ? (
-            <MenuLink
+          {isConnected ? (<MenuLink
               onClick={() => disconnectUser()}
             >
               Deconnexion
             </MenuLink>
           ) : (
             <Link to='/se-connecter'>
-              <MenuLink>Se connecter</MenuLink>
+              <MenuLink><Link to='/se-connecter'>
+            <Image>
+              <img
+                src='../ressources/user-white.png'
+                alt='utilisateur'
+                width='20px'
+                height='20px'
+              />
+            </Image>
+          </Link>Se connecter</MenuLink>
             </Link>
           )}
         </ConnexionContainer>
@@ -155,7 +153,8 @@ const ConnexionContainer = styled.div`
 const Image = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 15px;
+  /* margin-top: 5px; */
+  margin-right: 5px;
 `;
 
 export default Navigation;
