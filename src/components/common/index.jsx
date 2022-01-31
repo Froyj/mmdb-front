@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Global from '../styled-components/Global';
-import FilledButton from '../styled-components/FilledButton';
+import styled from "styled-components";
+import Global from "../styled-components/Global";
+import FilledButton from "../styled-components/FilledButton";
 
 const Container = styled(Global)`
   p {
@@ -115,16 +115,15 @@ const EquipmentContainer = styled.div`
 const EquipmentList = styled.div`
   display: none;
   background-color: rgba(179, 154, 154, 0.123);
+  padding: 1em;
   /* border: 2px black solid; */
   /* width: 70px; */
   /* text-align: center; */
   /* border: 4px solid green; */
 
-  .dropDown-list {
+  .equipmentLi {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between;
-    align-items: center; */
   }
 `;
 

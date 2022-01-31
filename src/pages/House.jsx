@@ -43,19 +43,6 @@ function Equipments({ homeEquipments = null }) {
 function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  // const [getActivity, setGetActivity] = useState("chips");
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/activity")
-  //     .then((response) => response.data)
-  //     .then((data) => setGetActivity(data))
-  //     // eslint-disable-next-line no-console
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // console.log(`getActivity : ${getActivity}`);
 
   useEffect(() => {
     axios
@@ -67,17 +54,18 @@ function House() {
 
   const secondaryImage = house?.image.secondary.slice(0, 4).map((el, index) => (
     <div className={`grid${index + 2}`}>
-      <img src={el} alt="maison" key={el} />
+      <img src={process.env.REACT_APP_API_URL + el} alt="maison" key={el} />
     </div>
   ));
 
-  // const homeActivity = getActivity.map((a) => (
-  //   <li key={a.id}> {a.activity.name} </li>
-  // ));
+  const homeActivity = house?.home_activity.map((a) => (
+    <li key={a.activity.name}> {a.activity.name} </li>
+  ));
 
-  const handleClick = (selectorQuery) => {
-    const dropDownList = document.querySelector(selectorQuery);
-    dropDownList.classList.toggle("visible");
+  const [panelToDisplay, setPanelToDisplay] = useState("");
+
+  const handleClick = (panelName) => {
+    setPanelToDisplay(panelName);
   };
 
   if (!house) {
@@ -94,7 +82,14 @@ function House() {
       </div>
       <ImagesDiv>
         <PrincipalImg>
-          <img src={house?.image.principal} alt={house.name} />
+          <img
+            src={
+              house
+                ? process.env.REACT_APP_API_URL + house.image.principal
+                : null
+            }
+            alt={house.name}
+          />
         </PrincipalImg>
         {secondaryImage}
       </ImagesDiv>
@@ -106,34 +101,46 @@ function House() {
             <Showlist className="showButton">
               <InfoButton
                 type="button"
-                onClick={() => handleClick(".equipment-list")}
+                onClick={() => handleClick("equipment")}
                 className="dropDown-title"
               >
                 <h3> Équipements </h3>
               </InfoButton>
               <InfoButton
                 type="button"
-                onClick={() => handleClick(".activity-list")}
+                onClick={() => handleClick("activity")}
                 className="dropDown-title"
               >
                 <h3> Activités </h3>
               </InfoButton>
               <InfoButton
                 type="button"
-                onClick={() => handleClick(".condition-list")}
+                onClick={() => handleClick("condition")}
               >
                 <h3> Conditions d'annulation </h3>
               </InfoButton>
             </Showlist>
-            <EquipmentList className="equipment-list">
+            <EquipmentList
+              className={`equipment-list ${
+                panelToDisplay === "equipment" ? "visible" : ""
+              }`}
+            >
               <div className="dropDown-list">
                 <Equipments homeEquipments={house.home_equipment} />
               </div>
             </EquipmentList>
-            <EquipmentList className="activity-list">
-              {/* <ul> {homeActivity} </ul> */}
+            <EquipmentList
+              className={`activity-list ${
+                panelToDisplay === "activity" ? "visible" : ""
+              }`}
+            >
+              <ul> {homeActivity} </ul>
             </EquipmentList>
-            <EquipmentList className="condition-list">
+            <EquipmentList
+              className={`condition-list ${
+                panelToDisplay === "condition" ? "visible" : ""
+              }`}
+            >
               <ul>
                 <li>{house?.renting_conditions.total}</li>
                 <li>{house?.renting_conditions.partial}</li>
