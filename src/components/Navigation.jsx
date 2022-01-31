@@ -78,9 +78,10 @@ const MenuContainer = styled.div`
   background: #ba9b5c;
   display: flex;
   flex-direction: row;
-  position: fixed;
+  position: sticky;
   width: 100%;
-  /* z-index: 1; */
+  top:0;
+  z-index:1;
 `;
 
 const Nav = styled.nav`
@@ -123,6 +124,8 @@ const Burger = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
+    justify-content: center;
+    margin-right: 5%;
   }
 `;
 
