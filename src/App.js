@@ -86,7 +86,7 @@ function App() {
           <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>
             <Route
               path='dashboard'
-              element={<Admin houses={houses} bookings={bookings} />}
+              element={<Admin houses={houses} bookings={bookings} setHouses={setHouses} />}
             />
 
             <Route path='dashboard/maison/ajouter' element={<AddNewHouse setHouses={setHouses}/>} />
