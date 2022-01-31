@@ -47,7 +47,7 @@ function Footer() {
 }
 
 const Navbar = styled.nav`
-  background: #5d7b4c;
+  background: #ba9b5c;
   /* height: 5rem; */
   padding: 1.8em;
   font-family: "Trebuchet MS";
@@ -55,7 +55,7 @@ const Navbar = styled.nav`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 
   .logoList {
     display: flex;

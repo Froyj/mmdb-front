@@ -20,7 +20,7 @@ function Services() {
 
     return (
         <>
-        <Banner  backgroundPosition="center" marginTop = "none" marginBottom="0.5em" image="url('./ressources/banner-nos-services.jpg')">
+        <Banner backgroundPosition="center" marginTop = "none" marginBottom="0.5em" image="url('./ressources/banner-nos-services.jpg')">
              Nos Services 
         </Banner>
         <Global>
@@ -61,7 +61,7 @@ const ActivitiesContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 6em;
+    margin-bottom: 3em;
 `;
 
 const Image = styled.img`

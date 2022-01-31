@@ -24,9 +24,9 @@ const ServiceCard = styled.div`
   border-radius: 15px;
   background-color: ${colors.lightGreen};
   margin: 1.7rem;
-  height: 25rem;
+  height: 22rem;
   box-shadow: 10px 10px 15px;
-  width: 25%;
+  width: 30%;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -40,7 +40,7 @@ const Image = styled.img`
 `;
 
 const TitleSpan = styled.span`
-  font-size: 1.5rem;
+  font-size: 18px;
   font-weight: bold;
   color: ${colors.green};
   text-align: center;
@@ -50,6 +50,7 @@ const TitleSpan = styled.span`
 const ServicesDescription = styled.p`
   text-align: center;
   margin-top: 20px;
+  font-size: 16px;
 `;
 
 export default ServicesPanel;

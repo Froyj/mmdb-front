@@ -1,13 +1,13 @@
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate, Link } from 'react-router-dom';
-import styled from 'styled-components';
-import ContainerForm from './styled-components/ContainerForm';
-import TitleForm from './styled-components/TitleForm';
-import Submitbutton from './styled-components/SubmitButton';
-import { UserContext } from '../contexts/user';
-import axios from '../helper/axios-config';
-import { ADMIN } from '../constants/roles';
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
+import ContainerForm from "./styled-components/ContainerForm";
+import TitleForm from "./styled-components/TitleForm";
+import Submitbutton from "./styled-components/SubmitButton";
+import { UserContext } from "../contexts/user";
+import axios from "../helper/axios-config";
+import { ADMIN } from "../constants/roles";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
@@ -16,23 +16,30 @@ const ConnectionModal = () => {
 
   const onSubmit = (data) => {
     axios
-      .post('/login', data)
+      .post("/login", data)
       .then((res) => res.data)
       .then((user) => {
         dispatch({
-          type: 'CONNECTION',
+          type: "CONNECTION",
           payload: { userId: user.id, roleId: user.role_id },
         });
         if (user.role_id === ADMIN) {
-          navigate('/admin/dashboard', { replace: true });
+          navigate("/admin/dashboard", { replace: true });
         } else {
-          navigate('/', { replace: true });
+          navigate("/", { replace: true });
         }
       });
   };
 
   return (
-    <ContainerForm>
+    <BackgroundImage>
+      <MainContainer>
+    <ContainerForm
+      width="500px"
+      height="300px"
+      marginTop="8%"
+      marginBottom="8%"
+    >
       <TitleForm>Connexion</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ConnectionInfos>
@@ -41,8 +48,7 @@ const ConnectionModal = () => {
           <input
             type="password"
             placeholder=" Mot de passe"
-            {...register("password")}
-          />
+            {...register("password")} />
           <LineContainer>
             <Link to="/creation-compte">
               <TextHover>Créer un compte ?</TextHover>
@@ -53,17 +59,36 @@ const ConnectionModal = () => {
         <Submitbutton type="submit" fontSize="1em" margin="auto">
           Se connecter
         </Submitbutton>
+        <br />
       </Form>
     </ContainerForm>
+    </MainContainer>
+    </BackgroundImage>
   );
 };
+
+const BackgroundImage = styled.div`
+  background-image: url("../ressources/background-image-login-2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* min-height: 100vh; */
+
+`;
+
+const MainContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+`;
+
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   color: white;
-  width: 85%;
-  padding: 16px;
+  width: 70%;
+  padding: 10px;
 
   input {
     background-color: white;
@@ -71,6 +96,7 @@ const Form = styled.form`
     height: 32px;
     width: 100%;
     align-content: center;
+    margin-bottom: 5px;
   }
 `;
 
@@ -78,10 +104,12 @@ const ConnectionInfos = styled.div`
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  margin-top: 15px;
 `;
 
 const TextHover = styled.p`
   color: #1c2c46;
+  font-weight: bold;
 
   &:hover {
     color: #eeeb8f;
@@ -92,6 +120,9 @@ const TextHover = styled.p`
 const LineContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     flex-direction: column;
