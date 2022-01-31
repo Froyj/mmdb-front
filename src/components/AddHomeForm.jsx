@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -6,8 +7,10 @@ import styled from "styled-components";
 import FilledButton from "./styled-components/FilledButton";
 import postHouses from "../data/postHouses";
 import colors from "./styled-components/colors";
+import getHouses from "../data/houses";
 
-function AddHomeForm() {
+function AddHomeForm({ setHouses }) {
+  const [postedHouse, setPostedHouse] = useState();
   const { register, handleSubmit } = useForm();
 
   const imgData = new FormData();
@@ -21,11 +24,16 @@ function AddHomeForm() {
 
     imgData.append("image.primary", principalImg);
     for (let i = 0; i < secondaryImg.length; i += 1) {
-      console.log(secondaryImg[i]);
       imgData.append("image.secondary", secondaryImg[i]);
     }
 
-    postHouses(imgData, data, openingDate, closingDate);
+    postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
+  };
+
+  const refreshData = () => {
+    if (postedHouse) {
+      getHouses(setHouses);
+    }
   };
 
   return (
@@ -43,9 +51,9 @@ function AddHomeForm() {
           />
           <SimpleField
             type="text"
-            name="address"
+            name="adress"
             placeholder="Adresse"
-            {...register("address", { required: true })}
+            {...register("adress", { required: true })}
           />
           <SimpleField
             type="text"
@@ -273,8 +281,8 @@ function AddHomeForm() {
 
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
-        <NavLink  to="/admin/dashboard">
-          <FilledButton>Retour en arrière</FilledButton>
+        <NavLink to="/admin/dashboard">
+          <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
         </NavLink>
       </SubmitDiv>
     </FormContainer>
