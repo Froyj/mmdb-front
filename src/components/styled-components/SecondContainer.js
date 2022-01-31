@@ -3,6 +3,7 @@ import styled from "styled-components";
 const SecondContainer = styled.div`
   display: ${(props) => props.display || "flex"};
   flex-direction: ${(props) => props.flexDirection || "row"};
+  justify-content: ${(props) => props.justifyContent || "center"};
   text-align: ${(props) => props.textAlign || "justify"};
   padding: ${(props) => props.padding || "20px"};
 

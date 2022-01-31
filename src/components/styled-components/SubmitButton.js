@@ -6,7 +6,7 @@ const Submitbutton = styled.button`
     border-radius: ${(props) => props.borderRadius || '8px'};
     background-color: ${(props) => props.backgroundColor || colors.brown};
     color: ${(props) => props.textColor || 'white'};
-    width: ${(props) => props.width || '20%'};
+    width: ${(props) => props.width || '50%'};
     font-size: ${(props) => props.fontSize || '1.3em'};
     margin-bottom: ${(props) => props.marginBotton || '10px'};
     margin: ${(props) => props.margin || "auto"};
@@ -14,7 +14,7 @@ const Submitbutton = styled.button`
     margin-bottom: ${(props) => props.marginBottom || '0px'};
 
     @media (max-width: 768px) {
-    width: 100px;
+        width: 100px;
     }
 `;
 

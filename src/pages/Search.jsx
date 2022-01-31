@@ -14,7 +14,7 @@ function Search({ houses }) {
 
   return (
     <>
-      <Banner image="url('./ressources/Banner-Nos-maisons-forestières.jpg')">
+      <Banner backgroundPosition="center" marginTop='0' image="url('./ressources/Banner-Nos-maisons-forestières.jpg')">
         Nos maisons forestières
       </Banner>
       <Global>

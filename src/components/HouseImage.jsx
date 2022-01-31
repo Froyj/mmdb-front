@@ -12,7 +12,7 @@ function HouseImage ({ id, image }) {
     return (
         <StyledLink to={`/maison/${id}`}>
         <HouseCard>
-            <Image src={image.image.principal} />
+            <Image src={process.env.REACT_APP_API_URL + image.image.principal} />
             <TitleSpan>{image.name}</TitleSpan>
          <TitleSpan>{image.city}</TitleSpan>
         <TitleSpan>{image.country}</TitleSpan>
