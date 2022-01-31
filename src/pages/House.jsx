@@ -65,7 +65,11 @@ function House() {
   const [panelToDisplay, setPanelToDisplay] = useState("");
 
   const handleClick = (panelName) => {
-    setPanelToDisplay(panelName);
+    if (panelName === panelToDisplay) {
+      setPanelToDisplay("");
+    } else {
+      setPanelToDisplay(panelName);
+    }
   };
 
   if (!house) {
