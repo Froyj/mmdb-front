@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
+import axios from "../helper/axios-config";
 import FilledButton from "./styled-components/FilledButton";
 import colors from "./styled-components/colors";
 import updateHouses from "../data/updateHouses";
@@ -9,9 +10,50 @@ import getHouses from "../data/houses";
 
 function UpdateHomeForm({ setHouses }) {
   const [updatedHouse, setUpdatedhouse] = useState();
-  const { register, handleSubmit } = useForm();
+  const [dataForm, setDataForm] = useState(null);
+  const { register, handleSubmit, reset } = useForm();
 
   const { id } = useParams();
+
+  const regex = /T00:00:00.000Z/i;
+
+  const refreshForm = () => {
+    // reset form with user data
+    reset({
+      name: dataForm.name,
+      adress: dataForm.adress,
+      zipcode: dataForm.zipcode,
+      city: dataForm.city,
+      country: dataForm.country,
+      coordinate_long: dataForm.coordinate_long,
+      coordinate_lat: dataForm.coordinate_lat,
+      square_meter: dataForm.square_meter,
+      describe_short: dataForm.describe_short,
+      describe_long: dataForm.describe_long,
+      capacity: dataForm.capacity,
+      price_by_night: dataForm.price_by_night,
+      opening_disponibility: dataForm.opening_disponibility.replace(regex, ""),
+      closing_disponibility: dataForm.closing_disponibility.replace(regex, ""),
+      renting_conditions: {
+        partial: dataForm.renting_conditions.partial,
+        total: dataForm.renting_conditions.total,
+      },
+      caution: dataForm.caution,
+      arrival_hour: dataForm.arrival_hour,
+      departure_hour: dataForm.departure_hour,
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get(`/home_to_rent/${id}`, { data: { id } })
+      .then((res) => {
+        setDataForm(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const updateHouse = (data) => {
     const openingDate = document.getElementById("opening_disponibility").value;
@@ -26,244 +68,256 @@ function UpdateHomeForm({ setHouses }) {
     }
   };
 
+  // const changeValue = (e) => {
+  //   e.target.value = null;
+  // }
+
   return (
     <FormContainer
       onSubmit={handleSubmit(updateHouse)}
       enctype="multipart/form-data"
     >
-      <FormDiv>
-        <HouseInfoDiv>
-          <SimpleField
-            type="text"
-            name="name"
-            placeholder="Nom de la maison"
-            {...register("name")}
-          />
-          <SimpleField
-            type="text"
-            name="adress"
-            placeholder="Adresse"
-            {...register("adress")}
-          />
-          <SimpleField
-            type="text"
-            name="zipcode"
-            placeholder="Code postal"
-            {...register("zipcode")}
-          />
-          <SimpleField
-            type="text"
-            name="city"
-            placeholder="Ville"
-            {...register("city")}
-          />
-          <SimpleField
-            type="text"
-            name="country"
-            placeholder="Région"
-            {...register("country")}
-          />
-          <SimpleField
-            type="number"
-            name="coordinate_long"
-            placeholder="Longitude (optionnel)"
-            {...register("coordinate_long", { valueAsNumber: true })}
-          />
-          <SimpleField
-            type="number"
-            name="coordinate_lat"
-            placeholder="Latitude (optionnel)"
-            {...register("coordinate_lat", { valueAsNumber: true })}
-          />
-          <SimpleField
-            type="number"
-            name="square_meter"
-            placeholder="Mètres carrés (optionnel)"
-            {...register("square_meter", { valueAsNumber: true })}
-          />
-          <LargeField
-            name="describe_short"
-            placeholder="Description courte"
-            {...register("describe_short")}
-          />
-          <LargeField
-            name="describe_long"
-            placeholder="Description détaillée"
-            {...register("describe_long")}
-          />
-
-          <ImagesDiv>
-            <label htmlFor="image.primary">
-              Image principale
-              <input
-                type="file"
-                id="image.primary"
-                name="image.primary"
-                {...register("image.primary")}
-              />
-            </label>
-            <label htmlFor="image.secondary">
-              Image(s) secondaire(s)
-              <input
-                type="file"
-                id="image.secondary"
-                name="image.secondary"
-                multiple
-                {...register("image.secondary")}
-              />
-            </label>
-          </ImagesDiv>
-        </HouseInfoDiv>
-
-        <HouseDescriptionDiv>
-          <SimpleField
-            type="number"
-            name="capacity"
-            placeholder="Capacité d'accueil"
-            {...register("capacity", {
-              valueAsNumber: true,
-            })}
-          />
-          <SimpleField
-            type="number"
-            name="price_by_night"
-            placeholder="Prix par nuit"
-            {...register("price_by_night", {
-              valueAsNumber: true,
-            })}
-          />
-          <DateDiv>
-            <p> Début de disponibilité à la location </p>
+      <FilledButton
+        type="button"
+        onClick={refreshForm}
+        className="btn btn-secondary"
+        width="20%"
+      >
+        Récuperer les données actuelles
+      </FilledButton>
+      {dataForm && (
+        <FormDiv>
+          <HouseInfoDiv>
             <SimpleField
-              type="date"
-              name="opening_disponibility"
-              id="opening_disponibility"
-              placeholder="Début de disponibilité à la location"
-              {...register("opening_disponibility", {
-                valueAsDate: true,
+              type="text"
+              name="name"
+              placeholder="Nom de la maison"
+              {...register("name")}
+            />
+            <SimpleField
+              type="text"
+              name="adress"
+              placeholder="Adresse"
+              {...register("adress")}
+            />
+            <SimpleField
+              type="text"
+              name="zipcode"
+              placeholder="Code postal"
+              {...register("zipcode")}
+            />
+            <SimpleField
+              type="text"
+              name="city"
+              placeholder="Ville"
+              {...register("city")}
+            />
+            <SimpleField
+              type="text"
+              name="country"
+              placeholder="Région"
+              {...register("country")}
+            />
+            <SimpleField
+              type="text"
+              name="coordinate_long"
+              placeholder="Longitude (optionnel)"
+              {...register("coordinate_long", { valueAsNumber: true })}
+            />
+            <SimpleField
+              type="text"
+              name="coordinate_lat"
+              placeholder="Latitude (optionnel)"
+              {...register("coordinate_lat", { valueAsNumber: true })}
+            />
+            <SimpleField
+              type="number"
+              name="square_meter"
+              placeholder="Mètres carrés (optionnel)"
+              {...register("square_meter", { valueAsNumber: true })}
+            />
+            <LargeField
+              name="describe_short"
+              placeholder="Description courte"
+              {...register("describe_short")}
+            />
+            <LargeField
+              name="describe_long"
+              placeholder="Description détaillée"
+              {...register("describe_long")}
+            />
+
+            <ImagesDiv>
+              <label htmlFor="image.primary">
+                Image principale
+                <input
+                  type="file"
+                  id="image.primary"
+                  name="image.primary"
+                  {...register("image.primary")}
+                />
+              </label>
+              <label htmlFor="image.secondary">
+                Image(s) secondaire(s)
+                <input
+                  type="file"
+                  id="image.secondary"
+                  name="image.secondary"
+                  multiple
+                  {...register("image.secondary")}
+                />
+              </label>
+            </ImagesDiv>
+          </HouseInfoDiv>
+
+          <HouseDescriptionDiv>
+            <SimpleField
+              type="number"
+              name="capacity"
+              placeholder="Capacité d'accueil"
+              {...register("capacity", {
+                valueAsNumber: true,
               })}
             />
-          </DateDiv>
-          <DateDiv>
-            <p>Fin de disponibilité à la location</p>
             <SimpleField
-              type="date"
-              name="closing_disponibility"
-              id="closing_disponibility"
-              placeholder="Fin de disponibilité à la location"
-              {...register("closing_disponibility", {
-                valueAsDate: true,
+              type="number"
+              name="price_by_night"
+              placeholder="Prix par nuit"
+              {...register("price_by_night", {
+                valueAsNumber: true,
               })}
             />
-          </DateDiv>
-          <MiddleField
-            name="renting_conditions.partial"
-            placeholder="Conditions de remboursement partiel"
-            {...register("renting_conditions.partial")}
-          />
-          <p className="indication">
-            Exemple : "Annulation jusqu'à une semaine avant le début de la
-            réservation : remboursement de 70% du montant de la réservation"{" "}
-          </p>
-          <MiddleField
-            name="renting_conditions.total"
-            placeholder="Conditions de remboursement total"
-            {...register("renting_conditions.total")}
-          />
-          <p className="indication">
-            Exemple : "Annulation au moins 3 semaines avant le début de la
-            réservation : remboursement de 100% du montant de la réservation"{" "}
-          </p>
-          <SimpleField
-            type="number"
-            name="caution"
-            placeholder="Caution (optionnel)"
-            {...register("caution", { valueAsNumber: true })}
-          />
-
-          <CheckboxDiv>
-            <p>Evènements autorisés</p>
-            <label htmlFor="event.public">
-              <input type="hidden" name="event.public" value="false" />
-              <input
-                type="checkbox"
-                id="event.public"
-                name="event.public"
-                value="true"
-                {...register("event.public")}
-              />
-              Public
-            </label>
-
-            <label htmlFor="event.private">
-              <input type="hidden" name="event.private" value="false" />
-              <input
-                type="checkbox"
-                id="event.private"
-                name="event.private"
-                value="true"
-                {...register("event.private")}
-              />
-              Privé
-            </label>
-
-            <label htmlFor="event.professionnal">
-              <input type="hidden" name="event.professionnal" value="false" />
-              <input
-                type="checkbox"
-                id="event.professionnal"
-                name="event.professionnal"
-                value="true"
-                {...register("event.professionnal")}
-              />
-              Professionnel
-            </label>
-          </CheckboxDiv>
-
-          <HourDiv>
             <DateDiv>
-              <p>Heure d'arrivée</p>
+              <p> Début de disponibilité à la location </p>
               <SimpleField
-                type="time"
-                name="arrival_hour"
-                {...register("arrival_hour")}
+                type="date"
+                name="opening_disponibility"
+                id="opening_disponibility"
+                placeholder="Début de disponibilité à la location"
+                {...register("opening_disponibility", {
+                  valueAsDate: true,
+                })}
               />
             </DateDiv>
             <DateDiv>
-              <p>Heure de départ</p>
+              <p>Fin de disponibilité à la location</p>
               <SimpleField
-                type="time"
-                name="departure_hour"
-                {...register("departure_hour")}
+                type="date"
+                name="closing_disponibility"
+                id="closing_disponibility"
+                placeholder="Fin de disponibilité à la location"
+                {...register("closing_disponibility", {
+                  valueAsDate: true,
+                })}
               />
             </DateDiv>
-          </HourDiv>
+            <MiddleField
+              name="renting_conditions.partial"
+              placeholder="Conditions de remboursement partiel"
+              {...register("renting_conditions.partial")}
+            />
+            <p className="indication">
+              Exemple : "Annulation jusqu'à une semaine avant le début de la
+              réservation : remboursement de 70% du montant de la réservation"{" "}
+            </p>
+            <MiddleField
+              name="renting_conditions.total"
+              placeholder="Conditions de remboursement total"
+              {...register("renting_conditions.total")}
+            />
+            <p className="indication">
+              Exemple : "Annulation au moins 3 semaines avant le début de la
+              réservation : remboursement de 100% du montant de la réservation"{" "}
+            </p>
+            <SimpleField
+              type="number"
+              name="caution"
+              placeholder="Caution (optionnel)"
+              {...register("caution", { valueAsNumber: true })}
+            />
 
-          <CheckboxDiv>
-            <p>Fumeurs autorisés</p>
-            <label htmlFor="is_smoker-true">
-              <input
-                type="radio"
-                id="is_smoker-true"
-                name="is_smoker"
-                value="1"
-                {...register("is_smoker", { valueAsNumber: true })}
-              />
-              Oui
-            </label>
-            <label htmlFor="is_smoker-false">
-              <input
-                type="radio"
-                id="is_smoker-false"
-                name="is_smoker"
-                value="0"
-                {...register("is_smoker", { valueAsNumber: true })}
-              />
-              Non
-            </label>
-          </CheckboxDiv>
-        </HouseDescriptionDiv>
-      </FormDiv>
+            <CheckboxDiv>
+              <p>Evènements autorisés</p>
+              <label htmlFor="event.public">
+                <input type="hidden" name="event.public" value="false" />
+                <input
+                  type="checkbox"
+                  id="event.public"
+                  name="event.public"
+                  value="true"
+                  {...register("event.public")}
+                />
+                Public
+              </label>
+
+              <label htmlFor="event.private">
+                <input type="hidden" name="event.private" value="false" />
+                <input
+                  type="checkbox"
+                  id="event.private"
+                  name="event.private"
+                  value="true"
+                  {...register("event.private")}
+                />
+                Privé
+              </label>
+
+              <label htmlFor="event.professionnal">
+                <input type="hidden" name="event.professionnal" value="false" />
+                <input
+                  type="checkbox"
+                  id="event.professionnal"
+                  name="event.professionnal"
+                  value="true"
+                  {...register("event.professionnal")}
+                />
+                Professionnel
+              </label>
+            </CheckboxDiv>
+
+            <HourDiv>
+              <DateDiv>
+                <p>Heure d'arrivée</p>
+                <SimpleField
+                  type="time"
+                  name="arrival_hour"
+                  {...register("arrival_hour")}
+                />
+              </DateDiv>
+              <DateDiv>
+                <p>Heure de départ</p>
+                <SimpleField
+                  type="time"
+                  name="departure_hour"
+                  {...register("departure_hour")}
+                />
+              </DateDiv>
+            </HourDiv>
+
+            <CheckboxDiv>
+              <p>Fumeurs autorisés</p>
+              <label htmlFor="is_smoker-true">
+                <input
+                  type="radio"
+                  id="is_smoker-true"
+                  name="is_smoker"
+                  {...register("is_smoker", { valueAsNumber: true })}
+                />
+                Oui
+              </label>
+              <label htmlFor="is_smoker-false">
+                <input
+                  type="radio"
+                  id="is_smoker-false"
+                  name="is_smoker"
+                  {...register("is_smoker", { valueAsNumber: true })}
+                />
+                Non
+              </label>
+            </CheckboxDiv>
+          </HouseDescriptionDiv>
+        </FormDiv>
+      )}
 
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
