@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useReducer } from 'react';
+import styled from 'styled-components';
+import Modal from 'react-modal';
 import axios from './helper/axios-config';
+import colors from './components/styled-components/colors';
 
 import House from './pages/House';
 import getHouses from './data/houses';
@@ -8,6 +11,7 @@ import getBookings from './data/bookings';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import FilledButton from './components/styled-components/FilledButton';
 import About from './pages/About';
 import AddNewHouse from './pages/AddNewHouse';
 
@@ -27,11 +31,16 @@ import {
   userContextReducer,
 } from './reducers/userContextReducer';
 import { UserContextProvider } from './contexts/user';
+import ModalContext from './contexts/modal';
+
+Modal.setAppElement('#root');
 
 function App() {
   const [houses, setHouses] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [userContext, dispatch] = useReducer(userContextReducer, initialState);
+  const [openModal, setOpenModal] = useState(false);
+
 
   function loginAttempt() {
     axios
@@ -96,10 +105,54 @@ function App() {
             />
           </Route>
         </Routes>
+        <ModalContext.Provider value={{openModal, setOpenModal}} >
+          <Modal 
+            isOpen={openModal}
+            onRequestClose={() => setOpenModal(false)}
+            style={{
+              content: {
+                display: 'flex',
+                width: '40%',
+                alignSelf: 'center',
+                justifySelf: 'center',
+                flexDirection: 'column',
+                fontFamily: 'Trebuchet MS',
+                left: '30%',
+                top: '40%',
+                height: '25%',
+                justifyContent: 'center',
+                alignItems: 'center'
+                }
+            }}
+          >
+            <ModalTitle> Contacter l'équipe de Ma Maison des Bois </ModalTitle>
+            <ModalText> Par téléphone : </ModalText>
+            <ModalText> Par e-mail : cliquez <a href='mailto:a.sellier@tbs-education.org'> ici </a></ModalText>
+            <FilledButton 
+              type='button'
+              onClick={() => setOpenModal(false)}
+              margin='2rem 0'
+            > Fermer </FilledButton>
+          </Modal>
         <Footer />
+        </ModalContext.Provider>
       </UserContextProvider>
     </>
   );
 }
 }
 export default App;
+
+const ModalTitle = styled.h1`
+  color: ${colors.green};
+  margin-bottom: 2rem;
+`
+const ModalText = styled.p`
+  font-size: 1.1rem;
+  font-weight: 100;
+
+  a {
+    text-decoration: none;
+    color: ${colors.green}
+  }
+`

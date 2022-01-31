@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import styled from "styled-components";
 import instaLogo from "../img/tl(2).webp";
 import faceBookLogo from "../img/tl(37).webp";
 import love from "../img/tl(5).webp";
+import ModalContext from "../contexts/modal";
 
-;
 function Footer() {
+
+  const { setOpenModal } = useContext(ModalContext);
+
   return (
     <Navbar>
       <div className="content">
@@ -26,7 +30,9 @@ function Footer() {
             <img src={instaLogo} alt="instagram" />
           </a>
         </div>
-        <p> Contact </p>
+        <ContactButton type='button' onClick={() => setOpenModal(true)}> 
+              Contact
+        </ContactButton>
         <a
           href="public/ressources/Copy of Charte.pdf"
           download="mentions_legales"
@@ -100,4 +106,15 @@ const Navbar = styled.nav`
   }
 `;
 
+const ContactButton = styled.button`
+  font-family: inherit;
+  background : transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+
+  :hover {
+    cursor: pointer;
+  }
+`
 export default Footer;
