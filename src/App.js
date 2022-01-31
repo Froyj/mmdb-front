@@ -92,7 +92,7 @@ function App() {
             <Route path='dashboard/maison/ajouter' element={<AddNewHouse setHouses={setHouses}/>} />
             <Route
               path='dashboard/mise-a-jour-maison/:id'
-              element={<UpdateHouse />}
+              element={<UpdateHouse setHouses={setHouses}/>}
             />
           </Route>
         </Routes>
