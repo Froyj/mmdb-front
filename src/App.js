@@ -89,7 +89,7 @@ function App() {
               element={<Admin houses={houses} bookings={bookings} />}
             />
 
-            <Route path='dashboard/maison/ajouter' element={<AddNewHouse />} />
+            <Route path='dashboard/maison/ajouter' element={<AddNewHouse setHouses={setHouses}/>} />
             <Route
               path='dashboard/mise-a-jour-maison/:id'
               element={<UpdateHouse />}
