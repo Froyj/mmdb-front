@@ -69,17 +69,16 @@ Framework : Prisma
 
 # Getting started with this project.
 
-- Clone project with ** git clone <url en ssh> nom_de_dossier **
+- Clone project with **git clone <url en ssh> nom_de_dossier**
 - Run "npm install" on your terminal to install all necessary dependancies
   
 ## Front-end
   
 - After clone and "npm install", 
-- Run "npm start" ** to launch the application on your server
-- admin acount: mamaisondesbois@gmail.com - password: test
+- Run **npm start**to launch the application on your server
 
 ## Back-end
 
 - After clone and "npm install",
-- Run ** npx prisma migrate reset ** to initialise your database with the seed
-- Run ** npm run start:server:watch ** to execute this application on your server
+- Run **npx prisma migrate reset** to initialise your database with the seed
+- Run **npm run start:server:watch** to execute this application on your server
