@@ -6,6 +6,7 @@ import AdminHouseCard from "./adminHouseCard";
 function AdminHouseList({ houses, setHouses }) {
   AdminHouseList.propTypes = {
     houses: PropTypes.arrayOf(PropTypes.object).isRequired,
+    setHouses: PropTypes.func.isRequired
   };
 
   return (
