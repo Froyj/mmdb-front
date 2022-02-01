@@ -24,47 +24,62 @@ Framework : Prisma
 ### Admin features
 
 - I can add a new house
-- I can delete a new house
+- I can delete a house
 - I can access the list of reservations
-- I can log in to my administrator space
+- I can log into my administrator space
 - I can view all available houses
 
-### No-connected user features
+### Unconnected user features
 
 - I can access the list of available houses
 - I can navigate between the different pages of the site
-- I can see the website on mobile-phone
-- I can read more details of one house
+- I can visit the website on a mobile-phone
+- I can read detailed information about each available house
+- I can contact the "Ma maison des bois" team
 
 ### Connected user features
 
 - I can connect to my account
 
+
 ## Features to be implemented
 
 ### Admin features
 
-- I can modify a forest house
-- add / modify / delete house's options
-- add / modify / delete house's equipments
-- add / modify / delete activities
-- I can be notified
+- Modify house information
+- Add / modify / delete house options
+- Add / modify / delete house equipments
+- Add / modify / delete activities
+- Receive notification when a house is booked
 - Have statistics on rentals
-- Modify the content of the website text
+- Modify the website's text content
 
-### No-connected user features
+### Unconnected user features
+
+- Receive a confirmation mail for a reservation
+- Filter the house search according to date, guests and region
+- Leave a comment on a house
+- Save a house as favorite
 
 ### Connected user features
 
+- Book a house
+- See my reservations on my personal space
+
+
 # Getting started with this project.
 
-- Clone project with ** git clone url en ssh nom_de_dossier **
-- do npm install to install all necessaries dependancies
-- Front-end :run ** npm start ** to execute this application on your server
-- admin acount: mamaisondesbois@gmail.com pass: test
+- Clone project with ** git clone <url en ssh> nom_de_dossier **
+- Run "npm install" on your terminal to install all necessary dependancies
+  
+## Front-end
+  
+- After clone and "npm install", 
+- Run "npm start" ** to launch the application on your server
+- admin acount: mamaisondesbois@gmail.com - password: test
 
 ## Back-end
 
-- After Clone project
-- ** npx prisma migrate reset ** to initialise your BDD with seed
-- Back-end :run ** npm run start:server:watch ** to execute this application on your server
+- After clone and "npm install",
+- Run ** npx prisma migrate reset ** to initialise your database with the seed
+- Run ** npm run start:server:watch ** to execute this application on your server
