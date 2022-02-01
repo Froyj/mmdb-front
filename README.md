@@ -1,21 +1,25 @@
-# Start with " Ma MAison Des Bois "
+# Start with " Ma Maison Des Bois "
 
 # Techno & language
 
-This project is entirely made in JavaScript
+This project is entirely made with JavaScript / Node.js
 
 ## Front-end
 
-langage : JavaScript
+Langage : JavaScript
 Library: REACT
 
 ## Back-end
 
-language: Javascript
-node.JS
-Express
-Mysql
-Framework : Prisma
+- language: Javascript
+- node.JS
+- Express
+
+Database
+- MySQL
+
+Tools
+- Prisma ORM
 
 # Features
 
@@ -69,16 +73,18 @@ Framework : Prisma
 
 # Getting started with this project.
 
-- Clone project with **git clone <url en ssh> nom_de_dossier**
-- Run "npm install" on your terminal to install all necessary dependancies
+- Clone project with **`git clone \<url en ssh> nom_de_dossier`**
+- cd in the clone directory
+- Run **`npm install`** on your terminal to install all necessary dependancies
   
 ## Front-end
   
-- After clone and "npm install", 
-- Run **npm start** to launch the application on your server
+- After clone and **`npm install`** 
+- Run **`npm start`** to launch the application on your server
 
 ## Back-end
 
-- After clone and "npm install",
-- Run **npx prisma migrate reset** to initialise your database with the seed
-- Run **npm run start:server:watch** to execute this application on your server
+- After clone and `npm install`
+- Run **`npm run db:reset`** to create the database and seed it with a default set of data
+- - Run **`npm run start`** to start your server
+- Run **`npm run start:server:watch`** to execute this application on your server in watch mode
