@@ -19,15 +19,18 @@ function AddHomeForm({ setHouses }) {
     const openingDate = document.getElementById("opening_disponibility").value;
     const closingDate = document.getElementById("closing_disponibility").value;
 
-    const principalImg = data.image.primary[0];
+    const principalImg = data.image.principal[0];
     const secondaryImg = data.image.secondary;
 
-    imgData.append("image.primary", principalImg);
+    imgData.append("image.principal", principalImg);
     for (let i = 0; i < secondaryImg.length; i += 1) {
       imgData.append("image.secondary", secondaryImg[i]);
     }
 
     postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
+    setTimeout(() => {
+      getHouses(setHouses);
+    }, 1000);
   };
 
   const refreshData = () => {
@@ -103,13 +106,13 @@ function AddHomeForm({ setHouses }) {
           />
 
           <ImagesDiv>
-            <label htmlFor="image.primary">
+            <label htmlFor="image.principal">
               Image principale
               <input
                 type="file"
-                id="image.primary"
-                name="image.primary"
-                {...register("image.primary", { required: true })}
+                id="image.principal"
+                name="image.principal"
+                {...register("image.principal", { required: true })}
               />
             </label>
             <label htmlFor="image.secondary">

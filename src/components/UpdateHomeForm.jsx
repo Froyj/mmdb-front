@@ -17,8 +17,18 @@ function UpdateHomeForm({ setHouses }) {
 
   const regex = /T00:00:00.000Z/i;
 
+  useEffect(() => {
+    axios
+      .get(`/home_to_rent/${id}`, { data: { id } })
+      .then((res) => {
+        setDataForm(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  
   const refreshForm = () => {
-    // reset form with user data
     reset({
       name: dataForm.name,
       adress: dataForm.adress,
@@ -30,6 +40,10 @@ function UpdateHomeForm({ setHouses }) {
       square_meter: dataForm.square_meter,
       describe_short: dataForm.describe_short,
       describe_long: dataForm.describe_long,
+      image: {
+        principal: dataForm.image.principal,
+        secondary: dataForm.image.secondary,
+      },
       capacity: dataForm.capacity,
       price_by_night: dataForm.price_by_night,
       opening_disponibility: dataForm.opening_disponibility.replace(regex, ""),
@@ -44,22 +58,24 @@ function UpdateHomeForm({ setHouses }) {
     });
   };
 
-  useEffect(() => {
-    axios
-      .get(`/home_to_rent/${id}`, { data: { id } })
-      .then((res) => {
-        setDataForm(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const imgData = new FormData();
 
   const updateHouse = (data) => {
     const openingDate = document.getElementById("opening_disponibility").value;
     const closingDate = document.getElementById("closing_disponibility").value;
 
-    updateHouses(data, id, setUpdatedhouse, openingDate, closingDate);
+    const principalImg = data.image.principal[0];
+    const secondaryImg = data.image.secondary;
+
+    imgData.append("image.principal", principalImg);
+    for (let i = 0; i < secondaryImg.length; i += 1) {
+      imgData.append("image.secondary", secondaryImg[i]);
+    }
+
+    updateHouses(data, id, openingDate, closingDate, imgData, setUpdatedhouse);
+    setTimeout(() => {
+      getHouses(setHouses);
+    }, 1000);
   };
 
   const refreshData = () => {
@@ -68,23 +84,22 @@ function UpdateHomeForm({ setHouses }) {
     }
   };
 
-  // const changeValue = (e) => {
-  //   e.target.value = null;
-  // }
-
   return (
     <FormContainer
       onSubmit={handleSubmit(updateHouse)}
       enctype="multipart/form-data"
     >
-      <FilledButton
-        type="button"
-        onClick={refreshForm}
-        className="btn btn-secondary"
-        width="20%"
-      >
-        Récuperer les données actuelles
-      </FilledButton>
+      <Div>
+        <FilledButton
+          type="button"
+          onClick={refreshForm}
+          className="btn btn-secondary"
+          width="20%"
+        >
+          Récuperer les données actuelles
+        </FilledButton>
+        <p>( Il faut re selectionner les images )</p>
+      </Div>
       {dataForm && (
         <FormDiv>
           <HouseInfoDiv>
@@ -148,13 +163,13 @@ function UpdateHomeForm({ setHouses }) {
             />
 
             <ImagesDiv>
-              <label htmlFor="image.primary">
+              <label htmlFor="image.principal">
                 Image principale
                 <input
                   type="file"
-                  id="image.primary"
-                  name="image.primary"
-                  {...register("image.primary")}
+                  id="image.principal"
+                  name="image.principal"
+                  {...register("image.principal")}
                 />
               </label>
               <label htmlFor="image.secondary">
@@ -318,7 +333,6 @@ function UpdateHomeForm({ setHouses }) {
           </HouseDescriptionDiv>
         </FormDiv>
       )}
-
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
         <NavLink to="/admin/dashboard">
@@ -328,6 +342,14 @@ function UpdateHomeForm({ setHouses }) {
     </FormContainer>
   );
 }
+
+const Div = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const FormContainer = styled.form`
   display: flex;
