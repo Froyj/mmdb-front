@@ -75,7 +75,7 @@ Framework : Prisma
 ## Front-end
   
 - After clone and "npm install", 
-- Run **npm start**to launch the application on your server
+- Run **npm start** to launch the application on your server
 
 ## Back-end
 
