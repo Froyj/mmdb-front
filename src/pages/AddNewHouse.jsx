@@ -2,7 +2,7 @@ import AddHomeForm from "../components/AddHomeForm";
 import Global from "../components/styled-components/Global";
 import Banner from "../components/styled-components/Banner";
 
-function AddNewHouse() {
+function AddNewHouse({setHouses}) {
   return (
     <>
       <Banner
@@ -12,7 +12,7 @@ function AddNewHouse() {
         Ajouter une nouvelle maison
       </Banner>
       <Global>
-        <AddHomeForm />
+        <AddHomeForm setHouses={setHouses} />
       </Global>
     </>
   );

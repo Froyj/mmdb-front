@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { NavLink } from "react-router-dom";
 import deleteHouses from "../data/deleteHouses";
+import getHouses from "../data/houses";
 import colors from "./styled-components/colors";
 import BlankTitle from "./styled-components/BlankTitle";
 import BlankButton from "./styled-components/BlankButton";
 
-function AdminHouseCard({ id, name, image }) {
+function AdminHouseCard({ id, name, image, setHouses }) {
   AdminHouseCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -17,6 +18,7 @@ function AdminHouseCard({ id, name, image }) {
     if (window.confirm("Êtes-vous sur de vouloir supprimer la maison ?")) {
       deleteHouses(id);
     }
+    getHouses(setHouses);
   };
 
   return (

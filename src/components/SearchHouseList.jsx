@@ -36,4 +36,4 @@ const SearchContainer = styled.div `
         flex-direction: column;
         align-items: center;
     }
-`
+`;
