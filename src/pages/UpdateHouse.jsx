@@ -1,9 +1,9 @@
 import UpdateHomeForm from "../components/UpdateHomeForm";
 
 
-function UpdateHouse() {
+function UpdateHouse({setHouses}) {
     return (
-       <UpdateHomeForm />
+       <UpdateHomeForm setHouses={setHouses} />
     );
 }
 

@@ -16,7 +16,10 @@ function SignUpForm() {
   };
 
   return (
-    <ContainerForm>
+    <MainContainer>
+    <ContainerForm
+    marginTop="8%"
+    marginBottom="8%">
       <TitleForm>Créer un compte</TitleForm>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="genre">
@@ -121,6 +124,7 @@ function SignUpForm() {
         <Submitbutton type="submit">Envoyer</Submitbutton>
       </Form>
     </ContainerForm>
+    </MainContainer>
   );
 }
 
@@ -150,6 +154,12 @@ const Form = styled.form`
     flex-wrap: wrap;
     align-content: center;
   }
+`;
+
+const MainContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
 `;
 
 export default SignUpForm;

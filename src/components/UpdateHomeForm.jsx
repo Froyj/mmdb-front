@@ -1,17 +1,29 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import FilledButton from "./styled-components/FilledButton";
 import colors from "./styled-components/colors";
 import updateHouses from "../data/updateHouses";
+import getHouses from "../data/houses";
 
-function UpdateHomeForm() {
+function UpdateHomeForm({ setHouses }) {
+  const [updatedHouse, setUpdatedhouse] = useState();
   const { register, handleSubmit } = useForm();
 
   const { id } = useParams();
 
   const updateHouse = (data) => {
-    updateHouses(data, id);
+    const openingDate = document.getElementById("opening_disponibility").value;
+    const closingDate = document.getElementById("closing_disponibility").value;
+
+    updateHouses(data, id, setUpdatedhouse, openingDate, closingDate);
+  };
+
+  const refreshData = () => {
+    if (updatedHouse) {
+      getHouses(setHouses);
+    }
   };
 
   return (
@@ -29,9 +41,9 @@ function UpdateHomeForm() {
           />
           <SimpleField
             type="text"
-            name="address"
+            name="adress"
             placeholder="Adresse"
-            {...register("address")}
+            {...register("adress")}
           />
           <SimpleField
             type="text"
@@ -256,7 +268,7 @@ function UpdateHomeForm() {
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
         <NavLink to="/admin/dashboard">
-          <FilledButton>Retour en arrière</FilledButton>
+          <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
         </NavLink>
       </SubmitDiv>
     </FormContainer>
