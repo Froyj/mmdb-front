@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ContainerForm from "./styled-components/ContainerForm";
 import TitleForm from "./styled-components/TitleForm";
@@ -8,6 +8,7 @@ import Submitbutton from "./styled-components/SubmitButton";
 import { UserContext } from "../contexts/user";
 import axios from "../helper/axios-config";
 import { ADMIN } from "../constants/roles";
+import StyledLink from "./styled-components/Link";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
@@ -50,9 +51,9 @@ const ConnectionModal = () => {
             placeholder=" Mot de passe"
             {...register("password")} />
           <LineContainer>
-            <Link to="/creation-compte">
+            <StyledLink to="/creation-compte">
               <TextHover>Créer un compte ?</TextHover>
-            </Link>
+            </StyledLink>
           </LineContainer>
         </ConnectionInfos>
         <br />
@@ -69,9 +70,11 @@ const ConnectionModal = () => {
 
 const BackgroundImage = styled.div`
   background-image: url("../ressources/background-image-login-2.jpg");
+  width: auto;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+/* object-fit: cover; */
   /* min-height: 100vh; */
 
 `;
@@ -108,7 +111,7 @@ const ConnectionInfos = styled.div`
 `;
 
 const TextHover = styled.p`
-  color: #1c2c46;
+  color: white;
   font-weight: bold;
 
   &:hover {
