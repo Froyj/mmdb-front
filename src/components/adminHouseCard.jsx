@@ -12,13 +12,16 @@ function AdminHouseCard({ id, name, image, setHouses }) {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    setHouses: PropTypes.func.isRequired,
   };
 
   const deleteHouse = () => {
     if (window.confirm("Êtes-vous sur de vouloir supprimer la maison ?")) {
       deleteHouses(id);
     }
-    getHouses(setHouses);
+    return setTimeout(() => {
+      getHouses(setHouses);
+    }, 1000);
   };
 
   return (

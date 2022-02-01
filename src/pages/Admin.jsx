@@ -12,6 +12,7 @@ import AdminHouseList from "../components/AdminHouseList";
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {
     houses: PropTypes.arrayOf(PropTypes.object).isRequired,
+    setHouses: PropTypes.func.isRequired
     // bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
