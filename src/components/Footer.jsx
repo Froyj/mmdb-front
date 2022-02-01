@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import styled from "styled-components";
 import instaLogo from "../img/tl(2).webp";
 import faceBookLogo from "../img/tl(37).webp";
@@ -6,13 +6,12 @@ import love from "../img/tl(5).webp";
 import ModalContext from "../contexts/modal";
 
 function Footer() {
-
   const { setOpenModal } = useContext(ModalContext);
 
   return (
     <Navbar>
       <div className="content">
-        <div className="logoList" >
+        <div className="logoList">
           <a
             href="https://www.facebook.com/Ma-Maison-des-Bois-100623835729596"
             target="_blank"
@@ -30,13 +29,10 @@ function Footer() {
             <img src={instaLogo} alt="instagram" />
           </a>
         </div>
-        <ContactButton type='button' onClick={() => setOpenModal(true)}> 
-              Contact
+        <ContactButton type="button" onClick={() => setOpenModal(true)}>
+          Contact
         </ContactButton>
-        <a
-          href="public/ressources/Copy of Charte.pdf"
-          download="mentions_legales"
-        >
+        <a href="./ressources/Copy of Charte.pdf" target="_blank">
           {" "}
           Mentions légales{" "}
         </a>
@@ -66,11 +62,10 @@ const Navbar = styled.nav`
   .logoList {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;    /* justify-content: flex-start; */
-    
+    flex-wrap: nowrap; /* justify-content: flex-start; */
+
     img {
       padding: 0 2em;
-
     }
   }
 
@@ -108,7 +103,7 @@ const Navbar = styled.nav`
 
 const ContactButton = styled.button`
   font-family: inherit;
-  background : transparent;
+  background: transparent;
   border: none;
   color: white;
   font-size: 1rem;
@@ -116,5 +111,5 @@ const ContactButton = styled.button`
   :hover {
     cursor: pointer;
   }
-`
+`;
 export default Footer;
