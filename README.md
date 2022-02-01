@@ -86,5 +86,5 @@ Tools
 
 - After clone and **`npm install`**
 - Run **`npm run db:reset`** to create the database and seed it with a default set of data
-- - Run **`npm run start`** to start your server
+- Run **`npm run start`** to start your server
 - Run **`npm run start:server:watch`** to execute this application on your server in watch mode
