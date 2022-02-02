@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -6,8 +7,10 @@ import styled from "styled-components";
 import FilledButton from "./styled-components/FilledButton";
 import postHouses from "../data/postHouses";
 import colors from "./styled-components/colors";
+import getHouses from "../data/houses";
 
-function AddHomeForm() {
+function AddHomeForm({ setHouses }) {
+  const [postedHouse, setPostedHouse] = useState();
   const { register, handleSubmit } = useForm();
 
   const imgData = new FormData();
@@ -16,16 +19,24 @@ function AddHomeForm() {
     const openingDate = document.getElementById("opening_disponibility").value;
     const closingDate = document.getElementById("closing_disponibility").value;
 
-    const principalImg = data.image.primary[0];
+    const principalImg = data.image.principal[0];
     const secondaryImg = data.image.secondary;
 
-    imgData.append("image.primary", principalImg);
+    imgData.append("image.principal", principalImg);
     for (let i = 0; i < secondaryImg.length; i += 1) {
-      console.log(secondaryImg[i]);
       imgData.append("image.secondary", secondaryImg[i]);
     }
 
-    postHouses(imgData, data, openingDate, closingDate);
+    postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
+    setTimeout(() => {
+      getHouses(setHouses);
+    }, 1000);
+  };
+
+  const refreshData = () => {
+    if (postedHouse) {
+      getHouses(setHouses);
+    }
   };
 
   return (
@@ -43,9 +54,9 @@ function AddHomeForm() {
           />
           <SimpleField
             type="text"
-            name="address"
+            name="adress"
             placeholder="Adresse"
-            {...register("address", { required: true })}
+            {...register("adress", { required: true })}
           />
           <SimpleField
             type="text"
@@ -95,13 +106,13 @@ function AddHomeForm() {
           />
 
           <ImagesDiv>
-            <label htmlFor="image.primary">
+            <label htmlFor="image.principal">
               Image principale
               <input
                 type="file"
-                id="image.primary"
-                name="image.primary"
-                {...register("image.primary", { required: true })}
+                id="image.principal"
+                name="image.principal"
+                {...register("image.principal", { required: true })}
               />
             </label>
             <label htmlFor="image.secondary">
@@ -273,8 +284,8 @@ function AddHomeForm() {
 
       <SubmitDiv>
         <Submit type="submit" value="Valider" />
-        <NavLink  to="/admin/dashboard">
-          <FilledButton>Retour en arrière</FilledButton>
+        <NavLink to="/admin/dashboard">
+          <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
         </NavLink>
       </SubmitDiv>
     </FormContainer>
