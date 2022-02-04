@@ -80,7 +80,6 @@ function SignUpForm() {
             type="text"
             placeholder="Code postal"
             {...register("zipcode", {
-              valueAsNumber: true,
               required: true,
             })}
           />
