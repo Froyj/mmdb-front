@@ -77,13 +77,13 @@ function AddHomeForm({ setHouses }) {
             {...register("country", { required: true })}
           />
           <SimpleField
-            type="number"
+            type="text"
             name="coordinate_long"
             placeholder="Longitude (optionnel)"
             {...register("coordinate_long", { valueAsNumber: true })}
           />
           <SimpleField
-            type="number"
+            type="text"
             name="coordinate_lat"
             placeholder="Latitude (optionnel)"
             {...register("coordinate_lat", { valueAsNumber: true })}
