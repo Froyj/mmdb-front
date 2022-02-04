@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
-import Section from "../components/styled-components/Section";
+import colors from "../components/styled-components/colors";
 import FilledButton from "../components/styled-components/FilledButton";
 import Global from "../components/styled-components/Global";
 
@@ -12,7 +11,7 @@ import AdminHouseList from "../components/AdminHouseList";
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {
     houses: PropTypes.arrayOf(PropTypes.object).isRequired,
-    setHouses: PropTypes.func.isRequired
+    setHouses: PropTypes.func.isRequired,
     // bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
@@ -21,9 +20,9 @@ function Admin({ houses, setHouses }) {
       {/* <Section>
         <h1>Statistiques</h1>
       </Section> */}
-      <Section>
+      <Title>
         <h1>Mes maisons des bois</h1>
-      </Section>
+      </Title>
       <AdminHouseList houses={houses} setHouses={setHouses} />
       <ButtonsDiv>
         <Link to="maison/ajouter">
@@ -41,6 +40,22 @@ function Admin({ houses, setHouses }) {
 const ButtonsDiv = styled.div`
   display: flex;
   margin: 1rem;
+`;
+
+const Title = styled.div`
+  display: flex;
+  background: ${colors.blue};
+  width: 100%;
+  margin: 1rem auto;
+  align-items: center;
+  border-radius: 10px;
+
+  h1 {
+    margin: 0.7rem 2rem;
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: white;
+  }
 `;
 
 export default Admin;
