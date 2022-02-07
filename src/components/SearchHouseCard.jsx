@@ -19,20 +19,21 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
       <HouseCard>
         <Image src={process.env.REACT_APP_API_URL + image} alt={name} />
         <TextDiv>
-          <TitleAndPrice>
+          <Head>
             <Title>
               <TitleSpan>{name}</TitleSpan>
-              <br />
+            </Title>
+            <CityCapacity>
               {city}
               <br />
               {capacity} personnes
-            </Title>
-            <Price>
-              <PriceSpan>A partir de </PriceSpan>
-              <br />
-              {price}€ /nuit
-            </Price>
-          </TitleAndPrice>
+            </CityCapacity>
+            </Head>
+            <br />
+          <Price>
+            <PriceSpan>À partir de </PriceSpan>
+            {price}€ /nuit
+          </Price>
           <Résumé>{text}</Résumé>
         </TextDiv>
       </HouseCard>
@@ -41,6 +42,12 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
 }
 
 export default SearchHouseCard;
+
+const CityCapacity = styled.div``;
+const Head = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
@@ -55,29 +62,31 @@ const StyledLink = styled(NavLink)`
     text-decoration: none;
   }
 `;
+
 const HouseCard = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 15px;
   background-color: ${colors.lightGreen};
   margin: 1rem;
-  height: 30rem;
   box-shadow: 10px 10px 15px;
+  margin-bottom: 1rem;
+  height: 450px;
 `;
+
 const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  height: 60%;
+  height: 200px;
 `;
+
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `;
-const TitleAndPrice = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+
 const Title = styled.p`
   display: flex;
   flex-direction: column;
@@ -87,7 +96,7 @@ const Price = styled.p`
   width: auto;
   color: ${colors.green};
   font-weight: bolder;
-  align-self: center;
+  align-self: left;
   flex-direction: column;
   padding-left: 0.5rem;
 `;
@@ -99,6 +108,7 @@ const Résumé = styled.p`
   font-size: 0.9rem;
   font-weight: 100;
   text-align: justify;
+  padding: 0.5rem;
   margin-top: 1rem;
 `;
 const TitleSpan = styled.span`
