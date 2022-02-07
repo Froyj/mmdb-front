@@ -31,9 +31,7 @@ function Home() {
     <>
       <VideoContainer>
        <Video
-        controls autoplay muted
         src="../ressources/video-home.mp4#t=2"
-        type="video/mp4"
       />
       </VideoContainer>
         <Banner 
@@ -71,7 +69,7 @@ const VideoContainer = styled.div`
     height: 90vh;
  `;
 
-const Video = styled.video`
+const Video = styled.iframe`
    width: 100%;
    height: 100%;
    object-fit: cover;
