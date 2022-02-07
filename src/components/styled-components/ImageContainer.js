@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 const ImageContainer = styled.div`
-  text-align: ${(props) => props.textAlign || "center"};
   display: ${(props) => props.display || "flex"};
-  justify-content: ${(props) => props.justifyContent || "space-evenly"};
   align-items: ${(props) => props.alignItems|| "center"};
-  margin-bottom: ${(props) => props.marginBottom|| "24px"};
+  justify-content: ${(props) => props.justifyContent || "center"};
   
   @media (max-width: 768px) {
-  display: block;
-}
-`;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    overflow-wrap: normal;
+  }
+`
 
 export default ImageContainer;
