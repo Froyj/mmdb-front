@@ -118,10 +118,8 @@ const QuickBooking = styled.div`
 
 const SelectBookingDates = styled.div`
 display: flex;
+flex-wrap: wrap;
 flex-direction: row;
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-  }
 `;
 
 const SelectTravellersNumber = styled.div`
