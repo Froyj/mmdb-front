@@ -6,6 +6,10 @@ const Container = styled(Global)`
   p {
     margin-left: 10px;
   }
+
+  margin: auto;
+  margin-top: 20px;
+
 `;
 
 const ImagesDiv = styled.div`
