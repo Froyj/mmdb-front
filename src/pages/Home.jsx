@@ -66,6 +66,9 @@ function Home() {
 }
 
 const VideoContainer = styled.div`
+  position: static;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 90vh;
 
@@ -75,12 +78,15 @@ const VideoContainer = styled.div`
 `;
 
 const Video = styled.video`
+  position: absolute;
+  top: 0px;
   width: 100%;
   height: 100%;
   object-fit: cover;
 
   @media (max-width: 768px) {
     height: auto;
+    position: static;
   }
 `;
 
