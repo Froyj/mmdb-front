@@ -8,10 +8,12 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
 COPY . ./
-RUN npm run build
+RUN REACT_APP_API_URL=${REACT_APP_API_URL} npm run build
 
 # production environment
 FROM nginx:stable-alpine
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
 RUN rm -rf /etc/nginx/conf.d
 RUN mkdir -p /etc/nginx/conf.d
 COPY ./nginx.conf /etc/nginx/conf.d/

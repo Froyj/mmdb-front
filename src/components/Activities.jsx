@@ -11,8 +11,8 @@ function Activities ({activities}) {
     return (
         <StyledLink to="/services">
         <ActivitiesCard>
-                <Image src={activities.img_url}/>
-            <TitleSpan>{activities.name}</TitleSpan>
+            <Image src={activities.img_url}/>
+            <h2>{activities.name}</h2>
         </ActivitiesCard>
         </StyledLink>
     );
@@ -21,10 +21,16 @@ function Activities ({activities}) {
 const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: ${colors.blue};
-    width: 32%;
+    width: 18%;
+    margin: 3rem 1.5rem;
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
+    }
+
+    :hover {
+        transform: scale(1.1);
+        transition: all .5s ease-in-out
     }
 `
 
@@ -33,10 +39,15 @@ const ActivitiesCard = styled.div`
     flex-direction: column;
     border-radius: 15px;
     background-color: ${colors.lightGreen};
-    margin: 1rem;
-    height: 20rem;
+    height: 24rem;
     box-shadow: 10px 10px 15px;
 
+    h2 {
+        text-align: center;
+        margin: 2rem 1.5rem;
+        color: ${colors.green};
+        font-size: 1.3rem
+    }
     @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -54,11 +65,4 @@ const Image = styled.img`
     height: 60%;
 `;
 
-const TitleSpan = styled.span`
-    margin-top: 20px;
-    font-size: 2em;
-    font-weight: bold;
-    color: ${colors.green};
-    text-align: center;
-`;
 export default Activities;
