@@ -27,5 +27,9 @@ const HouseList = styled.div`
   width: 100%;
   flex-wrap: wrap;
   display: flex;
+ 
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 export default AdminHouseList;
