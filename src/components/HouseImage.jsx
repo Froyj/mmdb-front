@@ -11,12 +11,12 @@ function HouseImage ({ id, image }) {
 
     return (
         <StyledLink to={`/maison/${id}`}>
-        <HouseCard>
-            <Image src={process.env.REACT_APP_API_URL + image.image.principal} />
-            <TitleSpan>{image.name}</TitleSpan>
-         <TitleSpan>{image.city}</TitleSpan>
-        <TitleSpan>{image.country}</TitleSpan>
-        </HouseCard> 
+                <Image src={process.env.REACT_APP_API_URL + image.image.principal} />
+                <TextContainer>
+                    <h2>{image.name}</h2>
+                    <City>{image.city}</City>
+                    <p>{image.country}</p>
+                </TextContainer>
         </StyledLink>
     );
 };
@@ -24,22 +24,23 @@ function HouseImage ({ id, image }) {
 const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: ${colors.blue};
-    width: 32%;
-
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
-`
-
-const HouseCard = styled.div`
+    height: 90%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
     background-color: ${colors.lightGreen};
-    margin: 1rem;
-    height: 30rem;
     box-shadow: 10px 10px 15px;
-    width: 100%;
+    margin: 3rem 1rem;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+
+    :hover {
+        transform: scale(1.1);
+        transition: all .4s ease-in-out;
+    }
 
     @media (max-width: 768px){
         display: flex;
@@ -49,20 +50,26 @@ const HouseCard = styled.div`
         margin : auto;
         margin-bottom: 15px;
     }
-`;
-
+`
 const Image = styled.img`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    height: 60%;
-`;
+    width: 100%;
+`
+const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    align-items: center;
 
-const TitleSpan = styled.span`
-    margin-top: 20px;
-    font-size: 2em;
+    h2 {
+        color: ${colors.green};
+        margin-bottom: .5rem;
+    }
+`
+const City = styled.p`
     font-weight: bold;
-    color: ${colors.green};
-    text-align: center;
-`;
+`
+
 
 export default HouseImage;

@@ -71,9 +71,9 @@ function BookingForm({ house }) {
         
         <PriceDetails>
         <SumUpTitle>Résumé de votre réservation</SumUpTitle>
-          <SumUp><p>Prix X Nombre de nuits</p><br />
+          <SumUp><p>Prix x Nombre de nuits</p><br />
           <p>Frais de ménage 60 euros</p><br />
-          <p>Taxe de séjour nombre de personnes X 2 euros</p><br />
+          <p>Taxe de séjour nombre de personnes x 2 euros</p><br />
           <p>Total</p><br /></SumUp>
         </PriceDetails>
 
