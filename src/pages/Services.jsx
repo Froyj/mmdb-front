@@ -49,7 +49,7 @@ function Services() {
             <TitleSpan>Découverte de la Faune et de la Flore</TitleSpan>
         </Card>
         <Card>
-            <Image src="./ressources/gastronomie-locale.jpg" alt ="gastronomie"/>
+            <Image src="./ressources/gastronomie-locale.JPG" alt ="gastronomie"/>
             <TitleSpan>Découverte de la gastronomie locale</TitleSpan>
         </Card>
         </ActivitiesContainer>
