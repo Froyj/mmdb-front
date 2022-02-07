@@ -37,6 +37,7 @@ const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   height: 60%;
+  object-fit: cover;
 `;
 
 const TitleSpan = styled.span`

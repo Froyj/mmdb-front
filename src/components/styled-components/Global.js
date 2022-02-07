@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import colors from './colors';
+import styled from "styled-components";
+import colors from "./colors";
 
 const Global = styled.div`
     display: ${(props) => props.display || "flex"};
@@ -10,9 +10,9 @@ const Global = styled.div`
     text-align: ${(props) => props.textAlign || "justify"};
     color: ${colors.blue};
 
-    a{
-        text-decoration: ${(props) => props.textDecoration || "none"};
-    }
+  a {
+    text-decoration: ${(props) => props.textDecoration || "none"};
+  }
 `;
 
 export default Global;

@@ -68,6 +68,7 @@ const Image = styled.img`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     height: 75%;
+    object-fit: cover;
 `;
 
 const ServicesContainer = styled.div`

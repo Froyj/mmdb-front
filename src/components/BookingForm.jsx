@@ -29,7 +29,7 @@ function BookingForm({ house }) {
     }, []);
 
   return (
-    <div>
+    <Div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         
         <h1>Réservez votre maison</h1>
@@ -80,9 +80,13 @@ function BookingForm({ house }) {
         <SubmitButton marginTop="10px" marginBottom="10px">Réserver</SubmitButton>
 
       </Form>
-    </div>
+    </Div>
   );
 }
+
+const Div = styled.div`
+margin-bottom: 30px;
+`
 
 const Form = styled.div`
   border: 2px solid #1c2c46;
