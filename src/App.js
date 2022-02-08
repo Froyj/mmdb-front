@@ -32,6 +32,7 @@ import {
 } from './reducers/userContextReducer';
 import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
+import HouseCarrousel from './pages/HouseCarrousel';
 
 Modal.setAppElement('#root');
 
@@ -90,6 +91,7 @@ function App() {
               element={<Search houses={houses} />}
             />
             <Route path='/maison/:id' element={<House houses={houses} />} />
+            <Route path='/maison/:id/pictures' element={<HouseCarrousel houses={houses} />} />
 
             {/* Admin Routes */}
             <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>

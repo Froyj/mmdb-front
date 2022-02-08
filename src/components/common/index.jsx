@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Global from "../styled-components/Global";
 import FilledButton from "../styled-components/FilledButton";
 
+//  --> vv house vv <--
+
 const Container = styled(Global)`
   p {
     margin-left: 10px;
@@ -9,7 +11,6 @@ const Container = styled(Global)`
 
   margin: auto;
   margin-top: 20px;
-
 `;
 
 const ImagesDiv = styled.div`
@@ -163,6 +164,8 @@ const Booking = styled.div`
     width: 30%;
   }
 `;
+
+//  --> ^^ house ^^ <--
 
 export {
   Container,

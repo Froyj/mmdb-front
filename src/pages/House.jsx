@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../api/axios-config";
 import BookingForm from "../components/BookingForm";
@@ -14,7 +14,6 @@ import {
   ImagesDiv,
   PrincipalImg,
 } from "../components/common";
-import "../index.css";
 
 // eslint-disable-next-line react/prop-types
 function Equipments({ homeEquipments = null }) {
@@ -88,19 +87,21 @@ function House() {
           {house.adress}, {house.country}{" "}
         </p>
       </div>
-      <ImagesDiv>
-        <PrincipalImg>
-          <img
-            src={
-              house
-                ? process.env.REACT_APP_API_URL + house.image.principal
-                : null
-            }
-            alt={house.name}
-          />
-        </PrincipalImg>
-        {secondaryImage}
-      </ImagesDiv>
+      <Link to={`/maison/${id}/pictures`}>
+        <ImagesDiv>
+          <PrincipalImg>
+            <img
+              src={
+                house
+                  ? process.env.REACT_APP_API_URL + house.image.principal
+                  : null
+              }
+              alt={house.name}
+            />
+          </PrincipalImg>
+          {secondaryImage}
+        </ImagesDiv>
+      </Link>
       <Information>
         <Description>
           <h2>Description</h2>
