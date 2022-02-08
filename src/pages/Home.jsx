@@ -6,7 +6,7 @@ import HouseImage from "../components/HouseImage";
 import Activities from "../components/Activities";
 import Banner from "../components/styled-components/Banner";
 import Global from "../components/styled-components/Global";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/NavigationHome";
 
 function Home() {
   const [houseData, setHouseData] = useState([]);
