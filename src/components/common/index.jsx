@@ -13,6 +13,12 @@ const Container = styled(Global)`
   margin-top: 20px;
 `;
 
+const DisplayModal = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
+`;
+
 const ImagesDiv = styled.div`
   /* display: flex;
 flex-direction: column; */
@@ -178,4 +184,5 @@ export {
   PrincipalImg,
   Information,
   Description,
+  DisplayModal,
 };

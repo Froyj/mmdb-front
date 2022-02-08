@@ -20,14 +20,6 @@ const HouseCarrousel = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // const allPict = [];
-  // allPict.push(housePictures.principal);
-  // const secondPict = [];
-  // secondPict.push(housePictures.secondary.map((el) => el));
-
-  // console.log(allPict);
-  // console.log(secondPict);
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -126,17 +118,24 @@ const HouseCarrousel = () => {
 const MainContainer = styled.div`
   [class^="number-slide"],
   [class*=" number-slide"] {
-    background: grey;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 50px;
     color: rgb(255, 255, 255);
-    font-weight: 500;
-    height: auto;
-    width: 100%;
-    height: 90%;
-    max-height: 100vh;
+    /* font-weight: 500; */
+    /* height: auto; */
+    width: 100vw;
+    height: 80vh;
+    /* position: absolute; */
+  }
+
+  .keen-slider {
+    display: flex;
+    align-items: center;
+  }
+
+  .keen-slider__slide {
   }
 
   .dots {
@@ -192,12 +191,13 @@ const MainContainer = styled.div`
 const NavigationWrapper = styled.div`
   position: relative;
   width: 100%;
-  /* height: 90%; */
+  height: 90%;
 
   img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    object-position: 50% 50%;
   }
 `;
 
