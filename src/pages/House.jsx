@@ -1,6 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../api/axios-config";
+// import useModal from "../components/useModal";
+import ModalCarrousel from "../components/modalCarrousel";
 import BookingForm from "../components/BookingForm";
 
 import {
@@ -13,6 +15,7 @@ import {
   EquipmentList,
   ImagesDiv,
   PrincipalImg,
+  DisplayModal,
 } from "../components/common";
 
 // eslint-disable-next-line react/prop-types
@@ -43,6 +46,18 @@ function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
 
+  const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+
+    function toggle() {
+      setIsShowing(!isShowing);
+    }
+
+    return { isShowing, toggle };
+  };
+
+  const { isShowing, toggle } = useModal();
+
   useEffect(() => {
     axios
       .get(`/home_to_rent/${id}`)
@@ -71,10 +86,6 @@ function House() {
     }
   };
 
-  // const handleClick = (panelName) => {
-  //   setPanelToDisplay(panelName);
-  // };
-
   if (!house) {
     return null;
   }
@@ -87,7 +98,7 @@ function House() {
           {house.adress}, {house.country}{" "}
         </p>
       </div>
-      <Link to={`/maison/${id}/pictures`}>
+      <DisplayModal onClick={toggle}>
         <ImagesDiv>
           <PrincipalImg>
             <img
@@ -101,7 +112,8 @@ function House() {
           </PrincipalImg>
           {secondaryImage}
         </ImagesDiv>
-      </Link>
+      </DisplayModal>
+      <ModalCarrousel isShowing={isShowing} hide={toggle} />
       <Information>
         <Description>
           <h2>Description</h2>
