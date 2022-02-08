@@ -1,6 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-// import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
@@ -21,13 +20,13 @@ const HouseCarrousel = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const allPict = [];
-  allPict.push(housePictures.principal);
-  const secondPict = [];
-  secondPict.push(housePictures.secondary.map((el) => el));
+  // const allPict = [];
+  // allPict.push(housePictures.principal);
+  // const secondPict = [];
+  // secondPict.push(housePictures.secondary.map((el) => el));
 
-  console.log(allPict);
-  console.log(secondPict);
+  // console.log(allPict);
+  // console.log(secondPict);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -62,38 +61,25 @@ const HouseCarrousel = () => {
     );
   }
 
+  if (!housePictures) {
+    return null;
+  }
+
   return (
     <MainContainer>
       <NavigationWrapper className="navigation-wrapper">
         <div ref={sliderRef} className="keen-slider">
-          {/* {housePictures ? (
-            <>
-              <div className="keen-slider__slide number-slide1">
-                <img
-                  src={process.env.REACT_APP_API_URL + housePictures.principal}
-                  alt="maison"
-                />
-              </div>
-              {housePictures.secondary.map((pict) => (
-                <div key={pict} className="keen-slider__slide">
-                  <img
-                    src={process.env.REACT_APP_API_URL + pict}
-                    alt="maison"
-                  />
-                </div>
-              ))}
-            </>
-          ) : null} */}
           <div className="keen-slider__slide number-slide1">
             <img
-              src={
-                housePictures
-                  ? process.env.REACT_APP_API_URL + housePictures.principal
-                  : null
-              }
+              src={process.env.REACT_APP_API_URL + housePictures.principal}
               alt="maison"
             />
           </div>
+          {housePictures.secondary.map((pict) => (
+            <div key={pict} className="keen-slider__slide">
+              <img src={process.env.REACT_APP_API_URL + pict} alt="maison" />
+            </div>
+          ))}
         </div>
         {loaded && instanceRef.current && (
           <>
