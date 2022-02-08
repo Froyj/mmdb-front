@@ -308,15 +308,30 @@ const FormContainer = styled.form`
   display: flex;
   margin-top: 1rem;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+   flex-wrap: wrap;
+  }
 `;
 const FormDiv = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+   }
+  
 `;
 const HouseInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+   }
 `;
 const HouseDescriptionDiv = styled.div`
   display: flex;
@@ -336,6 +351,12 @@ const HouseDescriptionDiv = styled.div`
     margin-left: 1rem;
     margin-bottom: 0.6rem;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const DateDiv = styled.div`
   display: flex;
@@ -353,6 +374,12 @@ const DateDiv = styled.div`
   input {
     width: 30%;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const CheckboxDiv = styled.div`
   display: flex;

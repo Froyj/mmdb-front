@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "../helper/axios-config";
-import FilledButton from "./styled-components/FilledButton";
 import colors from "./styled-components/colors";
 import updateHouses from "../data/updateHouses";
 import getHouses from "../data/houses";
@@ -361,21 +360,46 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    
+   }
 `;
 
 const FormContainer = styled.form`
   display: flex;
   margin-top: 1rem;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const FormDiv = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const HouseInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
+
+  
 `;
 const HouseDescriptionDiv = styled.div`
   display: flex;
@@ -395,6 +419,14 @@ const HouseDescriptionDiv = styled.div`
     margin-left: 1rem;
     margin-bottom: 0.6rem;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
+
+  
 `;
 const DateDiv = styled.div`
   display: flex;
@@ -412,6 +444,12 @@ const DateDiv = styled.div`
   input {
     width: 30%;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const CheckboxDiv = styled.div`
   display: flex;
@@ -539,5 +577,22 @@ const Submit = styled.input`
     transition: all 0.1s ease-in-out;
   }
 `;
+
+const FilledButton = styled.button`
+    border: none;
+    border-radius: 6px;
+    background-color: ${colors.blue};
+    padding:.6rem 2.5rem;
+    margin: auto;
+    color: white;
+    width: 80%;
+    height: auto;
+    font-size: 20px ;
+
+    &:hover {
+        transform: scale(1.06);
+        transition: all 0.1s ease-in-out;
+      }
+`
 
 export default UpdateHomeForm;
