@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SearchHouseList from "../components/SearchHouseList";
 import Global from "../components/styled-components/Global";
 import Banner from "../components/styled-components/Banner";
+import Navigation from "../components/Navigation";
 // import FilledButton from "../components/styled-components/FilledButton";
 // import colors from "../components/styled-components/colors";
 
@@ -14,9 +15,10 @@ function Search({ houses }) {
 
   return (
     <>
-      <Banner 
-        backgroundPosition="center" 
-        marginTop='0' 
+      <Navigation />
+      <Banner
+        backgroundPosition="center"
+        marginTop="0"
         image="url('./ressources/Banner-Nos-maisons-forestières.jpg')"
       >
         Nos maisons forestières

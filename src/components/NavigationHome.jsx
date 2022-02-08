@@ -49,7 +49,7 @@ const NavigationHome = () => {
         }
       }
     });
-  } 
+  }
 
   return (
     <MenuContainer id="menu-container">
@@ -123,6 +123,7 @@ const MenuContainer = styled.div`
 `;
 
 const Nav = styled.nav`
+  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

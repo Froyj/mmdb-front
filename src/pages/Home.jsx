@@ -72,7 +72,7 @@ const VideoContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 90vh;
+  height: 88vh;
 
   @media (max-width: 768px) {
     height: auto;
