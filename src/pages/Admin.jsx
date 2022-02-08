@@ -4,6 +4,7 @@ import styled from "styled-components";
 import colors from "../components/styled-components/colors";
 import FilledButton from "../components/styled-components/FilledButton";
 import Global from "../components/styled-components/Global";
+import Navigation from "../components/Navigation";
 
 import AdminHouseList from "../components/AdminHouseList";
 // import AdminReservationList from "../components/AdminReservationList";
@@ -16,24 +17,27 @@ function Admin({ houses, setHouses }) {
   };
 
   return (
-    <Global>
-      {/* <Section>
+    <>
+      <Navigation />
+      <Global>
+        {/* <Section>
         <h1>Statistiques</h1>
       </Section> */}
-      <Title>
-        <h1>Mes maisons des bois</h1>
-      </Title>
-      <AdminHouseList houses={houses} setHouses={setHouses} />
-      <ButtonsDiv>
-        <Link to="maison/ajouter">
-          <FilledButton> Ajouter une nouvelle maison </FilledButton>
-        </Link>
-      </ButtonsDiv>
-      {/* <Section>
+        <Title>
+          <h1>Mes maisons des bois</h1>
+        </Title>
+        <AdminHouseList houses={houses} setHouses={setHouses} />
+        <ButtonsDiv>
+          <Link to="maison/ajouter">
+            <FilledButton> Ajouter une nouvelle maison </FilledButton>
+          </Link>
+        </ButtonsDiv>
+        {/* <Section>
         <h1>Mes réservations</h1>
       </Section> */}
-      {/* <AdminReservationList bookings={bookings} /> */}
-    </Global>
+        {/* <AdminReservationList bookings={bookings} /> */}
+      </Global>
+    </>
   );
 }
 

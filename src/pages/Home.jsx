@@ -6,6 +6,7 @@ import HouseImage from "../components/HouseImage";
 import Activities from "../components/Activities";
 import Banner from "../components/styled-components/Banner";
 import Global from "../components/styled-components/Global";
+import Navigation from "../components/NavigationHome";
 
 function Home() {
   const [houseData, setHouseData] = useState([]);
@@ -25,6 +26,7 @@ function Home() {
 
   return (
     <>
+    <Navigation />
       <VideoContainer>
         <Video
           autoPlay
@@ -70,7 +72,7 @@ const VideoContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 90vh;
+  height: 88vh;
 
   @media (max-width: 768px) {
     height: auto;
