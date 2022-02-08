@@ -6,6 +6,7 @@ import HouseImage from "../components/HouseImage";
 import Activities from "../components/Activities";
 import Banner from "../components/styled-components/Banner";
 import Global from "../components/styled-components/Global";
+import Navigation from "../components/Navigation";
 
 function Home() {
   const [houseData, setHouseData] = useState([]);
@@ -25,6 +26,7 @@ function Home() {
 
   return (
     <>
+    <Navigation />
       <VideoContainer>
         <Video
           autoPlay

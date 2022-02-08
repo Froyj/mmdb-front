@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/user";
@@ -23,28 +23,33 @@ const Navigation = () => {
   const link3 = document.querySelector("#link3");
   const link4 = document.querySelector("#link4");
 
-  window.addEventListener("scroll", () => {
-    const scroll = window.scrollY;
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      if (scroll > 400) {
-        menuContainer.style.background = "#ba9b5c";
-        menuContainer.style.transition = "0.3s";
-        menuContainer.style.boxShadow = "1px 1px 5px black";
-        link1.style.color = "white";
-        link2.style.color = "white";
-        link3.style.color = "white";
-        link4.style.color = "white";
-      } else {
-        menuContainer.style.background = "transparent";
-        menuContainer.style.transition = "0.3s";
-        menuContainer.style.boxShadow = "none";
-        link1.style.color = "#ba9b5c";
-        link2.style.color = "#ba9b5c";
-        link3.style.color = "#ba9b5c";
-        link4.style.color = "#ba9b5c";
+  const path = useLocation();
+  console.log(path.pathname);
+
+  if (path.pathname === "/") {
+    window.addEventListener("scroll", () => {
+      const scroll = window.scrollY;
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        if (scroll > 400) {
+          menuContainer.style.background = "#ba9b5c";
+          menuContainer.style.transition = "0.3s";
+          menuContainer.style.boxShadow = "1px 1px 5px black";
+          link1.style.color = "white";
+          link2.style.color = "white";
+          link3.style.color = "white";
+          link4.style.color = "white";
+        } else {
+          menuContainer.style.background = "transparent";
+          menuContainer.style.transition = "0.3s";
+          menuContainer.style.boxShadow = "none";
+          link1.style.color = "#ba9b5c";
+          link2.style.color = "#ba9b5c";
+          link3.style.color = "#ba9b5c";
+          link4.style.color = "#ba9b5c";
+        }
       }
-    }
-  });
+    });
+  } 
 
   return (
     <MenuContainer id="menu-container">
