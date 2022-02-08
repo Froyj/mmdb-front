@@ -5,18 +5,21 @@ import TextContainer from "../components/styled-components/TextContainer";
 import SecondContainer from "../components/styled-components/SecondContainer";
 import Image from "../components/styled-components/Image";
 import ImageContainer from "../components/styled-components/ImageContainer";
+import Navigation from "../components/Navigation";
 
 const About = () => (
+  <>
+  <Navigation />
   <Global>
-  <MainContainer>
     <SecondContainer>
       <ImageContainer>
-      <Image marginTop="30%"
-        src="../ressources/photo-antoine.jpeg"
-        alt="Antoine Sellier"
-        width="200px"
-        height="200px"
-      />
+        <Image
+            src="../ressources/photo-antoine.jpeg"
+            alt="Antoine Sellier"
+            width="200px"
+            height="200px"
+            mediaMargin="1rem"
+          />
       </ImageContainer>
       <TextContainer borderBottom="none" borderTop ="none">
         <span>Antoine Sellier</span>
@@ -29,35 +32,33 @@ const About = () => (
         vous mes petits coins de paradis.
       </TextContainer>
     </SecondContainer>
-    <ImageContainer display="block">
-      <Image
-        src="../ressources/Logo-transparent.png"
-        alt="Logo Ma maison des bois"
-        width="350px"
-        height="245px"
-      />
-    </ImageContainer>
     <ImageContainer>
       <Image
         src="../ressources/travaux1.jpeg"
         alt="Photo travaux"
-        width="350px"
-        height="250px"
-        borderRadius="10%"
+        height="17rem"
+        borderRadius="5%"
+        boxShadow="5px 5px 15px"
+        transform="scale(1.05)"
+        transition="all .4s ease-in-out"
       />
       <Image
-        src="../ressources/travaux3.jpeg"
+        src="../ressources/travaux4.jpeg"
         alt="Photo travaux"
-        width="300px"
-        height="250px"
-        borderRadius="10%"
+        height="17rem"
+        borderRadius="5%"
+        boxShadow="5px 5px 15px"
+        transform="scale(1.05)"
+        transition="all .4s ease-in-out"
       />
       <Image
         src="../ressources/travaux2.jpeg"
         alt="Photo travaux"
-        width="350px"
-        height="250px"
-        borderRadius="10%"
+        height="17rem"
+        borderRadius="5%"
+        boxShadow="5px 5px 15px"
+        transform="scale(1.05)"
+        transition="all .4s ease-in-out"
       />
     </ImageContainer>
     <TextContainer paddingTop="35px" paddingBottom="35px">
@@ -81,120 +82,131 @@ const About = () => (
       forestiers dans la rénovation et la gestion de leurs maisons forestières
       afin de les proposer à la location et de répondre ainsi à une nouvelle
       demande touristique.
+      <ImageContainer>
+        <Image
+          src="../ressources/travaux3.jpeg"
+          alt="Photo travaux"
+          height="18rem"
+          borderRadius="5%"
+          boxShadow="5px 5px 15px"
+          transform="scale(1.05)"
+          transition="all .4s ease-in-out"
+        />
+        <Image
+          src="../ressources/travaux5.jpeg"
+          alt="Photo travaux"
+          height="18rem"
+          borderRadius="5%"
+          boxShadow="5px 5px 15px"
+          transform="scale(1.05)"
+          transition="all .4s ease-in-out"
+        />
+        <Image
+          src="../ressources/travaux7.jpeg"
+          alt="Photo"
+          height="18rem"
+          borderRadius="5%"
+          boxShadow="5px 5px 15px"
+          transform="scale(1.05)"
+          transition="all .4s ease-in-out"
+        />
+        <Image
+          src="../ressources/travaux6.jpeg"
+          alt="Logo Ma maison des bois"
+          height="18rem"
+          borderRadius="5%"
+          boxShadow="5px 5px 15px"
+          transform="scale(1.05)"
+          transition="all .4s ease-in-out"
+        />
+        <Image
+          src="../ressources/travaux8.jpeg"
+          alt="Photo"
+          height="18rem"
+          borderRadius="5%"
+          boxShadow="10px 10px 15px"
+          transform="scale(1.05)"
+          transition="all .4s ease-in-out"
+      />
+    </ImageContainer>
     </TextContainer>
     <TitleAbout>Nos Engagements</TitleAbout>
-    <ImageContainer>
-      <Image
-        src="../ressources/travaux4.jpeg"
-        alt="Photo travaux"
-        width="400px"
-        height="300px"
-        borderRadius="10%"
-      />
-      <Image
-        src="../ressources/travaux5.jpeg"
-        alt="Photo travaux"
-        width="400px"
-        height="300px"
-        borderRadius="10%"
-      />
-    </ImageContainer>
-    <EngagementContainer>
-      <Image
-        src="../ressources/engagement1.png"
-        alt="Image planete et plante"
-        width="100px"
-        height="100px"
-        paddingLeft="60px"
-      />
-      <TextContainerEngagement>
-        Offrir aux propriétaires un accompagnement de qualité et respectueux de
-        l’environnement pour rénover de façon écologique les maisons
-        forestières.
-      </TextContainerEngagement>
-    </EngagementContainer>
-    <EngagementContainer>
-      <Image
-        src="../ressources/engagement4.png"
-        alt=" image feuille et cerf"
-        width="120px"
-        height="100px"
-        paddingLeft="60px"
-      />
-      <TextContainerEngagement>
-        Assurer aux hôtes, confort et services de grande qualité. Faire
-        découvrir des lieux uniques : mettre en place des activités pour
-        découvrir la faune et la flore qui évoluent autour des maisons
-        forestières.
-      </TextContainerEngagement>
-    </EngagementContainer>
-    <EngagementContainer>
-      <Image
-        src="../ressources/engagement3.png"
-        alt="Image argent dans la main"
-        width="100px"
-        height="100px"
-        paddingLeft="60px"
-      />
-      <TextContainerEngagement>
-        Participer à la préservation des milieux naturels et à la création de
-        richesse dans les communes rurales, (en reversant une partie du chiffre
-        d’affaires aux propriétaires forestiers pour entretenir les espaces
-        naturels)
-      </TextContainerEngagement>
-    </EngagementContainer>
-    <ImageContainer>
-      <Image
-        src="../ressources/travaux7.jpeg"
-        alt="Photo"
-        width="300px"
-        height="300px"
-        borderRadius="10%"
-      />
-      <Image
-        src="../ressources/travaux6.jpeg"
-        alt="Logo Ma maison des bois"
-        width="400px"
-        height="300px"
-        borderRadius="10%"
-      />
-      <Image
-        src="../ressources/travaux8.jpeg"
-        alt="Photo"
-        width="300px"
-        height="300px"
-        borderRadius="10%"
-      />
-    </ImageContainer>
-  </MainContainer>
+
+    <NosEngagements>
+      <EngagementContainer>
+        <Image
+          src="../ressources/engagement1.png"
+          alt="Image planete et plante"
+          margin="0"
+          mediaWidth="20%"
+          mediaHeight="auto"
+          mediaMarginRight="1.5rem"
+        />
+        <TextContainerEngagement>
+          Offrir aux propriétaires un accompagnement de qualité et respectueux de
+          l’environnement pour rénover de façon écologique les maisons
+          forestières.
+        </TextContainerEngagement>
+      </EngagementContainer>
+      <EngagementContainer>
+        <Image
+          src="../ressources/engagement4.png"
+          alt=" image feuille et cerf"
+          margin="0"
+          mediaWidth="20%"
+          mediaHeight="auto"
+          mediaMarginRight="1.5rem"
+        />
+        <TextContainerEngagement>
+          Assurer aux hôtes, confort et services de grande qualité. Faire
+          découvrir des lieux uniques : mettre en place des activités pour
+          découvrir la faune et la flore qui évoluent autour des maisons
+          forestières.
+        </TextContainerEngagement>
+      </EngagementContainer>
+      <EngagementContainer>
+        <Image
+          src="../ressources/engagement3.png"
+          alt="Image argent dans la main"
+          margin="0"
+          mediaWidth="20%"
+          mediaHeight="auto"
+          mediaMarginRight="1.5rem"
+        />
+        <TextContainerEngagement>
+          Participer à la préservation des milieux naturels et à la création de
+          richesse dans les communes rurales, (en reversant une partie du chiffre
+          d’affaires aux propriétaires forestiers pour entretenir les espaces
+          naturels)
+        </TextContainerEngagement>
+      </EngagementContainer>
+    </NosEngagements>
   </Global>
+  </>
 );
+
+export default About;
+
 
 const TitleAbout = styled.h1`
   text-align: center;
   padding: 30px 30px;
-`;
-
-const MainContainer = styled.div`
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  color: #1c2c46;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    display: block;
-}
-`;
-
+`
+const NosEngagements = styled.div`
+  width: 90%;
+  align-self:center;
+  margin-bottom: 3rem;
+`
 const EngagementContainer = styled.div`
   display: flex;
   margin: 20px 20px;
 
   @media (max-width: 768px) {
-  display: block;
+  display: flex;
   line-height: 1.3em;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 `;
 
@@ -206,7 +218,7 @@ const TextContainerEngagement = styled.div`
 
   @media (max-width: 768px) {
   line-height: 1.3em;
-  width: 95%;
+  width: 80%;
 }
 `;
 
@@ -214,6 +226,3 @@ const ListContainer = styled.ul`
   list-style: inside;
   text-align: justify;
 `;
-
-
-export default About;

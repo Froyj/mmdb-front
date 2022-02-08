@@ -26,7 +26,7 @@ const postHouses = async (
         })
         .then((res) => {
           setPostedHouse(res.data);
-          alert("Maison ajoutée !");
+   
         })
         .catch((err) => {
           console.log(err);

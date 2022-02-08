@@ -9,7 +9,7 @@ import House from './pages/House';
 import getHouses from './data/houses';
 import getBookings from './data/bookings';
 
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import FilledButton from './components/styled-components/FilledButton';
 import About from './pages/About';
@@ -73,7 +73,7 @@ function App() {
     return (
       <>
         <UserContextProvider value={{ ...userContext, dispatch }}>
-          <Navigation />
+          {/* <Navigation /> */}
 
           <Routes>
             {/* Connected User */}

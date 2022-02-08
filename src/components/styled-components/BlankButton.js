@@ -10,6 +10,8 @@ const BlankButton = styled.button`
     width: ${(props) => props.width};
     height: ${(props) => props.height};
     margin: ${(props => props.margin)}
+
+    
 `
 
 export default BlankButton;

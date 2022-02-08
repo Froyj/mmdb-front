@@ -18,6 +18,7 @@ const Banner = styled.h1`
     align-items: center;
     justify-content: center;
     z-index: ${(props) => props.zIndex};
+    box-shadow: 1px 1px 5px black;
 
     @media (max-width: 768px){
         background-size: cover;

@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/user";
 import axios from "../helper/axios-config";
+import StyledLink from "./styled-components/Link";
 
-const Navigation = () => {
+const NavigationHome = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
@@ -16,40 +17,74 @@ const Navigation = () => {
       .then(() => navigate("/"))
       .catch(console.log);
   };
+  const menuContainer = document.getElementById("menu-container");
+  const link1 = document.querySelector("#link1");
+  const link2 = document.querySelector("#link2");
+  const link3 = document.querySelector("#link3");
+  const link4 = document.querySelector("#link4");
+
+  window.addEventListener("scroll", () => {
+    const scroll = window.scrollY;
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      if (scroll > 400) {
+        menuContainer.style.background = "#ba9b5c";
+        menuContainer.style.transition = "0.3s";
+        menuContainer.style.boxShadow = "1px 1px 5px black";
+        link1.style.color = "white";
+        link2.style.color = "white";
+        link3.style.color = "white";
+        link4.style.color = "white";
+    
+
+      } else {
+        menuContainer.style.background = "transparent";
+        menuContainer.style.transition = "0.3s";
+        menuContainer.style.boxShadow = "none";
+        link1.style.color = "#ba9b5c";
+        link2.style.color = "#ba9b5c";
+        link3.style.color = "#ba9b5c";
+        link4.style.color = "#ba9b5c";
+      
+      }
+    }
+  });
 
   return (
-    <MenuContainer>
+    <MenuContainer id="menu-container">
       <Nav>
-        <Link to="/">
+        <StyledLink to="/">
           <Logo>
             <img
               src="../ressources/Logo-transparent.png"
               alt="Logo Ma maison des bois"
             />
           </Logo>
-        </Link>
+        </StyledLink>
+
         <Burger onClick={() => setIsOpen(!isOpen)}>
           <span />
           <span />
           <span />
         </Burger>
+
         <Menu isOpen={isOpen}>
-          <Link to="/nos-maisons-forestieres">
-            <MenuLink>Nos maisons forestières</MenuLink>
-          </Link>
-          <Link to="/services">
-            <MenuLink>Nos services</MenuLink>
-          </Link>
-          <Link to="/qui-sommes-nous">
-            <MenuLink>Qui sommes-nous ?</MenuLink>
-          </Link>
+          <StyledLink to="/nos-maisons-forestieres">
+            <MenuLink id="link1">Nos maisons forestières</MenuLink>
+          </StyledLink>
+          <StyledLink to="/services">
+            <MenuLink id="link2">Nos services</MenuLink>
+          </StyledLink>
+          <StyledLink to="/qui-sommes-nous">
+            <MenuLink id="link3">Qui sommes-nous ?</MenuLink>
+          </StyledLink>
+
           <ConnexionContainer>
             {isConnected ? (
               <MenuLink onClick={() => disconnectUser()}>Deconnexion</MenuLink>
             ) : (
-              <Link to="/se-connecter">
-                <MenuLink>
-                  <Link to="/se-connecter">
+              <StyledLink to="/se-connecter">
+                <MenuLink id="link4">
+                  <StyledLink to="/se-connecter">
                     <Image>
                       <img
                         src="../ressources/user-white.png"
@@ -58,10 +93,10 @@ const Navigation = () => {
                         height="20px"
                       />
                     </Image>
-                  </Link>
+                  </StyledLink>
                   Se connecter
                 </MenuLink>
-              </Link>
+              </StyledLink>
             )}
           </ConnexionContainer>
         </Menu>
@@ -78,7 +113,8 @@ const MenuContainer = styled.div`
   width: 100%;
   top: 0;
   z-index: 1;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: none;
+  
 
   @media (max-width: 768px) {
     background: #ba9b5c;
@@ -86,13 +122,12 @@ const MenuContainer = styled.div`
 `;
 
 const Nav = styled.nav`
-  width: 100%;
   padding: 0 2rem;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  background: #ba9b5c;
+  width: 100%;
 
   @media (max-width: 1170px) {
     display: flex;
@@ -102,6 +137,14 @@ const Nav = styled.nav`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: row;
+  }
+`;
+
+const Logo = styled.div`
+  img {
+    width: 140px;
+    height: 90px;
+    padding: 5px;
   }
 `;
 
@@ -119,33 +162,15 @@ const Burger = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
-  }
-`;
-
-const MenuLink = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 1rem 1rem;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: underline #ba9b5c;
-  color: white;
-  transition: all 0.3 ease-in;
-  font-size: 1.2rem;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  text-transform: capitalize;
-
-  &:hover {
-    color: #eeeb8f;
+    justify-content: center;
+    margin-right: 5%;
   }
 `;
 
 const Menu = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  position: relative;
 
   @media (max-width: 768px) {
     overflow: hidden;
@@ -156,23 +181,40 @@ const Menu = styled.div`
   }
 `;
 
-const Logo = styled.div`
-  img {
-    width: 140px;
-    height: 90px;
-    padding: 5px;
+const MenuLink = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  color: #ba9b5c;
+  font-weight: bold;
+  margin-right: 20px;
+
+  transition: all 0.3 ease-in;
+  font-size: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-transform: capitalize;
+
+  &:hover {
+    color: #eeeb8f;
+  }
+
+  @media (max-width: 768px) {
+    color: white;
   }
 `;
 
 const ConnexionContainer = styled.div`
   display: flex;
+  flex-direction: row;
 `;
 
 const Image = styled.div`
-  display: flex;
-  flex-direction: row;
-  /* margin-top: 5px; */
+  margin-top: 5px;
   margin-right: 5px;
 `;
 
-export default Navigation;
+export default NavigationHome;

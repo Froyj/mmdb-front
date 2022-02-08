@@ -9,6 +9,7 @@ import { UserContext } from "../contexts/user";
 import axios from "../helper/axios-config";
 import { ADMIN } from "../constants/roles";
 import StyledLink from "./styled-components/Link";
+import Navigation from "./Navigation";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
@@ -33,38 +34,46 @@ const ConnectionModal = () => {
   };
 
   return (
-    <BackgroundImage>
-      <MainContainer>
-    <ContainerForm
-      width="500px"
-      height="300px"
-      marginTop="8%"
-      marginBottom="8%"
-    >
-      <TitleForm>Connexion</TitleForm>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <ConnectionInfos>
-          <input type="email" placeholder=" Email" {...register("email")} />
-          <br />
-          <input
-            type="password"
-            placeholder=" Mot de passe"
-            {...register("password")} />
-          <LineContainer>
-            <StyledLink to="/creation-compte">
-              <TextHover>Créer un compte ?</TextHover>
-            </StyledLink>
-          </LineContainer>
-        </ConnectionInfos>
-        <br />
-        <Submitbutton type="submit" fontSize="1em" margin="auto">
-          Se connecter
-        </Submitbutton>
-        <br />
-      </Form>
-    </ContainerForm>
-    </MainContainer>
-    </BackgroundImage>
+    <>
+      <Navigation />
+      <BackgroundImage>
+        <MainContainer>
+          <ContainerForm
+            width="500px"
+            height="300px"
+            marginTop="8%"
+            marginBottom="8%"
+          >
+            <TitleForm>Connexion</TitleForm>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <ConnectionInfos>
+                <input
+                  type="email"
+                  placeholder=" Email"
+                  {...register("email")}
+                />
+                <br />
+                <input
+                  type="password"
+                  placeholder=" Mot de passe"
+                  {...register("password")}
+                />
+                <LineContainer>
+                  <StyledLink to="/creation-compte">
+                    <TextHover>Créer un compte ?</TextHover>
+                  </StyledLink>
+                </LineContainer>
+              </ConnectionInfos>
+              <br />
+              <Submitbutton type="submit" fontSize="1em" margin="auto">
+                Se connecter
+              </Submitbutton>
+              <br />
+            </Form>
+          </ContainerForm>
+        </MainContainer>
+      </BackgroundImage>
+    </>
   );
 };
 
@@ -74,17 +83,15 @@ const BackgroundImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-/* object-fit: cover; */
+  /* object-fit: cover; */
   /* min-height: 100vh; */
-
 `;
 
 const MainContainer = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
-
 
 const Form = styled.form`
   display: flex;

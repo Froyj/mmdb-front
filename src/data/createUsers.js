@@ -7,9 +7,7 @@ const createUsers = (data) => {
       birth_date: `${data.birth_date}T00:00:00.000Z`,
       hashed_password: data.password
     })
-    .then(() => {
-      alert("le compte à bien été crée");
-    })
+    .then()
     .catch(() => {
       alert("cet email est déjà utilisé !");
     });
