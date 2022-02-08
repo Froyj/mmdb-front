@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { NavLink } from "react-router-dom";
 
@@ -29,8 +31,17 @@ function AddHomeForm({ setHouses }) {
 
     postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
     setTimeout(() => {
+      toast.success("Maison ajoutée !", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       getHouses(setHouses);
-    }, 1000);
+    }, 100);
   };
 
   const refreshData = () => {
@@ -286,6 +297,7 @@ function AddHomeForm({ setHouses }) {
         <Submit type="submit" value="Valider" />
         <NavLink to="/admin/dashboard">
           <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
+          <ToastContainer />
         </NavLink>
       </SubmitDiv>
     </FormContainer>
@@ -462,6 +474,11 @@ const Submit = styled.input`
   padding: 0.6rem 2.5rem;
   margin: 0.5rem;
   color: white;
+
+  &:hover {
+    transform: scale(1.06);
+    transition: all 0.1s ease-in-out;
+  }
 `;
 
 export default AddHomeForm;

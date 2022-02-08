@@ -18,7 +18,7 @@ const updateHouses = async (data, id, openingDate, closingDate, imgData, setUpda
             ),
           },
         })
-        .then((res) => setUpdateHouse(res.data), alert("Maison modifiée !"))
+        .then((res) => setUpdateHouse(res.data))
 
         .catch((err) => console.log(err));
     })

@@ -72,12 +72,18 @@ const HouseCard = styled.div`
   box-shadow: 10px 10px 15px;
   margin-bottom: 1rem;
   height: 450px;
+
+  :hover {
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+  }
 `;
 
 const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   height: 200px;
+  object-fit: cover;
 `;
 
 const TextDiv = styled.div`

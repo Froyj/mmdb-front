@@ -34,6 +34,8 @@ const NavigationHome = () => {
         link2.style.color = "white";
         link3.style.color = "white";
         link4.style.color = "white";
+    
+
       } else {
         menuContainer.style.background = "transparent";
         menuContainer.style.transition = "0.3s";
@@ -42,6 +44,7 @@ const NavigationHome = () => {
         link2.style.color = "#ba9b5c";
         link3.style.color = "#ba9b5c";
         link4.style.color = "#ba9b5c";
+      
       }
     }
   });
@@ -111,6 +114,7 @@ const MenuContainer = styled.div`
   top: 0;
   z-index: 1;
   box-shadow: none;
+  
 
   @media (max-width: 768px) {
     background: #ba9b5c;
