@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../api/axios-config";
+// import useModal from "../components/useModal";
+import ModalCarrousel from "../components/modalCarrousel";
 import BookingForm from "../components/BookingForm";
 
 import {
@@ -13,6 +15,7 @@ import {
   EquipmentList,
   ImagesDiv,
   PrincipalImg,
+  DisplayModal,
 } from "../components/common";
 import "../index.css";
 import Navigation from "../components/Navigation";
@@ -45,6 +48,18 @@ function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
 
+  const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+
+    function toggle() {
+      setIsShowing(!isShowing);
+    }
+
+    return { isShowing, toggle };
+  };
+
+  const { isShowing, toggle } = useModal();
+
   useEffect(() => {
     axios
       .get(`/home_to_rent/${id}`)
@@ -73,10 +88,6 @@ function House() {
     }
   };
 
-  // const handleClick = (panelName) => {
-  //   setPanelToDisplay(panelName);
-  // };
-
   if (!house) {
     return null;
   }
@@ -91,19 +102,22 @@ function House() {
             {house.adress}, {house.country}{" "}
           </p>
         </div>
-        <ImagesDiv>
-          <PrincipalImg>
-            <img
-              src={
-                house
-                  ? process.env.REACT_APP_API_URL + house.image.principal
-                  : null
-              }
-              alt={house.name}
-            />
-          </PrincipalImg>
-          {secondaryImage}
-        </ImagesDiv>
+        <DisplayModal onClick={toggle}>
+          <ImagesDiv>
+            <PrincipalImg>
+              <img
+                src={
+                  house
+                    ? process.env.REACT_APP_API_URL + house.image.principal
+                    : null
+                }
+                alt={house.name}
+              />
+            </PrincipalImg>
+            {secondaryImage}
+          </ImagesDiv>
+        </DisplayModal>
+        <ModalCarrousel isShowing={isShowing} hide={toggle} />
         <Information>
           <Description>
             <h2>Description</h2>
