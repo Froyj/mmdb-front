@@ -41,6 +41,7 @@ function App() {
   const [userContext, dispatch] = useReducer(userContextReducer, initialState);
   const [openModal, setOpenModal] = useState(false);
 
+
   function loginAttempt() {
     axios
       .get('/auth/check-token')
@@ -71,8 +72,7 @@ function App() {
     return (
       <>
         <UserContextProvider value={{ ...userContext, dispatch }}>
-        <ModalContext.Provider value={{ openModal, setOpenModal }} >
-
+          {/* <Navigation /> */}
 
           <Routes>
             {/* Connected User */}
@@ -105,21 +105,23 @@ function App() {
               />
             </Route>
           </Routes>
+          <ModalContext.Provider value={{ openModal, setOpenModal }} >
             <Modal
               isOpen={openModal}
               onRequestClose={() => setOpenModal(false)}
               style={{
                 content: {
+                  display: 'flex',
+                  width: '40%',
+                  alignSelf: 'center',
+                  justifySelf: 'center',
+                  flexDirection: 'column',
                   fontFamily: 'Trebuchet MS',
-                  width: '70%',
-                  textAlign: 'center',
-                  top: "50%",
-                  left: "50%",
-                  right: "auto",
-                  bottom: "auto",
-                  marginRight: "-50%",
-                  transform: "translate(-50%, -50%)",
-                  opacity: "1",
+                  left: '30%',
+                  top: '40%',
+                  // height: '25%',
+                  justifyContent: 'center',
+                  alignItems: 'center'
                 }
               }}
             >
@@ -144,10 +146,9 @@ export default App;
 const ModalTitle = styled.h1`
   color: ${colors.green};
   margin-bottom: 2rem;
-  font-size: 1.2rem;
 `
 const ModalText = styled.p`
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 100;
 
   a {
