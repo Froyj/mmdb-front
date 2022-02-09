@@ -511,6 +511,7 @@ const ImagesDiv = styled.div`
 `;
 const SubmitDiv = styled.div`
   display: flex;
+  align-items: center;
   width: 95%;
   justify-content: flex-end;
   margin-top: 2rem;
@@ -589,9 +590,8 @@ const FilledButton = styled.button`
     padding:.6rem 2.5rem;
     margin: auto;
     color: white;
-    width: 80%;
+    width: 250px;
     height: auto;
-    font-size: 20px ;
 
     &:hover {
         transform: scale(1.06);
