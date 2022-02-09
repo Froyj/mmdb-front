@@ -103,11 +103,12 @@ const Description = styled.div`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    margin-bottom: 2rem
   }
 `;
 
 const EquipmentContainer = styled.div`
-  width: 60%;
+  width: 45%;
 
   .dropDown-title {
     cursor: pointer;

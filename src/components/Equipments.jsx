@@ -10,30 +10,23 @@ function Equipments({ homeEquipments = null }) {
   
     const roomsList = Object.keys(homeEquipments.equipment);
   
-    const [displayEquipments, setDisplayEquipments] = useState("")
+    const [displayEquipments, setDisplayEquipments] = useState(false)
 
-    const handleClick = (panelName) => {
-      if (panelName === displayEquipments) {
-        setDisplayEquipments("");
-      } else {
-        setDisplayEquipments(panelName);
-      }
+    const handleClick = () => {
+      setDisplayEquipments(!displayEquipments)
     };
 
     return (
       <EquipmentInfo>
         <FilledButton
           type='button'
-          onClick={handleClick("equipments")}
-          className="dropDown-title"
+          onClick={() => handleClick()}
         > 
           <h3> Equipements </h3>
         </FilledButton>
         {roomsList.map((room) => (
           <EquipmentItem
-          className={`equipments-list ${
-            displayEquipments === "equipments" ? "visible" : ""
-          }`}
+          className={displayEquipments ? "" : "hidden"}
           >
             <RoomTitle>
               <h3> {room} </h3>        
@@ -55,6 +48,17 @@ function Equipments({ homeEquipments = null }) {
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    @media screen and (max-width: 600px) {
+      .hidden {
+        display: none
+      }
+
+      button {
+        cursor: pointer
+      }
+    }
+
   `
   const EquipmentItem = styled.div`
     width: 100%;
