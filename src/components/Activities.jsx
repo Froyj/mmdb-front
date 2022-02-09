@@ -36,6 +36,7 @@ const StyledLink = styled(NavLink)`
   :hover {
     transform: scale(1.1);
     transition: all 0.5s ease-in-out;
+    box-shadow: 5px 10px 15px;
   }
 `;
 
@@ -45,7 +46,7 @@ const ActivitiesCard = styled.div`
   border-radius: 15px;
   background-color: ${colors.lightGreen};
   height: 24rem;
-  box-shadow: 10px 10px 15px;
+  box-shadow: 2px 5px 10px;
 
   h2 {
     text-align: center;

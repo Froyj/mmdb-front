@@ -25,8 +25,10 @@ const ServiceCard = styled.div`
   background-color: ${colors.lightGreen};
   margin: 1.7rem;
   height: 22rem;
-  box-shadow: 10px 10px 15px;
+  box-shadow: 2px 5px 10px;
   width: 25%;
+
+  
 
   @media (max-width: 768px) {
     width: 90%;

@@ -30,7 +30,7 @@ const StyledLink = styled(NavLink)`
   flex-direction: column;
   border-radius: 15px;
   background-color: ${colors.lightGreen};
-  box-shadow: 10px 10px 15px;
+  box-shadow: 2px 5px 10px;
   margin: 3rem 1rem;
   transition-duration: 0.5s;
 
@@ -45,6 +45,7 @@ const StyledLink = styled(NavLink)`
   :hover {
     transform: scale(1.1);
     transition: all 0.4s ease-in-out;
+    box-shadow: 5px 10px 15px;
   }
 
   @media (max-width: 768px) {
