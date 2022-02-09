@@ -23,7 +23,7 @@ const Navigation = () => {
         <Link to="/">
           <Logo>
             <img
-              src="../ressources/Logo-transparent.png"
+              src="../ressources/Logo-blanc.png"
               alt="Logo Ma maison des bois"
             />
           </Logo>
