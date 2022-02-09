@@ -34,6 +34,7 @@ function BookingForm({ house }) {
 
   return (
     <Container>
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         
         <h1>Réservez votre maison</h1>
@@ -143,6 +144,7 @@ width: 33%;
     font-size: 1.3rem
   }
 }
+
 `
 
 const Form = styled.div`
@@ -178,6 +180,7 @@ const QuickBooking = styled.div`
 
 const SelectBookingDates = styled.div`
 display: flex;
+flex-wrap: wrap;
 flex-direction: row;
 justify-content: center;
 font-size: 1.2rem;
@@ -211,7 +214,6 @@ input {
     input {
       margin: 0 1rem
     }
-    
   }
 `;
 

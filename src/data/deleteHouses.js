@@ -3,9 +3,7 @@ import axios from "../helper/axios-config";
 const deleteHouses = (id) => {
   axios
     .delete("/home_to_rent", { data: { id } })
-    .then(() => {
-      alert("Maison supprimée !");
-    })
+    .then()
     .catch((err) => {
       console.log(err);
     });

@@ -14,6 +14,11 @@ const FilledButton = styled.button`
     font-size: ${(props => props.fontSize)};
     align-self: ${(props) => props.alignSelf};
     cursor : ${(props) => props.cursor}
+
+    &:hover {
+        transform: scale(1.06);
+        transition: all 0.1s ease-in-out;
+      }
 `
 
 export default FilledButton;

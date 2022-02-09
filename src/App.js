@@ -9,7 +9,7 @@ import House from './pages/House';
 import getHouses from './data/houses';
 import getBookings from './data/bookings';
 
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import FilledButton from './components/styled-components/FilledButton';
 import About from './pages/About';
@@ -40,11 +40,6 @@ function App() {
   const [bookings, setBookings] = useState([]);
   const [userContext, dispatch] = useReducer(userContextReducer, initialState);
   const [openModal, setOpenModal] = useState(false);
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen)
-  }
 
   function loginAttempt() {
     axios
@@ -76,9 +71,8 @@ function App() {
     return (
       <>
         <UserContextProvider value={{ ...userContext, dispatch }}>
-        <ModalContext.Provider value={{ openModal, setOpenModal, setIsOpen, toggleModal }} >
+        <ModalContext.Provider value={{ openModal, setOpenModal }} >
 
-          <Navigation />
 
           <Routes>
             {/* Connected User */}

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { NavLink } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import deleteHouses from "../data/deleteHouses";
 import getHouses from "../data/houses";
 import colors from "./styled-components/colors";
 import BlankTitle from "./styled-components/BlankTitle";
-import BlankButton from "./styled-components/BlankButton";
 
 function AdminHouseCard({ id, name, image, setHouses }) {
   AdminHouseCard.propTypes = {
@@ -20,13 +21,24 @@ function AdminHouseCard({ id, name, image, setHouses }) {
       deleteHouses(id);
     }
     return setTimeout(() => {
+      toast.success("Maison supprimée !", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       getHouses(setHouses);
-    }, 1000);
+    }, 100);
   };
 
   return (
     <Card>
-      <img src={process.env.REACT_APP_API_URL + image} alt={name} />
+      <StyledLink to={`/maison/${id}`}>
+        <img src={process.env.REACT_APP_API_URL + image} alt={name} />
+      </StyledLink>
       <BlankTitle color={colors.blue}>{name}</BlankTitle>
       <Buttons>
         <NavLink to={`/maison/${id}`}>
@@ -38,10 +50,42 @@ function AdminHouseCard({ id, name, image, setHouses }) {
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
           Supprimer
         </BlankButton>
+        <ToastContainer />
       </Buttons>
     </Card>
   );
 }
+
+const BlankButton = styled.button`
+    border: solid 4px;
+    border-radius: 6px;
+    background-color: transparent;
+    padding:.3rem 2rem;
+    color:${colors.blue};
+    width: auto;
+    height: 40px;
+    margin: 2px;
+    :hover {
+      transform: scale(1.1);
+      transition: all 0.1s ease-in-out;
+    }
+    
+    
+`
+
+const StyledLink = styled(NavLink)`
+  text-decoration: none;
+  color: ${colors.blue};
+  width: 100%;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 const Card = styled.div`
   display: flex;
@@ -53,9 +97,15 @@ const Card = styled.div`
 
   img {
     height: 11rem;
-    width: auto;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 5px 5px 10px;
+    object-fit: cover;
+
+    :hover {
+      transform: scale(1.03);
+      transition: all 0.4s ease-in-out;
+    }
   }
 `;
 

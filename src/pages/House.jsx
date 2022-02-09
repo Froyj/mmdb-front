@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "../api/axios-config";
+// import useModal from "../components/useModal";
+import ModalCarrousel from "../components/modalCarrousel";
 import BookingForm from "../components/BookingForm";
 import Equipments from "../components/Equipments";
 
@@ -15,12 +17,26 @@ import {
   EquipmentList,
   ImagesDiv,
   PrincipalImg,
+  DisplayModal,
 } from "../components/common";
 import "../index.css";
+import Navigation from "../components/Navigation";
 
 function House() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
+
+  const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+
+    function toggle() {
+      setIsShowing(!isShowing);
+    }
+
+    return { isShowing, toggle };
+  };
+
+  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     axios
@@ -57,6 +73,8 @@ function House() {
   }
 
   return (
+  <>
+    <Navigation />
     <Container>
       <div>
         <h1> {house.name} </h1>
@@ -127,6 +145,7 @@ function House() {
         <BookingForm house={house} id={id} />
       </Information>
     </Container>
+  </>
   );
 }
 
