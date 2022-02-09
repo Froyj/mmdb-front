@@ -119,7 +119,7 @@ const BlankCard = styled.div`
   width: 18%;
   background-color: ${colors.lightGreen};
   border-radius: 15px;
-  box-shadow: 10px 10px 15px;
+  box-shadow: 2px 5px 10px;
   margin: 3rem 1rem;
   height: 90%;
   padding: 10% 1rem;
@@ -130,6 +130,7 @@ const BlankCard = styled.div`
   :hover {
     transform: scale(1.1);
     transition: all 0.4s ease-in-out;
+    box-shadow: 5px 10px 15px;
   }
 
   @media (max-width: 768px) {
