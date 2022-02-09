@@ -49,7 +49,7 @@ function Footer() {
 }
 
 const Navbar = styled.nav`
-  background: #ba9b5c;
+  background: #5d7b4c;
   /* height: 5rem; */
   padding: 1.8em;
   font-family: "Trebuchet MS";

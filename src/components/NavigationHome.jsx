@@ -18,34 +18,18 @@ const NavigationHome = () => {
       .catch(console.log);
   };
   const menuContainer = document.getElementById("menu-container");
-  const link1 = document.querySelector("#link1");
-  const link2 = document.querySelector("#link2");
-  const link3 = document.querySelector("#link3");
-  const link4 = document.querySelector("#link4");
-  const link5 = document.querySelector("#link5");
 
   window.addEventListener("scroll", () => {
     const scroll = window.scrollY;
     if (window.matchMedia("(min-width: 768px)").matches) {
       if (scroll > 400) {
-        menuContainer.style.background = "#ba9b5c";
+        menuContainer.style.background = "#5d7b4c";
         menuContainer.style.transition = "0.3s";
         menuContainer.style.boxShadow = "1px 1px 5px black";
-        link1.style.color = "white";
-        link2.style.color = "white";
-        link3.style.color = "white";
-        link4.style.color = "white";
-        link5.style.color = "white";
-        
       } else {
         menuContainer.style.background = "transparent";
         menuContainer.style.transition = "0.3s";
         menuContainer.style.boxShadow = "none";
-        link1.style.color = "#ba9b5c";
-        link2.style.color = "#ba9b5c";
-        link3.style.color = "#ba9b5c";
-        link4.style.color = "#ba9b5c";
-        link5.style.color = "#ba9b5c";
       }
     }
   });
@@ -85,7 +69,9 @@ const NavigationHome = () => {
           )}
           <ConnexionContainer>
             {isConnected ? (
-              <MenuLink id="link6"onClick={() => disconnectUser()}>Deconnexion</MenuLink>
+              <MenuLink id="link6" onClick={() => disconnectUser()}>
+                Deconnexion
+              </MenuLink>
             ) : (
               <StyledLink to="/se-connecter">
                 <MenuLink id="link4">
@@ -121,15 +107,7 @@ const MenuContainer = styled.div`
   box-shadow: none;
 
   @media (max-width: 768px) {
-    background: #ba9b5c;
-  }
-
-  #link5 {
-    color: white;
-  }
-
-  #link6 {
-    color: white;
+    background: #5d7b4c;
   }
 `;
 
@@ -153,6 +131,9 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.div`
+ 
+  display: flex;
+  justify-content: center;
   img {
     width: 140px;
     height: 90px;
@@ -200,7 +181,7 @@ const MenuLink = styled.div`
   text-align: center;
   padding: 1rem 1rem;
   cursor: pointer;
-  color: #ba9b5c;
+  color: white;
   font-weight: bold;
   margin-right: 20px;
 

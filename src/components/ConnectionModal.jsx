@@ -84,7 +84,7 @@ const BackgroundImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   /* object-fit: cover; */
-  /* min-height: 100vh; */
+   min-height: 77vh; 
 `;
 
 const MainContainer = styled.div`
