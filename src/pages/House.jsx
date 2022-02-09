@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import axios from "../api/axios-config";
-// import useModal from "../components/useModal";
 import ModalCarrousel from "../components/modalCarrousel";
 import BookingForm from "../components/BookingForm";
+import Equipments from "../components/Equipments";
 
 import {
   Container,
@@ -20,29 +21,6 @@ import {
 import "../index.css";
 import Navigation from "../components/Navigation";
 
-// eslint-disable-next-line react/prop-types
-function Equipments({ homeEquipments = null }) {
-  if (!homeEquipments) {
-    return null;
-  }
-
-  const roomsList = Object.keys(homeEquipments.equipment);
-
-  return (
-    <>
-      {roomsList.map((room) => (
-        <>
-          <h3>{room}</h3>
-          <ul>
-            {homeEquipments.equipment[room].map((equipment) => (
-              <li key={equipment.id}>{equipment.name}</li>
-            ))}
-          </ul>
-        </>
-      ))}
-    </>
-  );
-}
 
 function House() {
   const { id } = useParams();
@@ -78,13 +56,14 @@ function House() {
     <li key={a.activity.name}> {a.activity.name} </li>
   ));
 
-  const [panelToDisplay, setPanelToDisplay] = useState("");
+  const [displayActivities, setDisplayActivities] = useState("");
+  const [displayConditions, setDisplayConditions] = useState("")
 
-  const handleClick = (panelName) => {
-    if (panelName === panelToDisplay) {
-      setPanelToDisplay("");
+  const handleClick = (panelName, display, setDisplay) => {
+    if (panelName === display) {
+      setDisplay("");
     } else {
-      setPanelToDisplay(panelName);
+      setDisplay(panelName);
     }
   };
 
@@ -95,89 +74,112 @@ function House() {
   return (
     <>
       <Navigation />
-      <Container>
-        <div>
-          <h1> {house.name} </h1>
-          <p>
-            {house.adress}, {house.country}{" "}
-          </p>
-        </div>
-        <DisplayModal onClick={toggle}>
-          <ImagesDiv>
-            <PrincipalImg>
-              <img
-                src={
-                  house
-                    ? process.env.REACT_APP_API_URL + house.image.principal
-                    : null
-                }
-                alt={house.name}
-              />
-            </PrincipalImg>
-            {secondaryImage}
-          </ImagesDiv>
-        </DisplayModal>
+        <Container>
+          <div>
+            <h1> {house.name} </h1>
+            <p>
+              {house.adress}, {house.country}{" "}
+            </p>
+          </div>
+          <DisplayModal onClick={toggle}>
+            <ImagesDiv>
+              <PrincipalImg>
+                <img
+                  src={
+                    house
+                      ? process.env.REACT_APP_API_URL + house.image.principal
+                      : null
+                  }
+                  alt={house.name}
+                />
+              </PrincipalImg>
+              {secondaryImage}
+            </ImagesDiv>
+          </DisplayModal>
+
         <ModalCarrousel isShowing={isShowing} hide={toggle} />
+
         <Information>
-          <Description>
-            <h2>Description</h2>
+        <Description>
+          <DescriptionLayout>
             <p>{house.describe_long}</p>
-            <EquipmentContainer>
-              <Showlist className="showButton">
-                <InfoButton
-                  type="button"
-                  onClick={() => handleClick("equipment")}
-                  className="dropDown-title"
-                >
-                  <h3> Équipements </h3>
-                </InfoButton>
-                <InfoButton
-                  type="button"
-                  onClick={() => handleClick("activity")}
-                  className="dropDown-title"
-                >
-                  <h3> Activités </h3>
-                </InfoButton>
-                <InfoButton
-                  type="button"
-                  onClick={() => handleClick("condition")}
-                >
-                  <h3> Conditions d'annulation </h3>
-                </InfoButton>
-              </Showlist>
-              <EquipmentList
-                className={`equipment-list ${
-                  panelToDisplay === "equipment" ? "visible" : ""
-                }`}
+          </DescriptionLayout>
+          <PageLayout>
+            <EquipmentsLayout>
+              <Equipments homeEquipments={house.home_equipment} />
+            </EquipmentsLayout>
+          <EquipmentContainer>
+            <Showlist>
+              <InfoButton
+                type="button"
+                onClick={() => handleClick("activity", displayActivities, setDisplayActivities)}
+                className="dropDown-title"
               >
-                <div className="dropDown-list">
-                  <Equipments homeEquipments={house.home_equipment} />
-                </div>
-              </EquipmentList>
+                <h3> Activités </h3>
+              </InfoButton>
               <EquipmentList
-                className={`activity-list ${
-                  panelToDisplay === "activity" ? "visible" : ""
-                }`}
+              className={`activity-list ${
+                displayActivities === "activity" ? "visible" : ""
+              }`}
+            >
+              <ul> {homeActivity} </ul>
+            </EquipmentList>
+              <InfoButton
+                type="button"
+                className="dropDown-title"
+                onClick={() => handleClick("condition", displayConditions, setDisplayConditions)}
               >
-                <ul> {homeActivity} </ul>
-              </EquipmentList>
+                <h3> Conditions d'annulation </h3>
+              </InfoButton>
               <EquipmentList
-                className={`condition-list ${
-                  panelToDisplay === "condition" ? "visible" : ""
-                }`}
-              >
-                <ul>
-                  <li>{house?.renting_conditions.total}</li>
-                  <li>{house?.renting_conditions.partial}</li>
-                </ul>
-              </EquipmentList>
-            </EquipmentContainer>
+              className={`condition-list ${
+                displayConditions === "condition" ? "visible" : ""
+              }`}
+            >
+              <ul>
+                <li>{house?.renting_conditions.total}</li>
+                <li>{house?.renting_conditions.partial}</li>
+              </ul>
+            </EquipmentList>
+            </Showlist>
+          </EquipmentContainer>
+          </PageLayout>
           </Description>
-          <BookingForm house={house} id={id} />
-        </Information>
-      </Container>
+
+        <BookingForm house={house} id={id} />
+      </Information>
+    </Container>
     </>
   );
 }
 
 export default House;
+
+const DescriptionLayout = styled.div`
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+  font-weight: lighter;
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    font-size: 1.1rem
+  }
+
+`
+const PageLayout = styled.div`
+  display: flex;
+  width: 100%;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column
+  }
+`
+const EquipmentsLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+
+  @media screen and (max-width: 600px) {
+    width: 100%
+  }
+`
