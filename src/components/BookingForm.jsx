@@ -3,11 +3,8 @@ import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import Modal from 'react-modal';
-import FilledButton from "./styled-components/FilledButton";
+import SubmitButton from "./styled-components/SubmitButton";
 import FoodOption from "./FoodOption";
-import colors from "./styled-components/colors";
 
 function BookingForm({ house }) {
   BookingForm.propTypes = {
@@ -22,7 +19,6 @@ function BookingForm({ house }) {
 
   const [mealOptions, setMealOptions] = useState([]);
   const [ show, setShow ] = useState("true");
-  const [openModal, setOpenModal] = useState(false);
   
   useEffect(() => {
     axios
@@ -33,8 +29,7 @@ function BookingForm({ house }) {
     }, []);
 
   return (
-    <Container>
-
+    <Div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         
         <h1>Réservez votre maison</h1>
@@ -54,7 +49,8 @@ function BookingForm({ house }) {
           </SelectBookingDates>
           <SelectTravellersNumber>
             <label htmlFor="travellersNumber">
-              <p> Nombre de voyageurs </p>
+              Voyageurs
+            <br />
               <input
                 type="number"
                 {...register("travellersNumber")}
@@ -62,6 +58,7 @@ function BookingForm({ house }) {
                 max={house.capacity}
               /> 
             </label>
+            <br />
           </SelectTravellersNumber>
         </QuickBooking>
         
@@ -73,84 +70,27 @@ function BookingForm({ house }) {
         </OptionChoice>
         
         <PriceDetails>
-          <SumUpTitle>Résumé de votre réservation</SumUpTitle>
-          <SumUp>
-            <p>Prix x Nombre de nuits</p>
-            <p>Frais de ménage (60,00€)</p>
-            <p>Taxe de séjour (2,00€) x Nombre de voyageurs</p>
-          </SumUp>
-          <SumUpTotal>Total</SumUpTotal>
+        <SumUpTitle>Résumé de votre réservation</SumUpTitle>
+          <SumUp><p>Prix x Nombre de nuits</p><br />
+          <p>Frais de ménage 60 euros</p><br />
+          <p>Taxe de séjour nombre de personnes x 2 euros</p><br />
+          <p>Total</p><br /></SumUp>
         </PriceDetails>
 
-        <FilledButton
-          type='button'
-          onClick={() => setOpenModal(!openModal)}
-          margin="1.5rem 0"
-          width="95%"
-          alignSelf="center"
-          fontSize="1rem"
-          cursor="pointer"
-          border="#fff solid 3px"
-        >
-          Réserver
-        </FilledButton>
+        <SubmitButton marginTop="10px" marginBottom="10px">Réserver</SubmitButton>
+
       </Form>
-
-      <Modal
-        isOpen={openModal}
-        onRequestClose={() => setOpenModal(false)}
-        style={{
-          content: {
-            fontFamily: 'Trebuchet MS',
-            width: '70%',
-            textAlign: 'center',
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-            opacity: "1",
-          }
-        }}
-      >
-        <ModalTitle> Intéressé.e par cette location ? </ModalTitle>
-        <ModalContact> Malheureusement, la réservation en ligne n'est pas encore disponible. </ModalContact>
-        <ModalText> N'hésitez pas à contacter l'équipe de Ma Maison des Bois pour effectuer une réservation.</ModalText>
-        <ModalContact> Tel: 06 20 90 78 27 </ModalContact>
-        <ModalContact> E-mail: <a href='mailto:mamaisondesbois@gmail.com'> cliquez ici </a></ModalContact>
-        <FilledButton
-          type='button'
-          onClick={() => setOpenModal(false)}
-          margin='2rem 0'
-        > Fermer </FilledButton>
-      </Modal>
-
-    </Container>
+    </Div>
   );
 }
 
-const Container = styled.div`
-margin-top: 3rem;
-margin-left: 3rem;
-width: 33%;
-
-@media screen and (max-width: 768px) {
-  width: 95%;
-  align-self: center;
-  margin: 0;
-
-  h1 {
-    font-size: 1.3rem
-  }
-}
-
+const Div = styled.div`
+margin-bottom: 30px;
 `
 
 const Form = styled.div`
-  /* border: 2px solid #1c2c46; */
-  background-color: ${colors.green};
-  padding: 1rem;
+  border: 2px solid #1c2c46;
+  background-color: white;
   border-radius: 15px;
   width: auto;
   height: auto;
@@ -159,21 +99,19 @@ const Form = styled.div`
   align-content: space-around;
   width: auto;
   color: #1c2c46;
-  box-shadow: 10px 10px 20px;
 
   h1 {
     text-align: center;
     padding: 20px 20px;
-    color: white
   }
 `;
 
 const QuickBooking = styled.div`
-  border: 3px solid white;
+  border: 2px solid #ba9b5c;
   width: 95%;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: auto;
   margin-top: 10px;
 `;
@@ -182,99 +120,35 @@ const SelectBookingDates = styled.div`
 display: flex;
 flex-wrap: wrap;
 flex-direction: row;
-justify-content: center;
-font-size: 1.2rem;
-
-label {
-  width: 45%;
-  text-align: center;
-  padding: .5rem
-}
-
-input {
-  width: 90%;
-  height: 1.5rem;
-  border-radius: 10px;
-  border: none;
-  text-align: center;
-  font-size: .9rem
-}
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    
-    label {
-      display: flex;
-      flex-direction: row;
-      font-size: 1rem;
-      width: 80%
-    }
-
-    input {
-      margin: 0 1rem
-    }
-  }
 `;
 
 const SelectTravellersNumber = styled.div`
-  display: flex;
-  flex-direction: row;
-  border-radius: 5px;
-  width: 100%;
-
-  label {
-    display: flex;
-    flex-direction: row;
-    margin: .5rem 0;
-
-    p{
-      padding: 0 1rem;
-      font-size: 1.2rem;
-      color: white
-    }
-
-    input {
-      width: 15%;
-      height: 1.3rem;
-      border-radius: 10px;
-      padding: 0 .6rem
-    }
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+border-radius: 5px;
+@media (max-width: 768px) {
+  flex-wrap: wrap;
   }
-
-  @media (max-width: 768px) {
-    label {
-      p {
-        font-size: 1rem;
-        padding: 0
-      }
-    }
-
-    input {
-      margin: 0 1rem
-    }
-  }
-`
+`;
 
 const OptionChoice = styled.div`
-background-color: white;
-border-radius: 10px;
-padding: 1rem;
-width: 89%;
+border: 2px solid #ba9b5c;
+border-radius: 5px;
+width: 95%;
 margin: auto;
-margin-top: 1.5rem;
-
+margin-top: 10px;
 li {
   line-height: 40px;
 }
- `
+ `;
 
 const Options = styled.h3`
 text-align: center;
-`
+`;
 
 const TitleOption = styled.h2`
-  margin-top: 1rem;
+margin-top: 1rem;
   width: auto;
   list-style: none;
   cursor: pointer;
@@ -288,48 +162,16 @@ const SumUpTitle = styled.h3`
 text-align: center;
 `;
 
-const SumUp = styled.div`
-  width: 100%;
-  margin: 1.5rem 1rem;
+const SumUp = styled.p`
+margin-top: 10px;
+`;
 
-  p {
-    margin: .8rem 0
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 90%
-  }
-`
-const SumUpTotal = styled.h3`
-  width: 90%;
-  margin: 1rem;
-  padding-top: 1rem;
-  border-top: dotted ${colors.blue} 3px;
-`
 const PriceDetails = styled.div`
+border: 2px solid #ba9b5c;
+border-radius: 5px;
 width: 95%;
-background-color: white;
-border-radius: 10px;
-padding: 1rem;
-width: 89%;
 margin: auto;
-margin-top: 1.5rem;
-`
+margin-top: 10px;
+`;
 
 export default BookingForm;
-
-const ModalTitle = styled.h1`
-  color: ${colors.green};
-  margin-bottom: 2rem;
-`
-const ModalContact = styled.p`
-  font-size: 1.1rem;
-  font-weight: 100;
-  letter-spacing: .06em;
-`
-const ModalText = styled.p`
-  font-size: 1.1rem;
-  font-weight: lighter;
-  letter-spacing: .06em;
-  margin-bottom: 1rem;
-`
