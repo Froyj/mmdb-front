@@ -7,7 +7,7 @@ import StyledLink from "./styled-components/Link";
 
 const NavigationHome = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isConnected, dispatch } = useContext(UserContext);
+  const { isConnected, dispatch, roleId } = useContext(UserContext);
   const navigate = useNavigate();
 
   const disconnectUser = () => {
@@ -22,6 +22,7 @@ const NavigationHome = () => {
   const link2 = document.querySelector("#link2");
   const link3 = document.querySelector("#link3");
   const link4 = document.querySelector("#link4");
+  const link5 = document.querySelector("#link5");
 
   window.addEventListener("scroll", () => {
     const scroll = window.scrollY;
@@ -34,6 +35,8 @@ const NavigationHome = () => {
         link2.style.color = "white";
         link3.style.color = "white";
         link4.style.color = "white";
+        link5.style.color = "white";
+        
       } else {
         menuContainer.style.background = "transparent";
         menuContainer.style.transition = "0.3s";
@@ -42,6 +45,7 @@ const NavigationHome = () => {
         link2.style.color = "#ba9b5c";
         link3.style.color = "#ba9b5c";
         link4.style.color = "#ba9b5c";
+        link5.style.color = "#ba9b5c";
       }
     }
   });
@@ -74,10 +78,14 @@ const NavigationHome = () => {
           <StyledLink to="/qui-sommes-nous">
             <MenuLink id="link3">Qui sommes-nous ?</MenuLink>
           </StyledLink>
-
+          {roleId === 1 && (
+            <StyledLink to="/admin/dashboard">
+              <MenuLink id="link5">Admin</MenuLink>
+            </StyledLink>
+          )}
           <ConnexionContainer>
             {isConnected ? (
-              <MenuLink onClick={() => disconnectUser()}>Deconnexion</MenuLink>
+              <MenuLink id="link6"onClick={() => disconnectUser()}>Deconnexion</MenuLink>
             ) : (
               <StyledLink to="/se-connecter">
                 <MenuLink id="link4">
@@ -114,6 +122,14 @@ const MenuContainer = styled.div`
 
   @media (max-width: 768px) {
     background: #ba9b5c;
+  }
+
+  #link5 {
+    color: white;
+  }
+
+  #link6 {
+    color: white;
   }
 `;
 
@@ -196,6 +212,10 @@ const MenuLink = styled.div`
 
   &:hover {
     color: #eeeb8f;
+  }
+
+  #link5 {
+    color: white;
   }
 
   @media (max-width: 768px) {
