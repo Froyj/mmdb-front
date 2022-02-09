@@ -69,13 +69,16 @@ const HouseCard = styled.div`
   border-radius: 15px;
   background-color: ${colors.lightGreen};
   margin: 1rem;
-  box-shadow: 10px 10px 15px;
+  box-shadow: 5px 10px 15px;
   margin-bottom: 1rem;
   height: 450px;
+  width: 80%;
+  margin-bottom: 74px;
 
   :hover {
-    transform: scale(1.1);
+    transform: scale(1.06);
     transition: all 0.4s ease-in-out;
+    box-shadow: 10px 15px 20px;
   }
 `;
 
