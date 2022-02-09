@@ -5,8 +5,16 @@ import FilledButton from "../styled-components/FilledButton";
 //  --> vv house vv <--
 
 const Container = styled(Global)`
+  margin: 3rem auto;
+
   p {
     margin-left: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    width: 90%
   }
 
   margin: auto;
@@ -78,10 +86,10 @@ const PrincipalImg = styled.div`
 `;
 
 const Information = styled.div`
-  /* border: 4px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 
   @media screen and (min-width: 600px) {
     flex-direction: row;
@@ -89,8 +97,7 @@ const Information = styled.div`
 `;
 
 const Description = styled.div`
-  /* border: 4px solid grey; */
-  width: 100%;
+  width: 74%;
 
   h2 {
     margin: 0.5em;
@@ -102,16 +109,18 @@ const Description = styled.div`
 
   li {
     list-style: none;
-    /* margin-bottom: 10px; */
     margin-left: 0.5em;
   }
 
-  @media screen and (min-width: 800px) {
-    width: 50%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 2rem
   }
 `;
 
 const EquipmentContainer = styled.div`
+  width: 45%;
+
   .dropDown-title {
     cursor: pointer;
   }
@@ -119,44 +128,38 @@ const EquipmentContainer = styled.div`
   .visible {
     display: block;
     justify-content: space-around;
-    /* display: flex; */
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%    
   }
 `;
 
 const EquipmentList = styled.div`
   display: none;
-  background-color: rgba(179, 154, 154, 0.123);
-  padding: 1em;
-  /* border: 2px black solid; */
-  /* width: 70px; */
-  /* text-align: center; */
-  /* border: 4px solid green; */
+  padding: .5rem 2rem;
 
-  .equipmentLi {
-    display: flex;
-    flex-direction: row;
+  li {
+    margin: .5rem 0;
   }
-`;
+`
 
 const Showlist = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 
-  @media screen and (min-width: 600px) {
+  @media screen and (max-width: 600px) {
     flex-flow: row wrap;
     justify-content: space-evenly;
     width: 100%;
-    /* background-color: gray; */
   }
 `;
 
 const InfoButton = styled(FilledButton)`
-  /* width: 33%; */
-  /* margin: 0; */
-  padding: 0.6em;
+  padding-top: 1em;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (max-width: 600px) {
+    width: 100%
   }
 `;
 
