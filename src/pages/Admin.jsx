@@ -59,6 +59,10 @@ const Global = styled.div`
 const ButtonsDiv = styled.div`
   display: flex;
   margin: 1rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const Title = styled.div`
@@ -74,6 +78,10 @@ const Title = styled.div`
     font-weight: 100;
     font-size: 1.2rem;
     color: white;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
   }
 `;
 

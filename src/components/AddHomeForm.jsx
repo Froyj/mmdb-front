@@ -434,6 +434,10 @@ const ImagesDiv = styled.div`
       margin: 0 2rem;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 10rem;
+  }
 `;
 const SubmitDiv = styled.div`
   display: flex;

@@ -108,7 +108,7 @@ function UpdateHomeForm({ setHouses }) {
         >
           Récuperer les données actuelles
         </FilledButton>
-        <p>( Il faut re selectionner les images )</p>
+        <p>( Il faut re sélectionner les images )</p>
       </Div>
       {dataForm && (
         <FormDiv>
@@ -504,6 +504,10 @@ const ImagesDiv = styled.div`
       margin: 0 2rem;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 10rem;
+  }
 `;
 const SubmitDiv = styled.div`
   display: flex;
@@ -592,6 +596,11 @@ const FilledButton = styled.button`
     &:hover {
         transform: scale(1.06);
         transition: all 0.1s ease-in-out;
+      }
+
+      @media (max-width: 768px) {
+        height: 50px;
+        font-size: 15px;
       }
 `
 

@@ -6,7 +6,7 @@ import axios from "../helper/axios-config";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isConnected, dispatch } = useContext(UserContext);
+  const { isConnected, dispatch, roleId } = useContext(UserContext);
   const navigate = useNavigate();
 
   const disconnectUser = () => {
@@ -43,6 +43,11 @@ const Navigation = () => {
           <Link to="/qui-sommes-nous">
             <MenuLink>Qui sommes-nous ?</MenuLink>
           </Link>
+          {roleId === 1 && (
+            <Link to="/admin/dashboard">
+              <MenuLink>Admin</MenuLink>
+            </Link>
+          )}
           <ConnexionContainer>
             {isConnected ? (
               <MenuLink onClick={() => disconnectUser()}>Deconnexion</MenuLink>
