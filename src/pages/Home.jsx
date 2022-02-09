@@ -26,7 +26,7 @@ function Home() {
 
   return (
     <>
-    <Navigation />
+      <Navigation />
       <VideoContainer>
         <Video
           autoPlay
