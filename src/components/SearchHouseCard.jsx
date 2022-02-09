@@ -94,6 +94,7 @@ const TextDiv = styled.div`
   flex-direction: column;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin-top: 15px;
 `;
 
 const Title = styled.p`
