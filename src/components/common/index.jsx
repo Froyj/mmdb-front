@@ -2,10 +2,21 @@ import styled from "styled-components";
 import Global from "../styled-components/Global";
 import FilledButton from "../styled-components/FilledButton";
 
+//  --> vv house vv <--
+
 const Container = styled(Global)`
   p {
     margin-left: 10px;
   }
+
+  margin: auto;
+  margin-top: 20px;
+`;
+
+const DisplayModal = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
 `;
 
 const ImagesDiv = styled.div`
@@ -160,6 +171,8 @@ const Booking = styled.div`
   }
 `;
 
+//  --> ^^ house ^^ <--
+
 export {
   Container,
   Booking,
@@ -171,4 +184,5 @@ export {
   PrincipalImg,
   Information,
   Description,
+  DisplayModal,
 };

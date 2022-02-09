@@ -11,6 +11,11 @@ const FilledButton = styled.button`
     width: ${(props) => props.width};
     height: ${(props) => props.height};
     font-size: ${(props => props.fontSize)};
+
+    &:hover {
+        transform: scale(1.06);
+        transition: all 0.1s ease-in-out;
+      }
 `
 
 export default FilledButton;
