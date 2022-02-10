@@ -1,7 +1,6 @@
 import axios from '../helper/axios-config';
 
 const getBookings = (setVar) => {
-
     axios
     .get('/bookings')
     .then((response) => response.data)

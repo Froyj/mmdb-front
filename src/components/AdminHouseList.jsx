@@ -13,6 +13,7 @@ function AdminHouseList({ houses, setHouses }) {
     <HouseList>
       {houses.map((house) => (
         <AdminHouseCard
+          key={house.id}
           id={house.id}
           name={house.name}
           image={house.image.principal}

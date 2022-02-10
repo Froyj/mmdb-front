@@ -13,6 +13,7 @@ const FilledButton = styled.button`
     height: ${(props) => props.height};
     font-size: ${(props => props.fontSize)};
     align-self: ${(props) => props.alignSelf};
+    max-width: ${(props) => props.fitContent && 'fit-content'};
     cursor : ${(props) => props.cursor || 'pointer'};
     box-shadow: ${(props) => props.boxShadow};
 
