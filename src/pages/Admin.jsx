@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import colors from "../components/styled-components/colors";
-import FilledButton from "../components/styled-components/FilledButton";
-import Navigation from "../components/Navigation";
 import Global from "../components/styled-components/Global";
 
+import FilledButton from '../components/styled-components/FilledButton';
+import colors from '../components/styled-components/colors';
+import Navigation from '../components/Navigation';
 
-import AdminHouseList from "../components/AdminHouseList";
-// import AdminReservationList from "../components/AdminReservationList";
+import AdminHouseList from '../components/AdminHouseList';
+import { BookingDashboard } from '../components/Admin';
 
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {
@@ -23,22 +23,16 @@ function Admin({ houses, setHouses }) {
       <Global 
         minHeight="67.2vh"
       >
-        {/* <Section>
-        <h1>Statistiques</h1>
-      </Section> */}
         <Title>
           <h1>Mes maisons des bois</h1>
         </Title>
         <AdminHouseList houses={houses} setHouses={setHouses} />
         <ButtonsDiv>
-          <Link to="maison/ajouter">
+          <Link to='maison/ajouter'>
             <FilledButton> Ajouter une nouvelle maison </FilledButton>
           </Link>
         </ButtonsDiv>
-        {/* <Section>
-        <h1>Mes réservations</h1>
-      </Section> */}
-        {/* <AdminReservationList bookings={bookings} /> */}
+        <BookingDashboard />
       </Global>
     </>
   );

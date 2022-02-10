@@ -14,7 +14,7 @@ import FilledButton from './components/styled-components/FilledButton';
 import About from './pages/About';
 import AddNewHouse from './pages/AddNewHouse';
 
-import UpdateHouse from './pages/UpdateHouse';
+// import UpdateHouse from './pages/UpdateHouse';
 
 import Admin from './pages/Admin';
 import Home from './pages/Home';
@@ -31,6 +31,7 @@ import {
 } from './reducers/userContextReducer';
 import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
+import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 
 Modal.setAppElement('#root');
 
@@ -39,7 +40,6 @@ function App() {
   const [bookings, setBookings] = useState([]);
   const [userContext, dispatch] = useReducer(userContextReducer, initialState);
   const [openModal, setOpenModal] = useState(false);
-
 
   function loginAttempt() {
     axios
@@ -71,70 +71,84 @@ function App() {
     return (
       <>
         <UserContextProvider value={{ ...userContext, dispatch }}>
+          <BookingContextProvider>
+            {/* <Navigation /> */}
+            <Routes>
+              {/* Connected User */}
 
-          {/* <Navigation /> */}
-
-          <Routes>
-            {/* Connected User */}
-
-            <Route path='/profil' element={<UserProfile />} />
-            {/* Auth Routes */}
-            <Route path='/se-connecter' element={<ConnectionModal />} />
-            <Route path='/creation-compte' element={<SignUpForm />} />
-            {/* Public Route */}
-            <Route exact path='/' element={<Home />} />
-            <Route path='/services' element={<Services />} />
-            <Route path='/qui-sommes-nous' element={<About />} />
-            <Route
-              path='/nos-maisons-forestieres'
-              element={<Search houses={houses} />}
-            />
-            <Route path='/maison/:id' element={<House houses={houses} />} />
-
-            {/* Admin Routes */}
-            <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>
+              <Route path='/profil' element={<UserProfile />} />
+              {/* Auth Routes */}
+              <Route path='/se-connecter' element={<ConnectionModal />} />
+              <Route path='/creation-compte' element={<SignUpForm />} />
+              {/* Public Route */}
+              <Route exact path='/' element={<Home />} />
+              <Route path='/services' element={<Services />} />
+              <Route path='/qui-sommes-nous' element={<About />} />
               <Route
-                path='dashboard'
-                element={<Admin houses={houses} bookings={bookings} setHouses={setHouses} />}
+                path='/nos-maisons-forestieres'
+                element={<Search houses={houses} />}
               />
+              <Route path='/maison/:id' element={<House houses={houses} />} />
 
-              <Route path='dashboard/maison/ajouter' element={<AddNewHouse setHouses={setHouses} />} />
-              <Route
-                path='dashboard/mise-a-jour-maison/:id'
-                element={<UpdateHouse setHouses={setHouses} />}
-              />
-            </Route>
-          </Routes>
-          <ModalContext.Provider value={{ openModal, setOpenModal }} >
-          <Modal
-              isOpen={openModal}
-              onRequestClose={() => setOpenModal(false)}
-              style={{
-                content: {
-                  fontFamily: 'Trebuchet MS',
-                  width: '70%',
-                  textAlign: 'center',
-                  top: "50%",
-                  left: "50%",
-                  right: "auto",
-                  bottom: "auto",
-                  marginRight: "-50%",
-                  transform: "translate(-50%, -50%)",
-                  opacity: "1",
-                }
-              }}
-            >
-              <ModalTitle> Contacter l'équipe de Ma Maison des Bois </ModalTitle>
-              <ModalText> Par téléphone : 06 20 90 78 27 </ModalText>
-              <ModalText> Par e-mail : cliquez <a href='mailto:mamaisondesbois@gmail.com'> ici </a></ModalText>
-              <FilledButton
-                type='button'
-                onClick={() => setOpenModal(false)}
-                margin='2rem 0'
-              > Fermer </FilledButton>
-            </Modal>
-            <Footer />
-          </ModalContext.Provider>
+              {/* Admin Routes */}
+              <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>
+                <Route
+                  path='dashboard'
+                  element={
+                    <Admin
+                      houses={houses}
+                      bookings={bookings}
+                      setHouses={setHouses}
+                    />
+                  }
+                />
+                <Route
+                  path='dashboard/maison/ajouter'
+                  element={<AddNewHouse setHouses={setHouses} />}
+                />
+              </Route>
+            </Routes>
+            <ModalContext.Provider value={{ openModal, setOpenModal }}>
+              <Modal
+                isOpen={openModal}
+                onRequestClose={() => setOpenModal(false)}
+                style={{
+                  content: {
+                    fontFamily: 'Trebuchet MS',
+                    width: '70%',
+                    textAlign: 'center',
+                    top: '50%',
+                    left: '50%',
+                    right: 'auto',
+                    bottom: 'auto',
+                    marginRight: '-50%',
+                    transform: 'translate(-50%, -50%)',
+                    opacity: '1',
+                  },
+                }}
+              >
+                <ModalTitle>
+                  {' '}
+                  Contacter l'équipe de Ma Maison des Bois{' '}
+                </ModalTitle>
+                <ModalText> Par téléphone : 06 20 90 78 27 </ModalText>
+                <ModalText>
+                  {' '}
+                  Par e-mail : cliquez{' '}
+                  <a href='mailto:mamaisondesbois@gmail.com'> ici </a>
+                </ModalText>
+                <FilledButton
+                  type='button'
+                  onClick={() => setOpenModal(false)}
+                  margin='2rem 0'
+                >
+                  {' '}
+                  Fermer{' '}
+                </FilledButton>
+              </Modal>
+              <Footer />
+            </ModalContext.Provider>
+          </BookingContextProvider>
         </UserContextProvider>
       </>
     );
@@ -146,13 +160,14 @@ const ModalTitle = styled.h1`
   color: ${colors.green};
   margin-bottom: 2rem;
   font-size: 1.2rem;
-`
+`;
+
 const ModalText = styled.p`
   font-size: 1rem;
   font-weight: 100;
 
   a {
     text-decoration: none;
-    color: ${colors.green}
+    color: ${colors.green};
   }
-`
+`;
