@@ -4,6 +4,7 @@ import styled from "styled-components";
 import colors from "../components/styled-components/colors";
 import FilledButton from "../components/styled-components/FilledButton";
 import Navigation from "../components/Navigation";
+import Global from "../components/styled-components/Global";
 
 
 import AdminHouseList from "../components/AdminHouseList";
@@ -19,7 +20,9 @@ function Admin({ houses, setHouses }) {
   return (
     <>
       <Navigation />
-      <Global >
+      <Global 
+        minHeight="67.2vh"
+      >
         {/* <Section>
         <h1>Statistiques</h1>
       </Section> */}
@@ -40,21 +43,6 @@ function Admin({ houses, setHouses }) {
     </>
   );
 }
-
-const Global = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: auto;
-    font-family: Trebuchet MS;
-    text-align: justify;
-    color: ${colors.blue};
-    margin-bottom: 219px;
-
-  a {
-    text-decoration: ${(props) => props.textDecoration || "none"};
-  }
-`;
 
 const ButtonsDiv = styled.div`
   display: flex;

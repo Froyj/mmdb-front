@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
@@ -26,7 +27,7 @@ function BookingForm({ house }) {
   
   useEffect(() => {
     axios
-      .get("http://localhost:5500/options")
+      .get(`${process.env.REACT_APP_API_URL}/options`)
       .then((response) => {
         setMealOptions(response.data);
       });
@@ -100,9 +101,6 @@ function BookingForm({ house }) {
         onRequestClose={() => setOpenModal(false)}
         style={{
           content: {
-            fontFamily: 'Trebuchet MS',
-            width: '70%',
-            textAlign: 'center',
             top: "50%",
             left: "50%",
             right: "auto",
@@ -110,19 +108,34 @@ function BookingForm({ house }) {
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
             opacity: "1",
+            borderRadius: "15px"
           }
         }}
       >
-        <ModalTitle> Intéressé.e par cette location ? </ModalTitle>
-        <ModalContact> Malheureusement, la réservation en ligne n'est pas encore disponible. </ModalContact>
-        <ModalText> N'hésitez pas à contacter l'équipe de Ma Maison des Bois pour effectuer une réservation.</ModalText>
-        <ModalContact> Tel: 06 20 90 78 27 </ModalContact>
-        <ModalContact> E-mail: <a href='mailto:mamaisondesbois@gmail.com'> cliquez ici </a></ModalContact>
-        <FilledButton
-          type='button'
-          onClick={() => setOpenModal(false)}
-          margin='2rem 0'
-        > Fermer </FilledButton>
+        <ModalContainer>
+          <ModalTitle> Intéressé.e par cette location ? </ModalTitle>
+          <ModalContact> Malheureusement, la réservation en ligne n'est pas encore disponible. </ModalContact>
+          <ModalText> Créez un compte pour être recontacté par l'équipe de Ma Maison des Bois</ModalText>
+          <FilledButton
+            width="40%"
+            alignSelf="center"
+            backgroundColor="transparent"
+            border={`${colors.blue} solid 3px`}
+            fontSize="1rem"
+          > 
+            <ModalCreate to='/creation-compte'> Créer un compte </ModalCreate>
+          </FilledButton>
+          <ModalConnect to='/se-connecter'> Me connecter </ModalConnect>
+
+          <button
+            className='close'
+            type='button'
+            onClick={() => setOpenModal(false)}
+          > 
+            Fermer 
+          </button>
+          <ModalSmall> Ma maison des bois - 06 20 90 78 27 - <a href='mailto:mamaisondesbois@gmail.com'> e-mail </a></ModalSmall>
+        </ModalContainer>
       </Modal>
 
     </Container>
@@ -316,6 +329,28 @@ margin-top: 1.5rem;
 
 export default BookingForm;
 
+const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: 'Trebuchet MS';
+  display: "flex";
+  flex-direction: "column";
+  justify-self: center;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  .close {
+    border: none;
+    background: none;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    :hover {
+      text-decoration: underline
+    }
+  }
+`
 const ModalTitle = styled.h1`
   color: ${colors.green};
   margin-bottom: 2rem;
@@ -330,4 +365,32 @@ const ModalText = styled.p`
   font-weight: lighter;
   letter-spacing: .06em;
   margin-bottom: 1rem;
+  text-align: center;
+`
+const ModalSmall = styled.p`
+  font-size: 0.8rem;
+  font-style: italic;
+  color: grey;
+
+  a {
+    color: grey
+  }
+`
+const ModalCreate = styled(Link)`
+  text-decoration: none;
+  font-weight: bold;
+  color: ${colors.blue};
+
+  :hover {
+    color: ${colors.green}
+  }
+`
+const ModalConnect = styled(Link)`
+  text-decoration: none;
+  font-style: italic;
+  color: ${colors.blue};
+
+  :hover {
+    text-decoration: underline
+  }
 `

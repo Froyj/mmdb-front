@@ -23,7 +23,7 @@ const FoodOption = ({ repas }) => {
           {show
             ? null
             : repas.dish.map((name) => (
-                  <li><Counter /> {`${name.name} : ${name.price}`}</li>
+                  <li><Counter /> {`${name.name} : ${name.price}€`}</li>
               ))}
         </MealChoice>
       </SelectBox>

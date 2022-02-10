@@ -29,7 +29,7 @@ function SignUpForm() {
     <>
       <Navigation />
       <MainContainer>
-        <ContainerForm marginTop="8%" marginBottom="8%">
+        <ContainerForm marginTop="2rem" marginBottom="2rem">
           <TitleForm>Créer un compte</TitleForm>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="genre">
@@ -129,7 +129,12 @@ function SignUpForm() {
             </label>
             <br />
 
-            <Submitbutton type="submit">Envoyer</Submitbutton>
+            <Submitbutton 
+              type="submit"
+              marginTop="1.5rem"
+            >
+              Envoyer
+            </Submitbutton>
             <ToastContainer />
           </Form>
         </ContainerForm>
@@ -154,6 +159,7 @@ const Form = styled.form`
     border-radius: 8px;
     height: 32px;
     width: 80%;
+    padding: 0 1rem;
   }
 
   label {

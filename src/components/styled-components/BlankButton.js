@@ -9,9 +9,8 @@ const BlankButton = styled.button`
     color: ${(props) => props.textColor || colors.blue};
     width: ${(props) => props.width};
     height: ${(props) => props.height};
-    margin: ${(props => props.margin)}
-
-    
+    margin: ${(props => props.margin)};
+    cursor : ${(props) => props.cursor || 'pointer'};
 `
 
 export default BlankButton;

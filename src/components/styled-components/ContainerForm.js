@@ -9,9 +9,10 @@ const ContainerForm = styled.div`
   /* height: ${(props) => props.height || "auto"}; */
   border-radius: ${(props) =>  props.borderRadius || "15px"};
   /* margin: ${(props) =>  props.margin || "auto"}; */
-  border : ${(props) =>  props.border || "2px solid #1c2c46"};
+  border : ${(props) =>  props.border};
   margin-top: ${(props) =>  props.marginTop};  
-  margin-Bottom: ${(props) =>  props.marginBottom};  
+  margin-Bottom: ${(props) =>  props.marginBottom};
+  font-family: ${(props) => props.fontFamily || 'Trebuchet MS'};
   
   @media (max-width: 768px) {
     width: 90%;
