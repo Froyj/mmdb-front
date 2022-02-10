@@ -42,7 +42,7 @@ function Home() {
         marginTop="0"
         backgroundPosition="center center"
       >
-        <Title> Découvrez nos maisons forestières </Title>
+        <Title>Découvrez nos maisons forestières</Title>
       </Banner>
       <Global>
         <Container>
@@ -50,11 +50,11 @@ function Home() {
             <HouseImage key={image.id} id={image.id} image={image} />
           ))}
           <BlankCard>
-            <h3>Et d'autres maisons forestières à venir ...</h3>
+            <h3>Et d'autres maisons forestières à venir...</h3>
           </BlankCard>
         </Container>
 
-        <Title> Agrémentez votre séjour avec nos services </Title>
+        <Title>Agrémentez votre séjour avec nos services</Title>
         <Container>
           {servicesData
             .filter((el) => el.id === 1 || el.id === 2 || el.id === 5)

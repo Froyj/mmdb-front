@@ -177,7 +177,7 @@ const About = () => (
           Participer à la préservation des milieux naturels et à la création de
           richesse dans les communes rurales, (en reversant une partie du chiffre
           d’affaires aux propriétaires forestiers pour entretenir les espaces
-          naturels)
+          naturels).
         </TextContainerEngagement>
       </EngagementContainer>
     </NosEngagements>

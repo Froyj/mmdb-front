@@ -12,7 +12,8 @@ const Submitbutton = styled.button`
     margin: ${(props) => props.margin || "auto"};
     margin-top: ${(props) => props.marginTop || '0px'};
     margin-bottom: ${(props) => props.marginBottom || '0px'};
-    /* border: ${(props) => props.border || 'solid 2px'}; */
+    border: ${(props) => props.border};
+    background-color: ${(props) => props.backgroundColor};
 
     @media (max-width: 768px) {
         width: 100px;

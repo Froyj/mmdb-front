@@ -16,6 +16,7 @@ const FilledButton = styled.button`
     max-width: ${(props) => props.fitContent && 'fit-content'};
     cursor : ${(props) => props.cursor || 'pointer'};
     box-shadow: ${(props) => props.boxShadow};
+    border: ${(props) => props.border};
 
     :hover {
         transform: ${(props) => props.transform};
