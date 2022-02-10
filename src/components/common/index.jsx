@@ -54,21 +54,37 @@ const ImagesDiv = styled.div`
     .grid2 {
       display: block;
       grid-area: 1 / 3 / 2 / 4;
+
+      :hover {
+    transform: scale(0.98);
+  }
     }
 
     .grid3 {
       display: block;
       grid-area: 1 / 4 / 2 / 5;
+
+      :hover {
+    transform: scale(0.98);
+  }
     }
 
     .grid4 {
       display: block;
       grid-area: 2 / 3 / 3 / 4;
+
+      :hover {
+    transform: scale(0.98);
+  }
     }
 
     .grid5 {
       display: block;
       grid-area: 2 / 4 / 3 / 5;
+
+      :hover {
+    transform: scale(0.98);
+  }
     }
   }
 `;
@@ -77,6 +93,10 @@ const PrincipalImg = styled.div`
   width: 100%;
   height: auto;
   grid-area: 1 / 1 / 3 / 3;
+
+  :hover {
+    transform: scale(0.99);
+  }
 `;
 
 const Information = styled.div`

@@ -164,7 +164,6 @@ const DescriptionLayout = styled.div`
     width: 90%;
     font-size: 1.1rem
   }
-
 `
 const PageLayout = styled.div`
   display: flex;

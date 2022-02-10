@@ -50,19 +50,17 @@ function Footer() {
 
 const Navbar = styled.nav`
   background: #5d7b4c;
-  /* height: 5rem; */
   padding: 1.8em;
   font-family: "Trebuchet MS";
   color: white;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* margin-top: 3rem; */
 
   .logoList {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap; /* justify-content: flex-start; */
+    flex-wrap: nowrap;
 
     img {
       padding: 0 2em;

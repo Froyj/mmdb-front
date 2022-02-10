@@ -19,21 +19,22 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
       <HouseCard>
         <Image src={process.env.REACT_APP_API_URL + image} alt={name} />
         <TextDiv>
-          <Head>
-            <Title>
-              <TitleSpan>{name}</TitleSpan>
-            </Title>
-            <CityCapacity>
-              {city}
-              <br />
-              {capacity} personnes
-            </CityCapacity>
-            </Head>
-            <br />
-          <Price>
-            <PriceSpan>À partir de </PriceSpan>
-            {price}€ /nuit
-          </Price>
+          <Description>
+            <LeftContainer>
+              <Title>
+                <TitleSpan>{name}</TitleSpan>
+              </Title>
+              <CityCapacity>
+                {city}
+                <br />
+                {capacity} personnes
+              </CityCapacity>
+            </LeftContainer>
+            <Price>
+              <PriceSpan>À partir de </PriceSpan> 
+              {price}€ /nuit
+            </Price>
+          </Description>
           <Résumé>{text}</Résumé>
         </TextDiv>
       </HouseCard>
@@ -44,16 +45,12 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
 export default SearchHouseCard;
 
 const CityCapacity = styled.div``;
-const Head = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${colors.blue};
   width: 32%;
-
+  
   &:focus,
   &:hover,
   &:visited,
@@ -70,13 +67,12 @@ const HouseCard = styled.div`
   background-color: ${colors.lightGreen};
   margin: 1rem;
   box-shadow: 2px 5px 10px;
-  margin-bottom: 1rem;
-  height: 450px;
+  height: 550px;
+  margin-bottom: 3rem;
   width: 80%;
-  margin-bottom: 74px;
 
   :hover {
-    transform: scale(1.06);
+    transform: scale(1.04);
     transition: all 0.4s ease-in-out;
     box-shadow: 5px 10px 15px;
   }
@@ -85,7 +81,7 @@ const HouseCard = styled.div`
 const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  height: 200px;
+  height: 55%;
   object-fit: cover;
 `;
 
@@ -94,13 +90,14 @@ const TextDiv = styled.div`
   flex-direction: column;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  margin-top: 15px;
+  margin: auto;
 `;
 
 const Title = styled.p`
   display: flex;
   flex-direction: column;
-`;
+`
+
 const Price = styled.p`
   display: flex;
   width: auto;
@@ -109,6 +106,7 @@ const Price = styled.p`
   align-self: left;
   flex-direction: column;
   padding-left: 0.5rem;
+  margin-top: .5rem;
 `;
 const PriceSpan = styled.span`
   font-size: 0.8rem;
@@ -126,3 +124,13 @@ const TitleSpan = styled.span`
   font-weight: bold;
   color: ${colors.green};
 `;
+const Description = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`

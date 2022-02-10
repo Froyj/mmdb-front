@@ -13,7 +13,14 @@ const FilledButton = styled.button`
     height: ${(props) => props.height};
     font-size: ${(props => props.fontSize)};
     align-self: ${(props) => props.alignSelf};
-    cursor : ${(props) => props.cursor};
+    cursor : ${(props) => props.cursor || 'pointer'};
+    box-shadow: ${(props) => props.boxShadow};
+
+    :hover {
+        transform: ${(props) => props.transform};
+        transition: ${(props) => props.transition};
+        color: ${(props) => props.hoverColor}
+    }
 `
 
 export default FilledButton;

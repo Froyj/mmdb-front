@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ContainerForm from "./styled-components/ContainerForm";
 import TitleForm from "./styled-components/TitleForm";
-import Submitbutton from "./styled-components/SubmitButton";
+import FilledButton from "./styled-components/FilledButton";
 import { UserContext } from "../contexts/user";
 import axios from "../helper/axios-config";
 import { ADMIN } from "../constants/roles";
 import StyledLink from "./styled-components/Link";
 import Navigation from "./Navigation";
+import colors from "./styled-components/colors";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
@@ -65,9 +66,19 @@ const ConnectionModal = () => {
                 </LineContainer>
               </ConnectionInfos>
               <br />
-              <Submitbutton type="submit" fontSize="1em" margin="auto">
+              <FilledButton 
+                type="submit"
+                fontSize="1em"
+                margin="1rem"
+                width="50%"
+                alignSelf="center"
+                cursor='pointer'
+                backgroundColor={colors.brown}
+                boxShadow='5px 5px 20px black'
+                transform="scale(1.02)"
+              >
                 Se connecter
-              </Submitbutton>
+              </FilledButton>
               <br />
             </Form>
           </ContainerForm>
@@ -83,8 +94,7 @@ const BackgroundImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  /* object-fit: cover; */
-   min-height: 77vh; 
+  min-height: 77vh; 
 `;
 
 const MainContainer = styled.div`
