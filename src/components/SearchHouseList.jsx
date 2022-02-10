@@ -32,8 +32,7 @@ const SearchContainer = styled.div `
     flex-wrap: wrap;
 
     @media (max-width: 768px) {
-        display: block;
+        display: flex;
         flex-direction: column;
-        align-items: center;
     }
 `;

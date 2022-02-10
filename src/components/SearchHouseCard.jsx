@@ -50,6 +50,7 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${colors.blue};
   width: 32%;
+  margin: 1rem 1.5rem;
   
   &:focus,
   &:hover,
@@ -58,6 +59,10 @@ const StyledLink = styled(NavLink)`
   &:active {
     text-decoration: none;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 90%
+  }
 `;
 
 const HouseCard = styled.div`
@@ -65,16 +70,19 @@ const HouseCard = styled.div`
   flex-direction: column;
   border-radius: 15px;
   background-color: ${colors.lightGreen};
-  margin: 1rem;
   box-shadow: 2px 5px 10px;
   height: 550px;
   margin-bottom: 3rem;
-  width: 80%;
+  width: 100%;
 
   :hover {
     transform: scale(1.04);
     transition: all 0.4s ease-in-out;
     box-shadow: 5px 10px 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 450px
   }
 `;
 
@@ -83,6 +91,10 @@ const Image = styled.img`
   border-top-right-radius: 15px;
   height: 55%;
   object-fit: cover;
+
+  @media screen and (max-width: 768px) {
+    height: 42%
+  }
 `;
 
 const TextDiv = styled.div`
@@ -107,6 +119,10 @@ const Price = styled.p`
   flex-direction: column;
   padding-left: 0.5rem;
   margin-top: .5rem;
+
+  @media screen and (max-width: 768px) {
+    text-align: left
+  }
 `;
 const PriceSpan = styled.span`
   font-size: 0.8rem;
@@ -123,6 +139,11 @@ const TitleSpan = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   color: ${colors.green};
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+    text-align: left
+  }
 `;
 const Description = styled.div`
   display: flex;

@@ -87,6 +87,7 @@ const MenuContainer = styled.div`
   top: 0;
   z-index: 1;
   box-shadow: none;
+  height: 6.5rem;
 
   @media (max-width: 768px) {
     background: #5d7b4c;
