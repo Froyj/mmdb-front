@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import BookingList from './BookingList';
 import axios from '../../helper/axios-config';
 import BookingRegistration from './BookingRegistration';
@@ -23,13 +25,23 @@ const BookingDashboard = () => {
   const deleteBooking = (id) => {
     axios
       .delete(`/bookings/${id}`)
-      .then(() => alert('reservation supprimée'))
+      .then((res) => console.log(res))
       .then(() => setBookings(bookings.filter((b) => b.id !== id)))
       .catch(console.log);
+      toast.success("Réservation supprimée !", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
   };
 
   return (
     <section>
+      <ToastContainer />
       <BookingList bookings={bookings} handleDelete={deleteBooking} />
       <div>
         <button type='button' onClick={toggleBookingForm}>

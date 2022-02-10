@@ -1,24 +1,26 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useContext } from 'react';
-import { PropTypes } from 'prop-types';
-import styled from 'styled-components';
+import React, { useState, useEffect, useContext } from "react";
+import { PropTypes } from "prop-types";
+import styled from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import axios from '../../helper/axios-config';
+import axios from "../../helper/axios-config";
 
-import UserSelector from './UserSelector';
-import HouseSelector from './HouseSelector';
-import DatePicker from './DatePicker';
-import Counter from './Counter';
-import OptionsPanel from './OptionsPanel';
-import BookingContext from '../../contexts/Booking/booking';
+import UserSelector from "./UserSelector";
+import HouseSelector from "./HouseSelector";
+import DatePicker from "./DatePicker";
+import Counter from "./Counter";
+import OptionsPanel from "./OptionsPanel";
+import BookingContext from "../../contexts/Booking/booking";
 import {
   RESET_BOOKING,
   SET_BOOKING_ARRIVAL,
   SET_BOOKING_DEPARTURE,
   SET_BOOKING_TRAVELLERS_NUMBERS,
-} from '../../reducers/booking/actions';
-import useBookingPrice from '../customHooks/useBookingPrice';
-import FilledButton from '../styled-components/FilledButton';
+} from "../../reducers/booking/actions";
+import useBookingPrice from "../customHooks/useBookingPrice";
+import FilledButton from "../styled-components/FilledButton";
 
 function AdminBookingForm({ houses, setBookings, bookings }) {
   AdminBookingForm.propTypes = {
@@ -34,7 +36,7 @@ function AdminBookingForm({ houses, setBookings, bookings }) {
   const bookingPrice = useBookingPrice(booking);
 
   useEffect(() => {
-    axios.get('/options').then((response) => {
+    axios.get("/options").then((response) => {
       setMealOptions(response.data);
     });
   }, []);
@@ -62,32 +64,42 @@ function AdminBookingForm({ houses, setBookings, bookings }) {
     };
 
     axios
-      .post('/bookings', bookingDTO.bookingInfos)
+      .post("/bookings", bookingDTO.bookingInfos)
       .then((res) => res.data)
       .then((freshBooking) => {
         console.log(bookings, freshBooking);
         setBookings([...bookings, freshBooking]);
       })
-      .then(() => alert('réservation crée'))
+      .then((res) => console.log(res))
       .then(dispatchBooking({ type: RESET_BOOKING }))
       .catch(console.log);
+    toast.success("Réservation crée !", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
     <div>
+      <ToastContainer />
       <Form onSubmit={handleSubmit}>
         <h1>Réservez votre maison</h1>
         <QuickBooking>
-          <Container display='flex' flexDirection='row'>
+          <Container display="flex" flexDirection="row">
             <div>
               <BookingSection>
                 <UserSelector />
                 {booking.user && <HouseSelector houses={houses} />}
-              {booking.house && (
+                {booking.house && (
                   <SelectBookingDates>
                     <DatePicker
-                      name='arrival'
-                      label='Arrivée'
+                      name="arrival"
+                      label="Arrivée"
                       handleChange={(e) =>
                         dispatchBooking({
                           type: SET_BOOKING_ARRIVAL,
@@ -96,8 +108,8 @@ function AdminBookingForm({ houses, setBookings, bookings }) {
                       }
                     />
                     <DatePicker
-                      name='departure'
-                      label='Départ'
+                      name="departure"
+                      label="Départ"
                       handleChange={(e) =>
                         dispatchBooking({
                           type: SET_BOOKING_DEPARTURE,
@@ -106,24 +118,24 @@ function AdminBookingForm({ houses, setBookings, bookings }) {
                       }
                     />
                   </SelectBookingDates>
-              )}
-              {booking.arrival && booking.departure && (
-                <SelectTravellersNumber>
-                  <Counter
-                    label='Nombre de personnes'
-                    name='travellersNumber'
-                    defaultValue={1}
-                    min={1}
-                    max={booking.house?.capacity}
-                    handleChange={(e) =>
-                      dispatchBooking({
-                        type: SET_BOOKING_TRAVELLERS_NUMBERS,
-                        payload: +e.target.value,
-                      })
-                    }
-                  />
-                </SelectTravellersNumber>
-              )}
+                )}
+                {booking.arrival && booking.departure && (
+                  <SelectTravellersNumber>
+                    <Counter
+                      label="Nombre de personnes"
+                      name="travellersNumber"
+                      defaultValue={1}
+                      min={1}
+                      max={booking.house?.capacity}
+                      handleChange={(e) =>
+                        dispatchBooking({
+                          type: SET_BOOKING_TRAVELLERS_NUMBERS,
+                          payload: +e.target.value,
+                        })
+                      }
+                    />
+                  </SelectTravellersNumber>
+                )}
               </BookingSection>
             </div>
             <BookingSection>
@@ -146,11 +158,11 @@ function AdminBookingForm({ houses, setBookings, bookings }) {
           </SumUp>
         </PriceDetails>
         <FilledButton
-          as='input'
+          as="input"
           fitContent
-          alignSelf='flex-end'
-          type='submit'
-          value='Réserver'
+          alignSelf="flex-end"
+          type="submit"
+          value="Réserver"
         />
       </Form>
     </div>
@@ -230,7 +242,7 @@ const SelectTravellersNumber = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border-radius: 5px;
-  & input[type='number'] {
+  & input[type="number"] {
     width: 50px;
   }
   @media (max-width: 768px) {
