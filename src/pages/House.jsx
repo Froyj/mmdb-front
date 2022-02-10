@@ -5,6 +5,7 @@ import axios from "../api/axios-config";
 import ModalCarrousel from "../components/modalCarrousel";
 import BookingForm from "../components/BookingForm";
 import Equipments from "../components/Equipments";
+// import FoodOption from "../components/FoodOption";
 
 import {
   Container,
@@ -37,6 +38,7 @@ function House() {
   };
 
   const { isShowing, toggle } = useModal();
+  const [mealOptions, setMealOptions] = useState([]);
 
   useEffect(() => {
     axios
@@ -46,6 +48,14 @@ function House() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/options/details`)
+      .then((response) => {
+        setMealOptions(response.data);
+      });
+    }, []);
+  
   const secondaryImage = house?.image.secondary.slice(0, 4).map((el, index) => (
     <div className={`grid${index + 2}`}>
       <img src={process.env.REACT_APP_API_URL + el} alt="maison" key={el} />
@@ -57,7 +67,9 @@ function House() {
   ));
 
   const [displayActivities, setDisplayActivities] = useState("");
-  const [displayConditions, setDisplayConditions] = useState("")
+  const [displayConditions, setDisplayConditions] = useState("");
+  const [displayOptions, setDisplayOptions] = useState("");
+  const [displayMeals, setDisplayMeals] = useState("");
 
   const handleClick = (panelName, display, setDisplay) => {
     if (panelName === display) {
@@ -124,6 +136,29 @@ function House() {
             >
               <ul> {homeActivity} </ul>
             </EquipmentList>
+            <InfoButton
+                type="button"
+                className="dropDown-title"
+                onClick={() => handleClick("options", displayOptions, setDisplayOptions)}
+              >
+                <h3> Options de réservation </h3>
+              </InfoButton>
+              <EquipmentList
+              className={`options-list ${
+                displayOptions === "options" ? "visible" : ""
+              }`}
+            >
+              <MealContainer>
+                {mealOptions
+                .map((repas) => 
+                <>
+                  <button type='button' onClick={() => handleClick(`${repas.name}`, displayMeals, setDisplayMeals)}> <h3>{repas.name}</h3> </button>
+                  <ul key={repas.id} className={displayMeals === `${repas.name}` ? "" : "hidden"}>
+                     {repas.Option.map((option) => <li>{option.name}</li>)} 
+                  </ul>
+                </>)}
+              </MealContainer>
+            </EquipmentList>
               <InfoButton
                 type="button"
                 className="dropDown-title"
@@ -141,6 +176,7 @@ function House() {
                 <li>{house?.renting_conditions.partial}</li>
               </ul>
             </EquipmentList>
+
             </Showlist>
           </EquipmentContainer>
           </PageLayout>
@@ -180,5 +216,24 @@ const EquipmentsLayout = styled.div`
 
   @media screen and (max-width: 600px) {
     width: 100%
+  }
+`
+const MealContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  li {
+    margin: 1rem 0
+  }
+  
+  button {
+    border: none;
+    background: none;
+    cursor: pointer
+  }
+
+  .hidden {
+    display: none
   }
 `
