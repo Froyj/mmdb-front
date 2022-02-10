@@ -70,12 +70,13 @@ const ConnectionModal = () => {
                 type="submit"
                 fontSize="1em"
                 margin="1rem"
-                width="50%"
+                width="60%"
                 alignSelf="center"
                 cursor='pointer'
-                backgroundColor={colors.brown}
+                backgroundColor={colors.blue}
                 boxShadow='5px 5px 20px black'
                 transform="scale(1.02)"
+                border="#fff solid 3px"
               >
                 Se connecter
               </FilledButton>

@@ -61,12 +61,14 @@ const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   width: 100%;
+  height: 200px;
 `;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem 1.5rem;
   align-items: center;
+  height: 100px;
 
   h2 {
     color: ${colors.green};

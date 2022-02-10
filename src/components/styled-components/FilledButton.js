@@ -15,6 +15,7 @@ const FilledButton = styled.button`
     align-self: ${(props) => props.alignSelf};
     cursor : ${(props) => props.cursor || 'pointer'};
     box-shadow: ${(props) => props.boxShadow};
+    border: ${(props) => props.border};
 
     :hover {
         transform: ${(props) => props.transform};

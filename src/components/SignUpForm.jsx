@@ -9,6 +9,7 @@ import Submitbutton from "./styled-components/SubmitButton";
 import createUsers from "../data/createUsers";
 import Navigation from "./Navigation";
 
+
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
 
@@ -132,6 +133,7 @@ function SignUpForm() {
             <Submitbutton 
               type="submit"
               marginTop="1.5rem"
+              backgroundColor="#1c2c46"
             >
               Envoyer
             </Submitbutton>
