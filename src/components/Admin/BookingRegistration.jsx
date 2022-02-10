@@ -10,13 +10,11 @@ const BookingRegistration = ({ setBookings, bookings }) => {
   }, []);
 
   return (
-    <>
       <AdminBookingForm
         houses={houses}
         setBookings={setBookings}
         bookings={bookings}
       />
-    </>
   );
 };
 

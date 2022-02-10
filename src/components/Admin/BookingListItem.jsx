@@ -1,5 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { Row, Cell, ClientInfos } from './styled-components';
+import FilledButton from '../styled-components/FilledButton';
+
 
 const BookingListItem = ({ booking, handleDelete }) => {
   BookingListItem.propTypes = {
@@ -45,11 +47,9 @@ const BookingListItem = ({ booking, handleDelete }) => {
         </ClientInfos>
       </Cell>
       <Cell>{price}</Cell>
-      <Cell>
-        <button type='button' onClick={handleDelete}>
+        <FilledButton type='button' onClick={handleDelete}>
           Supprimer
-        </button>
-      </Cell>
+        </FilledButton>
     </Row>
   );
 };

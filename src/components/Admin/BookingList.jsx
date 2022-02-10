@@ -11,7 +11,7 @@ const BookingList = ({ bookings=[], handleDelete }) => (
           <Cell>Date d'arrivée</Cell>
           <Cell>Date de départ</Cell>
           <Cell>Client</Cell>
-          <Cell>Cout de la reservation</Cell>
+          <Cell>Coût de la réservation</Cell>
         </Row>
       </thead>
       <tbody>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BookingList from './BookingList';
 import axios from '../../helper/axios-config';
 import BookingRegistration from './BookingRegistration';
+import FilledButton from "../styled-components/SubmitButton";
 
 const BookingDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -29,15 +30,12 @@ const BookingDashboard = () => {
   };
 
   return (
-    <section>
-      <BookingList bookings={bookings} handleDelete={deleteBooking} />
-      <div>
-        <button type='button' onClick={toggleBookingForm}>
-          Enregistrer une reservation
-        </button>
-        {isBookingFormOpen && <BookingRegistration bookings={bookings} setBookings={setBookings} />}
-      </div>
-    </section>
+      <><BookingList bookings={bookings} handleDelete={deleteBooking} /><div>
+      <FilledButton onClick={toggleBookingForm} width="20%" backgroundColor="#1c2c46" border="none" fontSize="13.3333px">
+        Enregistrer une reservation
+      </FilledButton>
+      {isBookingFormOpen && <BookingRegistration bookings={bookings} setBookings={setBookings} />}
+    </div></>
   );
 };
 

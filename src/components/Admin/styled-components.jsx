@@ -7,6 +7,7 @@ const Row = styled.tr`
 
 const Cell = styled.td`
   margin: 1em;
+  border: solid 2px #1c2c46;
 `;
 
 const ClientInfos = styled.div`
