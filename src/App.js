@@ -88,7 +88,7 @@ function App() {
                 path="/nos-maisons-forestieres"
                 element={<Search houses={houses} />}
               />
-              <Route path="/maison/:id" element={<House houses={houses} />} />
+              <Route path="/maison/:id" element={<House />} />
 
               {/* Admin Routes */}
               <Route path="/admin" element={<PrivateRoute role={ADMIN} />}>

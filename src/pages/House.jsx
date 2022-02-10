@@ -53,7 +53,6 @@ function House() {
       .get(`${process.env.REACT_APP_API_URL}/options/details`)
       .then((response) => {
         setMealOptions(response.data);
-        console.log(mealOptions)
       });
     }, []);
   

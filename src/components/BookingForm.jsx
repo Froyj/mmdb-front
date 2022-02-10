@@ -6,10 +6,11 @@ import Modal from 'react-modal';
 import FilledButton from "./styled-components/FilledButton";
 import colors from "./styled-components/colors";
 
+// eslint-disable-next-line react/prop-types
 function BookingForm() {
 
   const [openModal, setOpenModal] = useState(false);
-  
+
   return (
     <Container>
       <Form >
@@ -17,7 +18,9 @@ function BookingForm() {
                 
         <PriceDetails>
           <SumUp>
-            <p>Prix x Nombre de nuits</p>
+            <Price>
+                280€ /nuit
+            </Price>
             <p>Frais de ménage (60,00€)</p>
             <p>Taxe de séjour (2,00€) x Nombre de voyageurs</p>
           </SumUp>
@@ -214,4 +217,8 @@ const ModalConnect = styled(Link)`
   :hover {
     text-decoration: underline
   }
+`
+const Price = styled.h3`
+  text-align: left;
+  margin-bottom: 2rem;
 `
