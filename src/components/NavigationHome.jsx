@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/user";
 import axios from "../helper/axios-config";
 import StyledLink from "./styled-components/Link";
 
-const Navigation = () => {
+const NavigationHome = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isConnected, dispatch, roleId } = useContext(UserContext);
   const navigate = useNavigate();
@@ -17,6 +17,22 @@ const Navigation = () => {
       .then(() => navigate("/"))
       .catch(console.log);
   };
+  const menuContainer = document.getElementById("menu-container");
+
+  window.addEventListener("scroll", () => {
+    const scroll = window.scrollY;
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      if (scroll > 400) {
+        menuContainer.style.background = "#5d7b4c";
+        menuContainer.style.transition = "0.3s";
+        menuContainer.style.boxShadow = "1px 1px 5px black";
+      } else {
+        menuContainer.style.background = "transparent";
+        menuContainer.style.transition = "0.3s";
+        menuContainer.style.boxShadow = "none";
+      }
+    }
+  });
 
   return (
     <MenuContainer id="menu-container">
@@ -53,7 +69,9 @@ const Navigation = () => {
           )}
           <ConnexionContainer>
             {isConnected ? (
-              <MenuLink id="link6"onClick={() => disconnectUser()}>Deconnexion</MenuLink>
+              <MenuLink id="link6" onClick={() => disconnectUser()}>
+                Deconnexion
+              </MenuLink>
             ) : (
               <StyledLink to="/se-connecter">
                 <MenuLink id="link4">
@@ -79,7 +97,7 @@ const Navigation = () => {
 };
 
 const MenuContainer = styled.div`
-  background: #5d7b4c;
+  background: transparent;
   display: flex;
   flex-direction: row;
   position: sticky;
@@ -91,7 +109,6 @@ const MenuContainer = styled.div`
   @media (max-width: 768px) {
     background: #5d7b4c;
   }
-
 `;
 
 const Nav = styled.nav`
@@ -114,6 +131,9 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.div`
+ 
+  display: flex;
+  justify-content: center;
   img {
     width: 140px;
     height: 90px;
@@ -194,4 +214,4 @@ const Image = styled.div`
   margin-right: 5px;
 `;
 
-export default Navigation;
+export default NavigationHome;

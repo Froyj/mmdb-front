@@ -9,6 +9,11 @@ font-size: ${(props) => props.fontSize || '16px'};
 line-height: ${(props) => props.lineHeight || "2em"};
 border-bottom: ${(props) => props.borderBottom || "1px solid black"};
 
+span{
+    justify-content:center;
+}
+
+
 @media (max-width: 768px) {
  width: 95%;
  line-height: 1.3em;

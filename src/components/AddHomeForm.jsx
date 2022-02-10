@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { NavLink } from "react-router-dom";
 
@@ -29,8 +31,17 @@ function AddHomeForm({ setHouses }) {
 
     postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
     setTimeout(() => {
+      toast.success("Maison ajoutée !", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       getHouses(setHouses);
-    }, 1000);
+    }, 100);
   };
 
   const refreshData = () => {
@@ -77,13 +88,13 @@ function AddHomeForm({ setHouses }) {
             {...register("country", { required: true })}
           />
           <SimpleField
-            type="number"
+            type="text"
             name="coordinate_long"
             placeholder="Longitude (optionnel)"
             {...register("coordinate_long", { valueAsNumber: true })}
           />
           <SimpleField
-            type="number"
+            type="text"
             name="coordinate_lat"
             placeholder="Latitude (optionnel)"
             {...register("coordinate_lat", { valueAsNumber: true })}
@@ -286,6 +297,7 @@ function AddHomeForm({ setHouses }) {
         <Submit type="submit" value="Valider" />
         <NavLink to="/admin/dashboard">
           <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
+          <ToastContainer />
         </NavLink>
       </SubmitDiv>
     </FormContainer>
@@ -296,15 +308,30 @@ const FormContainer = styled.form`
   display: flex;
   margin-top: 1rem;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+   flex-wrap: wrap;
+  }
 `;
 const FormDiv = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+   }
+  
 `;
 const HouseInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+   }
 `;
 const HouseDescriptionDiv = styled.div`
   display: flex;
@@ -324,6 +351,12 @@ const HouseDescriptionDiv = styled.div`
     margin-left: 1rem;
     margin-bottom: 0.6rem;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const DateDiv = styled.div`
   display: flex;
@@ -341,6 +374,12 @@ const DateDiv = styled.div`
   input {
     width: 30%;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width:100%;
+    
+   }
 `;
 const CheckboxDiv = styled.div`
   display: flex;
@@ -394,6 +433,10 @@ const ImagesDiv = styled.div`
     input {
       margin: 0 2rem;
     }
+  }
+
+  @media (max-width: 768px) {
+    height: 10rem;
   }
 `;
 const SubmitDiv = styled.div`
@@ -462,6 +505,11 @@ const Submit = styled.input`
   padding: 0.6rem 2.5rem;
   margin: 0.5rem;
   color: white;
+
+  &:hover {
+    transform: scale(1.06);
+    transition: all 0.1s ease-in-out;
+  }
 `;
 
 export default AddHomeForm;

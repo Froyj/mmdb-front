@@ -49,7 +49,7 @@ function Footer() {
 }
 
 const Navbar = styled.nav`
-  background: #ba9b5c;
+  background: #5d7b4c;
   /* height: 5rem; */
   padding: 1.8em;
   font-family: "Trebuchet MS";
@@ -74,7 +74,8 @@ const Navbar = styled.nav`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    /* align-items: center; */
+    text-align: center;
+
 
     img {
       width: 40px;
@@ -89,6 +90,8 @@ const Navbar = styled.nav`
     @media screen and (min-width: 768px) {
       flex-direction: row;
       justify-content: space-evenly;
+      
+     
     }
 
     a:visited,

@@ -1,11 +1,13 @@
+import Navigation from "../components/Navigation";
 import Global from "../components/styled-components/Global";
 
 function UserProfile() {
-    return (
-        <Global>
-            Profil Utilisateur
-        </Global>
-    );
+  return (
+    <>
+      <Navigation />
+      <Global>Profil Utilisateur</Global>
+    </>
+  );
 }
 
 export default UserProfile;
