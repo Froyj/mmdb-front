@@ -46,7 +46,7 @@ function Home() {
       </Banner>
       <Global>
         <Container>
-          {houseData.map((image) => (
+          {houseData && houseData.map((image) => (
             <HouseImage key={image.id} id={image.id} image={image} />
           ))}
           <BlankCard>
