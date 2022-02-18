@@ -29,7 +29,7 @@ function BookingForm({ house }) {
     }, []);
 
   return (
-    <div>
+    <Div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         
         <h1>Réservez votre maison</h1>
@@ -71,18 +71,22 @@ function BookingForm({ house }) {
         
         <PriceDetails>
         <SumUpTitle>Résumé de votre réservation</SumUpTitle>
-          <SumUp><p>Prix X Nombre de nuits</p><br />
+          <SumUp><p>Prix x Nombre de nuits</p><br />
           <p>Frais de ménage 60 euros</p><br />
-          <p>Taxe de séjour nombre de personnes X 2 euros</p><br />
+          <p>Taxe de séjour nombre de personnes x 2 euros</p><br />
           <p>Total</p><br /></SumUp>
         </PriceDetails>
 
         <SubmitButton marginTop="10px" marginBottom="10px">Réserver</SubmitButton>
 
       </Form>
-    </div>
+    </Div>
   );
 }
+
+const Div = styled.div`
+margin-bottom: 30px;
+`
 
 const Form = styled.div`
   border: 2px solid #1c2c46;
@@ -114,10 +118,8 @@ const QuickBooking = styled.div`
 
 const SelectBookingDates = styled.div`
 display: flex;
+flex-wrap: wrap;
 flex-direction: row;
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-  }
 `;
 
 const SelectTravellersNumber = styled.div`
