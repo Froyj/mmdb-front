@@ -1,7 +1,7 @@
 import { Row, Cell } from './styled-components';
 import BookingListItem from './BookingListItem';
 
-const BookingList = ({ bookings=[], handleDelete }) => (
+const BookingList = ({ bookings, handleDelete }) => (
   <div>
     <h2>Mes réservations</h2>
     <table>
