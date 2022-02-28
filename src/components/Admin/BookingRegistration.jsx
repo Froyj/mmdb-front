@@ -4,7 +4,6 @@ import AdminBookingForm from './AdminBookingForm';
 
 const BookingRegistration = ({ addBooking, bookings }) => {
   const [houses, setHouses] = useState([]);
-
   useEffect(() => {
     getHouses(setHouses);
   }, []);

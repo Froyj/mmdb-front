@@ -1,8 +1,11 @@
-const DatePicker = ({ name, label, handleChange }) => (
+import { FieldErrorMessage } from "../styled-components/forms";
+
+const DatePicker = ({ name, label, handleChange, min, error }) => (
   <label htmlFor={name}>
     {label}
     <br />
-    <input type='date' onChange={handleChange}/>
+    <input type='date' onChange={handleChange} required min={min}/>
+    {error && <FieldErrorMessage>{error}</FieldErrorMessage>}
   </label>
 );
 

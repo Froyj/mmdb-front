@@ -22,9 +22,6 @@ const BookingDashboard = () => {
       .then(setBookings)
       .catch(console.log);
   }
-  useEffect(() => {
-    getDetailedBookingList();
-  }, [bookings]);
 
   const deleteBooking = (id) => {
     axios
@@ -45,25 +42,29 @@ const BookingDashboard = () => {
 
   const addBooking = (bookingToAdd) => {
     axios
-      .post("/bookings", bookingToAdd)
+      .post('/bookings', bookingToAdd)
       .then((res) => res.data)
       .then((freshBooking) => {
         setBookings([...bookings, freshBooking]);
       })
       .then(dispatchBooking({ type: RESET_BOOKING }))
       .then(() => {
-        toast.success("Réservation crée !", {
-          position: "top-center",
+        toast.success('Réservation crée !', {
+          position: 'top-center',
           autoClose: 2000,
         });
       })
       .catch(() => {
-        toast.error("Il y a eu une erreur pendant la réservation !", {
-          position: "top-center",
+        toast.error('Il y a eu une erreur pendant la réservation !', {
+          position: 'top-center',
           autoClose: 2000,
         });
       });
-  }
+  };
+
+  useEffect(() => {
+    getDetailedBookingList();
+  }, []);
 
   return (
     <>

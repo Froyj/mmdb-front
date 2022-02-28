@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import BookingContext from '../../contexts/Booking/booking';
 import axios from '../../helper/axios-config';
 import { SET_BOOKING_USER } from '../../reducers/booking/actions';
+import { FieldErrorMessage } from '../styled-components/forms';
 
-const UserSelector = () => {
+const UserSelector = ({ error = '' }) => {
   const { dispatchBooking } = useContext(BookingContext);
   const [users, setUsers] = useState([]);
 
@@ -33,6 +34,7 @@ const UserSelector = () => {
           </option>
         ))}
       </select>
+      {error && <FieldErrorMessage>{error}</FieldErrorMessage>}
     </label>
   );
 };

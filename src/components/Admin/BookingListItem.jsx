@@ -2,7 +2,6 @@ import { PropTypes } from 'prop-types';
 import { Row, Cell, ClientInfos } from './styled-components';
 import FilledButton from '../styled-components/FilledButton';
 
-
 const BookingListItem = ({ booking, handleDelete }) => {
   BookingListItem.propTypes = {
     booking: PropTypes.shape({
@@ -23,13 +22,12 @@ const BookingListItem = ({ booking, handleDelete }) => {
     total_price: price,
   } = booking;
 
-  
   function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString('fr-FR');
   }
-  
-  if(!booking || !user) {
-    return null
+
+  if (!booking || !user) {
+    return null;
   }
 
   return (
@@ -47,9 +45,11 @@ const BookingListItem = ({ booking, handleDelete }) => {
         </ClientInfos>
       </Cell>
       <Cell>{price}</Cell>
+      <Cell noBorder>
         <FilledButton type='button' onClick={handleDelete}>
           Supprimer
         </FilledButton>
+      </Cell>
     </Row>
   );
 };
