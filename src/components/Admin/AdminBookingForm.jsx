@@ -37,13 +37,16 @@ function AdminBookingForm({ houses, addBooking }) {
   const fieldsErrors = useBookingValidation(booking);
   const bookingPrice = useBookingPrice(booking);
 
-  const minArrival = new Date().toISOString().replace(/T/, ' ').split(' ')[0];
-  const getMinDeparture = () =>
-    moment(minArrival)
-      .add(2, 'days')
-      .toISOString()
-      .replace(/T/, ' ')
-      .split(' ')[0];
+  const minArrival = moment(new Date())
+    .add(1, 'days')
+    .toISOString()
+    .replace(/T/, ' ')
+    .split(' ')[0];
+  const minDeparture = moment(minArrival)
+    .add(2, 'days')
+    .toISOString()
+    .replace(/T/, ' ')
+    .split(' ')[0];
 
   useEffect(() => {
     axios.get('/options').then((response) => {
@@ -68,9 +71,11 @@ function AdminBookingForm({ houses, addBooking }) {
         arrival_date: arrival,
         departure_date: departure,
         number_of_renter: travellersNumber,
+        options: options.map((o) => ({ option_id: o.id, quantity: o.quantity })),
       },
       options,
     };
+
     if (Object.keys(fieldsErrors).length === 0) {
       addBooking(bookingDTO.bookingInfos);
     }
@@ -106,7 +111,7 @@ function AdminBookingForm({ houses, addBooking }) {
                       <DatePicker
                         name='departure'
                         label='Départ'
-                        min={getMinDeparture()}
+                        min={minDeparture}
                         handleChange={(e) =>
                           dispatchBooking({
                             type: SET_BOOKING_DEPARTURE,

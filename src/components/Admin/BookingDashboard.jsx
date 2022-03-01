@@ -20,7 +20,12 @@ const BookingDashboard = () => {
       .get('/booking-details')
       .then((res) => res.data)
       .then(setBookings)
-      .catch(console.log);
+      .catch(() => {
+        toast.error('Il y a eu une erreur pendant la récupération des informations !', {
+          position: 'top-center',
+          autoClose: 2000,
+        });
+      });
   }
 
   const deleteBooking = (id) => {
@@ -44,9 +49,7 @@ const BookingDashboard = () => {
     axios
       .post('/bookings', bookingToAdd)
       .then((res) => res.data)
-      .then((freshBooking) => {
-        setBookings([...bookings, freshBooking]);
-      })
+      .then(getDetailedBookingList)
       .then(dispatchBooking({ type: RESET_BOOKING }))
       .then(() => {
         toast.success('Réservation crée !', {
