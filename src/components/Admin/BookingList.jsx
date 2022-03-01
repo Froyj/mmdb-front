@@ -1,19 +1,20 @@
-import { Row, Cell } from './styled-components';
+import { Row, Cell, Table, TableHeader } from './styled-components';
 import BookingListItem from './BookingListItem';
 
 const BookingList = ({ bookings, handleDelete }) => (
   <div>
     <h2>Mes réservations</h2>
-    <table>
-      <thead>
+    <Table>
+      <TableHeader>
         <Row>
           <Cell>Location</Cell>
           <Cell>Date d'arrivée</Cell>
           <Cell>Date de départ</Cell>
           <Cell>Client</Cell>
           <Cell>Coût de la réservation</Cell>
+          <Cell> </Cell>
         </Row>
-      </thead>
+      </TableHeader>
       <tbody>
         {bookings.map((booking) => (
           <BookingListItem
@@ -23,7 +24,7 @@ const BookingList = ({ bookings, handleDelete }) => (
           />
         ))}
       </tbody>
-    </table>
+    </Table>
   </div>
 );
 
