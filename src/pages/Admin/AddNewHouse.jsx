@@ -1,7 +1,7 @@
-import AddHomeForm from "../components/AddHomeForm";
-import Global from "../components/styled-components/Global";
-import Banner from "../components/styled-components/Banner";
-import Navigation from "../components/Navigation";
+import AddHomeForm from "../../components/AddHomeForm";
+import Global from "../../components/styled-components/Global";
+import Banner from "../../components/styled-components/Banner";
+import Navigation from "../../components/Navigation";
 
 function AddNewHouse({ setHouses }) {
   return (

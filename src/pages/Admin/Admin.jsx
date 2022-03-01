@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Global from "../components/styled-components/Global";
+import Global from "../../components/styled-components/Global";
 
-import FilledButton from '../components/styled-components/FilledButton';
-import colors from '../components/styled-components/colors';
-import Navigation from '../components/Navigation';
+import FilledButton from '../../components/styled-components/FilledButton';
+import colors from '../../components/styled-components/colors';
+import Navigation from '../../components/Navigation';
 
-import AdminHouseList from '../components/AdminHouseList';
-import { BookingDashboard } from '../components/Admin';
+import AdminHouseList from '../../components/AdminHouseList';
+import { BookingDashboard } from '../../components/Admin';
 
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {

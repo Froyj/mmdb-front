@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Row, Cell, ClientInfos } from './styled-components';
 import FilledButton from '../styled-components/FilledButton';
 
@@ -15,6 +16,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
   };
 
   const {
+    id,
     home_to_rent_id: homeId,
     arrival_date: arrival,
     departure_date: departure,
@@ -46,6 +48,11 @@ const BookingListItem = ({ booking, handleDelete }) => {
       </Cell>
       <Cell>{price}</Cell>
       <Cell noBorder>
+        <Link to={`/admin/dashboard/details-reservation/${id}`}>
+          Voir les détails
+        </Link>
+      </Cell>
+      <Cell noBorder>
         <FilledButton type='button' onClick={handleDelete}>
           Supprimer
         </FilledButton>
@@ -53,5 +60,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
     </Row>
   );
 };
+
+
 
 export default BookingListItem;

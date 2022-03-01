@@ -12,11 +12,11 @@ import getBookings from "./data/bookings";
 import Footer from "./components/Footer";
 import FilledButton from "./components/styled-components/FilledButton";
 import About from "./pages/About";
-import AddNewHouse from "./pages/AddNewHouse";
+import AddNewHouse from "./pages/Admin/AddNewHouse";
 
-import UpdateHouse from './pages/UpdateHouse';
+import UpdateHouse from './pages/Admin/UpdateHouse';
 
-import Admin from "./pages/Admin";
+import Admin from "./pages/Admin/Admin";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Services from "./pages/Services";
@@ -32,6 +32,7 @@ import {
 import { UserContextProvider } from "./contexts/user";
 import ModalContext from "./contexts/modal";
 import BookingContextProvider from "./contexts/Booking/BookingContextProvider";
+import BookingDetails from "./pages/Admin/BookingDetails";
 
 Modal.setAppElement("#root");
 
@@ -109,6 +110,10 @@ function App() {
                 <Route
                   path="dashboard/mise-a-jour-maison/:id"
                   element={<UpdateHouse setHouses={setHouses} />}
+                />
+                <Route
+                  path="dashboard/details-reservation/:bookingId"
+                  element={<BookingDetails />}
                 />
               </Route>
             </Routes>
