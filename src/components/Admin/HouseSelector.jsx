@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import BookingContext from '../../contexts/Booking/booking';
 import { SET_BOOKING_HOUSE } from '../../reducers/booking/actions';
+import { FieldErrorMessage } from '../styled-components/forms';
 
-const HouseSelector = ({ houses }) => {
+const HouseSelector = ({ houses, error }) => {
   const { dispatchBooking } = useContext(BookingContext);
 
   const handleSelect = (e) => {
@@ -25,6 +26,7 @@ const HouseSelector = ({ houses }) => {
             </option>
           ))}
         </select>
+        {error && <FieldErrorMessage>{error}</FieldErrorMessage>}
       </label>
     </div>
   );

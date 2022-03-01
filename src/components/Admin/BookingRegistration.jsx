@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import getHouses from '../../data/houses';
 import AdminBookingForm from './AdminBookingForm';
 
-const BookingRegistration = ({ setBookings, bookings }) => {
+const BookingRegistration = ({ addBooking, bookings }) => {
   const [houses, setHouses] = useState([]);
-
   useEffect(() => {
     getHouses(setHouses);
   }, []);
@@ -12,7 +11,7 @@ const BookingRegistration = ({ setBookings, bookings }) => {
   return (
       <AdminBookingForm
         houses={houses}
-        setBookings={setBookings}
+        addBooking={addBooking}
         bookings={bookings}
       />
   );
