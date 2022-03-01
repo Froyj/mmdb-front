@@ -51,8 +51,7 @@ function AdminBookingForm({ houses, addBooking }) {
     });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const {
       user: { id: userId },
       house: { id: houseId },
@@ -72,21 +71,23 @@ function AdminBookingForm({ houses, addBooking }) {
       },
       options,
     };
-
-    addBooking(bookingDTO.bookingInfos);
+    if (Object.keys(fieldsErrors).length === 0) {
+      addBooking(bookingDTO.bookingInfos);
+    }
   };
 
-  console.log(fieldsErrors)
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <h1>Réservez votre maison</h1>
         <QuickBooking>
           <Container display='flex' flexDirection='row'>
             <div>
               <BookingSection>
-                <UserSelector error={fieldsErrors.user}/>
-                {booking.user && <HouseSelector houses={houses} error={fieldsErrors.house}/>}
+                <UserSelector error={fieldsErrors.user} />
+                {booking.user && (
+                  <HouseSelector houses={houses} error={fieldsErrors.house} />
+                )}
                 {booking.house && (
                   <SelectBookingDates>
                     <DatePicker
@@ -156,12 +157,14 @@ function AdminBookingForm({ houses, addBooking }) {
           </SumUp>
         </PriceDetails>
         <FilledButton
-          as='input'
           fitContent
           alignSelf='flex-end'
-          type='submit'
+          type='button'
           value='Réserver'
-        />
+          onClick={handleSubmit}
+        >
+          Réserver
+        </FilledButton>
       </Form>
     </div>
   );

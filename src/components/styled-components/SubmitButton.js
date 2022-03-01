@@ -10,8 +10,7 @@ const Submitbutton = styled.button`
     font-size: ${(props) => props.fontSize || '16px'};
     margin-bottom: ${(props) => props.marginBotton || '10px'};
     margin: ${(props) => props.margin || "auto"};
-    margin-top: ${(props) => props.marginTop || '0px'};
-    margin-bottom: ${(props) => props.marginBottom || '0px'};
+    margin-top: ${(props) => props.marginTop || '1em'};
     border: ${(props) => props.border};
     background-color: ${(props) => props.backgroundColor};
 
