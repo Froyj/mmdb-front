@@ -11,6 +11,7 @@ import {
   Container,
   MainSection,
 } from '../../components/common/containers';
+import StyledLink from '../../components/common/Link';
 
 const BookingDetails = () => {
   const { bookingId } = useParams();
@@ -30,6 +31,9 @@ const BookingDetails = () => {
       <Navigation />
       {user && (
         <MainSection>
+          <StyledLink to="/admin/dashboard" alignSelf='end'>
+            Retour à la liste des réservations
+          </StyledLink>
           <h2>Résumé de la reservation</h2>
           <Container>
             <CustomerInfos customer={user} />

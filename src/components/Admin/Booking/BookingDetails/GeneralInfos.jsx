@@ -15,7 +15,13 @@ const GeneralInfos = ({ booking }) => {
     <SubSection flexDirection='column' flexBasis='100%'>
       <h3>Informations générales</h3>
       <Container display='flex' flexDirection='column'>
-        <Container display='flex' flexDirection='row' justifyContent='space-evenly'>
+        <Container
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-evenly'
+          flexBasis='50%'
+          flexGrow={2}
+        >
           <table>
             <tr>
               <th>Nombre de personnes</th>
@@ -35,19 +41,30 @@ const GeneralInfos = ({ booking }) => {
             {options.length === 0 ? (
               <p>Aucune option</p>
             ) : (
-              <ul>
-                {options.map(({ quantity, option }) => (
-                  <li key={option.id}>
-                    {option.name} X {quantity} = {quantity * option.price} €
-                  </li>
+              <table>
+                <thead>
+                  <tr>
+                    <td>Nom</td>
+                    <td>Quantité</td>
+                    <td>Prix à l'unité</td>
+                    <td>Prix total</td>
+                  </tr>
+                </thead>
+                {options.filter(o => o.quantity !== 0).map(({ quantity, option }) => (
+                  <tr key={option.id}>
+                    <td>{option.name}</td>
+                    <td>{option.price}</td>
+                    <td>{quantity}</td>
+                    <td>{quantity * option.price} €</td>
+                  </tr>
                 ))}
-              </ul>
+              </table>
             )}
           </div>
         </Container>
         <div>
           <h3>Total à payer :</h3>
-          <p>{totalPrice}</p>
+          <p>{totalPrice} €</p>
         </div>
       </Container>
     </SubSection>
