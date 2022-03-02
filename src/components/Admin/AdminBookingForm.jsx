@@ -93,7 +93,7 @@ function AdminBookingForm({ houses, addBooking }) {
                 {booking.user && (
                   <HouseSelector houses={houses} error={fieldsErrors.house} />
                 )}
-                {booking.house && (
+                {booking.home_to_rent && (
                   <SelectBookingDates>
                     <DatePicker
                       name='arrival'
@@ -107,7 +107,7 @@ function AdminBookingForm({ houses, addBooking }) {
                       }
                       error={fieldsErrors.arrival}
                     />
-                    {booking.arrival && (
+                    {booking.arrival_date && (
                       <DatePicker
                         name='departure'
                         label='Départ'
@@ -123,7 +123,7 @@ function AdminBookingForm({ houses, addBooking }) {
                     )}
                   </SelectBookingDates>
                 )}
-                {booking.arrival && booking.departure && (
+                {booking.arrival_date && booking.departure_date && (
                   <SelectTravellersNumber>
                     <Counter
                       label='Nombre de personnes'

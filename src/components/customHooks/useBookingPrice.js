@@ -10,33 +10,45 @@ const useBookingPrice = (booking) => {
   };
 
   const getHomeRentPrice = (bookingInfos = {}) => {
-    const { travellersNumber: personCount, arrival, departure, house } = bookingInfos;
+    const {
+      number_of_renter: personCount,
+      arrival_date: arrival,
+      departure_date: departure,
+      home_to_rent: house,
+    } = bookingInfos;
+
     const stayFees = 2;
     const houseKeepingFees = 60;
-    const numberOfDays = (departure && arrival) ? getNumberOfDay(new Date(departure), new Date(arrival)) : 0;
+    const numberOfDays =
+      departure && arrival
+        ? getNumberOfDay(new Date(departure), new Date(arrival))
+        : 0;
     const total =
-      ((house?.price_by_night || 0) + stayFees) * personCount * numberOfDays + houseKeepingFees;
+      ((house?.price_by_night || 0) + stayFees) * personCount * numberOfDays +
+      houseKeepingFees;
     return Math.abs(total);
   };
 
-  const getOptionsPrice = (bookingInfos = {}) => {
-    const {options} = bookingInfos;
-    const total = options.map(o => o.quantity * o.price).reduce((a, b) => a+b, 0)
-    return Math.abs(total)
-  }
+  const getOptionsPrice = (optionsList = []) => {
+    const total = optionsList
+      .map((o) => o.quantity * o.price)
+      .reduce((a, b) => a + b, 0);
+    return Math.abs(total);
+  };
 
   useEffect(() => {
     if (booking) {
-      const newPrice = getHomeRentPrice(booking) + getOptionsPrice(booking);
+      const { options } = booking;
+      const newPrice = getHomeRentPrice(booking) + getOptionsPrice(options);
       setBookingPrice(newPrice);
     }
   }, [
     booking.user,
-    booking.house,
-    booking.travellersNumber,
+    booking.home_to_rent,
+    booking.number_of_renter,
     booking.options,
-    booking.arrival,
-    booking.departure,
+    booking.arrival_date,
+    booking.departure_date,
   ]);
 
   return bookingPrice;

@@ -12,10 +12,10 @@ import {
 
 const initialBookingState = {
   user: null,
-  house: null,
-  arrival: null,
-  departure: null,
-  travellersNumber: 1,
+  home_to_rent: null,
+  arrival_date: null,
+  departure_date: null,
+  number_of_renter: 1,
   options: [],
   totalPrice: 0,
 };
@@ -55,13 +55,13 @@ const bookingReducer = (state, action) => {
     case SET_BOOKING_USER:
       return { ...state, user: action.payload };
     case SET_BOOKING_HOUSE:
-      return { ...state, house: action.payload };
+      return { ...state, home_to_rent: action.payload };
     case SET_BOOKING_ARRIVAL:
-      return { ...state, arrival: action.payload };
+      return { ...state, arrival_date: action.payload };
     case SET_BOOKING_DEPARTURE:
-      return { ...state, departure: action.payload };
+      return { ...state, departure_date: action.payload };
     case SET_BOOKING_TRAVELLERS_NUMBERS:
-      return { ...state, travellersNumber: action.payload };
+      return { ...state, number_of_renter: action.payload };
     case UPDATE_BOOKING_OPTION:
       return {
         ...state,
