@@ -1,5 +1,5 @@
 import UpdateHomeForm from "../../components/UpdateHomeForm";
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/layout/Navigation";
 
 function UpdateHouse({ setHouses }) {
   return (

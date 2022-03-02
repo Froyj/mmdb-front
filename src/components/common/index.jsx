@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Global from "../styled-components/Global";
-import FilledButton from "../styled-components/FilledButton";
+import Global from "../styled-components/theme/Global";
+import FilledButton from "./buttons/FilledButton";
 
 //  --> vv house vv <--
 

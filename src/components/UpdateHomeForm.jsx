@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "../helper/axios-config";
-import colors from "./styled-components/colors";
+import colors from "./styled-components/theme/colors";
 import updateHouses from "../data/updateHouses";
 import getHouses from "../data/houses";
 

@@ -3,14 +3,14 @@ import { useState, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 import axios from "./helper/axios-config";
-import colors from "./components/styled-components/colors";
+import colors from "./components/styled-components/theme/colors";
 
 import House from "./pages/House";
 import getHouses from "./data/houses";
 import getBookings from "./data/bookings";
 
-import Footer from "./components/Footer";
-import FilledButton from "./components/styled-components/FilledButton";
+import Footer from "./components/layout/Footer";
+import FilledButton from "./components/common/buttons/FilledButton";
 import About from "./pages/About";
 import AddNewHouse from "./pages/Admin/AddNewHouse";
 

@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
-import TitleForm from "./styled-components/TitleForm";
-import ContainerForm from "./styled-components/ContainerForm";
-import Submitbutton from "./styled-components/SubmitButton";
+import TitleForm from "./common/titles/TitleForm";
+import ContainerForm from "./common/containers/ContainerForm";
+import Submitbutton from "./common/buttons/SubmitButton";
 import createUsers from "../data/createUsers";
-import Navigation from "./Navigation";
+import Navigation from "./layout/Navigation";
 
 
 function SignUpForm() {

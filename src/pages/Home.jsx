@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import colors from "../components/styled-components/colors";
+import colors from "../components/styled-components/theme/colors";
 import axios from "../helper/axios-config";
 import HouseImage from "../components/HouseImage";
 import Activities from "../components/Activities";
-import Banner from "../components/styled-components/Banner";
-import Global from "../components/styled-components/Global";
-import Navigation from "../components/NavigationHome";
+import Banner from "../components/common/Banner";
+import Global from "../components/styled-components/theme/Global";
+import Navigation from "../components/layout/NavigationHome";
 
 function Home() {
   const [houseData, setHouseData] = useState([]);

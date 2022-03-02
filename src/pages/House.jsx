@@ -20,7 +20,7 @@ import {
   DisplayModal,
 } from "../components/common";
 import "../index.css";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/layout/Navigation";
 
 
 function House() {

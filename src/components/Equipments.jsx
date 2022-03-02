@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import FilledButton from "./styled-components/FilledButton";
+import FilledButton from "./common/buttons/FilledButton";
 
 // eslint-disable-next-line react/prop-types
 function Equipments({ homeEquipments = null }) {

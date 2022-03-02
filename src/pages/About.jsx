@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import Global from "../components/styled-components/Global";
-import TextContainer from "../components/styled-components/TextContainer";
-import SecondContainer from "../components/styled-components/SecondContainer";
-import Image from "../components/styled-components/Image";
-import ImageContainer from "../components/styled-components/ImageContainer";
-import Navigation from "../components/Navigation";
+import Global from "../components/styled-components/theme/Global";
+import TextContainer from "../components/common/containers/TextContainer";
+import SecondContainer from "../components/common/containers/SecondContainer";
+import Image from "../components/common/Image";
+import ImageContainer from "../components/common/containers/ImageContainer";
+import Navigation from "../components/layout/Navigation";
 
 const About = () => (
   <>

@@ -1,7 +1,7 @@
 import { PropTypes } from "prop-types";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import colors from "./styled-components/colors";
+import colors from "./styled-components/theme/colors";
 
 function HouseImage({ id, image }) {
   HouseImage.propTypes = {

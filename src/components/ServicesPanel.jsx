@@ -1,6 +1,6 @@
 import { PropTypes } from "prop-types";
 import styled from "styled-components";
-import colors from "./styled-components/colors";
+import colors from "./styled-components/theme/colors";
 
 function ServicesPanel({ service }) {
   ServicesPanel.propTypes = {

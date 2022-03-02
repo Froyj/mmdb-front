@@ -1,5 +1,5 @@
-import Navigation from "../components/Navigation";
-import Global from "../components/styled-components/Global";
+import Navigation from "../components/layout/Navigation";
+import Global from "../components/styled-components/theme/Global";
 
 function UserProfile() {
   return (

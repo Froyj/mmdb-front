@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useState } from "react";
 
 import Modal from 'react-modal';
-import FilledButton from "./styled-components/FilledButton";
-import colors from "./styled-components/colors";
+import FilledButton from "./common/buttons/FilledButton";
+import colors from "./styled-components/theme/colors";
 
 // eslint-disable-next-line react/prop-types
 function BookingForm() {

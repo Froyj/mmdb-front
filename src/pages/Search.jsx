@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
-// import styled from "styled-components";
-// import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
+
 import SearchHouseList from "../components/SearchHouseList";
-import Global from "../components/styled-components/Global";
-import Banner from "../components/styled-components/Banner";
-import Navigation from "../components/Navigation";
-// import FilledButton from "../components/styled-components/FilledButton";
-// import colors from "../components/styled-components/colors";
+import Global from "../components/styled-components/theme/Global";
+import Banner from "../components/common/Banner";
+import Navigation from "../components/layout/Navigation";
 
 function Search({ houses }) {
   Search.propTypes = {
