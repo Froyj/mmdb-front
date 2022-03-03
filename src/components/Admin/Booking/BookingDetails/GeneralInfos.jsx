@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import useBookingPrice from '../../../customHooks/useBookingPrice';
 import { Container, SubSection } from '../../../common/containers';
 
@@ -29,11 +30,11 @@ const GeneralInfos = ({ booking }) => {
             </tr>
             <tr>
               <th>Date d'arrivée</th>
-              <td>{arrival}</td>
+              <td>{new Date(arrival).toLocaleDateString('fr')}</td>
             </tr>
             <tr>
               <th>Date de départ</th>
-              <td>{departure}</td>
+              <td>{new Date(departure).toLocaleDateString('fr')}</td>
             </tr>
           </table>
           <div>
@@ -50,25 +51,57 @@ const GeneralInfos = ({ booking }) => {
                     <td>Prix total</td>
                   </tr>
                 </thead>
-                {options.filter(o => o.quantity !== 0).map(({ quantity, option }) => (
-                  <tr key={option.id}>
-                    <td>{option.name}</td>
-                    <td>{option.price}</td>
-                    <td>{quantity}</td>
-                    <td>{quantity * option.price} €</td>
-                  </tr>
-                ))}
+                {options
+                  .filter((o) => o.quantity !== 0)
+                  .map(({ quantity, option }) => (
+                    <tr key={option.id}>
+                      <td>{option.name}</td>
+                      <td>{option.price}</td>
+                      <td>{quantity}</td>
+                      <td>{quantity * option.price} €</td>
+                    </tr>
+                  ))}
               </table>
             )}
           </div>
         </Container>
-        <div>
-          <h3>Total à payer :</h3>
-          <p>{totalPrice} €</p>
-        </div>
       </Container>
+      <PriceContainer>
+        <h3>Détail de la facturation</h3>
+        <table>
+          <tr>
+            <th>Frais de location</th>
+            <td>{}</td>
+          </tr>
+          <tr>
+            <th>Frais de ménage</th>
+            <td>{}</td>
+          </tr>
+          <tr>
+            <th>Frais de location</th>
+            <td>{}</td>
+          </tr>
+          <tr>
+            <th>Total</th>
+            <td>{totalPrice} €</td>
+          </tr>
+        </table>
+      </PriceContainer>
     </SubSection>
   );
 };
+
+const PriceContainer = styled.div`
+  margin: 2em 0;
+  padding: 2em 0;
+  display: flex;
+  h3 {
+    font-size: 1.5em;
+    margin-right: 1em;
+  }
+  p {
+    font-size: 1.5em;
+  }
+`;
 
 export default GeneralInfos;
