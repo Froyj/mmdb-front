@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import ContainerForm from "./common/containers/ContainerForm";
-import TitleForm from "./common/titles/TitleForm";
-import FilledButton from "./common/buttons/FilledButton";
-import { UserContext } from "../contexts/user";
-import axios from "../helper/axios-config";
-import { ADMIN } from "../constants/roles";
-import StyledLink from "./common/Link";
-import Navigation from "./layout/Navigation";
-import colors from "./styled-components/theme/colors";
+import ContainerForm from "../common/containers/ContainerForm";
+import TitleForm from "../common/titles/TitleForm";
+import FilledButton from "../common/buttons/FilledButton";
+import { UserContext } from "../../contexts/user";
+import axios from "../../helper/axios-config";
+import { ADMIN } from "../../constants/roles";
+import StyledLink from "../common/Link";
+import Navigation from "../layout/Navigation";
+import colors from "../styled-components/theme/colors";
 
 const ConnectionModal = () => {
   const { register, handleSubmit } = useForm();
