@@ -10,7 +10,7 @@ import {
 } from '../../../../reducers/booking/actions';
 
 import axios from '../../../../helper/axios-config';
-import useBookingPrice from '../../../customHooks/useBookingPrice';
+import useBookingBillingDetails from '../../../customHooks/useBookingBillingDetails';
 import { OptionsPanel, HouseSelector, UserSelector } from '.';
 
 import DatePicker from '../../../common/forms/DatePicker';
@@ -34,7 +34,7 @@ function AdminBookingForm({ houses, addBooking }) {
   const { booking, dispatchBooking } = useContext(BookingContext);
   const [mealOptions, setMealOptions] = useState([]);
   const fieldsErrors = useBookingValidation(booking);
-  const bookingPrice = useBookingPrice(booking);
+  const { bookingTotal } = useBookingBillingDetails(booking);
 
   const minArrival = moment(new Date())
     .add(1, 'days')
@@ -77,7 +77,7 @@ function AdminBookingForm({ houses, addBooking }) {
       },
       options,
     };
-    console.log(fieldsErrors)
+    console.log(fieldsErrors);
     if (Object.keys(fieldsErrors).length === 0) {
       addBooking(bookingDTO.bookingInfos);
     }
@@ -159,7 +159,7 @@ function AdminBookingForm({ houses, addBooking }) {
             <br />
             <p>Taxe de séjour nombre de personnes : 2 euros/personne</p>
             <br />
-            <p>Total: {bookingPrice}</p>
+            <p>Total: {bookingTotal}</p>
             <br />
           </SumUp>
         </PriceDetails>

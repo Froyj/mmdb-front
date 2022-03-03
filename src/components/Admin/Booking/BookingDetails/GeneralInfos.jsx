@@ -1,9 +1,15 @@
 import styled from 'styled-components';
-import useBookingPrice from '../../../customHooks/useBookingPrice';
+import useBookingBillingDetails from '../../../customHooks/useBookingBillingDetails';
 import { Container, SubSection } from '../../../common/containers';
 
 const GeneralInfos = ({ booking }) => {
-  const totalPrice = useBookingPrice(booking);
+  const {
+    bookingTotal,
+    optionsTotal,
+    rentalWithoutFees,
+    stayFees,
+    houseKeepingFees,
+  } = useBookingBillingDetails(booking);
 
   const {
     arrival_date: arrival,
@@ -13,16 +19,10 @@ const GeneralInfos = ({ booking }) => {
   } = booking;
 
   return (
-    <SubSection flexDirection='column' flexBasis='100%'>
+    <SubSection flexDirection='column'>
       <h3>Informations générales</h3>
-      <Container display='flex' flexDirection='column'>
-        <Container
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-evenly'
-          flexBasis='50%'
-          flexGrow={2}
-        >
+      <Container display='flex' flexDirection='row'>
+        <Container>
           <table>
             <tr>
               <th>Nombre de personnes</th>
@@ -37,53 +37,56 @@ const GeneralInfos = ({ booking }) => {
               <td>{new Date(departure).toLocaleDateString('fr')}</td>
             </tr>
           </table>
-          <div>
-            <h3>Options</h3>
-            {options.length === 0 ? (
-              <p>Aucune option</p>
-            ) : (
-              <table>
-                <thead>
-                  <tr>
-                    <td>Nom</td>
-                    <td>Quantité</td>
-                    <td>Prix à l'unité</td>
-                    <td>Prix total</td>
+        </Container>
+        <Container>
+          {options.length === 0 ? (
+            <p>Aucune option</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Quantité</th>
+                  <th>Prix à l'unité</th>
+                  <th>Prix total</th>
+                </tr>
+              </thead>
+              {options
+                .filter((o) => o.quantity !== 0)
+                .map(({ quantity, option }) => (
+                  <tr key={option.id}>
+                    <td>{option.name}</td>
+                    <td>{option.price}</td>
+                    <td>{quantity}</td>
+                    <td>{quantity * option.price} €</td>
                   </tr>
-                </thead>
-                {options
-                  .filter((o) => o.quantity !== 0)
-                  .map(({ quantity, option }) => (
-                    <tr key={option.id}>
-                      <td>{option.name}</td>
-                      <td>{option.price}</td>
-                      <td>{quantity}</td>
-                      <td>{quantity * option.price} €</td>
-                    </tr>
-                  ))}
-              </table>
-            )}
-          </div>
+                ))}
+            </table>
+          )}
         </Container>
       </Container>
       <PriceContainer>
-        <h3>Détail de la facturation</h3>
+        <h4>Détail de la facturation</h4>
         <table>
           <tr>
             <th>Frais de location</th>
-            <td>{}</td>
+            <td>{rentalWithoutFees}</td>
           </tr>
           <tr>
             <th>Frais de ménage</th>
-            <td>{}</td>
+            <td>{houseKeepingFees} €</td>
           </tr>
           <tr>
-            <th>Frais de location</th>
-            <td>{}</td>
+            <th>Taxe de séjour</th>
+            <td>{stayFees * personCount} €</td>
+          </tr>
+          <tr>
+            <th>Total des options</th>
+            <td>{optionsTotal} €</td>
           </tr>
           <tr>
             <th>Total</th>
-            <td>{totalPrice} €</td>
+            <td>{bookingTotal} €</td>
           </tr>
         </table>
       </PriceContainer>
@@ -94,11 +97,6 @@ const GeneralInfos = ({ booking }) => {
 const PriceContainer = styled.div`
   margin: 2em 0;
   padding: 2em 0;
-  display: flex;
-  h3 {
-    font-size: 1.5em;
-    margin-right: 1em;
-  }
   p {
     font-size: 1.5em;
   }

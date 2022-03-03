@@ -31,7 +31,7 @@ const SubSection = styled.section`
   }
 
   & tr {
-    &:nth-child(2n) {
+    &:nth-child(2n + 1) {
       background-color: #e2f8d6;
     }
     vertical-align: top;
@@ -39,6 +39,11 @@ const SubSection = styled.section`
 
   & th {
     text-align: left;
+  }
+  & h3 {
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-bottom: 1em;
   }
 `;
 
