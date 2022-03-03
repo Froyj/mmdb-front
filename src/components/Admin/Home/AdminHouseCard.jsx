@@ -3,8 +3,8 @@ import { PropTypes } from "prop-types";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import deleteHouses from "../../../data/deleteHouses";
-import getHouses from "../../../data/houses";
+import deleteHouses from "../../../api/deleteHouses";
+import getHouses from "../../../api/houses";
 import colors from "../../styled-components/theme/colors";
 import BlankTitle from "../../common/titles/BlankTitle";
 

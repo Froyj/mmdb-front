@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getHouses from '../../../data/houses';
+import getHouses from '../../../api/houses';
 import AdminBookingForm from './BookingForm/AdminBookingForm';
 
 const BookingRegistration = ({ addBooking, bookings }) => {

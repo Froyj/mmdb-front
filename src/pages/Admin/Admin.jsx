@@ -5,21 +5,18 @@ import Global from "../../components/styled-components/theme/Global";
 
 import FilledButton from '../../components/common/buttons/FilledButton';
 import colors from '../../components/styled-components/theme/colors';
-import Navigation from '../../components/layout/Navigation';
 
 import AdminHouseList from '../../components/Admin/Home/AdminHouseList';
-import BookingDashboard from './BookingDashboard';
+import BookingDashboard from '../../components/Admin/Booking/BookingDashboard';
 
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {
     houses: PropTypes.arrayOf(PropTypes.object).isRequired,
     setHouses: PropTypes.func.isRequired,
-    // bookings: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   return (
     <>
-      <Navigation />
       <Global 
         minHeight="67.2vh"
       >

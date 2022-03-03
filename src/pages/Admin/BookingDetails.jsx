@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getBookingWithDetails } from '../../api/bookings';
-import Navigation from '../../components/layout/Navigation';
+import { getBookingWithDetails } from '../../api/bookings/bookings';
 import {
   CustomerInfos,
   GeneralInfos,
@@ -28,7 +27,6 @@ const BookingDetails = () => {
 
   return (
     <>
-      <Navigation />
       {user && (
         <MainSection>
           <StyledLink to="/admin/dashboard" alignSelf='end'>

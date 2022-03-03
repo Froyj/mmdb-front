@@ -1,7 +1,11 @@
-import axios from './axios-config';
+import axios from '../helper/axios-config';
 
-const getBookingWithDetails = (bookingId) =>
-  axios.get(`/bookings/${bookingId}`).then((res) => res.data);
+const getBookings = (setVar) => {
+    axios
+    .get('/bookings')
+    .then((response) => response.data)
+    .then((data) => setVar(data))
+    .catch((err) => console.log(err))
+};
 
-// eslint-disable-next-line import/prefer-default-export
-export { getBookingWithDetails };
+export default getBookings;

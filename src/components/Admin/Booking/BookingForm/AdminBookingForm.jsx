@@ -10,7 +10,7 @@ import {
 } from '../../../../reducers/booking/actions';
 
 import axios from '../../../../helper/axios-config';
-import useBookingBillingDetails from '../../../customHooks/useBookingBillingDetails';
+import useBookingBillingDetails from '../../../../customHooks/useBookingBillingDetails';
 import { OptionsPanel, HouseSelector, UserSelector } from '.';
 
 import DatePicker from '../../../common/forms/DatePicker';
@@ -28,7 +28,7 @@ import {
   PriceDetails,
 } from '../../../common/forms';
 import FilledButton from '../../../common/buttons/FilledButton';
-import useBookingValidation from '../../../customHooks/useBookingFormErrors';
+import useBookingValidation from '../../../../customHooks/useBookingFormErrors';
 
 function AdminBookingForm({ houses, addBooking }) {
   const { booking, dispatchBooking } = useContext(BookingContext);

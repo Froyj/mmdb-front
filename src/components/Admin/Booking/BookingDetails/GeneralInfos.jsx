@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useBookingBillingDetails from '../../../customHooks/useBookingBillingDetails';
+import useBookingBillingDetails from '../../../../customHooks/useBookingBillingDetails';
 import { Container, SubSection } from '../../../common/containers';
 
 const GeneralInfos = ({ booking }) => {

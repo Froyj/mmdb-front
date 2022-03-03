@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from '../../helper/axios-config';
-import BookingList from '../../components/Admin/Booking/BookingList/BookingList';
-import BookingRegistration from '../../components/Admin/Booking/BookingRegistration';
-import FilledButton from '../../components/common/buttons/FilledButton';
-import BookingContext from '../../contexts/Booking/booking';
-import { RESET_BOOKING } from '../../reducers/booking/actions';
+import axios from '../../../helper/axios-config';
+import BookingList from './BookingList/BookingList';
+import BookingRegistration from './BookingRegistration';
+import FilledButton from '../../common/buttons/FilledButton';
+import BookingContext from '../../../contexts/Booking/booking';
+import { RESET_BOOKING } from '../../../reducers/booking/actions';
 
 const BookingDashboard = () => {
   const [bookings, setBookings] = useState([]);

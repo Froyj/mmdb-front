@@ -24,7 +24,7 @@ const Navigation = () => {
         <StyledLink to="/">
           <Logo>
             <img
-              src="../ressources/Logo-blanc.png"
+              src="/ressources/Logo-blanc.png"
               alt="Logo Ma maison des bois"
             />
           </Logo>

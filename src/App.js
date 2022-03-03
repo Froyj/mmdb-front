@@ -6,19 +6,23 @@ import axios from './helper/axios-config';
 import colors from './components/styled-components/theme/colors';
 
 import House from './pages/House';
-import getHouses from './data/houses';
-import getBookings from './data/bookings';
+import getHouses from './api/houses';
+import getBookings from './api/bookings';
 
 import Footer from './components/layout/Footer';
 import FilledButton from './components/common/buttons/FilledButton';
 import About from './pages/About';
 
-import { Admin, AddNewHouse, UpdateHouse, BookingDetails } from './pages/Admin';
+import Admin from './pages/Admin/Admin';
+import AddNewHouse from './pages/Admin/AddNewHouse';
+import UpdateHouse from './pages/Admin/UpdateHouse';
+import BookingDetails from './pages/Admin/BookingDetails';
 
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
+
 import ConnectionModal from './components/auth/ConnectionModal';
 import SignUpForm from './components/SignUpForm';
 import PrivateRoute from './components/auth/PrivateRoute';
@@ -30,6 +34,8 @@ import {
 import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
 import BookingContextProvider from './contexts/Booking/BookingContextProvider';
+
+import AdminLayout from './components/layout/Admin'
 
 Modal.setAppElement('#root');
 
@@ -89,7 +95,14 @@ function App() {
               <Route path='/maison/:id' element={<House />} />
 
               {/* Admin Routes */}
-              <Route path='/admin' element={<PrivateRoute role={ADMIN} />}>
+              <Route
+                path='/admin'
+                element={
+                  <PrivateRoute role={ADMIN}>
+                    <AdminLayout />
+                  </PrivateRoute>
+                }
+              >
                 <Route
                   path='dashboard'
                   element={
