@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import getHouses from '../../../api/houses';
 import AdminBookingForm from './BookingForm/AdminBookingForm';
 
-const BookingRegistration = ({ addBooking, bookings }) => {
+const BookingRegistration = ({ addBooking, bookings, fieldErrors }) => {
   const [houses, setHouses] = useState([]);
   useEffect(() => {
     getHouses(setHouses);
@@ -13,6 +13,7 @@ const BookingRegistration = ({ addBooking, bookings }) => {
         houses={houses}
         addBooking={addBooking}
         bookings={bookings}
+        fieldErrors={fieldErrors}
       />
   );
 };

@@ -2,8 +2,11 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Row, Cell, ClientInfos } from '../../../common/tables/Table';
 import FilledButton from '../../../common/buttons/FilledButton';
+import useBookingBillingDetails from '../../../../customHooks/useBookingBillingDetails';
 
 const BookingListItem = ({ booking, handleDelete }) => {
+  const { bookingTotal } = useBookingBillingDetails(booking);
+
   BookingListItem.propTypes = {
     booking: PropTypes.shape({
       id: PropTypes.number,
@@ -17,11 +20,10 @@ const BookingListItem = ({ booking, handleDelete }) => {
 
   const {
     id,
-    home_to_rent_id: homeId,
+    home_to_rent: homeToRent,
     arrival_date: arrival,
     departure_date: departure,
     user,
-    total_price: price,
   } = booking;
 
   function formatDate(dateString) {
@@ -34,7 +36,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
 
   return (
     <Row>
-      <Cell>{homeId}</Cell>
+      <Cell>{homeToRent.name}</Cell>
       <Cell>{formatDate(arrival)}</Cell>
       <Cell>{formatDate(departure)}</Cell>
       <Cell>
@@ -46,7 +48,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
           <span>{user.email}</span>
         </ClientInfos>
       </Cell>
-      <Cell>{price}</Cell>
+      <Cell>{bookingTotal}</Cell>
       <Cell noBorder>
         <Link to={`/admin/dashboard/details-reservation/${id}`}>
           Voir les détails
@@ -60,7 +62,5 @@ const BookingListItem = ({ booking, handleDelete }) => {
     </Row>
   );
 };
-
-
 
 export default BookingListItem;

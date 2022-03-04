@@ -28,12 +28,10 @@ import {
   PriceDetails,
 } from '../../../common/forms';
 import FilledButton from '../../../common/buttons/FilledButton';
-import useBookingValidation from '../../../../customHooks/useBookingFormErrors';
 
-function AdminBookingForm({ houses, addBooking }) {
+function AdminBookingForm({ houses, addBooking, fieldErrors }) {
   const { booking, dispatchBooking } = useContext(BookingContext);
   const [mealOptions, setMealOptions] = useState([]);
-  const fieldsErrors = useBookingValidation(booking);
   const { bookingTotal } = useBookingBillingDetails(booking);
 
   const minArrival = moment(new Date())
@@ -41,6 +39,7 @@ function AdminBookingForm({ houses, addBooking }) {
     .toISOString()
     .replace(/T/, ' ')
     .split(' ')[0];
+
   const minDeparture = moment(minArrival)
     .add(2, 'days')
     .toISOString()
@@ -53,23 +52,23 @@ function AdminBookingForm({ houses, addBooking }) {
     });
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const {
-      user: { id: userId },
-      home_to_rent: { id: houseId },
-      arrival,
-      departure,
-      travellersNumber,
+      user,
+      home_to_rent: house,
+      arrival_date: arrival,
+      departure_date: departure,
+      number_of_renter: personCount,
       options,
     } = booking;
 
     const bookingDTO = {
       bookingInfos: {
-        user_id: userId,
-        home_to_rent_id: houseId,
+        user_id: user?.id,
+        home_to_rent_id: house?.id,
         arrival_date: arrival,
         departure_date: departure,
-        number_of_renter: travellersNumber,
+        number_of_renter: personCount,
         options: options.map((o) => ({
           option_id: o.id,
           quantity: o.quantity,
@@ -77,10 +76,8 @@ function AdminBookingForm({ houses, addBooking }) {
       },
       options,
     };
-    console.log(fieldsErrors);
-    if (Object.keys(fieldsErrors).length === 0) {
-      addBooking(bookingDTO.bookingInfos);
-    }
+
+    addBooking(bookingDTO.bookingInfos);
   };
 
   return (
@@ -91,11 +88,8 @@ function AdminBookingForm({ houses, addBooking }) {
           <Container display='flex' flexDirection='row'>
             <div>
               <BookingSection>
-                <UserSelector error={fieldsErrors.user} />
-                {booking.user && (
-                  <HouseSelector houses={houses} error={fieldsErrors.house} />
-                )}
-                {booking.home_to_rent && (
+                <UserSelector error={fieldErrors.user} />
+                  <HouseSelector houses={houses} error={fieldErrors.house} />
                   <SelectBookingDates>
                     <DatePicker
                       name='arrival'
@@ -107,9 +101,8 @@ function AdminBookingForm({ houses, addBooking }) {
                           payload: e.target.value,
                         })
                       }
-                      error={fieldsErrors.arrival}
+                      error={fieldErrors.arrival}
                     />
-                    {booking.arrival_date && (
                       <DatePicker
                         name='departure'
                         label='Départ'
@@ -120,12 +113,9 @@ function AdminBookingForm({ houses, addBooking }) {
                             payload: e.target.value,
                           })
                         }
-                        error={fieldsErrors.departure}
+                        error={fieldErrors.departure}
                       />
-                    )}
                   </SelectBookingDates>
-                )}
-                {booking.arrival_date && booking.departure_date && (
                   <SelectTravellersNumber>
                     <Counter
                       label='Nombre de personnes'
@@ -141,7 +131,6 @@ function AdminBookingForm({ houses, addBooking }) {
                       }
                     />
                   </SelectTravellersNumber>
-                )}
               </BookingSection>
             </div>
             <BookingSection>
