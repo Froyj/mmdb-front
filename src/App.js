@@ -35,7 +35,7 @@ import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
 import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 
-import AdminLayout from './components/layout/Admin'
+import AdminLayout from './components/layout/Admin';
 
 Modal.setAppElement('#root');
 
@@ -78,8 +78,7 @@ function App() {
           <BookingContextProvider>
             {/* <Navigation /> */}
             <Routes>
-              {/* Connected User */}
-
+              {/* Connected User */}I
               <Route path='/profil' element={<UserProfile />} />
               {/* Auth Routes */}
               <Route path='/se-connecter' element={<ConnectionModal />} />
@@ -93,7 +92,6 @@ function App() {
                 element={<Search houses={houses} />}
               />
               <Route path='/maison/:id' element={<House />} />
-
               {/* Admin Routes */}
               <Route
                 path='/admin'
