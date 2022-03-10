@@ -15,4 +15,11 @@ const createUsers = (data) => {
     });
 };
 
-export { fetchUserWithId, createUsers };
+const updateUser = (userId, formData) =>
+  axios.put(`/users/${userId}`, formData).then((res) => res.data);
+
+const deleteUser = (userId) => {
+  axios.delete(`/users/${userId}`)
+}
+
+export { fetchUserWithId, createUsers, updateUser, deleteUser };

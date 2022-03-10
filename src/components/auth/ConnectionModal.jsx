@@ -19,7 +19,7 @@ const ConnectionModal = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("/login", data)
+      .post("/auth/login", data)
       .then((res) => res.data)
       .then((user) => {
         dispatch({

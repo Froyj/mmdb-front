@@ -1,46 +1,57 @@
 import { useContext, useEffect, useState } from 'react';
-import { fetchUserWithId } from '../api/users';
+import { ToastContainer, toast } from 'react-toastify';
+import { deleteUser, fetchUserWithId } from '../api/users';
 import Global from '../components/styled-components/theme/Global';
+import UserInfosTable from '../components/user/UserInfosTable';
+import UserModifyPasswordForm from '../components/user/UserModifyPasswordForm';
 import { UserContext } from '../contexts/user';
 
 function UserProfile() {
   const { userId } = useContext(UserContext);
-  const { user, setUser } = useState(null);
+  const [user, setUser] = useState({});
 
   const loadUserData = async (id) => {
-    const fetchedUser = await fetchUserWithId(id);
-    setUser(fetchedUser)
+    try {
+      const fetchedUser = await fetchUserWithId(id);
+      setUser(fetchedUser);
+    } catch (error) {
+      toast.error('Problème pendant la récupération des données !', {
+        position: 'top-center',
+        autoClose: 2000,
+      });
+    }
   };
 
   useEffect(() => {
-    loadUserData(userId);
-  }, []);
+    if (userId) {
+      loadUserData(userId);
+    }
+  }, [userId]);
+
+  const deleteAccount = async (id) => {
+    try {
+      await deleteUser(id);
+      
+    } catch (error) {
+      toast.error('Nous avons rencontré une erreur pendant la suppression de votre compte')
+    }
+  };
 
   return (
     <>
       <Global>Profil Utilisateur</Global>
-      <table>
-        <tr>
-          <td>Nom</td>
-          <td>{user.lastname}</td>
-        </tr>
-        <tr>
-          <td>Prénom</td>
-          <td>{user.firstname}</td>
-        </tr>
-        <tr>
-          <td>Téléphone</td>
-          <td>{user.phone}</td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td>{user.email}</td>
-        </tr>
-        <tr>
-          <td>Adresse</td>
-          <td>{user.adress}</td>
-        </tr>
-      </table>
+      <>
+        {user ? (
+          <>
+            <UserInfosTable user={user} />
+            <UserModifyPasswordForm />
+            <button type='button' onClick={() => deleteAccount(userId)}>Supprimer le compte</button>
+          </>
+        ) : (
+          <p>Problème lors du chargement des données</p>
+        )}
+        <ToastContainer />
+      </>
     </>
   );
 }
