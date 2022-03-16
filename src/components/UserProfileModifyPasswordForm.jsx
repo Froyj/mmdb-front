@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
+import styled from 'styled-components';
 import axios from '../api/axios-config';
 import { UserContext } from '../contexts/user';
 import FilledButton from './common/buttons/FilledButton';
@@ -32,20 +33,22 @@ const UserProfileModifyPasswordForm = () => {
     <>
       <ToastContainer />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor='new-password'>
-          <input
+        <FormLabel htmlFor='new-password'>
+          Nouveau mot de passe
+          <FormInput
             type='password'
             id='new-password'
             {...register('password', { required: true, minLength: 6 })}
           />
-          <p>
+          <FormError>
             {errors.password?.type === 'required' && 'Champs obligatoire'}
             {errors.password?.type === 'minLength' &&
               'Le mot de passe doit faire 6 caractères minimum'}
-          </p>
-        </label>
-        <label htmlFor='confirmation-password'>
-          <input
+          </FormError>
+        </FormLabel>
+        <FormLabel htmlFor='confirmation-password'>
+          Confirmez le mot de passe
+          <FormInput
             type='password'
             id='confirmation-password'
             {...register('confirmationPassword', {
@@ -53,17 +56,31 @@ const UserProfileModifyPasswordForm = () => {
               validate: (v) => v === getValues('password'),
             })}
           />
-          <p>
+          <FormError>
             {errors.confirmationPassword?.type === 'required' &&
               'Champs obligatoire'}
             {errors.confirmationPassword?.type === 'validate' &&
               'Les mots de passes saisis doivent être identique'}
-          </p>
-        </label>
-        <FilledButton>Modifier le mot de passe</FilledButton>
+          </FormError>
+        </FormLabel>
+        <span>
+          <FilledButton>Modifier le mot de passe</FilledButton>
+        </span>
       </form>
     </>
   );
 };
 
 export default UserProfileModifyPasswordForm;
+
+const FormLabel = styled.label`
+  display: block;
+  margin: 1em 0;
+`
+const FormInput = styled.input`
+  display: block;
+`
+
+const FormError = styled.p`
+  color: red; 
+`

@@ -6,7 +6,9 @@ const Container = styled.div`
   justify-content: ${(props) => props.justifyContent || 'stretch'};
   flex-wrap: wrap;
   flex-basis: ${(props) => props.flexBasis || 'auto'};
-  flex-grow: ${(props) => props.flexGrow || 1};
+  flex-grow: ${(props) => props.flexGrow || 0};
+  justify-self: ${(props) => props.justifySelf || "auto"};
+  margin:  ${(props) => props.margin || 0};
 `;
 
 export default Container;
