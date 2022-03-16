@@ -5,11 +5,9 @@ import TextContainer from "../components/common/containers/TextContainer";
 import SecondContainer from "../components/common/containers/SecondContainer";
 import Image from "../components/common/Image";
 import ImageContainer from "../components/common/containers/ImageContainer";
-import Navigation from "../components/layout/Navigation";
 
 const About = () => (
   <>
-  <Navigation />
   <Global>
     <SecondContainer>
       <ImageContainer>

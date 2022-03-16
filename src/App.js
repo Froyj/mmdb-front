@@ -35,7 +35,7 @@ import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
 import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 
-import AdminLayout from './components/layout/Admin'
+import AdminLayout from './components/layout/Admin';
 
 Modal.setAppElement('#root');
 
@@ -78,22 +78,23 @@ function App() {
           <BookingContextProvider>
             {/* <Navigation /> */}
             <Routes>
-              {/* Connected User */}
+              <Route path='/' element={<AdminLayout />}>
+                {/* Connected User */}
 
-              <Route path='/profil' element={<UserProfile />} />
-              {/* Auth Routes */}
-              <Route path='/se-connecter' element={<ConnectionModal />} />
-              <Route path='/creation-compte' element={<SignUpForm />} />
-              {/* Public Route */}
-              <Route exact path='/' element={<Home />} />
-              <Route path='/services' element={<Services />} />
-              <Route path='/qui-sommes-nous' element={<About />} />
-              <Route
-                path='/nos-maisons-forestieres'
-                element={<Search houses={houses} />}
-              />
-              <Route path='/maison/:id' element={<House />} />
-
+                <Route path='/profil' element={<UserProfile />} />
+                {/* Auth Routes */}
+                <Route path='/se-connecter' element={<ConnectionModal />} />
+                <Route path='/creation-compte' element={<SignUpForm />} />
+                {/* Public Route */}
+                <Route exact path='/' element={<Home />} />
+                <Route path='/services' element={<Services />} />
+                <Route path='/qui-sommes-nous' element={<About />} />
+                <Route
+                  path='/nos-maisons-forestieres'
+                  element={<Search houses={houses} />}
+                />
+                <Route path='/maison/:id' element={<House />} />
+              </Route>
               {/* Admin Routes */}
               <Route
                 path='/admin'

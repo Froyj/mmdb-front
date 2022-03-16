@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import FilledButton from '../components/common/buttons/FilledButton';
-import Navigation from '../components/layout/Navigation';
 import UserProfileModifyPasswordForm from '../components/UserProfileModifyPasswordForm';
 import UserProfileInfosList from '../components/UserProfileInfosList';
 import Container from '../components/common/containers/Container';
@@ -8,7 +7,6 @@ import Container from '../components/common/containers/Container';
 function UserProfile() {
   return (
     <>
-      <Navigation />
       <Main>
         <Container flexDirection='column' flexGrow='1' margin='1rem'>
           <h1>Informations de profil</h1>
@@ -23,7 +21,7 @@ function UserProfile() {
             <FilledButton>Supprimer mon compte</FilledButton>
           </Container>
         </Container>
-        
+
       </Main>
     </>
   );

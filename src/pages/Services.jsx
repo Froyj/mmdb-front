@@ -6,7 +6,6 @@ import Global from "../components/styled-components/theme/Global";
 import ServicesPanel from "../components/ServicesPanel";
 import TitleSpan from "../components/common/titles/TitleSpan";
 import Card from "../components/common/Card";
-import Navigation from "../components/layout/Navigation";
 
 function Services() {
   const [servicesData, setServicesData] = useState([]);
@@ -19,7 +18,6 @@ function Services() {
 
   return (
     <>
-      <Navigation />
       <Banner
         backgroundPosition="center"
         marginTop="none"
