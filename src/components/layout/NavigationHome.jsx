@@ -62,6 +62,11 @@ const NavigationHome = () => {
           <StyledLink to="/qui-sommes-nous">
             <MenuLink id="link3">Qui sommes-nous ?</MenuLink>
           </StyledLink>
+          {roleId === 2 && (
+            <StyledLink to="/profil">
+              <MenuLink id="link4">Profil</MenuLink>
+            </StyledLink>
+          )}
           {roleId === 1 && (
             <StyledLink to="/admin/dashboard">
               <MenuLink id="link5">Admin</MenuLink>
