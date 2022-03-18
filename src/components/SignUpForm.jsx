@@ -1,22 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import styled from "styled-components";
-import TitleForm from "./common/titles/TitleForm";
-import ContainerForm from "./common/containers/ContainerForm";
-import Submitbutton from "./common/buttons/SubmitButton";
-import createUsers from "../api/createUsers";
-import Navigation from "./layout/Navigation";
-
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styled from 'styled-components';
+import TitleForm from './common/titles/TitleForm';
+import ContainerForm from './common/containers/ContainerForm';
+import Submitbutton from './common/buttons/SubmitButton';
+import Navigation from './layout/Navigation';
+import { createUsers } from '../api/users';
 
 function SignUpForm() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     createUsers(data);
-    toast.success("Le compte à bien été crée !", {
-      position: "top-center",
+    toast.success('Le compte à bien été crée !', {
+      position: 'top-center',
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -30,110 +29,110 @@ function SignUpForm() {
     <>
       <Navigation />
       <MainContainer>
-        <ContainerForm marginTop="2rem" marginBottom="2rem">
+        <ContainerForm marginTop='2rem' marginBottom='2rem'>
           <TitleForm>Créer un compte</TitleForm>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="genre">
-              <select {...register("genre", { required: true })}>
-                <option value="Mme">Madame</option>
-                <option value="Mr">Monsieur</option>
+            <label htmlFor='genre'>
+              <select {...register('genre', { required: true })}>
+                <option value='Mme'>Madame</option>
+                <option value='Mr'>Monsieur</option>
               </select>
             </label>
             <br />
-            <label htmlFor="lastname">
+            <label htmlFor='lastname'>
               Nom* : <br />
               <input
-                type="text"
-                placeholder="Nom"
-                {...register("lastname", { required: true })}
+                type='text'
+                placeholder='Nom'
+                {...register('lastname', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="firstname">
+            <label htmlFor='firstname'>
               Prénom* : <br />
               <input
-                type="text"
-                placeholder="Prénom"
-                {...register("firstname", { required: true })}
+                type='text'
+                placeholder='Prénom'
+                {...register('firstname', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="birth_date">
+            <label htmlFor='birth_date'>
               Date de naissance* : <br />
               <input
-                type="date"
-                placeholder="Date de naissance"
-                {...register("birth_date", { required: true })}
+                type='date'
+                placeholder='Date de naissance'
+                {...register('birth_date', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="email">
+            <label htmlFor='email'>
               Email* : <br />
               <input
-                type="email"
-                placeholder="Email"
-                {...register("email", { required: true })}
+                type='email'
+                placeholder='Email'
+                {...register('email', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="adress">
+            <label htmlFor='adress'>
               Adresse* : <br />
               <input
-                type="textarea"
-                placeholder="Adresse"
-                {...register("adress", { required: true })}
+                type='textarea'
+                placeholder='Adresse'
+                {...register('adress', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="zipcode">
+            <label htmlFor='zipcode'>
               Code postal* : <br />
               <input
-                type="text"
-                placeholder="Code postal"
-                {...register("zipcode", {
+                type='text'
+                placeholder='Code postal'
+                {...register('zipcode', {
                   required: true,
                 })}
               />
             </label>
             <br />
-            <label htmlFor="city">
+            <label htmlFor='city'>
               Ville* : <br />
               <input
-                type="text"
-                placeholder="Ville"
-                {...register("city", { required: true })}
+                type='text'
+                placeholder='Ville'
+                {...register('city', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="phone">
+            <label htmlFor='phone'>
               Téléphone* : <br />
               <input
-                type="tel"
-                placeholder="Téléphone"
-                {...register("phone", { required: true })}
+                type='tel'
+                placeholder='Téléphone'
+                {...register('phone', { required: true })}
               />
             </label>
             <br />
-            <label htmlFor="password">
+            <label htmlFor='password'>
               Mot de passe* : <br />
               <input
-                type="password"
-                placeholder="Mot de passe"
-                {...register("password", {
+                type='password'
+                placeholder='Mot de passe'
+                {...register('password', {
                   required: true,
                   minLength: {
                     value: 8,
-                    message: "Password must have at least 8 characters",
+                    message: 'Password must have at least 8 characters',
                   },
                 })}
               />
             </label>
             <br />
 
-            <Submitbutton 
-              type="submit"
-              marginTop="1.5rem"
-              backgroundColor="#1c2c46"
+            <Submitbutton
+              type='submit'
+              marginTop='1.5rem'
+              backgroundColor='#1c2c46'
             >
               Envoyer
             </Submitbutton>

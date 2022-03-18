@@ -1,38 +1,38 @@
 import styled from 'styled-components';
 import Container from './common/containers/Container';
 
-const UserProfileInfosList = () => (
+const UserProfileInfosList = ({user}) => (
   <UserProfileInfoList>
     <Container justifyContent='space-between'>
       <UserProfileItem>
         <h2>Nom</h2>
-        <span>Periot</span>
+        <span>{user.lastname}</span>
       </UserProfileItem>
       <UserProfileItem>
         <h2>Prénom</h2>
-        <span>Geoffroy</span>
+        <span>{user.firstname}</span>
       </UserProfileItem>
     </Container>
     <UserProfileItem>
       <h2>Email</h2>
-      <span>geoffroy.periot.dev@gmail.com</span>
+      <span>{user.email}</span>
     </UserProfileItem>
     <UserProfileItem>
       <h2>Téléphone</h2>
-      <span>0677383962</span>
+      <span>{user.phone}</span>
     </UserProfileItem>
     <UserProfileItem>
       <h2>Adresse</h2>
-      <span>16 Allees Charles de Fitte</span>
+      <span>{user.adress}</span>
     </UserProfileItem>
     <Container justifyContent='space-between'>
       <UserProfileItem>
         <h2>Code Postal</h2>
-        <span>31300</span>
+        <span>{user.zipcode}</span>
       </UserProfileItem>
       <UserProfileItem>
         <h2>Localité</h2>
-        <span>Toulouse</span>
+        <span>{user.city}</span>
       </UserProfileItem>
     </Container>
   </UserProfileInfoList>
