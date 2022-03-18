@@ -9,7 +9,6 @@ import { UserContext } from "../../contexts/user";
 import axios from "../../helper/axios-config";
 import { ADMIN } from "../../constants/roles";
 import StyledLink from "../common/Link";
-import Navigation from "../layout/Navigation";
 import colors from "../styled-components/theme/colors";
 
 const ConnectionModal = () => {
@@ -36,7 +35,6 @@ const ConnectionModal = () => {
 
   return (
     <>
-      <Navigation />
       <BackgroundImage>
         <MainContainer>
           <ContainerForm

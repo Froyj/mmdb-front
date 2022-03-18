@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import TitleForm from './common/titles/TitleForm';
 import ContainerForm from './common/containers/ContainerForm';
 import Submitbutton from './common/buttons/SubmitButton';
-import Navigation from './layout/Navigation';
 import { createUsers } from '../api/users';
 
 function SignUpForm() {
@@ -27,7 +26,6 @@ function SignUpForm() {
 
   return (
     <>
-      <Navigation />
       <MainContainer>
         <ContainerForm marginTop='2rem' marginBottom='2rem'>
           <TitleForm>Créer un compte</TitleForm>
