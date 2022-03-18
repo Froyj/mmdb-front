@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { useState, useContext } from "react";
-import { UserContext } from "../../contexts/user";
-import axios from "../../helper/axios-config";
-import StyledLink from "../common/Link";
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useState, useContext } from 'react';
+import { UserContext } from '../../contexts/user';
+import axios from '../../helper/axios-config';
+import StyledLink from '../common/Link';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,20 +12,20 @@ const Navigation = () => {
 
   const disconnectUser = () => {
     axios
-      .get("/auth/revoke-access")
-      .then(() => dispatch({ type: "DISCONNECTION" }))
-      .then(() => navigate("/"))
+      .get('/auth/revoke-access')
+      .then(() => dispatch({ type: 'DISCONNECTION' }))
+      .then(() => navigate('/'))
       .catch(console.log);
   };
 
   return (
-    <MenuContainer id="menu-container">
+    <MenuContainer id='menu-container'>
       <Nav>
-        <StyledLink to="/">
+        <StyledLink to='/'>
           <Logo>
             <img
-              src="/ressources/Logo-blanc.png"
-              alt="Logo Ma maison des bois"
+              src='/ressources/Logo-blanc.png'
+              alt='Logo Ma maison des bois'
             />
           </Logo>
         </StyledLink>
@@ -37,43 +37,47 @@ const Navigation = () => {
         </Burger>
 
         <Menu isOpen={isOpen}>
-          <StyledLink to="/nos-maisons-forestieres">
-            <MenuLink id="link1">Nos maisons forestières</MenuLink>
-          </StyledLink>
-          <StyledLink to="/services">
-            <MenuLink id="link2">Nos services</MenuLink>
-          </StyledLink>
-          <StyledLink to="/qui-sommes-nous">
-            <MenuLink id="link3">Qui sommes-nous ?</MenuLink>
-          </StyledLink>
-          {roleId === 2 && (
-            <StyledLink to="/profil">
-              <MenuLink id="link4">Profil</MenuLink>
+          <MenuItem id='link1'>
+            <StyledLink to='/nos-maisons-forestieres'>
+              Nos maisons forestières
             </StyledLink>
+          </MenuItem>
+          <MenuItem id='link2'>
+            <StyledLink to='/services'>Nos services</StyledLink>
+          </MenuItem>
+          <MenuItem id='link3'>
+            <StyledLink to='/qui-sommes-nous'>Qui sommes-nous ?</StyledLink>
+          </MenuItem>
+          {roleId === 2 && (
+            <MenuItem id='link4'>
+              <StyledLink to='/profil'>Profil</StyledLink>
+            </MenuItem>
           )}
           {roleId === 1 && (
-            <StyledLink to="/admin/dashboard">
-              <MenuLink id="link5">Admin</MenuLink>
-            </StyledLink>
+            <MenuItem id='link5'>
+              <StyledLink to='/admin/dashboard'>Admin</StyledLink>
+            </MenuItem>
           )}
           <ConnexionContainer>
             {isConnected ? (
-              <MenuLink id="link6"onClick={() => disconnectUser()}>Deconnexion</MenuLink>
+              <MenuItem id='link6' onClick={() => disconnectUser()}>
+                Deconnexion
+              </MenuItem>
             ) : (
-              <StyledLink to="/se-connecter">
-                <MenuLink id="link4">
-                  <StyledLink to="/se-connecter">
+              <StyledLink to='/se-connecter'>
+                <MenuItem id='link4'>
+                  <StyledLink to='/se-connecter'>
                     <Image>
                       <img
-                        src="../ressources/user-white.png"
-                        alt="utilisateur"
-                        width="20px"
-                        height="20px"
+                        src='../ressources/user-white.png'
+                        alt='utilisateur'
+                        width='20px'
+                        height='20px'
                       />
                     </Image>
                   </StyledLink>
                   Se connecter
-                </MenuLink>
+                </MenuItem>
               </StyledLink>
             )}
           </ConnexionContainer>
@@ -97,7 +101,6 @@ const MenuContainer = styled.div`
   @media (max-width: 768px) {
     background: #5d7b4c;
   }
-
 `;
 
 const Nav = styled.nav`
@@ -146,21 +149,25 @@ const Burger = styled.div`
   }
 `;
 
-const Menu = styled.div`
+const Menu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
+  ${StyledLink} {
+    color: white;
+  }
 
   @media (max-width: 768px) {
+    background-color: #5d7b4c;
     overflow: hidden;
     flex-direction: column;
     width: 100%;
-    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
     transition: 0.3s ease-in;
   }
 `;
 
-const MenuLink = styled.div`
+const MenuItem = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -173,8 +180,8 @@ const MenuLink = styled.div`
 
   transition: all 0.3 ease-in;
   font-size: 20px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   text-transform: capitalize;
 
   &:hover {
