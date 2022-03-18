@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import FilledButton from '../components/common/buttons/FilledButton';
+import UserProfileModifyPasswordForm from '../components/UserProfileModifyPasswordForm';
+import UserProfileInfosList from '../components/UserProfileInfosList';
+import Container from '../components/common/containers/Container';
 import { deleteUser, fetchUserWithId } from '../api/users';
-import Global from '../components/styled-components/theme/Global';
-import UserInfosTable from '../components/user/UserInfosTable';
-import UserModifyPasswordForm from '../components/user/UserModifyPasswordForm';
 import { UserContext } from '../contexts/user';
 
 function UserProfile() {
@@ -31,7 +33,6 @@ function UserProfile() {
   const deleteAccount = async (id) => {
     try {
       await deleteUser(id);
-      
     } catch (error) {
       toast.error('Nous avons rencontré une erreur pendant la suppression de votre compte')
     }
@@ -39,21 +40,39 @@ function UserProfile() {
 
   return (
     <>
-      <Global>Profil Utilisateur</Global>
-      <>
-        {user ? (
-          <>
-            <UserInfosTable user={user} />
-            <UserModifyPasswordForm />
-            <button type='button' onClick={() => deleteAccount(userId)}>Supprimer le compte</button>
-          </>
-        ) : (
-          <p>Problème lors du chargement des données</p>
-        )}
-        <ToastContainer />
-      </>
+      <Main>
+        <Container flexDirection='column' flexGrow='1' margin='1rem'>
+          <h1>Informations de profil</h1>
+          <UserProfileInfosList user={user}/>
+        </Container>
+        <Container flexDirection='column' justifyContent="space-between" margin='1rem'>
+          <Container flexDirection='column'>
+            <h1>Modifier le mot de passe</h1>
+            <UserProfileModifyPasswordForm />
+          </Container>
+          <Container>
+            <FilledButton onClick={() => deleteAccount(userId)}>Supprimer mon compte</FilledButton>
+          </Container>
+        </Container>
+      </Main>
     </>
   );
 }
 
 export default UserProfile;
+
+const Main = styled.section`
+  margin: 0.5rem;
+  padding: 1.5em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  h1 {
+    font-size: 1.5rem;
+  }
+  @media (min-width: 596px) {
+    max-width: 700px;
+    min-width: 500px;
+    margin: auto;
+  }
+`;

@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router';
 import Navigation from './Navigation';
 
-const AdminLayout = () => (
+const Layout = () => (
   <>
     <Navigation />
     <Outlet />
   </>
 );
 
-export default AdminLayout;
+export default Layout;

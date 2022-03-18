@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
-
 import SearchHouseList from "../components/SearchHouseList";
 import Global from "../components/styled-components/theme/Global";
 import Banner from "../components/common/Banner";
-import Navigation from "../components/layout/Navigation";
 
 function Search({ houses }) {
   Search.propTypes = {
@@ -12,7 +10,6 @@ function Search({ houses }) {
 
   return (
     <>
-      <Navigation />
       <Banner
         backgroundPosition="center"
         marginTop="0"

@@ -35,7 +35,7 @@ import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
 import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 
-import AdminLayout from './components/layout/Admin';
+import Layout from './components/layout/Layout';
 
 Modal.setAppElement('#root');
 
@@ -73,31 +73,34 @@ function App() {
 
   if (houses) {
     return (
-      <>
+      <GlobalContainer>
         <UserContextProvider value={{ ...userContext, dispatch }}>
           <BookingContextProvider>
             {/* <Navigation /> */}
             <Routes>
-              {/* Connected User */}I
-              <Route path='/profil' element={<UserProfile />} />
-              {/* Auth Routes */}
-              <Route path='/se-connecter' element={<ConnectionModal />} />
-              <Route path='/creation-compte' element={<SignUpForm />} />
-              {/* Public Route */}
-              <Route exact path='/' element={<Home />} />
-              <Route path='/services' element={<Services />} />
-              <Route path='/qui-sommes-nous' element={<About />} />
-              <Route
-                path='/nos-maisons-forestieres'
-                element={<Search houses={houses} />}
-              />
-              <Route path='/maison/:id' element={<House />} />
+              <Route path='/' element={<Layout />}>
+                {/* Connected User */}
+
+                <Route path='/profil' element={<UserProfile />} />
+                {/* Auth Routes */}
+                <Route path='/se-connecter' element={<ConnectionModal />} />
+                <Route path='/creation-compte' element={<SignUpForm />} />
+                {/* Public Route */}
+                <Route exact path='/' element={<Home />} />
+                <Route path='/services' element={<Services />} />
+                <Route path='/qui-sommes-nous' element={<About />} />
+                <Route
+                  path='/nos-maisons-forestieres'
+                  element={<Search houses={houses} />}
+                />
+                <Route path='/maison/:id' element={<House />} />
+              </Route>
               {/* Admin Routes */}
               <Route
                 path='/admin'
                 element={
                   <PrivateRoute role={ADMIN}>
-                    <AdminLayout />
+                    <Layout />
                   </PrivateRoute>
                 }
               >
@@ -167,7 +170,7 @@ function App() {
             </ModalContext.Provider>
           </BookingContextProvider>
         </UserContextProvider>
-      </>
+      </GlobalContainer>
     );
   }
 }
@@ -188,3 +191,10 @@ const ModalText = styled.p`
     color: ${colors.green};
   }
 `;
+
+const GlobalContainer = styled.div`
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+`
+
