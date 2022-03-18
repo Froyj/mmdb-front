@@ -35,7 +35,7 @@ import { UserContextProvider } from './contexts/user';
 import ModalContext from './contexts/modal';
 import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 
-import AdminLayout from './components/layout/Admin';
+import Layout from './components/layout/Layout';
 
 Modal.setAppElement('#root');
 
@@ -73,12 +73,12 @@ function App() {
 
   if (houses) {
     return (
-      <>
+      <GlobalContainer>
         <UserContextProvider value={{ ...userContext, dispatch }}>
           <BookingContextProvider>
             {/* <Navigation /> */}
             <Routes>
-              <Route path='/' element={<AdminLayout />}>
+              <Route path='/' element={<Layout />}>
                 {/* Connected User */}
 
                 <Route path='/profil' element={<UserProfile />} />
@@ -100,7 +100,7 @@ function App() {
                 path='/admin'
                 element={
                   <PrivateRoute role={ADMIN}>
-                    <AdminLayout />
+                    <Layout />
                   </PrivateRoute>
                 }
               >
@@ -170,7 +170,7 @@ function App() {
             </ModalContext.Provider>
           </BookingContextProvider>
         </UserContextProvider>
-      </>
+      </GlobalContainer>
     );
   }
 }
@@ -191,3 +191,10 @@ const ModalText = styled.p`
     color: ${colors.green};
   }
 `;
+
+const GlobalContainer = styled.div`
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+`
+
