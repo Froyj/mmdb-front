@@ -88,7 +88,7 @@ const Navigation = () => {
 };
 
 const MenuContainer = styled.div`
-  background: #5d7b4c;
+  background-color: #5d7b4c;
   display: flex;
   flex-direction: row;
   position: sticky;
@@ -96,15 +96,9 @@ const MenuContainer = styled.div`
   top: 0;
   z-index: 1;
   box-shadow: none;
-  height: 6.5rem;
-
-  @media (max-width: 768px) {
-    background: #5d7b4c;
-  }
 `;
 
 const Nav = styled.nav`
-  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -113,7 +107,7 @@ const Nav = styled.nav`
 
   @media (max-width: 1170px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   @media (max-width: 768px) {
@@ -123,16 +117,23 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.div`
+  padding: 1vh 1vw;
   img {
     width: 140px;
     height: 90px;
-    padding: 5px;
+  }
+  @media (max-width: 768px) {
+    img {
+      width: 90px;
+      height: auto;
+    }
   }
 `;
 
 const Burger = styled.div`
   display: none;
   flex-direction: column;
+  padding: 1em 2em;
   cursor: pointer;
   span {
     height: 2px;
@@ -145,7 +146,6 @@ const Burger = styled.div`
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
-    margin-right: 5%;
   }
 `;
 
@@ -153,6 +153,9 @@ const Menu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 1.25em;
+  flex-wrap: wrap;
+  flex-shrink: 2;
   ${StyledLink} {
     color: white;
   }
@@ -161,9 +164,12 @@ const Menu = styled.ul`
     background-color: #5d7b4c;
     overflow: hidden;
     flex-direction: column;
-    width: 100%;
     max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
     transition: 0.3s ease-in;
+    flex-basis: 100%;
+  }
+  @media (max-width: 1170px) {
+    font-size: 1em;
   }
 `;
 
@@ -176,10 +182,8 @@ const MenuItem = styled.li`
   cursor: pointer;
   color: white;
   font-weight: bold;
-  margin-right: 20px;
-
+  margin-right: 1.25em;
   transition: all 0.3 ease-in;
-  font-size: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
   text-transform: capitalize;
