@@ -6,8 +6,8 @@ import Global from "../../components/styled-components/theme/Global";
 import FilledButton from '../../components/common/buttons/FilledButton';
 import colors from '../../components/styled-components/theme/colors';
 
-import AdminHouseList from '../../components/Admin/Home/AdminHouseList';
-import BookingDashboard from '../../components/Admin/Booking/BookingDashboard';
+import AdminHouseList from '../../components/admin/Home/AdminHouseList';
+import BookingDashboard from '../../components/admin/Booking/BookingDashboard';
 
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {

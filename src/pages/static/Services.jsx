@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "../helper/axios-config";
-import Banner from "../components/common/Banner";
-import Global from "../components/styled-components/theme/Global";
-import ServicesPanel from "../components/ServicesPanel";
-import TitleSpan from "../components/common/titles/TitleSpan";
-import Card from "../components/common/Card";
+import axios from "../../helper/axios-config";
+import Banner from "../../components/common/Banner";
+import Global from "../../components/styled-components/theme/Global";
+import ServicesPanel from "../../components/ServicesPanel";
+import TitleSpan from "../../components/common/titles/TitleSpan";
+import Card from "../../components/common/Card";
 
 function Services() {
   const [servicesData, setServicesData] = useState([]);

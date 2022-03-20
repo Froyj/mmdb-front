@@ -5,7 +5,7 @@ import {
   CustomerInfos,
   GeneralInfos,
   HouseInfos,
-} from '../../components/Admin/Booking/BookingDetails';
+} from '../../components/admin/Booking/BookingDetails';
 import {
   Container,
   MainSection,
