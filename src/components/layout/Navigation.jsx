@@ -18,23 +18,6 @@ const Navigation = () => {
       .catch(console.log);
   };
 
-  const menuContainer = document.getElementById('menu-container');
-
-  window.addEventListener('scroll', () => {
-    const scroll = window.scrollY;
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      if (scroll > 400) {
-        menuContainer.style.background = '#5d7b4c';
-        menuContainer.style.transition = '0.3s';
-        menuContainer.style.boxShadow = '1px 1px 5px black';
-      } else {
-        menuContainer.style.background = 'transparent';
-        menuContainer.style.transition = '0.3s';
-        menuContainer.style.boxShadow = 'none';
-      }
-    }
-  });
-
   return (
     <MenuContainer id='menu-container'>
       <Nav>
@@ -105,7 +88,7 @@ const Navigation = () => {
 };
 
 const MenuContainer = styled.div`
-  background: #5d7b4c;
+  background-color: #5d7b4c;
   display: flex;
   flex-direction: row;
   position: sticky;
@@ -113,13 +96,9 @@ const MenuContainer = styled.div`
   top: 0;
   z-index: 1;
   box-shadow: none;
-  @media (max-width: 768px) {
-    background: #5d7b4c;
-  }
 `;
 
 const Nav = styled.nav`
-  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -138,16 +117,23 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled.div`
+  padding: 1vh 1vw;
   img {
     width: 140px;
     height: 90px;
-    padding: 5px;
+  }
+  @media (max-width: 768px) {
+    img {
+      width: 90px;
+      height: auto;
+    }
   }
 `;
 
 const Burger = styled.div`
   display: none;
   flex-direction: column;
+  padding: 1em 2em;
   cursor: pointer;
   span {
     height: 2px;
@@ -160,7 +146,6 @@ const Burger = styled.div`
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
-    margin-right: 5%;
   }
 `;
 
@@ -169,7 +154,8 @@ const Menu = styled.ul`
   flex-direction: row;
   align-items: center;
   font-size: 1.25em;
-
+  flex-wrap: wrap;
+  flex-shrink: 2;
   ${StyledLink} {
     color: white;
   }
@@ -178,9 +164,9 @@ const Menu = styled.ul`
     background-color: #5d7b4c;
     overflow: hidden;
     flex-direction: column;
-    width: 100%;
     max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
     transition: 0.3s ease-in;
+    flex-basis: 100%;
   }
   @media (max-width: 1170px) {
     font-size: 1em;
