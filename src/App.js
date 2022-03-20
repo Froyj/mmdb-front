@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
+import Modal from 'react-modal';
 import axios from './helper/axios-config';
 
 import House from './pages/House';
@@ -34,6 +35,7 @@ import BookingContextProvider from './contexts/Booking/BookingContextProvider';
 import Layout from './components/layout/Layout';
 import ContactModal from './components/ContactModal';
 
+Modal.setAppElement('#root');
 function App() {
   const [houses, setHouses] = useState([]);
   const [bookings, setBookings] = useState([]);

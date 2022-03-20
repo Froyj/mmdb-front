@@ -18,6 +18,23 @@ const Navigation = () => {
       .catch(console.log);
   };
 
+  const menuContainer = document.getElementById('menu-container');
+
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      if (scroll > 400) {
+        menuContainer.style.background = '#5d7b4c';
+        menuContainer.style.transition = '0.3s';
+        menuContainer.style.boxShadow = '1px 1px 5px black';
+      } else {
+        menuContainer.style.background = 'transparent';
+        menuContainer.style.transition = '0.3s';
+        menuContainer.style.boxShadow = 'none';
+      }
+    }
+  });
+
   return (
     <MenuContainer id='menu-container'>
       <Nav>
@@ -96,8 +113,6 @@ const MenuContainer = styled.div`
   top: 0;
   z-index: 1;
   box-shadow: none;
-  height: 6.5rem;
-
   @media (max-width: 768px) {
     background: #5d7b4c;
   }
@@ -113,7 +128,7 @@ const Nav = styled.nav`
 
   @media (max-width: 1170px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   @media (max-width: 768px) {
@@ -153,6 +168,8 @@ const Menu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 1.25em;
+
   ${StyledLink} {
     color: white;
   }
@@ -165,6 +182,9 @@ const Menu = styled.ul`
     max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
     transition: 0.3s ease-in;
   }
+  @media (max-width: 1170px) {
+    font-size: 1em;
+  }
 `;
 
 const MenuItem = styled.li`
@@ -176,10 +196,8 @@ const MenuItem = styled.li`
   cursor: pointer;
   color: white;
   font-weight: bold;
-  margin-right: 20px;
-
+  margin-right: 1.25em;
   transition: all 0.3 ease-in;
-  font-size: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
   text-transform: capitalize;
