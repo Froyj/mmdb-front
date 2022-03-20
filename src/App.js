@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import axios from './helper/axios-config';
 
-import House from './pages/House';
+import HouseDetails from './pages/HouseDetails';
 import getHouses from './api/houses';
 import getBookings from './api/bookings';
 
@@ -16,7 +16,7 @@ import UpdateHouse from './pages/Admin/UpdateHouse';
 import BookingDetails from './pages/Admin/BookingDetails';
 
 import Home from './pages/Home';
-import Search from './pages/Search';
+import HouseList from './pages/HouseList';
 import Services from './pages/Services';
 import UserProfile from './pages/UserProfile';
 
@@ -83,9 +83,9 @@ function App() {
                   <Route path='/qui-sommes-nous' element={<About />} />
                   <Route
                     path='/nos-maisons-forestieres'
-                    element={<Search houses={houses} />}
+                    element={<HouseList houses={houses} />}
                   />
-                  <Route path='/maison/:id' element={<House />} />
+                  <Route path='/maison/:id' element={<HouseDetails />} />
                   <Route path='/profil' element={<UserProfile />} />
                 </Route>
                 <Route

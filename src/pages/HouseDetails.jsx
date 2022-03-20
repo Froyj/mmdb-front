@@ -2,10 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from '../api/axios-config';
-import ModalCarrousel from '../components/modalCarrousel';
+import ModalCarousel from '../components/ModalCarousel';
 import BookingForm from '../components/BookingForm';
 import Equipments from '../components/Equipments';
-// import FoodOption from "../components/FoodOption";
 
 import {
   Container,
@@ -21,7 +20,7 @@ import {
 } from '../components/common';
 import '../index.css';
 
-function House() {
+function HouseDetails() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
 
@@ -106,7 +105,7 @@ function House() {
           </ImagesDiv>
         </DisplayModal>
 
-        <ModalCarrousel isShowing={isShowing} hide={toggle} />
+        <ModalCarousel isShowing={isShowing} hide={toggle} />
 
         <Information>
           <Description>
@@ -218,7 +217,7 @@ function House() {
   );
 }
 
-export default House;
+export default HouseDetails;
 
 const DescriptionLayout = styled.div`
   padding: 2rem 1rem;
