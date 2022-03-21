@@ -102,7 +102,7 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
 
   @media (max-width: 1170px) {
@@ -153,7 +153,7 @@ const Menu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1.25em;
+  font-size: 1.125em;
   flex-wrap: wrap;
   flex-shrink: 2;
   ${StyledLink} {
@@ -161,6 +161,7 @@ const Menu = styled.ul`
   }
 
   @media (max-width: 768px) {
+    display: none;
     background-color: #5d7b4c;
     overflow: hidden;
     flex-direction: column;
