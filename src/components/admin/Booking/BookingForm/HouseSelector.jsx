@@ -3,7 +3,7 @@ import BookingContext from '../../../../contexts/Booking/booking';
 import { SET_BOOKING_HOUSE } from '../../../../reducers/booking/actions';
 import { FieldErrorMessage } from '../../../common/forms';
 
-const HouseSelector = ({ houses, error }) => {
+const HouseSelector = ({ houses, error, value }) => {
   const { dispatchBooking } = useContext(BookingContext);
 
   const handleSelect = (e) => {
@@ -21,7 +21,7 @@ const HouseSelector = ({ houses, error }) => {
         >
           <option value=''>Selectionner une maison</option>
           {houses.map((house) => (
-            <option key={house.id} value={house.id}>
+            <option key={house.id} value={house.id} selected={value === house.id}>
               {house.name}
             </option>
           ))}

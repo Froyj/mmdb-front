@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
+  RESET_BOOKING,
   SET_BOOKING_ARRIVAL,
   SET_BOOKING_DEPARTURE,
   SET_BOOKING_TRAVELLERS_NUMBERS,
@@ -52,15 +53,16 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
     });
   }, []);
 
+  const {
+    user,
+    home_to_rent: house,
+    arrival_date: arrival,
+    departure_date: departure,
+    number_of_renter: personCount,
+    options,
+  } = booking;
+
   const handleSubmit = async () => {
-    const {
-      user,
-      home_to_rent: house,
-      arrival_date: arrival,
-      departure_date: departure,
-      number_of_renter: personCount,
-      options,
-    } = booking;
 
     const bookingDTO = {
       bookingInfos: {
@@ -77,7 +79,10 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
       options,
     };
 
-    addBooking(bookingDTO.bookingInfos);
+    addBooking(bookingDTO.bookingInfos)
+    .then(() => {
+      dispatchBooking(RESET_BOOKING)
+    })
   };
 
   return (
@@ -88,49 +93,52 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
           <Container display='flex' flexDirection='row'>
             <div>
               <BookingSection>
-                <UserSelector error={fieldErrors.user} />
-                  <HouseSelector houses={houses} error={fieldErrors.house} />
-                  <SelectBookingDates>
-                    <DatePicker
-                      name='arrival'
-                      label='Arrivée'
-                      min={minArrival}
-                      handleChange={(e) =>
-                        dispatchBooking({
-                          type: SET_BOOKING_ARRIVAL,
-                          payload: e.target.value,
-                        })
-                      }
-                      error={fieldErrors.arrival}
-                    />
-                      <DatePicker
-                        name='departure'
-                        label='Départ'
-                        min={minDeparture}
-                        handleChange={(e) =>
-                          dispatchBooking({
-                            type: SET_BOOKING_DEPARTURE,
-                            payload: e.target.value,
-                          })
-                        }
-                        error={fieldErrors.departure}
-                      />
-                  </SelectBookingDates>
-                  <SelectTravellersNumber>
-                    <Counter
-                      label='Nombre de personnes'
-                      name='travellersNumber'
-                      defaultValue={1}
-                      min={1}
-                      max={booking.house?.capacity}
-                      handleChange={(e) =>
-                        dispatchBooking({
-                          type: SET_BOOKING_TRAVELLERS_NUMBERS,
-                          payload: +e.target.value,
-                        })
-                      }
-                    />
-                  </SelectTravellersNumber>
+                <UserSelector error={fieldErrors.user} value={user?.id || null}/>
+                <HouseSelector houses={houses} error={fieldErrors.house} value={house?.id || null}/>
+                <SelectBookingDates>
+                  <DatePicker
+                    name='arrival'
+                    label='Arrivée'
+                    min={minArrival}
+                    handleChange={(e) =>
+                      dispatchBooking({
+                        type: SET_BOOKING_ARRIVAL,
+                        payload: e.target.value,
+                      })
+                    }
+                    value={arrival || ''}
+                    error={fieldErrors.arrival}
+                  />
+                  <DatePicker
+                    name='departure'
+                    label='Départ'
+                    min={minDeparture}
+                    handleChange={(e) =>
+                      dispatchBooking({
+                        type: SET_BOOKING_DEPARTURE,
+                        payload: e.target.value,
+                      })
+                    }
+                    value={departure || ''}
+                    error={fieldErrors.departure}
+                  />
+                </SelectBookingDates>
+                <SelectTravellersNumber>
+                  <Counter
+                    label='Nombre de personnes'
+                    name='travellersNumber'
+                    defaultValue={1}
+                    value={personCount}
+                    min={1}
+                    max={booking.house?.capacity}
+                    handleChange={(e) =>
+                      dispatchBooking({
+                        type: SET_BOOKING_TRAVELLERS_NUMBERS,
+                        payload: +e.target.value,
+                      })
+                    }
+                  />
+                </SelectTravellersNumber>
               </BookingSection>
             </div>
             <BookingSection>

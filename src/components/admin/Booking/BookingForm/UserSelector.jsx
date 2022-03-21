@@ -4,7 +4,7 @@ import axios from '../../../../helper/axios-config';
 import { SET_BOOKING_USER } from '../../../../reducers/booking/actions';
 import { FieldErrorMessage } from '../../../common/forms';
 
-const UserSelector = ({ error = '' }) => {
+const UserSelector = ({ error = '', value }) => {
   const { dispatchBooking } = useContext(BookingContext);
   const [users, setUsers] = useState([]);
 
@@ -26,10 +26,10 @@ const UserSelector = ({ error = '' }) => {
   return (
     <label htmlFor='user-select'>
       Choisissez l'utilisateur concerné
-      <select id='user-select' onChange={handleSelect}>
+      <select id='user-select' onChange={handleSelect} >
         <option value={null}>Selectionnez un utilisateur</option>
         {users.map((user) => (
-          <option key={user.id} value={user.id}>
+          <option key={user.id} value={user.id} selected={user.id === value}>
             {user.firstname} {user.lastname}
           </option>
         ))}
