@@ -4,7 +4,6 @@ import moment from 'moment';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
-  RESET_BOOKING,
   SET_BOOKING_ARRIVAL,
   SET_BOOKING_DEPARTURE,
   SET_BOOKING_TRAVELLERS_NUMBERS,
@@ -80,9 +79,6 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
     };
 
     addBooking(bookingDTO.bookingInfos)
-    .then(() => {
-      dispatchBooking(RESET_BOOKING)
-    })
   };
 
   return (
