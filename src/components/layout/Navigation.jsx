@@ -102,7 +102,7 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
 
   @media (max-width: 1170px) {
@@ -113,6 +113,7 @@ const Nav = styled.nav`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 
@@ -150,6 +151,7 @@ const Burger = styled.div`
 `;
 
 const Menu = styled.ul`
+  background-color: #5d7b4c;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -159,14 +161,13 @@ const Menu = styled.ul`
   ${StyledLink} {
     color: white;
   }
-
+  
   @media (max-width: 768px) {
-    background-color: #5d7b4c;
-    overflow: hidden;
+    display: ${props => props.isOpen ? 'flex' : 'none'};
+    flex-basis: 100%;
     flex-direction: column;
     max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
     transition: 0.3s ease-in;
-    flex-basis: 100%;
   }
   @media (max-width: 1170px) {
     font-size: 1em;
