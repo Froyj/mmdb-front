@@ -89,8 +89,8 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
           <Container display='flex' flexDirection='row'>
             <div>
               <BookingSection>
-                <UserSelector error={fieldErrors.user} value={user?.id || null}/>
-                <HouseSelector houses={houses} error={fieldErrors.house} value={house?.id || null}/>
+                <UserSelector error={fieldErrors.user} />
+                <HouseSelector houses={houses} error={fieldErrors.house}/>
                 <SelectBookingDates>
                   <DatePicker
                     name='arrival'
