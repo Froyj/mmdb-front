@@ -153,7 +153,7 @@ const Menu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1.25em;
+  font-size: 1.125em;
   flex-wrap: wrap;
   flex-shrink: 2;
   ${StyledLink} {

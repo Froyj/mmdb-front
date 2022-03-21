@@ -21,7 +21,6 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            {" "}
             <img src='/ressources/social-media-icons/instagram.webp' alt="instagram" />
           </a>
         </div>
@@ -33,7 +32,7 @@ function Footer() {
           Mentions légales{" "}
         </a>
         <p>
-          Développé avec <img src='/ressources/social-media-icons/instagram.webp' alt="love" className="love" /> par des
+          Développé avec <img src='/ressources/social-media-icons/love.webp' alt="love" className="love" /> par des
           wilders de la{" "}
           <a href="https://www.wildcodeschool.com/fr-FR/campus/toulouse">
             Wild Code School
