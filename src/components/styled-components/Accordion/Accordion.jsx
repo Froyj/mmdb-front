@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import OptionsSelector from '../../Admin/Booking/BookingForm/OptionsSelector';
+import OptionsSelector from '../../admin/Booking/BookingForm/OptionsSelector';
 
 const AccordionItems = ({
   accordionContent,

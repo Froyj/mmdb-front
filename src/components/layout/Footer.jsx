@@ -1,8 +1,5 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import instaLogo from "../../img/tl(2).webp";
-import faceBookLogo from "../../img/tl(37).webp";
-import love from "../../img/tl(5).webp";
 import ModalContext from "../../contexts/modal";
 
 function Footer() {
@@ -17,27 +14,25 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            {" "}
-            <img src={faceBookLogo} alt="facebook" />
+            <img src='/ressources/social-media-icons/facebook.webp' alt="facebook" />
           </a>
           <a
             href="https://www.instagram.com/ma_maison_des_bois/"
             target="_blank"
             rel="noreferrer"
           >
-            {" "}
-            <img src={instaLogo} alt="instagram" />
+            <img src='/ressources/social-media-icons/instagram.webp' alt="instagram" />
           </a>
         </div>
         <ContactButton type="button" onClick={() => setOpenModal(true)}>
           Contact
         </ContactButton>
-        <a href="./ressources/Copy of Charte.pdf" target="_blank">
+        <a href="/ressources/Copy of Charte.pdf" target="_blank">
           {" "}
           Mentions légales{" "}
         </a>
         <p>
-          Développé avec <img src={love} alt="love" className="love" /> par des
+          Développé avec <img src='/ressources/social-media-icons/love.webp' alt="love" className="love" /> par des
           wilders de la{" "}
           <a href="https://www.wildcodeschool.com/fr-FR/campus/toulouse">
             Wild Code School

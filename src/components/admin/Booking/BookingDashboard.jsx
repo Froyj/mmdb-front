@@ -34,13 +34,9 @@ const BookingDashboard = () => {
   const deleteBooking = (id) => {
     axios
       .delete(`/bookings/${id}`)
-      .then((res) => console.log(res))
       .then(() => setBookings(bookings.filter((b) => b.id !== id)))
       .then(() => {
-        toast.success('Réservation supprimée !', {
-          position: 'top-center',
-          autoClose: 2000,
-        });
+        toast.success('Réservation supprimée !');
       })
       .catch(console.log);
   };
@@ -53,26 +49,18 @@ const BookingDashboard = () => {
       .then(() => dispatchBooking({ type: RESET_BOOKING }))
       .then(() => {
         setFieldErrors({})
-        toast.success('Réservation crée !', {
-          position: 'top-center',
-          autoClose: 2000,
-        });
+        toast.success('Réservation créée !');
       })
       .catch((error) => {
         const errors = error.response.data.details.reduce((carry, current) => {
           const accu = { ...carry };
-          console.log(current)
           if (!accu[current.context.label]) {
             accu[current.context.label] = current.message;
           }
-          console.log(accu)
           return accu;
         }, {});
         setFieldErrors(errors);
-        toast.error('Il y a eu une erreur pendant la réservation !', {
-          position: 'top-center',
-          autoClose: 2000,
-        });
+        toast.error('Il y a eu une erreur pendant la réservation !');
       });
   };
 

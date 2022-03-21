@@ -36,7 +36,7 @@ const useBookingBillingDetails = (booking) => {
 
   const getOptionsPrice = (optionsList = []) => {
     const total = optionsList
-      .map((o) => o.quantity * o.option.price)
+      .map((o) => o.quantity * o.price)
       .reduce((a, b) => a + b, 0);
     setOptionsTotal(Math.abs(total));
     return Math.abs(total);
@@ -44,7 +44,7 @@ const useBookingBillingDetails = (booking) => {
 
   useEffect(() => {
     if (booking) {
-      const { booking_has_option: options } = booking;
+      const { options } = booking;
       const newPrice = getHomeRentPrice(booking) + getOptionsPrice(options);
       setBookingTotal(newPrice);
     }
@@ -52,7 +52,7 @@ const useBookingBillingDetails = (booking) => {
     booking.user,
     booking.home_to_rent,
     booking.number_of_renter,
-    booking.booking_has_option,
+    booking.options,
     booking.arrival_date,
     booking.departure_date,
   ]);
