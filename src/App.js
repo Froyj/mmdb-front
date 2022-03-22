@@ -2,26 +2,28 @@ import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import axios from './helper/axios-config';
 
-import House from './pages/House';
+import axios from './helper/axios-config';
 import getHouses from './api/houses';
 import getBookings from './api/bookings';
 
-import About from './pages/About';
-
-import Admin from './pages/Admin/Admin';
-import AddNewHouse from './pages/Admin/AddNewHouse';
-import UpdateHouse from './pages/Admin/UpdateHouse';
-import BookingDetails from './pages/Admin/BookingDetails';
 
 import Home from './pages/Home';
-import Search from './pages/Search';
-import Services from './pages/Services';
+import HouseList from './pages/HouseList';
+import HouseDetails from './pages/HouseDetails';
+import About from './pages/static/About';
+import Services from './pages/static/Services';
+
 import UserProfile from './pages/UserProfile';
 
-import ConnectionModal from './components/auth/ConnectionModal';
-import SignUpForm from './components/SignUpForm';
+import Admin from './pages/admin/Admin';
+import AddNewHouse from './pages/admin/AddNewHouse';
+import UpdateHouse from './pages/admin/UpdateHouse';
+import BookingDetails from './pages/admin/BookingDetails';
+
+
+import ConnectionModal from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import PrivateRoute from './components/auth/PrivateRoute';
 import { ADMIN } from './constants/roles';
 import {
@@ -36,6 +38,7 @@ import Layout from './components/layout/Layout';
 import ContactModal from './components/ContactModal';
 
 Modal.setAppElement('#root');
+
 function App() {
   const [houses, setHouses] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -77,15 +80,15 @@ function App() {
               <Routes>
                 <Route path='/' element={<Layout />}>
                   <Route exact path='/' element={<Home />} />
-                  <Route path='/creation-compte' element={<SignUpForm />} />
+                  <Route path='/creation-compte' element={<SignUp />} />
                   <Route path='/se-connecter' element={<ConnectionModal />} />
                   <Route path='/services' element={<Services />} />
                   <Route path='/qui-sommes-nous' element={<About />} />
                   <Route
                     path='/nos-maisons-forestieres'
-                    element={<Search houses={houses} />}
+                    element={<HouseList houses={houses} />}
                   />
-                  <Route path='/maison/:id' element={<House />} />
+                  <Route path='/maison/:id' element={<HouseDetails />} />
                   <Route path='/profil' element={<UserProfile />} />
                 </Route>
                 <Route

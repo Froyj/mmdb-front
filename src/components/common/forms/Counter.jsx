@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const Counter = ({ label, name, defaultValue, min = 0, max, handleChange }) => (
+const Counter = ({ label, name, value, min=0, max, handleChange }) => (
   <StyledCounter>
     <label htmlFor={name}>{label}</label>
     <input
       id={name}
-      defaultValue={defaultValue}
+      value={value}
       type='number'
       min={min}
       max={max}

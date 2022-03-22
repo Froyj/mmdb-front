@@ -2,16 +2,16 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import ContainerForm from "../common/containers/ContainerForm";
-import TitleForm from "../common/titles/TitleForm";
-import FilledButton from "../common/buttons/FilledButton";
-import { UserContext } from "../../contexts/user";
-import axios from "../../helper/axios-config";
-import { ADMIN } from "../../constants/roles";
-import StyledLink from "../common/Link";
-import colors from "../styled-components/theme/colors";
+import ContainerForm from "../components/common/containers/ContainerForm";
+import TitleForm from "../components/common/titles/TitleForm";
+import FilledButton from "../components/common/buttons/FilledButton";
+import { UserContext } from "../contexts/user";
+import axios from "../helper/axios-config";
+import { ADMIN } from "../constants/roles";
+import StyledLink from "../components/common/Link";
+import colors from "../components/styled-components/theme/colors";
 
-const ConnectionModal = () => {
+const SignIn = () => {
   const { register, handleSubmit } = useForm();
   const { dispatch } = useContext(UserContext);
   const navigate = useNavigate();
@@ -149,4 +149,4 @@ const LineContainer = styled.div`
   }
 `;
 
-export default ConnectionModal;
+export default SignIn;

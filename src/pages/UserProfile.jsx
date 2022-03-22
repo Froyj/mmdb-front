@@ -51,7 +51,12 @@ function UserProfile() {
             <UserProfileModifyPasswordForm />
           </Container>
           <Container>
-            <FilledButton onClick={() => deleteAccount(userId)}>Supprimer mon compte</FilledButton>
+            <FilledButton onClick={() => {
+            const confirmBox = window.confirm('Voulez vous vraiment supprimer votre compte ? cette action est irréversible.');
+            if (confirmBox === true) {
+              deleteAccount(userId);
+            }
+          }} >Supprimer mon compte</FilledButton>
           </Container>
         </Container>
       </Main>

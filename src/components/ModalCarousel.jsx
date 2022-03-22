@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import HouseCarrousel from "../pages/HouseCarrousel";
+import HouseCarrousel from "./HouseCarrousel";
 
-const modalCarrousel = ({ isShowing, hide }) =>
+const ModalCarousel = ({ isShowing, hide }) =>
 
   isShowing
     ? ReactDOM.createPortal(
@@ -82,4 +82,4 @@ const ModalOverlay = styled.div`
 
     `
 
-export default modalCarrousel;
+export default ModalCarousel;

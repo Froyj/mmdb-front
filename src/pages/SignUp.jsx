@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
-import TitleForm from './common/titles/TitleForm';
-import ContainerForm from './common/containers/ContainerForm';
-import Submitbutton from './common/buttons/SubmitButton';
+import TitleForm from '../components/common/titles/TitleForm';
+import ContainerForm from '../components/common/containers/ContainerForm';
+import Submitbutton from '../components/common/buttons/SubmitButton';
 import { createUsers } from '../api/users';
 
 function SignUpForm() {

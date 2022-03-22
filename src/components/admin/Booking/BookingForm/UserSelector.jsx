@@ -5,7 +5,8 @@ import { SET_BOOKING_USER } from '../../../../reducers/booking/actions';
 import { FieldErrorMessage } from '../../../common/forms';
 
 const UserSelector = ({ error = '' }) => {
-  const { dispatchBooking } = useContext(BookingContext);
+  const { booking, dispatchBooking } = useContext(BookingContext);
+  const {user} = booking
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -19,18 +20,18 @@ const UserSelector = ({ error = '' }) => {
   }, []);
 
   const handleSelect = (e) => {
-    const user = users.find((u) => u.id === Number(e.target.value));
-    dispatchBooking({ type: SET_BOOKING_USER, payload: user });
+    const renter = users.find((u) => u.id === Number(e.target.value));
+    dispatchBooking({ type: SET_BOOKING_USER, payload: renter });
   };
 
   return (
     <label htmlFor='user-select'>
       Choisissez l'utilisateur concerné
-      <select id='user-select' onChange={handleSelect}>
+      <select id='user-select' onChange={handleSelect} value={user?.id || ''}>
         <option value={null}>Selectionnez un utilisateur</option>
-        {users.map((user) => (
-          <option key={user.id} value={user.id}>
-            {user.firstname} {user.lastname}
+        {users.map((u) => (
+          <option key={u.id} value={u.id} >
+            {u.firstname} {u.lastname}
           </option>
         ))}
       </select>

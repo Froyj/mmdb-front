@@ -1,4 +1,4 @@
-import AddHomeForm from "../../components/Admin/Home/AddHomeForm";
+import AddHomeForm from "../../components/admin/Home/AddHomeForm";
 import Global from "../../components/styled-components/theme/Global";
 import Banner from "../../components/common/Banner";
 

@@ -55,7 +55,15 @@ const BookingListItem = ({ booking, handleDelete }) => {
         </Link>
       </Cell>
       <Cell noBorder>
-        <FilledButton type='button' onClick={handleDelete}>
+        <FilledButton
+          type='button'
+          onClick={() => {
+            const confirmBox = window.confirm('Voulez vous vraiment supprimer cette réservation ?');
+            if (confirmBox === true) {
+              handleDelete();
+            }
+          }}
+        >
           Supprimer
         </FilledButton>
       </Cell>
