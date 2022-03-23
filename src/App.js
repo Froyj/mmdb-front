@@ -5,8 +5,7 @@ import Modal from 'react-modal';
 
 import axios from './helper/axios-config';
 import getHouses from './api/houses';
-import getBookings from './api/bookings';
-
+import { getBookings } from './api/bookings';
 
 import Home from './pages/Home';
 import HouseList from './pages/HouseList';
@@ -20,7 +19,6 @@ import Admin from './pages/admin/Admin';
 import AddNewHouse from './pages/admin/AddNewHouse';
 import UpdateHouse from './pages/admin/UpdateHouse';
 import BookingDetails from './pages/admin/BookingDetails';
-
 
 import ConnectionModal from './pages/SignIn';
 import SignUp from './pages/SignUp';

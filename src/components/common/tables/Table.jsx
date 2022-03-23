@@ -1,24 +1,27 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+const Row = styled.tr`
+  padding: 23px;
+  display: table-row;
+  justify-content: space-evenly;
+`;
 const Table = styled.table`
   table-layout: fixed;
   width: 100%;
   border: none;
 `;
 
-const Row = styled.tr`
-  padding: 23px;
-  display: table-row;
-  justify-content: space-evenly;
-  &:nth-child(2n) {
-    background-color: aliceblue;
-  }
-`;
 
 const TableHeader = styled.thead`
-  
+  font-weight: bold;
 `;
+
+const TableBody = styled.tbody`
+${Row}:nth-child(2n +1) {
+  background-color: aliceblue;
+}
+`
 
 const Cell = styled.td`
   margin: 1em;
@@ -33,4 +36,4 @@ const ClientInfos = styled.div`
 
 const StyledLink = styled(Link)``;
 
-export { Table, TableHeader, Row, Cell, ClientInfos, StyledLink };
+export { Table, TableHeader, TableBody, Row, Cell, ClientInfos, StyledLink };

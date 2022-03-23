@@ -1,7 +1,7 @@
-import { Row, Cell, Table, TableHeader, TableBody } from '../../../common/tables/Table';
-import BookingListItem from './BookingListItem';
+import { Row, Cell, Table, TableHeader, TableBody } from '../common/tables/Table';
+import UserBookingListItem from './UserBookingListItem';
 
-const BookingList = ({ bookings, handleDelete }) => (
+const UserBookingList = ({ bookings, handleDelete }) => (
   <div>
     <h2>Mes réservations</h2>
     <Table>
@@ -17,7 +17,7 @@ const BookingList = ({ bookings, handleDelete }) => (
       </TableHeader>
       <TableBody>
         {bookings.map((booking) => (
-          <BookingListItem
+          <UserBookingListItem
             key={booking.id}
             booking={booking}
             handleDelete={() => handleDelete(booking.id)}
@@ -28,4 +28,4 @@ const BookingList = ({ bookings, handleDelete }) => (
   </div>
 );
 
-export default BookingList;
+export default UserBookingList;

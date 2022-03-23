@@ -1,10 +1,9 @@
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Row, Cell, ClientInfos } from '../../../common/tables/Table';
-import FilledButton from '../../../common/buttons/FilledButton';
-import useBookingBillingDetails from '../../../../customHooks/useBookingBillingDetails';
+// import { Link } from 'react-router-dom';
+import { Row, Cell, ClientInfos } from '../common/tables/Table';
+import useBookingBillingDetails from '../../customHooks/useBookingBillingDetails';
 
-const BookingListItem = ({ booking, handleDelete }) => {
+const BookingListItem = ({ booking}) => {
   const { bookingTotal } = useBookingBillingDetails(booking);
 
   BookingListItem.propTypes = {
@@ -19,7 +18,6 @@ const BookingListItem = ({ booking, handleDelete }) => {
   };
 
   const {
-    id,
     home_to_rent: homeToRent,
     arrival_date: arrival,
     departure_date: departure,
@@ -49,24 +47,6 @@ const BookingListItem = ({ booking, handleDelete }) => {
         </ClientInfos>
       </Cell>
       <Cell>{bookingTotal} €</Cell>
-      <Cell noBorder>
-        <Link to={`/admin/dashboard/details-reservation/${id}`}>
-          Voir les détails
-        </Link>
-      </Cell>
-      <Cell noBorder>
-        <FilledButton
-          type='button'
-          onClick={() => {
-            const confirmBox = window.confirm('Voulez vous vraiment supprimer cette réservation ?');
-            if (confirmBox === true) {
-              handleDelete();
-            }
-          }}
-        >
-          Supprimer
-        </FilledButton>
-      </Cell>
     </Row>
   );
 };
