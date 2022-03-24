@@ -27,7 +27,7 @@ const useBookingBillingDetails = (booking) => {
         ? getNumberOfDay(new Date(departure), new Date(arrival))
         : 0;
     const homeRental = (house?.price_by_night || 0) * numberOfDays;
-    const feesTotal = stayFees * personCount + houseKeepingFees;
+    const feesTotal = stayFees * personCount * numberOfDays + houseKeepingFees;
     const homeRentalWithFees = homeRental + feesTotal;
     setRentalWithoutFees(Math.abs(homeRental));
     setRentalWithFees(Math.abs(homeRentalWithFees));
