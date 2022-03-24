@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import SearchHouseList from "../components/SearchHouseList";
-import Global from "../components/styled-components/theme/Global";
 import Banner from "../components/common/Banner";
 
 function HouseList({ houses }) {
@@ -17,9 +16,7 @@ function HouseList({ houses }) {
       >
         Nos maisons forestières
       </Banner>
-      <Global>
         <SearchHouseList houses={houses} />
-      </Global>
     </>
   );
 }

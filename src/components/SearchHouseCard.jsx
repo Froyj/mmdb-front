@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import colors from "./styled-components/theme/colors";
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import colors from './styled-components/theme/colors';
 
 function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
   SearchHouseCard.propTypes = {
@@ -21,9 +21,7 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
         <TextDiv>
           <Description>
             <LeftContainer>
-              <Title>
-                <TitleSpan>{name}</TitleSpan>
-              </Title>
+              <TitleSpan>{name}</TitleSpan>
               <CityCapacity>
                 {city}
                 <br />
@@ -31,7 +29,7 @@ function SearchHouseCard({ id, name, text, image, city, capacity, price }) {
               </CityCapacity>
             </LeftContainer>
             <Price>
-              <PriceSpan>À partir de </PriceSpan> 
+              <PriceSpan>À partir de </PriceSpan>
               {price}€ /nuit
             </Price>
           </Description>
@@ -47,11 +45,12 @@ export default SearchHouseCard;
 const CityCapacity = styled.div``;
 
 const StyledLink = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 0 1 calc((100% - 6em) / 3);
   text-decoration: none;
   color: ${colors.blue};
-  width: 32%;
-  margin: 1rem 1.5rem;
-  
   &:focus,
   &:hover,
   &:visited,
@@ -60,8 +59,13 @@ const StyledLink = styled(NavLink)`
     text-decoration: none;
   }
 
-  @media screen and (max-width: 768px) {
-    width: 90%
+  @media (max-width: 1024px) {
+    flex-basis: calc((100% - 2em) / 2);
+  }
+
+  @media screen and (max-width: 580px) {
+    flex-basis: 90%;
+    margin:auto;
   }
 `;
 
@@ -71,10 +75,7 @@ const HouseCard = styled.div`
   border-radius: 15px;
   background-color: ${colors.lightGreen};
   box-shadow: 2px 5px 10px;
-  height: 550px;
-  margin-bottom: 3rem;
-  width: 100%;
-
+  height: 100%;
   :hover {
     transform: scale(1.04);
     transition: all 0.4s ease-in-out;
@@ -82,33 +83,30 @@ const HouseCard = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    height: 450px
+    height: 450px;
   }
 `;
 
 const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  height: 55%;
+  width:100%;
+  height: 250px;
   object-fit: cover;
 
   @media screen and (max-width: 768px) {
-    height: 42%
+    height: 42%;
   }
 `;
 
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  margin: auto;
+  margin: 1em auto;
 `;
-
-const Title = styled.p`
-  display: flex;
-  flex-direction: column;
-`
 
 const Price = styled.p`
   display: flex;
@@ -118,10 +116,10 @@ const Price = styled.p`
   align-self: left;
   flex-direction: column;
   padding-left: 0.5rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 
   @media screen and (max-width: 768px) {
-    text-align: left
+    text-align: left;
   }
 `;
 const PriceSpan = styled.span`
@@ -142,7 +140,7 @@ const TitleSpan = styled.span`
 
   @media screen and (max-width: 768px) {
     font-size: 1.25rem;
-    text-align: left
+    text-align: left;
   }
 `;
 const Description = styled.div`
@@ -150,8 +148,8 @@ const Description = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`
+`;
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
