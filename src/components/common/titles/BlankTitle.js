@@ -5,6 +5,7 @@ const BlankTitle = styled.h1`
     font-size: 1.1rem;
     font-weight: 100;
     color: ${(props) => props.color || 'white'} ;
+    padding: 1em;
 `
 
 export default BlankTitle;

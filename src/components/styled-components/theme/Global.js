@@ -7,7 +7,7 @@ const Global = styled.div`
     width: ${(props) => props.width || "90%" };
     margin: ${(props) => props.margin || "3rem auto"};
     font-family: ${(props) => props.fontFamily || "Trebuchet MS"};
-    text-align: ${(props) => props.textAlign || "justify"};
+    text-align: ${(props) => props.textAlign || "auto"};
     color: ${colors.blue};
     min-height: ${(props) => props.minHeight};
 

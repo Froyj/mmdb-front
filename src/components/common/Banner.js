@@ -8,9 +8,9 @@ const Banner = styled.h1`
     background-position: ${(props => props.backgroundPosition)}; 
     background-color: ${colors.green};
     color: ${colors.lightGreen};
-    font-size: ${(props) => props.fontSize || '1.5rem'};
+    font-size: ${(props) => props.fontSize || '2rem'};
+    font-weight: 300;
     font-family: 'Trebuchet MS';
-    font-weight: 100;
     width: 100%;
     height: ${(props) => props.height || '8rem'};
     margin-top: ${(props) => props.marginTop || "1rem"};

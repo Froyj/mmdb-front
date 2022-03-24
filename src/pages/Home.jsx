@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import colors from "../components/styled-components/theme/colors";
-import axios from "../helper/axios-config";
-import HouseImage from "../components/HouseImage";
-import Activities from "../components/Activities";
-import Banner from "../components/common/Banner";
-import Global from "../components/styled-components/theme/Global";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import colors from '../components/styled-components/theme/colors';
+import axios from '../helper/axios-config';
+import HouseImage from '../components/HouseImage';
+import Activities from '../components/Activities';
+import Banner from '../components/common/Banner';
+import Global from '../components/styled-components/theme/Global';
 
 function Home() {
   const [houseData, setHouseData] = useState([]);
   const [servicesData, setServicesData] = useState([]);
 
   useEffect(() => {
-    axios.get("/home_to_rent").then((res) => {
+    axios.get('/home_to_rent').then((res) => {
       setHouseData(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("/activities").then((res) => {
+    axios.get('/activities').then((res) => {
       setServicesData(res.data);
     });
   }, []);
@@ -29,24 +29,25 @@ function Home() {
         <Video
           autoPlay
           muted
-          type="video/mp4"
-          src="../ressources/video-home.mp4#t=2"
+          type='video/mp4'
+          src='../ressources/video-home.mp4#t=2'
         />
       </VideoContainer>
       <Banner
         image="url('./ressources/Banner-Nos-maisons-forestières.jpg')"
-        fontSize="2rem"
-        height="15rem"
-        marginTop="0"
-        backgroundPosition="center center"
+        fontSize='2rem'
+        height='15rem'
+        marginTop='0'
+        backgroundPosition='center center'
       >
         <Title>Découvrez nos maisons forestières</Title>
       </Banner>
       <Global>
-        <Container>
-          {houseData && houseData.map((image) => (
-            <HouseImage key={image.id} id={image.id} image={image} />
-          ))}
+        <Container flexWrap='nowrap'>
+          {houseData &&
+            houseData.slice(0, 3).map((image) => (
+              <HouseImage key={image.id} id={image.id} image={image} />
+            ))}
           <BlankCard>
             <h3>Et d'autres maisons forestières à venir...</h3>
           </BlankCard>
@@ -66,11 +67,11 @@ function Home() {
 }
 
 const VideoContainer = styled.div`
-  position: static;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 88vh;
+  height: 100vh;
 
   @media (max-width: 768px) {
     height: auto;
@@ -96,6 +97,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-wrap: ${(props) => props.flexWrap || 'wrap'};
+  overflow: ${(props) => props.overflow || 'auto'};
 
   @media (max-width: 768px) {
     display: block;
@@ -111,6 +114,12 @@ const Title = styled.h1`
   text-align: center;
   font-size: 2.5rem;
   margin: 2rem 0;
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 const BlankCard = styled.div`
   display: flex;

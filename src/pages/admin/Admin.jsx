@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Global from "../../components/styled-components/theme/Global";
 
 import FilledButton from '../../components/common/buttons/FilledButton';
 import colors from '../../components/styled-components/theme/colors';
@@ -17,9 +16,6 @@ function Admin({ houses, setHouses }) {
 
   return (
     <>
-      <Global 
-        minHeight="67.2vh"
-      >
         <Title>
           <h1>Mes maisons des bois</h1>
         </Title>
@@ -30,7 +26,6 @@ function Admin({ houses, setHouses }) {
           </Link>
         </ButtonsDiv>
         <BookingDashboard />
-      </Global>
     </>
   );
 }

@@ -69,7 +69,7 @@ const Navigation = () => {
                   <StyledLink to='/se-connecter'>
                     <Image>
                       <img
-                        src='../ressources/user-white.png'
+                        src='/ressources/user-white.png'
                         alt='utilisateur'
                         width='20px'
                         height='20px'
