@@ -25,12 +25,16 @@ function AdminHouseList({ houses, setHouses }) {
 }
 
 const HouseList = styled.div`
-  width: 100%;
-  flex-wrap: wrap;
   display: flex;
- 
-  @media (max-width: 768px) {
-    justify-content: center;
+  width: 95%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: auto;
+  column-gap: 3em;
+
+  @media (max-width: 1024px) {
+    column-gap: 2em;
+    row-gap: 3em;
   }
 `;
 export default AdminHouseList;

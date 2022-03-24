@@ -1,10 +1,11 @@
+import styled from 'styled-components';
 import { Row, Cell, Table, TableHeader, TableBody } from '../../../common/tables/Table';
 import BookingListItem from './BookingListItem';
 
 const BookingList = ({ bookings, handleDelete }) => (
-  <div>
+  <BookingListContainer>
     <h2>Mes réservations</h2>
-    <Table>
+    <Table minWidth='800px'>
       <TableHeader>
         <Row>
           <Cell>Location</Cell>
@@ -25,7 +26,12 @@ const BookingList = ({ bookings, handleDelete }) => (
         ))}
       </TableBody>
     </Table>
-  </div>
+  </BookingListContainer>
 );
+
+const BookingListContainer = styled.div`
+  overflow-y: hidden;
+  overflow-x: auto;
+`
 
 export default BookingList;

@@ -10,6 +10,7 @@ const Table = styled.table`
   table-layout: fixed;
   width: 100%;
   border: none;
+  min-width: ${props => props.minWidth || 'auto'}
 `;
 
 

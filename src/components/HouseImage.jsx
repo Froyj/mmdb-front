@@ -25,7 +25,7 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${colors.blue};
   height: 90%;
-  width: 20%;
+  flex: 0 0 20%;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
