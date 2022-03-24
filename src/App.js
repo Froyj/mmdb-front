@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useReducer } from 'react';
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 
@@ -121,6 +122,7 @@ function App() {
                   />
                 </Route>
               </Routes>
+              <ToastContainer />
               <ContactModal />
             </ModalContext.Provider>
           </BookingContextProvider>

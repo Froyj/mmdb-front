@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
 import TitleForm from '../components/common/titles/TitleForm';
@@ -134,7 +134,6 @@ function SignUpForm() {
             >
               Envoyer
             </Submitbutton>
-            <ToastContainer />
           </Form>
         </ContainerForm>
       </MainContainer>
