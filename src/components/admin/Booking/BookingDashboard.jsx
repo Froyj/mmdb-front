@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '../../../helper/axios-config';
 import BookingList from './BookingList/BookingList';
@@ -70,7 +70,6 @@ const BookingDashboard = () => {
 
   return (
     <>
-      <ToastContainer />
       <BookingList bookings={bookings} handleDelete={deleteBooking} />
       <div>
         <FilledButton

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import axios from '../api/axios-config';
 import { UserContext } from '../contexts/user';
@@ -31,7 +31,6 @@ const UserProfileModifyPasswordForm = () => {
 
   return (
     <>
-      <ToastContainer />
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormLabel htmlFor='new-password'>
           Nouveau mot de passe
