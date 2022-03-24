@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,26 +8,40 @@ import styled from 'styled-components';
 import TitleForm from '../components/common/titles/TitleForm';
 import ContainerForm from '../components/common/containers/ContainerForm';
 import Submitbutton from '../components/common/buttons/SubmitButton';
-import { createUsers } from '../api/users';
+import { UserContext } from '../contexts/user';
+import AuthController from '../api/auth';
 
 function SignUpForm() {
+  const { isConnected, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    createUsers(data);
-    toast.success('Le compte à bien été crée !', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    AuthController.register(data)
+      .then(() =>
+        toast.success('Le compte à bien été crée !', {
+          closeOnClick: true,
+        })
+      )
+      .then(() =>
+        AuthController.authenticate({
+          email: data.email,
+          password: data.password,
+        })
+          .then((user) =>
+            dispatch({
+              type: 'CONNECTION',
+              payload: { userId: user.id, roleId: user.role_id },
+            })
+          ).then(() => navigate('/profil'))
+          .catch(() =>
+            toast.error('Problème lors de la création du compte')
+          )
+      );
   };
-
   return (
     <>
+      {isConnected && <Navigate to='/profil' />}
       <MainContainer>
         <ContainerForm marginTop='2rem' marginBottom='2rem'>
           <TitleForm>Créer un compte</TitleForm>
