@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { NavLink } from "react-router-dom";
@@ -297,7 +297,6 @@ function AddHomeForm({ setHouses }) {
         <Submit type="submit" value="Valider" />
         <NavLink to="/admin/dashboard">
           <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
-          <ToastContainer />
         </NavLink>
       </SubmitDiv>
     </FormContainer>

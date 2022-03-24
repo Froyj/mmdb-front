@@ -1,19 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
+import { Navigate } from 'react-router';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
+import Container from '../components/common/containers/Container';
 import FilledButton from '../components/common/buttons/FilledButton';
+
 import UserProfileModifyPasswordForm from '../components/UserProfileModifyPasswordForm';
 import UserProfileInfosList from '../components/UserProfileInfosList';
-import Container from '../components/common/containers/Container';
 import UserBookingList from '../components/user/UserBookingList';
 
 import { deleteUser, fetchUserWithId } from '../api/users';
-import { UserContext } from '../contexts/user';
 import { getUserBookings } from '../api/bookings';
+import { UserContext } from '../contexts/user';
+import { REGISTERED_USER } from '../constants/roles';
 
 function UserProfile() {
-  const { userId } = useContext(UserContext);
+  const { userId, roleId, dispatch } = useContext(UserContext);
   const [user, setUser] = useState({});
   const [bookings, setBookings] = useState([]);
 
@@ -34,6 +37,7 @@ function UserProfile() {
       const fetchedBooking = await getUserBookings(userId);
       setBookings(fetchedBooking);
     } catch (error) {
+      console.log(error);
       toast.error('Problème pendant la récupération de vos réservations !', {
         position: 'top-center',
         autoClose: 2000,
@@ -50,7 +54,9 @@ function UserProfile() {
 
   const deleteAccount = async (id) => {
     try {
-      await deleteUser(id);
+      await deleteUser(id)
+        .then(() => toast.success('Compte supprimé avec succès'))
+        .then(() => dispatch({ type: 'DISCONNECTION' }));
     } catch (error) {
       toast.error(
         'Nous avons rencontré une erreur pendant la suppression de votre compte'
@@ -60,6 +66,7 @@ function UserProfile() {
 
   return (
     <>
+      {roleId !== REGISTERED_USER && <Navigate to='/' />}
       <Main>
         <Container flexDirection='column' flexGrow='1' margin='1rem'>
           <h1>Informations de profil</h1>

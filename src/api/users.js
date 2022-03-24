@@ -18,8 +18,6 @@ const createUsers = (data) => {
 const updateUser = (userId, formData) =>
   axios.put(`/users/${userId}`, formData).then((res) => res.data);
 
-const deleteUser = (userId) => {
-  axios.delete(`/users/${userId}`)
-}
+const deleteUser = (userId) => axios.delete(`/users/${userId}`);
 
 export { fetchUserWithId, createUsers, updateUser, deleteUser };

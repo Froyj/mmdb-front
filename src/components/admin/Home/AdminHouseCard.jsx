@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { NavLink } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import deleteHouses from "../../../api/deleteHouses";
 import getHouses from "../../../api/houses";
@@ -50,7 +50,6 @@ function AdminHouseCard({ id, name, image, setHouses }) {
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
           Supprimer
         </BlankButton>
-        <ToastContainer />
       </Buttons>
     </Card>
   );
