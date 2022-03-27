@@ -30,7 +30,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
     return new Date(dateString).toLocaleDateString('fr-FR');
   }
 
-  if (!booking || !user) {
+  if (!booking) {
     return null;
   }
 
@@ -40,6 +40,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
       <Cell>{formatDate(arrival)}</Cell>
       <Cell>{formatDate(departure)}</Cell>
       <Cell>
+        {user ?
         <ClientInfos>
           <span>
             {user.firstname} {user.lastname}
@@ -47,6 +48,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
           <span>{user.phone}</span>
           <span>{user.email}</span>
         </ClientInfos>
+        : 'Utilisateur supprimé'}
       </Cell>
       <Cell>{bookingTotal} €</Cell>
       <Cell noBorder>

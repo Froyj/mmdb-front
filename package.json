@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
     "@hookform/resolvers": "^2.8.8",
     "@styled-icons/evaicons-outline": "^10.34.0",
     "@testing-library/jest-dom": "^5.11.4",
