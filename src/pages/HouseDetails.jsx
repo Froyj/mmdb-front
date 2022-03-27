@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
 import styled from 'styled-components';
 import axios from '../api/axios-config';
 import ModalCarousel from '../components/ModalCarousel';
@@ -19,10 +21,37 @@ import {
   DisplayModal,
 } from '../components/common';
 import '../index.css';
+import HouseDetailsAvailabilityCalendar from '../components/HouseDetailsAvailabilityCalendar';
 
 function HouseDetails() {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
+  const [bookedDates, setBookedDates] = useState([]);
+
+  const fetchBookingDates = (houseId) => {
+    axios
+      .get(`/houses/${houseId}/bookings`)
+      .then((res) => res.data)
+      .then((rawBookings) =>
+        rawBookings.map((b) => {
+          const arrival = b.arrival_date.split('T')[0];
+          const departure = b.departure_date.split('T')[0];
+          return {
+            start: arrival,
+            end: departure,
+            title: 'Réservé',
+            id: b.id,
+          };
+        })
+      )
+      .then(setBookedDates)
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          'Erreur rencontrées pendant la récupération du calendrier des réservations'
+        );
+      });
+  };
 
   const useModal = () => {
     const [isShowing, setIsShowing] = useState(false);
@@ -38,6 +67,7 @@ function HouseDetails() {
   const [mealOptions, setMealOptions] = useState([]);
 
   useEffect(() => {
+    fetchBookingDates(id);
     axios
       .get(`/home_to_rent/${id}`)
       .then((res) => res.data)
@@ -209,8 +239,10 @@ function HouseDetails() {
               </EquipmentContainer>
             </PageLayout>
           </Description>
-
-          <BookingForm house={house} id={id} />
+          <Container flexDirection='column'>
+            <HouseDetailsAvailabilityCalendar bookedDates={bookedDates} />
+            <BookingForm house={house} id={id} />
+          </Container>
         </Information>
       </Container>
     </>

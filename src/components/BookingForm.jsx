@@ -22,9 +22,8 @@ function BookingForm() {
                 280€ /nuit
             </Price>
             <p>Frais de ménage (60,00€)</p>
-            <p>Taxe de séjour (2,00€) x Nombre de voyageurs</p>
+            <p>Taxe de séjour (2,00€) par personne et par jour</p>
           </SumUp>
-          <SumUpTotal>Total</SumUpTotal>
         </PriceDetails>
 
         <FilledButton
@@ -37,7 +36,7 @@ function BookingForm() {
           cursor="pointer"
           border="#fff solid 3px"
         >
-          Réserver
+          En savoir plus
         </FilledButton>
       </Form>
 
@@ -70,7 +69,6 @@ function BookingForm() {
           > 
             <ModalCreate to='/creation-compte'> Créer un compte </ModalCreate>
           </FilledButton>
-          <ModalConnect to='/se-connecter'> Me connecter </ModalConnect>
 
           <button
             className='close'
@@ -88,9 +86,7 @@ function BookingForm() {
 }
 
 const Container = styled.div`
-margin-top: 3rem;
-margin-left: 3rem;
-width: 33%;
+width: auto;
 
 @media screen and (max-width: 768px) {
   width: 95%;
@@ -135,12 +131,7 @@ const SumUp = styled.div`
     width: 90%
   }
 `
-const SumUpTotal = styled.h3`
-  width: 90%;
-  margin: 1rem;
-  padding-top: 1rem;
-  border-top: dotted ${colors.blue} 3px;
-`
+
 const PriceDetails = styled.div`
 width: 95%;
 background-color: white;
@@ -209,15 +200,7 @@ const ModalCreate = styled(Link)`
     color: ${colors.green}
   }
 `
-const ModalConnect = styled(Link)`
-  text-decoration: none;
-  font-style: italic;
-  color: ${colors.blue};
 
-  :hover {
-    text-decoration: underline
-  }
-`
 const Price = styled.h3`
   text-align: left;
   margin-bottom: 2rem;

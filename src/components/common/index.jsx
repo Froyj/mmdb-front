@@ -99,6 +99,28 @@ const PrincipalImg = styled.div`
   }
 `;
 
+
+const Description = styled.div`
+  flex: 0 1 auto;
+
+  h2 {
+    margin: 0.5em;
+  }
+  
+  h3 {
+    margin: 0.7em 0;
+  }
+  
+  li {
+    list-style: none;
+    margin-left: 0.5em;
+  }
+  
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin-bottom: 2rem  }
+    `;
+
 const Information = styled.div`
   display: flex;
   flex-direction: column;
@@ -107,33 +129,13 @@ const Information = styled.div`
 
   @media screen and (min-width: 600px) {
     flex-direction: row;
+    column-gap: 2em
   }
-`;
-
-const Description = styled.div`
-  width: 74%;
-
-  h2 {
-    margin: 0.5em;
-  }
-
-  h3 {
-    margin: 0.7em 0;
-  }
-
-  li {
-    list-style: none;
-    margin-left: 0.5em;
-  }
-
-  @media screen and (max-width: 800px) {
-    width: 100%;
-    margin-bottom: 2rem  }
 `;
 
 const EquipmentContainer = styled.div`
   width: 45%;
-
+  
   .dropDown-title {
     cursor: pointer;
   }
