@@ -1,6 +1,6 @@
-import { Container, SubSection } from "../../../common/containers";
+import { Container, SubSection } from '../../../common/containers';
 
-const CustomerInfos = ({customer}) => (
+const CustomerInfos = ({ customer }) => (
   <SubSection flexGrow='2'>
     <h3>Locataire</h3>
     <table>
