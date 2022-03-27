@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Container from './common/containers/Container';
 
-const UserProfileInfosList = ({user}) => (
+const UserProfileInfosList = ({ user }) => (
   <UserProfileInfoList>
     <Container justifyContent='space-between'>
       <UserProfileItem>
