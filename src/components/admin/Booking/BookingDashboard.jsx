@@ -7,6 +7,7 @@ import BookingRegistration from './BookingRegistration';
 import FilledButton from '../../common/buttons/FilledButton';
 import BookingContext from '../../../contexts/Booking/booking';
 import { RESET_BOOKING } from '../../../reducers/booking/actions';
+import AdminSection from '../../common/containers/AdminSection';
 
 const BookingDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -69,7 +70,7 @@ const BookingDashboard = () => {
   }, []);
 
   return (
-    <>
+    <AdminSection>
       <BookingList bookings={bookings} handleDelete={deleteBooking} />
       <div>
         <FilledButton
@@ -89,7 +90,7 @@ const BookingDashboard = () => {
           />
         )}
       </div>
-    </>
+    </AdminSection>
   );
 };
 

@@ -7,6 +7,7 @@ import colors from '../../components/styled-components/theme/colors';
 
 import AdminHouseList from '../../components/admin/Home/AdminHouseList';
 import BookingDashboard from '../../components/admin/Booking/BookingDashboard';
+import AdminLegalNoticeUploadForm from "../../components/AdminLegalNoticeUploadForm";
 
 function Admin({ houses, setHouses }) {
   Admin.propTypes = {
@@ -26,6 +27,7 @@ function Admin({ houses, setHouses }) {
           </Link>
         </ButtonsDiv>
         <BookingDashboard />
+        <AdminLegalNoticeUploadForm />
     </>
   );
 }
