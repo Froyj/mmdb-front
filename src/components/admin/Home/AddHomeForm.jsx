@@ -1,15 +1,15 @@
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-import styled from "styled-components";
-import FilledButton from "../../common/buttons/FilledButton";
-import postHouses from "../../../api/postHouses";
-import colors from "../../styled-components/theme/colors";
-import getHouses from "../../../api/houses";
+import styled from 'styled-components';
+import FilledButton from '../../common/buttons/FilledButton';
+import postHouses from '../../../api/postHouses';
+import colors from '../../styled-components/theme/colors';
+import getHouses from '../../../api/houses';
 
 function AddHomeForm({ setHouses }) {
   const [postedHouse, setPostedHouse] = useState();
@@ -18,30 +18,31 @@ function AddHomeForm({ setHouses }) {
   const imgData = new FormData();
 
   const postData = (data) => {
-    const openingDate = document.getElementById("opening_disponibility").value;
-    const closingDate = document.getElementById("closing_disponibility").value;
+    try {
+      const openingDate = document.getElementById(
+        'opening_disponibility'
+      ).value;
+      const closingDate = document.getElementById(
+        'closing_disponibility'
+      ).value;
 
-    const principalImg = data.image.principal[0];
-    const secondaryImg = data.image.secondary;
+      const principalImg = data.image.principal[0];
+      const secondaryImg = data.image.secondary;
 
-    imgData.append("image.principal", principalImg);
-    for (let i = 0; i < secondaryImg.length; i += 1) {
-      imgData.append("image.secondary", secondaryImg[i]);
-    }
+      imgData.append('image.principal', principalImg);
+      for (let i = 0; i < secondaryImg.length; i += 1) {
+        imgData.append('image.secondary', secondaryImg[i]);
+      }
 
-    postHouses(imgData, data, openingDate, closingDate, setPostedHouse);
-    setTimeout(() => {
-      toast.success("Maison ajoutée !", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      postHouses(imgData, data, openingDate, closingDate, setPostedHouse).then(
+        () => {
+          toast.success('Maison ajoutée !');
+        }
+      );
       getHouses(setHouses);
-    }, 100);
+    } catch (error) {
+      toast.error(`Problème lors de l'ajout de la maison !`);
+    }
   };
 
   const refreshData = () => {
@@ -53,87 +54,87 @@ function AddHomeForm({ setHouses }) {
   return (
     <FormContainer
       onSubmit={handleSubmit(postData)}
-      enctype="multipart/form-data"
+      enctype='multipart/form-data'
     >
       <FormDiv>
         <HouseInfoDiv>
           <SimpleField
-            type="text"
-            name="name"
-            placeholder="Nom de la maison"
-            {...register("name", { required: true })}
+            type='text'
+            name='name'
+            placeholder='Nom de la maison'
+            {...register('name', { required: true })}
           />
           <SimpleField
-            type="text"
-            name="adress"
-            placeholder="Adresse"
-            {...register("adress", { required: true })}
+            type='text'
+            name='adress'
+            placeholder='Adresse'
+            {...register('adress', { required: true })}
           />
           <SimpleField
-            type="text"
-            name="zipcode"
-            placeholder="Code postal"
-            {...register("zipcode", { required: true })}
+            type='text'
+            name='zipcode'
+            placeholder='Code postal'
+            {...register('zipcode', { required: true })}
           />
           <SimpleField
-            type="text"
-            name="city"
-            placeholder="Ville"
-            {...register("city", { required: true })}
+            type='text'
+            name='city'
+            placeholder='Ville'
+            {...register('city', { required: true })}
           />
           <SimpleField
-            type="text"
-            name="country"
-            placeholder="Région"
-            {...register("country", { required: true })}
+            type='text'
+            name='country'
+            placeholder='Région'
+            {...register('country', { required: true })}
           />
           <SimpleField
-            type="text"
-            name="coordinate_long"
-            placeholder="Longitude (optionnel)"
-            {...register("coordinate_long", { valueAsNumber: true })}
+            type='text'
+            name='coordinate_long'
+            placeholder='Longitude (optionnel)'
+            {...register('coordinate_long', { valueAsNumber: true })}
           />
           <SimpleField
-            type="text"
-            name="coordinate_lat"
-            placeholder="Latitude (optionnel)"
-            {...register("coordinate_lat", { valueAsNumber: true })}
+            type='text'
+            name='coordinate_lat'
+            placeholder='Latitude (optionnel)'
+            {...register('coordinate_lat', { valueAsNumber: true })}
           />
           <SimpleField
-            type="number"
-            name="square_meter"
-            placeholder="Mètres carrés (optionnel)"
-            {...register("square_meter", { valueAsNumber: true })}
+            type='number'
+            name='square_meter'
+            placeholder='Mètres carrés (optionnel)'
+            {...register('square_meter', { valueAsNumber: true })}
           />
           <LargeField
-            name="describe_short"
-            placeholder="Description courte"
-            {...register("describe_short", { required: true })}
+            name='describe_short'
+            placeholder='Description courte'
+            {...register('describe_short', { required: true })}
           />
           <LargeField
-            name="describe_long"
-            placeholder="Description détaillée"
-            {...register("describe_long", { required: true })}
+            name='describe_long'
+            placeholder='Description détaillée'
+            {...register('describe_long', { required: true })}
           />
 
           <ImagesDiv>
-            <label htmlFor="image.principal">
+            <label htmlFor='image.principal'>
               Image principale
               <input
-                type="file"
-                id="image.principal"
-                name="image.principal"
-                {...register("image.principal", { required: true })}
+                type='file'
+                id='image.principal'
+                name='image.principal'
+                {...register('image.principal', { required: true })}
               />
             </label>
-            <label htmlFor="image.secondary">
+            <label htmlFor='image.secondary'>
               Image(s) secondaire(s)
               <input
-                type="file"
-                id="image.secondary"
-                name="image.secondary"
+                type='file'
+                id='image.secondary'
+                name='image.secondary'
                 multiple
-                {...register("image.secondary", { required: true })}
+                {...register('image.secondary', { required: true })}
               />
             </label>
           </ImagesDiv>
@@ -141,19 +142,19 @@ function AddHomeForm({ setHouses }) {
 
         <HouseDescriptionDiv>
           <SimpleField
-            type="number"
-            name="capacity"
+            type='number'
+            name='capacity'
             placeholder="Capacité d'accueil"
-            {...register("capacity", {
+            {...register('capacity', {
               required: true,
               valueAsNumber: true,
             })}
           />
           <SimpleField
-            type="number"
-            name="price_by_night"
-            placeholder="Prix par nuit"
-            {...register("price_by_night", {
+            type='number'
+            name='price_by_night'
+            placeholder='Prix par nuit'
+            {...register('price_by_night', {
               required: true,
               valueAsNumber: true,
             })}
@@ -161,11 +162,11 @@ function AddHomeForm({ setHouses }) {
           <DateDiv>
             <p> Début de disponibilité à la location </p>
             <SimpleField
-              type="date"
-              name="opening_disponibility"
-              id="opening_disponibility"
-              placeholder="Début de disponibilité à la location"
-              {...register("opening_disponibility", {
+              type='date'
+              name='opening_disponibility'
+              id='opening_disponibility'
+              placeholder='Début de disponibilité à la location'
+              {...register('opening_disponibility', {
                 required: true,
                 valueAsDate: true,
               })}
@@ -174,75 +175,75 @@ function AddHomeForm({ setHouses }) {
           <DateDiv>
             <p>Fin de disponibilité à la location</p>
             <SimpleField
-              type="date"
-              name="closing_disponibility"
-              id="closing_disponibility"
-              placeholder="Fin de disponibilité à la location"
-              {...register("closing_disponibility", {
+              type='date'
+              name='closing_disponibility'
+              id='closing_disponibility'
+              placeholder='Fin de disponibilité à la location'
+              {...register('closing_disponibility', {
                 required: true,
                 valueAsDate: true,
               })}
             />
           </DateDiv>
           <MiddleField
-            name="renting_conditions.partial"
-            placeholder="Conditions de remboursement partiel"
-            {...register("renting_conditions.partial", { required: true })}
+            name='renting_conditions.partial'
+            placeholder='Conditions de remboursement partiel'
+            {...register('renting_conditions.partial', { required: true })}
           />
-          <p className="indication">
+          <p className='indication'>
             Exemple : "Annulation jusqu'à une semaine avant le début de la
-            réservation : remboursement de 70% du montant de la réservation"{" "}
+            réservation : remboursement de 70% du montant de la réservation"{' '}
           </p>
           <MiddleField
-            name="renting_conditions.total"
-            placeholder="Conditions de remboursement total"
-            {...register("renting_conditions.total", { required: true })}
+            name='renting_conditions.total'
+            placeholder='Conditions de remboursement total'
+            {...register('renting_conditions.total', { required: true })}
           />
-          <p className="indication">
+          <p className='indication'>
             Exemple : "Annulation au moins 3 semaines avant le début de la
-            réservation : remboursement de 100% du montant de la réservation"{" "}
+            réservation : remboursement de 100% du montant de la réservation"{' '}
           </p>
           <SimpleField
-            type="number"
-            name="caution"
-            placeholder="Caution (optionnel)"
-            {...register("caution", { valueAsNumber: true })}
+            type='number'
+            name='caution'
+            placeholder='Caution (optionnel)'
+            {...register('caution', { valueAsNumber: true })}
           />
 
           <CheckboxDiv>
             <p>Evènements autorisés</p>
-            <label htmlFor="event.public">
-              <input type="hidden" name="event.public" value="false" />
+            <label htmlFor='event.public'>
+              <input type='hidden' name='event.public' value='false' />
               <input
-                type="checkbox"
-                id="event.public"
-                name="event.public"
-                value="true"
-                {...register("event.public")}
+                type='checkbox'
+                id='event.public'
+                name='event.public'
+                value='true'
+                {...register('event.public')}
               />
               Public
             </label>
 
-            <label htmlFor="event.private">
-              <input type="hidden" name="event.private" value="false" />
+            <label htmlFor='event.private'>
+              <input type='hidden' name='event.private' value='false' />
               <input
-                type="checkbox"
-                id="event.private"
-                name="event.private"
-                value="true"
-                {...register("event.private")}
+                type='checkbox'
+                id='event.private'
+                name='event.private'
+                value='true'
+                {...register('event.private')}
               />
               Privé
             </label>
 
-            <label htmlFor="event.professionnal">
-              <input type="hidden" name="event.professionnal" value="false" />
+            <label htmlFor='event.professionnal'>
+              <input type='hidden' name='event.professionnal' value='false' />
               <input
-                type="checkbox"
-                id="event.professionnal"
-                name="event.professionnal"
-                value="true"
-                {...register("event.professionnal")}
+                type='checkbox'
+                id='event.professionnal'
+                name='event.professionnal'
+                value='true'
+                {...register('event.professionnal')}
               />
               Professionnel
             </label>
@@ -252,40 +253,40 @@ function AddHomeForm({ setHouses }) {
             <DateDiv>
               <p>Heure d'arrivée</p>
               <SimpleField
-                type="time"
-                name="arrival_hour"
-                {...register("arrival_hour", { required: true })}
+                type='time'
+                name='arrival_hour'
+                {...register('arrival_hour', { required: true })}
               />
             </DateDiv>
             <DateDiv>
               <p>Heure de départ</p>
               <SimpleField
-                type="time"
-                name="departure_hour"
-                {...register("departure_hour", { required: true })}
+                type='time'
+                name='departure_hour'
+                {...register('departure_hour', { required: true })}
               />
             </DateDiv>
           </HourDiv>
 
           <CheckboxDiv>
             <p>Fumeurs autorisés</p>
-            <label htmlFor="is_smoker-true">
+            <label htmlFor='is_smoker-true'>
               <input
-                type="radio"
-                id="is_smoker-true"
-                name="is_smoker"
-                value="1"
-                {...register("is_smoker", { valueAsNumber: true })}
+                type='radio'
+                id='is_smoker-true'
+                name='is_smoker'
+                value='1'
+                {...register('is_smoker', { valueAsNumber: true })}
               />
               Oui
             </label>
-            <label htmlFor="is_smoker-false">
+            <label htmlFor='is_smoker-false'>
               <input
-                type="radio"
-                id="is_smoker-false"
-                name="is_smoker"
-                value="0"
-                {...register("is_smoker", { valueAsNumber: true })}
+                type='radio'
+                id='is_smoker-false'
+                name='is_smoker'
+                value='0'
+                {...register('is_smoker', { valueAsNumber: true })}
               />
               Non
             </label>
@@ -294,8 +295,8 @@ function AddHomeForm({ setHouses }) {
       </FormDiv>
 
       <SubmitDiv>
-        <Submit type="submit" value="Valider" />
-        <NavLink to="/admin/dashboard">
+        <Submit type='submit' value='Valider' />
+        <NavLink to='/admin/dashboard'>
           <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
         </NavLink>
       </SubmitDiv>
@@ -309,7 +310,7 @@ const FormContainer = styled.form`
   flex-direction: column;
 
   @media (max-width: 768px) {
-   flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 `;
 const FormDiv = styled.div`
@@ -318,8 +319,7 @@ const FormDiv = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-   }
-  
+  }
 `;
 const HouseInfoDiv = styled.div`
   display: flex;
@@ -330,7 +330,7 @@ const HouseInfoDiv = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-   }
+  }
 `;
 const HouseDescriptionDiv = styled.div`
   display: flex;
@@ -353,9 +353,8 @@ const HouseDescriptionDiv = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    width:100%;
-    
-   }
+    width: 100%;
+  }
 `;
 const DateDiv = styled.div`
   display: flex;
@@ -376,9 +375,8 @@ const DateDiv = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    width:100%;
-    
-   }
+    width: 100%;
+  }
 `;
 const CheckboxDiv = styled.div`
   display: flex;
@@ -452,8 +450,8 @@ const SimpleField = styled.input`
   padding: 0rem 1rem;
   border: solid 3px ${colors.yellow};
   border-radius: 30px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: ${colors.blue};
   font-weight: 100;
   font-size: 1rem;
@@ -470,8 +468,8 @@ const MiddleField = styled.textarea`
   padding: 0.5rem 1rem;
   border: solid 3px ${colors.yellow};
   border-radius: 30px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: ${colors.blue};
   font-weight: 100;
 
@@ -487,8 +485,8 @@ const LargeField = styled.textarea`
   padding: 0.5rem 1rem;
   border: solid 3px ${colors.yellow};
   border-radius: 30px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: ${colors.blue};
   font-weight: 100;
 
