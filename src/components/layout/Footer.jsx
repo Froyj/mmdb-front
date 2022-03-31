@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
+import LEGAL_NOTICE_URL from "../../constants/legal-notice";
 import ModalContext from "../../contexts/modal";
 
 function Footer() {
@@ -27,7 +28,7 @@ function Footer() {
         <ContactButton type="button" onClick={() => setOpenModal(true)}>
           Contact
         </ContactButton>
-        <a href="/ressources/Copy of Charte.pdf" target="_blank">
+        <a href={LEGAL_NOTICE_URL}>
           {" "}
           Mentions légales{" "}
         </a>
