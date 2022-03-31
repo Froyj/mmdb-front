@@ -18,20 +18,13 @@ function AdminHouseCard({ id, name, image, setHouses }) {
 
   const deleteHouse = () => {
     if (window.confirm('Êtes-vous sur de vouloir supprimer la maison ?')) {
-      deleteHouses(id);
+      deleteHouses(id)
+        .then(() => toast.success('Maison supprimée !'))
+        .catch(() =>
+          toast.error('Erreur pendant la suppression de la maison!')
+        );
     }
-    return setTimeout(() => {
-      toast.success('Maison supprimée !', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      getHouses(setHouses);
-    }, 100);
+    getHouses(setHouses);
   };
 
   return (
