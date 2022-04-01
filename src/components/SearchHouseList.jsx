@@ -9,7 +9,9 @@ function SearchHouseList({ houses }) {
 
   return (
     <SearchContainer>
-      {houses.map((house) => (
+      {houses
+      .filter((house) => house?.availability)
+      .map((house) => (
         <SearchHouseCard
           key={house.id}
           id={house.id}

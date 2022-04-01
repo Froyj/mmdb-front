@@ -4,11 +4,12 @@ import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import deleteHouses from '../../../api/deleteHouses';
-import getHouses from '../../../api/houses';
+import { getHouses, toggleHouseAvailability } from '../../../api/houses';
 import colors from '../../styled-components/theme/colors';
 import BlankTitle from '../../common/titles/BlankTitle';
+import AdminHouseCardSwitchButton from './AdminHouseCardSwitchButton';
 
-function AdminHouseCard({ id, name, image, setHouses }) {
+function AdminHouseCard({ id, name, image, setHouses, house }) {
   AdminHouseCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -27,6 +28,12 @@ function AdminHouseCard({ id, name, image, setHouses }) {
     getHouses(setHouses);
   };
 
+  const toggleAvailability = (houseId, value) => {
+    toggleHouseAvailability(houseId, value)
+    .then(() => getHouses(setHouses))
+    .catch(() => toast.error("Une erreur a empêché la disponibilité d'être modifiée"))
+  }
+
   return (
     <Card>
       <StyledLink to={`/maison/${id}`}>
@@ -43,6 +50,11 @@ function AdminHouseCard({ id, name, image, setHouses }) {
         <BlankButton borderColor={colors.green} onClick={deleteHouse}>
           Supprimer
         </BlankButton>
+        <AdminHouseCardSwitchButton
+          isAvailable={house?.availability}
+          houseId={id}
+          toggleAvailability={() => toggleAvailability(id, !house?.availability)}
+        />
       </Buttons>
     </Card>
   );

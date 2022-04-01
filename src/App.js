@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 import axios from './helper/axios-config';
-import getHouses from './api/houses';
+import {getHouses} from './api/houses';
 import { getBookings } from './api/bookings';
 
 import Home from './pages/Home';
