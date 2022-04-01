@@ -45,9 +45,11 @@ function Home() {
       <Global>
         <Container flexWrap='nowrap'>
           {houseData &&
-            houseData.slice(0, 3).map((image) => (
-              <HouseImage key={image.id} id={image.id} image={image} />
-            ))}
+            houseData
+              .slice(0, 3)
+              .map((image) => (
+                <HouseImage key={image.id} id={image.id} image={image} />
+              ))}
           <BlankCard>
             <h3>Et d'autres maisons forestières à venir...</h3>
           </BlankCard>
