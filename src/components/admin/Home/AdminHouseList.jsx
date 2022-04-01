@@ -14,6 +14,7 @@ function AdminHouseList({ houses, setHouses }) {
       {houses.map((house) => (
         <AdminHouseCard
           key={house.id}
+          house={house}
           id={house.id}
           name={house.name}
           image={house.image.principal}
