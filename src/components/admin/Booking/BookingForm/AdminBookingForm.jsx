@@ -150,7 +150,7 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
           <SumUp>
             <p>Frais de ménage : 60 euros</p>
             <br />
-            <p>Taxe de séjour nombre de personnes : 2 euros/personne</p>
+            <p>Taxe de séjour nombre de personnes : 2 euros par personne et par jour</p>
             <br />
             <p>Total: {bookingTotal}</p>
             <br />

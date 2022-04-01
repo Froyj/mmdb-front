@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Global from "../styled-components/theme/Global";
-import FilledButton from "./buttons/FilledButton";
+import styled from 'styled-components';
+import Global from '../styled-components/theme/Global';
+import FilledButton from './buttons/FilledButton';
 
 //  --> vv house vv <--
 
@@ -14,7 +14,7 @@ const Container = styled(Global)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    width: 90%
+    width: 90%;
   }
 `;
 
@@ -25,11 +25,12 @@ const DisplayModal = styled.button`
 `;
 
 const ImagesDiv = styled.div`
+  max-height: 500px;
   border-radius: 25px;
   overflow: hidden;
 
   img {
-    height: 100%;
+    height: auto;
     width: 100%;
     object-fit: cover;
   }
@@ -56,8 +57,8 @@ const ImagesDiv = styled.div`
       grid-area: 1 / 3 / 2 / 4;
 
       :hover {
-    transform: scale(0.98);
-  }
+        transform: scale(0.98);
+      }
     }
 
     .grid3 {
@@ -65,8 +66,8 @@ const ImagesDiv = styled.div`
       grid-area: 1 / 4 / 2 / 5;
 
       :hover {
-    transform: scale(0.98);
-  }
+        transform: scale(0.98);
+      }
     }
 
     .grid4 {
@@ -74,8 +75,8 @@ const ImagesDiv = styled.div`
       grid-area: 2 / 3 / 3 / 4;
 
       :hover {
-    transform: scale(0.98);
-  }
+        transform: scale(0.98);
+      }
     }
 
     .grid5 {
@@ -83,8 +84,8 @@ const ImagesDiv = styled.div`
       grid-area: 2 / 4 / 3 / 5;
 
       :hover {
-    transform: scale(0.98);
-  }
+        transform: scale(0.98);
+      }
     }
   }
 `;
@@ -99,27 +100,27 @@ const PrincipalImg = styled.div`
   }
 `;
 
-
 const Description = styled.div`
   flex: 0 1 auto;
 
   h2 {
     margin: 0.5em;
   }
-  
+
   h3 {
     margin: 0.7em 0;
   }
-  
+
   li {
     list-style: none;
     margin-left: 0.5em;
   }
-  
+
   @media screen and (max-width: 800px) {
     width: 100%;
-    margin-bottom: 2rem  }
-    `;
+    margin-bottom: 2rem;
+  }
+`;
 
 const Information = styled.div`
   display: flex;
@@ -129,13 +130,13 @@ const Information = styled.div`
 
   @media screen and (min-width: 600px) {
     flex-direction: row;
-    column-gap: 2em
+    column-gap: 2em;
   }
 `;
 
 const EquipmentContainer = styled.div`
   width: 45%;
-  
+
   .dropDown-title {
     cursor: pointer;
   }
@@ -146,16 +147,16 @@ const EquipmentContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    width: 100%    
+    width: 100%;
   }
 `;
 
 const EquipmentList = styled.div`
   display: none;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
 
   li {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 `;
 
@@ -173,9 +174,9 @@ const Showlist = styled.div`
 const InfoButton = styled(FilledButton)`
   padding-top: 1em;
 
-@media screen and (max-width: 600px) {
-  width: 100%
-}
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Booking = styled.div`
