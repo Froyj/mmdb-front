@@ -22,6 +22,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
     id,
     home_to_rent: homeToRent,
     arrival_date: arrival,
+    home_to_rent_name: houseName,
     departure_date: departure,
     user,
   } = booking;
@@ -36,7 +37,7 @@ const BookingListItem = ({ booking, handleDelete }) => {
 
   return (
     <Row>
-      <Cell>{homeToRent.name}</Cell>
+      <Cell>{houseName} {!homeToRent?.id && `(supprimée)`}</Cell>
       <Cell>{formatDate(arrival)}</Cell>
       <Cell>{formatDate(departure)}</Cell>
       <Cell>

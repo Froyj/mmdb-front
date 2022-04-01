@@ -67,6 +67,7 @@ function AdminBookingForm({ houses, addBooking, fieldErrors }) {
       bookingInfos: {
         user_id: user?.id,
         home_to_rent_id: house?.id,
+        home_to_rent_name: house.name,
         arrival_date: arrival,
         departure_date: departure,
         number_of_renter: personCount,
