@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getHouses from '../../../api/houses';
+import { getHouses } from '../../../api/houses';
 import AdminBookingForm from './BookingForm/AdminBookingForm';
 
 const BookingRegistration = ({ addBooking, bookings, fieldErrors }) => {
@@ -9,12 +9,12 @@ const BookingRegistration = ({ addBooking, bookings, fieldErrors }) => {
   }, []);
 
   return (
-      <AdminBookingForm
-        houses={houses}
-        addBooking={addBooking}
-        bookings={bookings}
-        fieldErrors={fieldErrors}
-      />
+    <AdminBookingForm
+      houses={houses}
+      addBooking={addBooking}
+      bookings={bookings}
+      fieldErrors={fieldErrors}
+    />
   );
 };
 

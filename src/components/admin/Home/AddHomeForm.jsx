@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import FilledButton from '../../common/buttons/FilledButton';
 import postHouses from '../../../api/postHouses';
 import colors from '../../styled-components/theme/colors';
-import getHouses from '../../../api/houses';
+import { getHouses } from '../../../api/houses';
 
 function AddHomeForm({ setHouses }) {
   const [postedHouse, setPostedHouse] = useState();
