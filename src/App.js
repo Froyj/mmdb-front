@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useReducer } from 'react';
+import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -72,62 +73,69 @@ function App() {
 
   if (houses) {
     return (
-      <GlobalContainer>
-        <UserContextProvider value={{ ...userContext, dispatch }}>
-          <BookingContextProvider>
-            <ModalContext.Provider value={{ openModal, setOpenModal }}>
-              <Routes>
-                <Route path='/' element={<Layout />}>
-                  <Route exact path='/' element={<Home />} />
-                  <Route path='/creation-compte' element={<SignUp />} />
-                  <Route path='/se-connecter' element={<ConnectionModal />} />
-                  <Route path='/services' element={<Services />} />
-                  <Route path='/qui-sommes-nous' element={<About />} />
+      <>
+        <Helmet>
+          <title>Ma maison des bois - Location de maison forestières</title>
+          <meta name='description' content='Location de maisons forestières' />
+          <meta name='keywords' content='maison, location, forêt' />
+        </Helmet>
+        <GlobalContainer>
+          <UserContextProvider value={{ ...userContext, dispatch }}>
+            <BookingContextProvider>
+              <ModalContext.Provider value={{ openModal, setOpenModal }}>
+                <Routes>
+                  <Route path='/' element={<Layout />}>
+                    <Route exact path='/' element={<Home />} />
+                    <Route path='/creation-compte' element={<SignUp />} />
+                    <Route path='/se-connecter' element={<ConnectionModal />} />
+                    <Route path='/services' element={<Services />} />
+                    <Route path='/qui-sommes-nous' element={<About />} />
+                    <Route
+                      path='/nos-maisons-forestieres'
+                      element={<HouseList houses={houses} />}
+                    />
+                    <Route path='/maison/:id' element={<HouseDetails />} />
+                    <Route path='/profil' element={<UserProfile />} />
+                  </Route>
                   <Route
-                    path='/nos-maisons-forestieres'
-                    element={<HouseList houses={houses} />}
-                  />
-                  <Route path='/maison/:id' element={<HouseDetails />} />
-                  <Route path='/profil' element={<UserProfile />} />
-                </Route>
-                <Route
-                  path='/admin'
-                  element={
-                    <PrivateRoute role={ADMIN}>
-                      <Layout />
-                    </PrivateRoute>
-                  }
-                >
-                  <Route
-                    path='dashboard'
+                    path='/admin'
                     element={
-                      <Admin
-                        houses={houses}
-                        bookings={bookings}
-                        setHouses={setHouses}
-                      />
+                      <PrivateRoute role={ADMIN}>
+                        <Layout />
+                      </PrivateRoute>
                     }
-                  />
-                  <Route
-                    path='dashboard/maison/ajouter'
-                    element={<AddNewHouse setHouses={setHouses} />}
-                  />
-                  <Route
-                    path='dashboard/mise-a-jour-maison/:id'
-                    element={<UpdateHouse setHouses={setHouses} />}
-                  />
-                  <Route
-                    path='dashboard/details-reservation/:bookingId'
-                    element={<BookingDetails />}
-                  />
-                </Route>
-              </Routes>
-              <ToastContainer />
-              <ContactModal />
-            </ModalContext.Provider>
-          </BookingContextProvider>
-        </UserContextProvider>
-      </GlobalContainer>
+                  >
+                    <Route
+                      path='dashboard'
+                      element={
+                        <Admin
+                          houses={houses}
+                          bookings={bookings}
+                          setHouses={setHouses}
+                        />
+                      }
+                    />
+                    <Route
+                      path='dashboard/maison/ajouter'
+                      element={<AddNewHouse setHouses={setHouses} />}
+                    />
+                    <Route
+                      path='dashboard/mise-a-jour-maison/:id'
+                      element={<UpdateHouse setHouses={setHouses} />}
+                    />
+                    <Route
+                      path='dashboard/details-reservation/:bookingId'
+                      element={<BookingDetails />}
+                    />
+                  </Route>
+                </Routes>
+                <ToastContainer />
+                <ContactModal />
+              </ModalContext.Provider>
+            </BookingContextProvider>
+          </UserContextProvider>
+        </GlobalContainer>
+      </>
     );
   }
 }
