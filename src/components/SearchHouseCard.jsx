@@ -65,7 +65,7 @@ const StyledLink = styled(NavLink)`
 
   @media screen and (max-width: 580px) {
     flex-basis: 90%;
-    margin:auto;
+    margin: auto;
   }
 `;
 
@@ -90,7 +90,7 @@ const HouseCard = styled.div`
 const Image = styled.img`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  width:100%;
+  width: 100%;
   height: 250px;
   object-fit: cover;
 
@@ -101,16 +101,17 @@ const Image = styled.img`
 
 const TextDiv = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding: 0 1.5em;
   margin: 1em auto;
+  box-sizing: border-box;
 `;
 
 const Price = styled.p`
   display: flex;
-  width: auto;
   color: ${colors.green};
   font-weight: bolder;
   align-self: left;
@@ -130,7 +131,6 @@ const Résumé = styled.p`
   font-size: 0.9rem;
   font-weight: 100;
   text-align: justify;
-  padding: 0.5rem;
   margin-top: 1rem;
 `;
 const TitleSpan = styled.span`
