@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import SearchHouseList from "../components/SearchHouseList";
-import Banner from "../components/common/Banner";
+import PropTypes from 'prop-types';
+import SearchHouseList from '../components/SearchHouseList';
+import Banner from '../components/common/Banner';
 
 function HouseList({ houses }) {
   HouseList.propTypes = {
@@ -10,16 +10,15 @@ function HouseList({ houses }) {
   return (
     <>
       <Banner
-        backgroundPosition="center"
-        marginTop="0"
+        backgroundPosition='center'
+        marginTop='0'
         image="url('./ressources/Banner-Nos-maisons-forestières.jpg')"
       >
         Nos maisons forestières
       </Banner>
-        <SearchHouseList houses={houses} />
+      <SearchHouseList houses={houses} />
     </>
   );
 }
 
 export default HouseList;
-
