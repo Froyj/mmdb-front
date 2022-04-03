@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import FilledButton from '../../components/common/buttons/FilledButton';
@@ -9,18 +8,15 @@ import AdminHouseList from '../../components/admin/Home/AdminHouseList';
 import BookingDashboard from '../../components/admin/Booking/BookingDashboard';
 import AdminLegalNoticeUploadForm from "../../components/AdminLegalNoticeUploadForm";
 
-function Admin({ houses, setHouses }) {
-  Admin.propTypes = {
-    houses: PropTypes.arrayOf(PropTypes.object).isRequired,
-    setHouses: PropTypes.func.isRequired,
-  };
+function Admin() {
+
 
   return (
     <>
         <Title>
           <h1>Mes maisons des bois</h1>
         </Title>
-        <AdminHouseList houses={houses} setHouses={setHouses} />
+        <AdminHouseList />
         <ButtonsDiv>
           <Link to='maison/ajouter'>
             <FilledButton> Ajouter une nouvelle maison </FilledButton>
