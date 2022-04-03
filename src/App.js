@@ -6,8 +6,7 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 import axios from './helper/axios-config';
-import {getHouses} from './api/houses';
-import { getBookings } from './api/bookings';
+import { getHouses } from './api/houses';
 
 import Home from './pages/Home';
 import HouseList from './pages/HouseList';
@@ -41,7 +40,6 @@ Modal.setAppElement('#root');
 
 function App() {
   const [houses, setHouses] = useState([]);
-  const [bookings, setBookings] = useState([]);
   const [userContext, dispatch] = useReducer(userContextReducer, initialState);
   const [openModal, setOpenModal] = useState(false);
 
@@ -68,7 +66,6 @@ function App() {
 
   useEffect(() => {
     getHouses(setHouses);
-    getBookings(setBookings);
   }, []);
 
   if (houses) {
@@ -105,16 +102,7 @@ function App() {
                       </PrivateRoute>
                     }
                   >
-                    <Route
-                      path='dashboard'
-                      element={
-                        <Admin
-                          houses={houses}
-                          bookings={bookings}
-                          setHouses={setHouses}
-                        />
-                      }
-                    />
+                    <Route path='dashboard' element={<Admin />} />
                     <Route
                       path='dashboard/maison/ajouter'
                       element={<AddNewHouse setHouses={setHouses} />}

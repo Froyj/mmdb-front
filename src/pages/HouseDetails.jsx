@@ -240,7 +240,7 @@ function HouseDetails() {
             </PageLayout>
           </Description>
           <Container flexDirection='column'>
-            <HouseDetailsAvailabilityCalendar bookedDates={bookedDates} />
+            <HouseDetailsAvailabilityCalendar bookedDates={bookedDates} house={house}/>
             <BookingForm house={house} id={id} />
           </Container>
         </Information>

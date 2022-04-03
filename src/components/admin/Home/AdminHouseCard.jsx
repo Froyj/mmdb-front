@@ -23,9 +23,11 @@ function AdminHouseCard({ id, name, image, setHouses, house }) {
         .then(() => toast.success('Maison supprimée !'))
         .catch(() =>
           toast.error('Erreur pendant la suppression de la maison!')
-        );
+        )
+        .finally(() => {
+          getHouses(setHouses);
+        })
     }
-    getHouses(setHouses);
   };
 
   const toggleAvailability = (houseId, value) => {
