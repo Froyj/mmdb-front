@@ -1,16 +1,15 @@
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NavLink, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from '../../helper/axios-config';
 import colors from '../../components/styled-components/theme/colors';
-import { getHouses, updateHouses } from '../../api/houses';
+import { updateHouse } from '../../api/houses';
+import AdminHouseImageUploadForm from '../../components/admin/Home/AdminHouseImageUploadForm';
 
-function UpdateHouse({ setHouses }) {
-  const [updatedHouse, setUpdatedhouse] = useState();
-  const [dataForm, setDataForm] = useState(null);
+function UpdateHouse() {
   const { register, handleSubmit, reset } = useForm();
 
   const { id } = useParams();
@@ -19,97 +18,45 @@ function UpdateHouse({ setHouses }) {
 
   useEffect(() => {
     axios
-      .get(`/home_to_rent/${id}`, { data: { id } })
-      .then((res) => {
-        setDataForm(res.data);
+      .get(`/home_to_rent/${id}`)
+      .then((res) => res.data)
+      .then((houseInfos) => {
+        reset({
+          ...houseInfos,
+          opening_disponibility: houseInfos.opening_disponibility.replace(
+            regex,
+            ''
+          ),
+          closing_disponibility: houseInfos.closing_disponibility.replace(
+            regex,
+            ''
+          ),
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const refreshForm = () => {
-    reset({
-      name: dataForm.name,
-      adress: dataForm.adress,
-      zipcode: dataForm.zipcode,
-      city: dataForm.city,
-      country: dataForm.country,
-      coordinate_long: dataForm.coordinate_long,
-      coordinate_lat: dataForm.coordinate_lat,
-      square_meter: dataForm.square_meter,
-      describe_short: dataForm.describe_short,
-      describe_long: dataForm.describe_long,
-      image: {
-        principal: dataForm.image.principal,
-        secondary: dataForm.image.secondary,
-      },
-      capacity: dataForm.capacity,
-      price_by_night: dataForm.price_by_night,
-      opening_disponibility: dataForm.opening_disponibility.replace(regex, ''),
-      closing_disponibility: dataForm.closing_disponibility.replace(regex, ''),
-      renting_conditions: {
-        partial: dataForm.renting_conditions.partial,
-        total: dataForm.renting_conditions.total,
-      },
-      caution: dataForm.caution,
-      arrival_hour: dataForm.arrival_hour,
-      departure_hour: dataForm.departure_hour,
-    });
-  };
-
-  const imgData = new FormData();
-
-  const updateHouse = (data) => {
+  const handleUpdate = async (data) => {
     const openingDate = document.getElementById('opening_disponibility').value;
     const closingDate = document.getElementById('closing_disponibility').value;
 
-    const principalImg = data.image.principal[0];
-    const secondaryImg = data.image.secondary;
-
-    imgData.append('image.principal', principalImg);
-    for (let i = 0; i < secondaryImg.length; i += 1) {
-      imgData.append('image.secondary', secondaryImg[i]);
-    }
-
-    updateHouses(data, id, openingDate, closingDate, imgData, setUpdatedhouse);
-    setTimeout(() => {
-      toast.success('Maison modifiée !', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+    updateHouse({ data, id, openingDate, closingDate })
+      .then(() => toast.success('Maison modifiée !'))
+      .catch((error) => {
+        console.log(error);
+        toast.error('Problème lors de la modification de la maison');
       });
-      getHouses(setHouses);
-    }, 100);
-  };
-
-  const refreshData = () => {
-    if (updatedHouse) {
-      getHouses(setHouses);
-    }
   };
 
   return (
-    <FormContainer
-      onSubmit={handleSubmit(updateHouse)}
-      enctype='multipart/form-data'
-    >
-      <Div>
-        <FilledButton
-          type='button'
-          onClick={refreshForm}
-          className='btn btn-secondary'
-          width='20%'
-        >
-          Récuperer les données actuelles
-        </FilledButton>
-        <p>( Il faut re sélectionner les images )</p>
-      </Div>
-      {dataForm && (
+    <>
+      <FormContainer
+        onSubmit={handleSubmit(handleUpdate)}
+        enctype='multipart/form-data'
+      >
+        <h2>Informations de la maison</h2>
         <FormDiv>
           <HouseInfoDiv>
             <SimpleField
@@ -170,28 +117,6 @@ function UpdateHouse({ setHouses }) {
               placeholder='Description détaillée'
               {...register('describe_long')}
             />
-
-            <ImagesDiv>
-              <label htmlFor='image.principal'>
-                Image principale
-                <input
-                  type='file'
-                  id='image.principal'
-                  name='image.principal'
-                  {...register('image.principal')}
-                />
-              </label>
-              <label htmlFor='image.secondary'>
-                Image(s) secondaire(s)
-                <input
-                  type='file'
-                  id='image.secondary'
-                  name='image.secondary'
-                  multiple
-                  {...register('image.secondary')}
-                />
-              </label>
-            </ImagesDiv>
           </HouseInfoDiv>
 
           <HouseDescriptionDiv>
@@ -323,8 +248,7 @@ function UpdateHouse({ setHouses }) {
               <label htmlFor='is_smoker-true'>
                 <input
                   type='radio'
-                  id='is_smoker-true'
-                  name='is_smoker'
+                  value={1}
                   {...register('is_smoker', { valueAsNumber: true })}
                 />
                 Oui
@@ -332,8 +256,7 @@ function UpdateHouse({ setHouses }) {
               <label htmlFor='is_smoker-false'>
                 <input
                   type='radio'
-                  id='is_smoker-false'
-                  name='is_smoker'
+                  value={0}
                   {...register('is_smoker', { valueAsNumber: true })}
                 />
                 Non
@@ -341,33 +264,28 @@ function UpdateHouse({ setHouses }) {
             </CheckboxDiv>
           </HouseDescriptionDiv>
         </FormDiv>
-      )}
-      <SubmitDiv>
-        <Submit type='submit' value='Valider' />
-        <NavLink to='/admin/dashboard'>
-          <FilledButton onClick={refreshData}>Retour en arrière</FilledButton>
-        </NavLink>
-      </SubmitDiv>
-    </FormContainer>
+        )
+        <SubmitDiv>
+          <Submit type='submit' value='Valider' />
+          <NavLink to='/admin/dashboard'>
+            <FilledButton onClick={() => {}}>Retour en arrière</FilledButton>
+          </NavLink>
+        </SubmitDiv>
+        <h2>Photos</h2>
+      </FormContainer>
+      <AdminHouseImageUploadForm />
+    </>
   );
 }
-
-const Div = styled.div`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
 
 const FormContainer = styled.form`
   display: flex;
   margin-top: 1rem;
   flex-direction: column;
+
+  h2 {
+    margin: 2em;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -473,30 +391,7 @@ const HourDiv = styled.div`
     width: 45%;
   }
 `;
-const ImagesDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 0.6rem;
-  padding: 0rem 1rem;
-  border: solid 3px ${colors.yellow};
-  border-radius: 30px;
-  width: 90%;
-  height: 5rem;
 
-  label {
-    width: 80%;
-    justify-content: flex-end;
-
-    input {
-      margin: 0 2rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    height: 10rem;
-  }
-`;
 const SubmitDiv = styled.div`
   display: flex;
   align-items: center;
