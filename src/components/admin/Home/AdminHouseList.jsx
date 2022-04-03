@@ -1,13 +1,16 @@
-import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { getHouses } from "../../../api/houses";
 
 import AdminHouseCard from "./AdminHouseCard";
 
-function AdminHouseList({ houses, setHouses }) {
-  AdminHouseList.propTypes = {
-    houses: PropTypes.arrayOf(PropTypes.object).isRequired,
-    setHouses: PropTypes.func.isRequired,
-  };
+function AdminHouseList() {
+
+  const [houses, setHouses] = useState([]);
+
+  useEffect(() => {
+    getHouses(setHouses)
+  }, [])
 
   return (
     <HouseList>

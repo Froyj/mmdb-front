@@ -75,12 +75,12 @@ const BookingDashboard = () => {
       <div>
         <FilledButton
           onClick={toggleBookingForm}
-          width='20%'
+          max-width='20%'
           backgroundColor='#1c2c46'
           border='none'
           fontSize='13.3333px'
         >
-          Enregistrer une reservation
+          Enregistrer une réservation
         </FilledButton>
         {isBookingFormOpen && (
           <BookingRegistration
